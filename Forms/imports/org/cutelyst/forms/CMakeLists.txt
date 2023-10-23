@@ -84,7 +84,7 @@ add_custom_command(
 )
 
 ### Install library
-install(TARGETS ${TARGET}
+install(TARGETS Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}FormsQml
     DESTINATION ${QT_INSTALL_QML}/${QMLPLUGIN_INSTALL_URI}
 )
 
