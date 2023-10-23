@@ -8,7 +8,7 @@ rebuild_master:
         package: libCutelyst3Qt5Forms
     - trigger_services:
         project: home:buschmann23:Cutelyst:devel
-        package: libCutelyst3Qt5Forms
+        package: libCutelyst3Qt6Forms
   filters:
     event: push
     branches:
