@@ -54,12 +54,12 @@ private:
 
 TestEngine* TestForms::getEngine()
 {
-    auto app = new TestApplication;
+    auto app = new TestApplication(this);
     auto engine = new TestEngine(app, QVariantMap());
     new TestFormsController(app);
 
-    const QString l10nDir = QStringLiteral(TESTFORMS_DIR) + QLatin1String("/l10n");
-    const auto supportedLocales = app->loadTranslationsFromDir(QStringLiteral("formtests"), l10nDir);
+    const QString l10nDir = QStringLiteral(TESTFORMS_L10N_DIR);
+    app->loadTranslationsFromDir(QStringLiteral("formtests"), l10nDir);
 
     auto forms = new Forms(app);
     forms->addImportPath(QStringLiteral(FORMS_IMPORT_DIR));
