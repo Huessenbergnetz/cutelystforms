@@ -14,6 +14,12 @@ target_compile_definitions(testforms_exec
         TESTFORMS_DIR="${CMAKE_SOURCE_DIR}/tests/data"
 )
 
+if (TARGET Cutelyst::CSRFProtection)
+    target_compile_definitions(testforms_exec
+        PRIVATE PLUGIN_CSRFPROTECTION_ENABLED
+    )
+endif (TARGET Cutelyst::CSRFProtection)
+
 set(testforms_TS_FILES
     data/l10n/formtests.de.ts
     data/l10n/formtests.en.ts
