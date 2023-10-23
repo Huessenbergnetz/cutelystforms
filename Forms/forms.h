@@ -19,7 +19,6 @@ namespace CutelystForms {
 class FormsPrivate;
 
 /*!
- * \defgroup plugins-forms Forms plugin
  * \brief Provides loading and processing HTML form data written in QML.
  *
  * <h3>Logging</h3>
@@ -33,8 +32,7 @@ class FormsPrivate;
  */
 
 /*!
- * \ingroup plugins-forms
- * \class Forms forms.h <Cutelyst/Plugins/Forms>
+ * \class Forms forms.h <CutelystForms/Forms>
  * \brief The Forms plugin class.
  */
 class CUTELYST_PLUGIN_FORMS_EXPORT Forms : public Cutelyst::Plugin // clazy::exclude(ctor-missing-parent-argument)
