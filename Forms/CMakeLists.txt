@@ -23,8 +23,7 @@ set(cutelystforms_SRC
     option.cpp
     option_p.h
     optgroup.cpp
-    optgroup_p.h
-)
+    optgroup_p.h)
 
 set(cutelystforms_HEADERS
     ${CMAKE_CURRENT_BINARY_DIR}/cutelyst_plugin_forms_export.h
@@ -38,8 +37,7 @@ set(cutelystforms_HEADERS
     select.h
     selectcontent.h
     option.h
-    optgroup.h
-)
+    optgroup.h)
 
 add_library(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms
     ${cutelystforms_SRC}
@@ -76,7 +74,7 @@ set_target_properties(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Form
     EXPORT_NAME Core
     VERSION ${PROJECT_VERSION}
     SOVERSION ${PROJECT_VERSION_MAJOR}
-#    PUBLIC_HEADER ${cutelystforms_HEADERS}
+    PUBLIC_HEADER "${cutelystforms_HEADERS}"
 )
 
 target_link_libraries(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms

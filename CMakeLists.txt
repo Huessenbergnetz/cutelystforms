@@ -18,11 +18,11 @@ include(GNUInstallDirs)
 include(GenerateExportHeader)
 include(CMakePackageConfigHelpers)
 
+set(CUTELYST_VERSION_MAJOR 3)
+
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Qml LinguistTools REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} 5.15.2 COMPONENTS Core Qml LinguistTools REQUIRED)
-find_package(Cutelyst3Qt${QT_VERSION_MAJOR} 3.8.0 REQUIRED)
-
-set(CUTELYST_VERSION_MAJOR 3)
+find_package(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR} 3.8.0 REQUIRED)
 
 set(CUTELYSTFORMS_API_LEVEL "0")
 
