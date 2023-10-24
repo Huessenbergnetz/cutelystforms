@@ -80,3 +80,160 @@ add_subdirectory(Forms)
 if (ENABLE_TESTS)
     add_subdirectory(tests)
 endif (ENABLE_TESTS)
+
+if (BUILD_DOCS)
+    find_package(Doxygen REQUIRED dot)
+
+    # Umbreall target to build local docs in HTML and QCH format
+    add_custom_target(docs)
+
+    if (BUILD_DOCS_QUIET)
+        set(DOXYGEN_QUIET "YES")
+        set(DOXYGEN_WARNINGS "NO")
+        set(DOXYGEN_WARN_IF_UNDOCUMENTED "NO")
+        set(DOXYGEN_WARN_IF_DOC_ERROR "NO")
+    else(BUILD_DOCS_QUIET)
+        set(DOXYGEN_QUIET "NO")
+        set(DOXYGEN_WARNINGS "YES")
+        set(DOXYGEN_WARN_IF_UNDOCUMENTED "YES")
+        set(DOXYGEN_WARN_IF_DOC_ERROR "YES")
+    endif(BUILD_DOCS_QUIET)
+
+    ## Project related configuration options
+    set(DOXYGEN_ALWAYS_DETAILED_SEC "YES")
+    set(DOXYGEN_STRIP_FROM_PATH ${CMAKE_SOURCE_DIR})
+    set(DOXYGEN_BUILTIN_STL_SUPPORT "YES")
+    ## Build related configuration options
+    set(DOXYGEN_HIDE_UNDOC_MEMBERS "YES")
+    set(DOXYGEN_HIDE_UNDOC_CLASSES "YES")
+    set(DOXYGEN_SORT_BRIEF_DOCS "YES")
+    set(DOXYGEN_SORT_MEMBERS_CTORS_1ST "YES")
+    set(DOXYGEN_SHOW_USED_FILES "NO")
+    set(DOXYGEN_LAYOUT_FILE ${CMAKE_SOURCE_DIR}/dox/DoxygenLayout.xml)
+    ## Configuration options related to the input files
+    set(DOXYGEN_FILE_PATTERNS *.cpp *.h *.dox *.md)
+#    set(DOXYGEN_EXAMPLE_PATH ${CMAKE_SOURCE_DIR}/dox/examples)
+    set(DOXYGEN_USE_MDFILE_AS_MAINPAGE ${CMAKE_SOURCE_DIR}/README.md)
+    ##  Configuration options related to source browsing
+    set(DOXYGEN_VERBATIM_HEADERS "NO")
+    ## Configuration options related to external references
+    set(DOXYGEN_EXTERNAL_GROUPS "NO")
+    set(DOXYGEN_EXTERNAL_PAGES "NO")
+    set(DOXYGEN_GENERATE_TAGFILE ${CMAKE_CURRENT_BINARY_DIR}/cutelystforms.tags)
+    ## Configuration options related to diagram generator tools
+    set(DOXYGEN_COLLABORATION_GRAPH "NO")
+    if (DOXYGEN_VERSION VERSION_GREATER_EQUAL 1.9.5)
+        set(DOXYGEN_DOT_COMMON_ATTR "fontname=FreeSans,fontsize=10")
+        set(DOXYGEN_DOT_EDGE_ATTR "labelfontname=FreeSans,labelfontsize=10")
+    else (DOXYGEN_VERSION VERSION_GREATER_EQUAL 1.9.5)
+        set(DOXYGEN_DOT_FONTNAME "FreeSans")
+        set(DOXYGEN_DOT_FONTSIZE 10)
+    endif (DOXYGEN_VERSION VERSION_GREATER_EQUAL 1.9.5)
+
+    find_program(QMAKE_EXE_PATH NAMES qmake-qt${QT_VERSION_MAJOR} qmake${QT_VERSION_MAJOR} qmake)
+    if (QMAKE_EXE_PATH)
+        execute_process(COMMAND ${QMAKE_EXE_PATH} -query QT_INSTALL_DOCS OUTPUT_VARIABLE QT_INSTALL_DOCS OUTPUT_STRIP_TRAILING_WHITESPACE)
+        if (NOT IS_DIRECTORY "${QT_INSTALL_DOCS}")
+            set(QT_INSTALL_DOCS "/usr/share/qt${QT_VERSION_MAJOR}/doc")
+        endif (NOT IS_DIRECTORY "${QT_INSTALL_DOCS}")
+    else (QMAKE_EXE_PATH)
+        set(QT_INSTALL_DOCS "/usr/share/qt${QT_VERSION_MAJOR}/doc")
+    endif (QMAKE_EXE_PATH)
+
+    set(QT_ONLINE_DOCS_URL "https://doc.qt.io/qt-${QT_VERSION_MAJOR}/")
+    set(QT_DOCS_COMPONENTS "qtcore" "qtqml")
+
+    set(DOCS_QTDOCSDIR ${QT_INSTALL_DOCS} CACHE PATH "Path to a directory containing the Qt Documentation")
+
+    message(STATUS "Searching for Qt documentation at ${DOCS_QTDOCSDIR}")
+
+    foreach(_QTDOCCOMP ${QT_DOCS_COMPONENTS})
+        find_file(_QTDOCCOMPTAGS "${_QTDOCCOMP}.tags" PATHS "${DOCS_QTDOCSDIR}" PATH_SUFFIXES "${_QTDOCCOMP}" NO_DEFAULT_PATH)
+        if (_QTDOCCOMPTAGS)
+            message(STATUS "Found ${_QTDOCCOMP}.tags")
+            list(APPEND ONLINETAGS "${_QTDOCCOMPTAGS}=${QT_ONLINE_DOCS_URL}")
+            if (EXISTS "${DOCS_QTDOCSDIR}/${_QTDOCCOMP}.qch")
+                message(STATUS "Found local qch docs for ${_QTDOCCOMP}")
+                list(APPEND QCHTAGS "${_QTDOCCOMPTAGS}=qthelp://org.qt-project.${_QTDOCCOMP}.${QT_VERSION_MAJOR}${QT_VERSION_MINOR}${QT_VERSION_PATCH}/${_QTDOCCOMP}/")
+            endif (EXISTS "${DOCS_QTDOCSDIR}/${_QTDOCCOMP}.qch")
+            if (IS_DIRECTORY "${DOCS_QTDOCSDIR}/${_QTDOCCOMP}")
+                message(STATUS "Found local html docs for ${_QTDOCCOMP}")
+                list(APPEND LOCALHTMLTAGS "${_QTDOCCOMPTAGS}=${DOCS_QTDOCSDIR}/${_QTDOCCOMP}/")
+            endif (IS_DIRECTORY "${DOCS_QTDOCSDIR}/${_QTDOCCOMP}")
+        endif (_QTDOCCOMPTAGS)
+        unset(_QTDOCCOMPTAGS CACHE)
+    endforeach(_QTDOCCOMP ${QT_DOCS_COMPONENTS})
+
+    set(CUTELYST_ONLINE_DOCS_URL "https://api.cutelyst.org/")
+    set(CUTELYST_DOCS_COMP "cutelyst3")
+
+    find_file(_CUTELYSTTAGS "${CUTELYST_DOCS_COMP}.tags" PATHS "${DOCS_QTDOCSDIR}" PATH_SUFFIXES "${CUTELYST_DOCS_COMP}" NO_DEFAULT_PATH)
+    if (_CUTELYSTTAGS)
+        message(STATUS "Found ${CUTELYST_DOCS_COMP}.tags")
+        list(APPEND ONLINETAGS "${_CUTELYSTTAGS}=${CUTELYST_ONLINE_DOCS_URL}")
+        if (EXISTS "${DOCS_QTDOCSDIR}/${CUTELYST_DOCS_COMP}.qch")
+            list(APPEND QCHTAGS "${_CUTELYSTTAGS}=qthelp://org.cutelyst.${Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}_VERSION_MAJOR}${Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}_VERSION_MINOR}${Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}_VERSION_PATCH}/cutelyst${Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}_VERSION_MAJOR}/")
+            message(STATUS "Found local qch docs for ${CUTELYST_DOCS_COMP}")
+        endif (EXISTS "${DOCS_QTDOCSDIR}/${CUTELYST_DOCS_COMP}.qch")
+        if (IS_DIRECTORY "${DOCS_QTDOCSDIR}/${CUTELYST_DOCS_COMP}")
+            message(STATUS "Found local html docs for ${CUTELYST_DOCS_COMP}")
+            list(APPEND LOCALHTMLTAGS "${_CUTELYSTTAGS}=${DOCS_QTDOCSDIR}/${CUTELYST_DOCS_COMP}/")
+        endif (IS_DIRECTORY "${DOCS_QTDOCSDIR}/${CUTELYST_DOCS_COMP}")
+    endif (_CUTELYSTTAGS)
+
+    set(DOXYGEN_HTML_TIMESTAMP "YES")
+    set(DOXYGEN_TAGFILES ${ONLINETAGS})
+    set(DOXYGEN_HTML_OUTPUT "webdocs")
+    doxygen_add_docs(webdocs
+        ${CMAKE_CURRENT_SOURCE_DIR}/Forms
+        COMMENT "Generate HTML documentation for online usage"
+    )
+    message(STATUS "Adding build target webdocs")
+
+    set(DOXYGEN_HTML_TIMESTAMP "NO")
+    set(DOXYGEN_TAGFILES ${LOCALHTMLTAGS})
+    set(DOXYGEN_HTML_OUTPUT "htmldocs")
+    doxygen_add_docs(htmldocs
+        ${CMAKE_CURRENT_SOURCE_DIR}/Forms
+        COMMENT "Generate HTML documentation for local usage"
+    )
+    add_dependencies(docs htmldocs)
+    message(STATUS "Adding build target htmldocs")
+
+    execute_process(COMMAND ${QMAKE_EXE_PATH} -query QT_INSTALL_LIBEXECS OUTPUT_VARIABLE QT_INSTALL_LIBEXECS OUTPUT_STRIP_TRAILING_WHITESPACE)
+    execute_process(COMMAND ${QMAKE_EXE_PATH} -query QT_INSTALL_BINS OUTPUT_VARIABLE QT_INSTALL_BINS OUTPUT_STRIP_TRAILING_WHITESPACE)
+    find_program(DOXYGEN_QHG_LOCATION NAMES qhelpgenerator-qt${QT_VERSION_MAJOR} qhelpgenerator${QT_VERSION_MAJOR} qhelpgenerator HINTS ${QT_INSTALL_LIBEXECS} ${QT_INSTALL_BINS})
+    if(DOXYGEN_QHG_LOCATION)
+        set(DOXYGEN_TAGFILES ${QCHTAGS})
+        set(DOXYGEN_HTML_OUTPUT "qtdocs")
+        set(DOXYGEN_GENERATE_QHP "YES")
+        set(DOXYGEN_QHP_NAMESPACE "de.huessenbergnetz.cutelystforms.${PROJECT_VERSION_MAJOR}${PROJECT_VERSION_MINOR}${PROJECT_VERSION_PATCH}")
+        set(DOXYGEN_QHP_VIRTUAL_FOLDER "cutelystforms")
+        set(DOXYGEN_QCH_FILE "${CMAKE_CURRENT_BINARY_DIR}/cutelystforms.qch")
+        set(DOXYGEN_SEARCHENGINE "NO")
+        doxygen_add_docs(qtdocs
+            ${CMAKE_CURRENT_SOURCE_DIR}/Forms
+            COMMENT "Generate Qt QCH documentation for local usage"
+        )
+        add_dependencies(docs qtdocs)
+        message(STATUS "Adding build target qtdocs")
+
+        install(FILES ${CMAKE_CURRENT_BINARY_DIR}/cutelystforms.qch
+            DESTINATION ${DOCS_QTDOCSDIR}
+            COMPONENT docs
+            OPTIONAL
+        )
+    endif(DOXYGEN_QHG_LOCATION)
+
+    install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/htmldocs/
+        DESTINATION ${DOCS_QTDOCSDIR}/cutelystforms
+        COMPONENT docs
+        OPTIONAL
+    )
+
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/cutelystforms.tags
+        DESTINATION ${DOCS_QTDOCSDIR}/cutelystforms
+        COMPONENT devel
+        OPTIONAL
+    )
+endif (BUILD_DOCS)
