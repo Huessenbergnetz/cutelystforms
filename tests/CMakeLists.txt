@@ -18,6 +18,7 @@ if (TARGET Cutelyst::CSRFProtection)
     target_compile_definitions(testforms_exec
         PRIVATE PLUGIN_CSRFPROTECTION_ENABLED
     )
+    target_link_libraries(testforms_exec Cutelyst::CSRFProtection)
 endif (TARGET Cutelyst::CSRFProtection)
 
 set(testforms_TS_FILES

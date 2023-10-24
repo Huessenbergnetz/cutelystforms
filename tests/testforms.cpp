@@ -15,6 +15,9 @@
 #include <Cutelyst/application.h>
 #include <Cutelyst/controller.h>
 #include <Cutelyst/context.h>
+#ifdef PLUGIN_CSRFPROTECTION_ENABLED
+#include <Cutelyst/Plugins/CSRFProtection/csrfprotection.h>
+#endif
 #include <Forms/forms.h>
 #include <Forms/form.h>
 #include <Forms/select.h>
@@ -64,6 +67,10 @@ TestEngine* TestForms::getEngine()
     auto forms = new Forms(app);
     forms->addImportPath(QStringLiteral(FORMS_IMPORT_DIR));
     forms->setIncludePaths({QStringLiteral(TESTFORMS_DIR)});
+
+#ifdef PLUGIN_CSRFPROTECTION_ENABLED
+    auto csrf = new Cutelyst::CSRFProtection(app);
+#endif
 
     if (!engine->init()) {
         return nullptr;
