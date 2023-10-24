@@ -12,6 +12,7 @@
 #include "field.h"
 #include <QObject>
 #include <QQmlListProperty>
+#include <QtQml/qqmlregistration.h>
 
 namespace CutelystForms {
 
@@ -27,6 +28,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Fieldset : public FormHtmlElement
     Q_PROPERTY(CutelystForms::Legend* legend READ legend WRITE setLegend)
     Q_PROPERTY(QQmlListProperty<CutelystForms::Field> fields READ fields)
     Q_CLASSINFO("DefaultProperty", "fields")
+    QML_ELEMENT
 public:
     explicit Fieldset(QObject *parent = nullptr);
     virtual ~Fieldset() override;

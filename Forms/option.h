@@ -9,6 +9,7 @@
 #include "cutelyst_plugin_forms_export.h"
 #include "selectcontent.h"
 #include <QObject>
+#include <QtQml/qqmlregistration.h>
 
 namespace CutelystForms {
 
@@ -20,6 +21,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Option : public SelectContent
     Q_PROPERTY(bool selected READ isSelected WRITE setSelected)
     Q_PROPERTY(QString text READ text WRITE setText)
     Q_PROPERTY(QString value READ value WRITE setValue)
+    QML_ELEMENT
 public:
     explicit Option(QObject *parent = nullptr);
     virtual ~Option() override;

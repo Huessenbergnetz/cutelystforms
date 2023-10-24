@@ -13,6 +13,7 @@
 #include <QObject>
 #include <QQmlListProperty>
 #include <QUrl>
+#include <QtQml/qqmlregistration.h>
 
 namespace CutelystForms {
 
@@ -35,6 +36,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Form : public FormHtmlElement
     Q_PROPERTY(QQmlListProperty<CutelystForms::Button> buttons READ buttons)
     Q_PROPERTY(CutelystForms::Form::Type type READ type WRITE setType)
     Q_CLASSINFO("DefaultProperty", "fieldsets")
+    QML_ELEMENT
 public:
     explicit Form(QObject *parent = nullptr);
     virtual ~Form() override;

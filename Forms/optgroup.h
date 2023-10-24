@@ -11,6 +11,7 @@
 #include "option.h"
 #include <QObject>
 #include <QQmlListProperty>
+#include <QtQml/qqmlregistration.h>
 
 namespace CutelystForms {
 
@@ -21,6 +22,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Optgroup : public SelectContent
     Q_OBJECT
     Q_PROPERTY(QQmlListProperty<CutelystForms::Option> options READ options)
     Q_CLASSINFO("DefaultProperty", "options")
+    QML_ELEMENT
 public:
     explicit Optgroup(QObject *parent = nullptr);
     virtual ~Optgroup() override;

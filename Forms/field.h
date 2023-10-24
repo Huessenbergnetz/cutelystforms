@@ -8,6 +8,7 @@
 
 #include "cutelyst_plugin_forms_export.h"
 #include "formhtmlelement.h"
+#include <QtQml/qqmlregistration.h>
 
 namespace CutelystForms {
 
@@ -21,6 +22,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Field : public FormHtmlElement
     Q_PROPERTY(QString label READ label WRITE setLabel)
     Q_PROPERTY(QString description READ description WRITE setDescription)
     Q_PROPERTY(int colspan READ colspan WRITE setColspan)
+    QML_ELEMENT
 public:
     explicit Field(QObject *parent = nullptr);
     virtual ~Field() override;

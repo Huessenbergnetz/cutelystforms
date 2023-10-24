@@ -9,6 +9,7 @@
 #include "cutelyst_plugin_forms_export.h"
 #include <QObject>
 #include <QScopedPointer>
+#include <QtQml/qqmlregistration.h>
 
 namespace CutelystForms {
 
@@ -30,6 +31,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT FormHtmlElement : public QObject
     Q_PROPERTY(QString style READ style WRITE setStyle)
     Q_PROPERTY(int tabindex READ tabindex WRITE setTabindex)
     Q_PROPERTY(QString title READ title WRITE setTitle)
+    QML_ANONYMOUS
 public:
     explicit FormHtmlElement(QObject *parent = nullptr);
     virtual ~FormHtmlElement() override;

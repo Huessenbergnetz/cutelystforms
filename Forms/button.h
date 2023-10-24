@@ -10,6 +10,7 @@
 #include "formhtmlelement.h"
 #include <QObject>
 #include <QUrl>
+#include <QtQml/qqmlregistration.h>
 
 namespace CutelystForms {
 
@@ -24,6 +25,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Button : public FormHtmlElement
     Q_PROPERTY(CutelystForms::Button::Type type READ type WRITE setType)
     Q_PROPERTY(QString value READ value WRITE setValue)
     Q_PROPERTY(QString text READ text WRITE setText)
+    QML_ELEMENT
 public:
     explicit Button(QObject *parent = nullptr);
     virtual ~Button() override;

@@ -11,6 +11,7 @@
 #include "selectcontent.h"
 #include <QObject>
 #include <QQmlListProperty>
+#include <QtQml/qqmlregistration.h>
 
 namespace CutelystForms {
 
@@ -23,6 +24,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Select : public Field
     Q_PROPERTY(int size READ size WRITE setSize)
     Q_PROPERTY(QQmlListProperty<CutelystForms::SelectContent> options READ options)
     Q_CLASSINFO("DefaultProperty", "options")
+    QML_ELEMENT
 public:
     explicit Select(QObject *parent = nullptr);
     virtual ~Select() override;

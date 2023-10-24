@@ -9,6 +9,7 @@
 #include "cutelyst_plugin_forms_export.h"
 #include "formhtmlelement.h"
 #include <QObject>
+#include <QtQml/qqmlregistration.h>
 
 namespace CutelystForms {
 
@@ -19,6 +20,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT SelectContent : public FormHtmlElement
     Q_OBJECT
     Q_PROPERTY(bool disabled READ isDisabled WRITE setDisabled)
     Q_PROPERTY(QString label READ label WRITE setLabel)
+    QML_ANONYMOUS
 public:
     explicit SelectContent(QObject *parent = nullptr);
     virtual ~SelectContent() override;
