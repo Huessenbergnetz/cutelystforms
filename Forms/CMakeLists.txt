@@ -115,4 +115,4 @@ INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/Cutelyst${CUTELYST_VERSION_MAJOR}Qt${Q
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
 )
 
-add_subdirectory("imports/org/cutelyst/forms")
+add_subdirectory("imports/de/huessenbergnetz/cutelystforms")
