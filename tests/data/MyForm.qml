@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import org.cutelyst.forms 1.0
+import de.huessenbergnetz.cutelystforms 1.0
 
 Form {
     htmlId: "littleForm"

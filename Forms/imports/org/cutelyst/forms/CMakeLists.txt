@@ -65,8 +65,13 @@ FindQmlPluginDump()
 ### Find where to install QML Plugins (stored in QT_INSTALL_QML)
 FindQtInstallQml()
 
-set(QMLPLUGIN_URI org.cutelyst.forms)
+set(QMLPLUGIN_URI de.huessenbergnetz.cutelystforms)
 set(QMLPLUGIN_VERSION 1.0)
+
+target_compile_definitions(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}FormsQml
+    PRIVATE
+        FORMS_QML_PLUGIN_URI="${QMLPLUGIN_URI}"
+)
 
 string(REPLACE "." "/" QMLPLUGIN_INSTALL_URI ${QMLPLUGIN_URI})
 

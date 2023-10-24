@@ -25,7 +25,7 @@ public:
 
     virtual void registerTypes(const char *uri) override
     {
-        if (Q_LIKELY(QLatin1String(uri) == QLatin1String("org.cutelyst.forms"))) {
+        if (Q_LIKELY(QLatin1String(uri) == QLatin1String(FORMS_QML_PLUGIN_URI))) {
 
             const int major = 1;
             const int minor = 0;
