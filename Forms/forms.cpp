@@ -35,6 +35,11 @@ QString FormsContextObject::cTr(const QString &sourceText, const QString &disamb
     return m_c->translate(m_form.toUtf8().constData(), sourceText.toUtf8().constData(), disambiguation.toUtf8().constData(), n);
 }
 
+QString FormsContextObject::cTranslate(const QString &context, const QString &sourceText, const QString &disambiguation, int n) const
+{
+    return m_c->translate(context.toUtf8().constData(), sourceText.toUtf8().constData(), disambiguation.toUtf8().constData(), n);
+}
+
 QUrl FormsContextObject::cUriFor(const QString &path, const QStringList &args, const QVariantMap &queryValues) const
 {
     if (queryValues.empty()) {

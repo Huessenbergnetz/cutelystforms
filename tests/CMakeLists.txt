@@ -34,7 +34,7 @@ if (${QT_VERSION} VERSION_GREATER "6.2.0")
     qt_add_lupdate(testforms_exec
         SOURCES data/MyForm.qml
         TS_FILES ${testforms_TS_FILES}
-        OPTIONS -no-obsolete -locations none -tr-function-alias qsTr=cTr
+        OPTIONS -no-obsolete -locations none -tr-function-alias qsTr=cTr,qsTranslate=cTranslate
     )
 
     qt_add_lrelease(testforms_exec

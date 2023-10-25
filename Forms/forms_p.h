@@ -25,6 +25,7 @@ public:
     explicit FormsContextObject(const QString &form, Cutelyst::Context *c);
 
     Q_INVOKABLE QString cTr(const QString &sourceText, const QString &disambiguation = QString(), int n = -1) const;
+    Q_INVOKABLE QString cTranslate(const QString &context, const QString &sourceText, const QString &disambiguation = QString(), int n = -1) const;
     Q_INVOKABLE QUrl cUriFor(const QString &path = QString(), const QStringList &args = QStringList(), const QVariantMap &queryValues = QVariantMap()) const;
     Q_INVOKABLE QString cCsrfToken();
 
