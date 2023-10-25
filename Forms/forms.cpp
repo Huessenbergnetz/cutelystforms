@@ -122,7 +122,7 @@ Form* Forms::getForm(const QString &name, Cutelyst::Context *c)
     }
 
     QQmlContext qmlContext(&forms->d_func()->engine);
-    qmlContext.setContextObject(new FormsContextObject(name, c));
+    qmlContext.setContextObject(new FormsContextObject(fi.completeBaseName(), c));
     auto it = c->stash().cbegin();
     while (it != c->stash().cend()) {
         qmlContext.setContextProperty(it.key(), it.value());
