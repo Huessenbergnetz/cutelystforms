@@ -10,5 +10,9 @@
             <numerusform>%n Zwerge</numerusform>
         </translation>
     </message>
+    <message>
+        <source>Another great legend</source>
+        <translation>Eine weitere große Legende</translation>
+    </message>
 </context>
 </TS>

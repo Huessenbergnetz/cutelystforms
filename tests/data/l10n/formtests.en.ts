@@ -10,5 +10,9 @@
             <numerusform>%n dwarfs</numerusform>
         </translation>
     </message>
+    <message>
+        <source>Another great legend</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

@@ -59,5 +59,8 @@ Form {
 
     Fieldset {
         htmlId: "fieldset2"
+        legend: Legend {
+            text: cTranslate("MyForm", "Another great legend")
+        }
     }
 }

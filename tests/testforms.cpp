@@ -50,7 +50,7 @@ private Q_SLOTS:
     void cleanupTestCase();
 
 private:
-    TestEngine *m_engine;
+    TestEngine *m_engine{nullptr};
 
     TestEngine *getEngine();
 };
@@ -88,6 +88,7 @@ void TestForms::initTestCase()
 void TestForms::cleanupTestCase()
 {
     delete m_engine;
+    m_engine = nullptr;
 }
 
 void TestForms::getForm()
@@ -102,15 +103,18 @@ void TestForms::getForm()
     QCOMPARE(f->htmlClass(), QStringLiteral("form"));
     QCOMPARE(f->name(), QStringLiteral("littleForm"));
     QCOMPARE(f->label(), QStringLiteral("7 Zwerge"));
-    auto fs = f->fieldset(0);
-    QVERIFY(fs);
-    QCOMPARE(fs->htmlId(), QStringLiteral("fieldset1"));
-    QCOMPARE(fs->htmlClass(), QStringLiteral("hallo"));
-    Select *selectField = qobject_cast<Select*>(fs->field(0));
+    auto fs0 = f->fieldset(0);
+    QVERIFY(fs0);
+    QCOMPARE(fs0->htmlId(), QStringLiteral("fieldset1"));
+    QCOMPARE(fs0->htmlClass(), QStringLiteral("hallo"));
+    Select *selectField = qobject_cast<Select*>(fs0->field(0));
     QVERIFY(selectField);
     auto option = selectField->content(0);
     QVERIFY(option);
     QCOMPARE(QString::fromLatin1(option->metaObject()->className()), QStringLiteral("CutelystForms::Option"));
+    auto fs1 = f->fieldset(1);
+    QVERIFY(fs1);
+    QCOMPARE(fs1->legend()->text(), QStringLiteral("Eine weitere große Legende"));
 }
 
 QTEST_MAIN(TestForms)
