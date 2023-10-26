@@ -21,6 +21,7 @@
 #include <Forms/forms.h>
 #include <Forms/form.h>
 #include <Forms/select.h>
+#include <Forms/hiddeninput.h>
 
 using namespace CutelystForms;
 
@@ -115,6 +116,9 @@ void TestForms::getForm()
     auto fs1 = f->fieldset(1);
     QVERIFY(fs1);
     QCOMPARE(fs1->legend()->text(), QStringLiteral("Eine weitere große Legende"));
+    auto csrf = qobject_cast<HiddenInput*>(fs1->field(0));
+    QVERIFY(csrf);
+    QVERIFY(!csrf->value().isNull());
 }
 
 QTEST_MAIN(TestForms)

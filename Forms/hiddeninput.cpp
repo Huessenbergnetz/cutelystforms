@@ -19,6 +19,18 @@ HiddenInput::HiddenInput(QObject *parent) :
 
 }
 
+QString HiddenInput::value() const noexcept
+{
+    Q_D(const HiddenInput);
+    return d->value;
+}
+
+void HiddenInput::setValue(const QString &value) noexcept
+{
+    Q_D(HiddenInput);
+    d->value = value;
+}
+
 CutelystForms::Input::Type HiddenInput::type() const noexcept
 {
     return Input::Hidden;
@@ -27,6 +39,12 @@ CutelystForms::Input::Type HiddenInput::type() const noexcept
 QString HiddenInput::typeString() const noexcept
 {
     return QStringLiteral("hidden");
+}
+
+QString HiddenInput::valueString() const noexcept
+{
+    Q_D(const HiddenInput);
+    return d->value;
 }
 
 #include "moc_hiddeninput.cpp"

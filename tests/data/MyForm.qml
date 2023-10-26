@@ -66,7 +66,8 @@ Form {
             }
 
             HiddenInput {
-
+                name: "csrfprotectiontoken"
+                value: cCsrfToken()
             }
         }
     ]
