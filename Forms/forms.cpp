@@ -4,12 +4,12 @@
  */
 
 #include "forms_p.h"
+#include "logging_p.h"
 
 #include <Cutelyst/Application>
 #include <Cutelyst/Context>
 
 #include <QStringList>
-#include <QLoggingCategory>
 #include <QFileInfo>
 #include <QQmlComponent>
 #include <QQmlContext>

@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 set(cutelystforms_SRC
+    logging_p.h
     forms.cpp
     forms_p.h
     formhtmlelement.cpp
