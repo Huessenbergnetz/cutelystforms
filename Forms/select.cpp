@@ -10,7 +10,7 @@ using namespace CutelystForms;
 SelectPrivate::SelectPrivate(Select *q) :
     FieldPrivate(q)
 {
-    type = Field::Select;
+
 }
 
 Select::Select(QObject *parent) :

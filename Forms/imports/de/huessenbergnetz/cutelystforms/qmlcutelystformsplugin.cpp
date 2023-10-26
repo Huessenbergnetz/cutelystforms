@@ -9,6 +9,7 @@
 #include <Forms/legend.h>
 #include <Forms/button.h>
 #include <Forms/field.h>
+#include <Forms/input.h>
 #include <Forms/select.h>
 #include <Forms/selectcontent.h>
 #include <Forms/option.h>
@@ -37,6 +38,7 @@ public:
             qmlRegisterType<CutelystForms::Legend>(uri, major, minor, "Legend");
             qmlRegisterType<CutelystForms::Button>(uri, major, minor, "Button");
             qmlRegisterAnonymousType<CutelystForms::Field>(uri, major);
+            qmlRegisterAnonymousType<CutelystForms::Input>(uri, major);
             qmlRegisterType<CutelystForms::Select>(uri, major, minor, "Select");
             qmlRegisterAnonymousType<CutelystForms::SelectContent>(uri, major);
             qmlRegisterType<CutelystForms::Option>(uri, major, minor, "Option");

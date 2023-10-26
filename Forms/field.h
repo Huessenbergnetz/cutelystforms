@@ -23,8 +23,6 @@ class FieldPrivate;
 class CUTELYST_PLUGIN_FORMS_EXPORT Field : public FormHtmlElement
 {
     Q_OBJECT
-    Q_PROPERTY(CutelystForms::Field::Type type READ type CONSTANT)
-    Q_PROPERTY(QString typeString READ typeString CONSTANT)
     Q_PROPERTY(QString name READ name WRITE setName)
     Q_PROPERTY(QString label READ label WRITE setLabel)
     Q_PROPERTY(QString description READ description WRITE setDescription)
@@ -33,34 +31,6 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Field : public FormHtmlElement
 public:
     explicit Field(QObject *parent = nullptr);
     ~Field() override = default;
-
-    enum Type {
-        Text            = 0,
-        Search,
-        Password,
-        Tel,
-        Url,
-        Email,
-        Number,
-        Range,
-        Radio,
-        Checkbox,
-        Hidden,
-        File,
-        Color,
-        Date,
-        DatetimeLocal,
-        Week,
-        Month,
-        Time,
-        Select,
-        Textarea
-    };
-    Q_ENUM(Type)
-
-    Q_REQUIRED_RESULT virtual Field::Type type() const noexcept;
-
-    Q_REQUIRED_RESULT virtual QString typeString() const noexcept;
 
     Q_REQUIRED_RESULT QString name() const noexcept;
     void setName(const QString &name) noexcept;

@@ -23,7 +23,10 @@ set(cutelystforms_SRC
     option.cpp
     option_p.h
     optgroup.cpp
-    optgroup_p.h)
+    optgroup_p.h
+    input.cpp
+    input_p.h
+)
 
 set(cutelystforms_HEADERS
     ${CMAKE_CURRENT_BINARY_DIR}/cutelyst_plugin_forms_export.h
@@ -37,7 +40,9 @@ set(cutelystforms_HEADERS
     select.h
     selectcontent.h
     option.h
-    optgroup.h)
+    optgroup.h
+    input.h
+)
 
 add_library(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms
     ${cutelystforms_SRC}

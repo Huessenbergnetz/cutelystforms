@@ -25,16 +25,6 @@ Field::Field(FieldPrivate &dd, QObject *parent) :
 
 }
 
-CutelystForms::Field::Type Field::type() const noexcept
-{
-    return Text;
-}
-
-QString Field::typeString() const noexcept
-{
-    return QStringLiteral("text");
-}
-
 QString Field::name() const noexcept
 {
     Q_D(const Field);
