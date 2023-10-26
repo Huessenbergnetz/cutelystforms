@@ -49,45 +49,86 @@ void Select::setSize(int size) noexcept
     d->size = size;
 }
 
-QQmlListProperty<CutelystForms::SelectContent> Select::options()
+QQmlListProperty<CutelystForms::Option> Select::options()
 {
     Q_D(Select);
-    return {this, &d->content};
+    return {this, &d->options};
 }
 
-void Select::appendContent(SelectContent *content)
+void Select::appendOption(Option *option)
 {
     Q_D(Select);
-    d->content.push_back(content);
+    d->options.push_back(option);
 }
 
-QList<SelectContent*>::size_type Select::contentCount() const noexcept
+QList<Option*>::size_type Select::optionCount() const noexcept
 {
     Q_D(const Select);
-    return static_cast<int>(d->content.size());
+    return d->options.size();
 }
 
-SelectContent* Select::content(QList<SelectContent*>::size_type idx) const
+Option* Select::option(QList<Option*>::size_type idx) const
 {
     Q_D(const Select);
-    if (idx < d->content.size()) {
-        return d->content.at(idx);
+    if (idx < d->options.size()) {
+        return d->options.at(idx);
     } else {
         return nullptr;
     }
 }
 
-void Select::clearContent()
+void Select::clearOptions()
 {
     Q_D(Select);
-    qDeleteAll(d->content);
-    d->content.clear();
+    qDeleteAll(d->options);
+    d->options.clear();
 }
 
-QList<SelectContent*> Select::contentList() const noexcept
+QList<Option*> Select::optionList() const noexcept
 {
     Q_D(const Select);
-    return d->content;
+    return d->options;
+}
+
+QQmlListProperty<CutelystForms::Optgroup> Select::optgroups()
+{
+    Q_D(Select);
+    return {this, &d->optgroups};
+}
+
+void Select::appendOptgroup(Optgroup *optgroup)
+{
+    Q_D(Select);
+    d->optgroups.push_back(optgroup);
+}
+
+QList<Optgroup*>::size_type Select::optgroupCount() const noexcept
+{
+    Q_D(const Select);
+    return d->optgroups.size();
+}
+
+Optgroup* Select::optgroup(QList<Optgroup*>::size_type idx) const
+{
+    Q_D(const Select);
+    if (idx >= 0 && idx < d->optgroups.size()) {
+        return d->optgroups.at(idx);
+    } else {
+        return nullptr;
+    }
+}
+
+void Select::clearOptgroups()
+{
+    Q_D(Select);
+    qDeleteAll(d->optgroups);
+    d->optgroups.clear();
+}
+
+QList<Optgroup*> Select::optgroupList() const noexcept
+{
+    Q_D(const Select);
+    return d->optgroups;
 }
 
 #include "moc_select.cpp"
