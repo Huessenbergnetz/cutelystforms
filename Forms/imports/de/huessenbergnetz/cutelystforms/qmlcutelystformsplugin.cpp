@@ -36,7 +36,7 @@ public:
             qmlRegisterType<CutelystForms::Fieldset>(uri, major, minor, "Fieldset");
             qmlRegisterType<CutelystForms::Legend>(uri, major, minor, "Legend");
             qmlRegisterType<CutelystForms::Button>(uri, major, minor, "Button");
-            qmlRegisterType<CutelystForms::Field>(uri, major, minor, "Field");
+            qmlRegisterAnonymousType<CutelystForms::Field>(uri, major);
             qmlRegisterType<CutelystForms::Select>(uri, major, minor, "Select");
             qmlRegisterAnonymousType<CutelystForms::SelectContent>(uri, major);
             qmlRegisterType<CutelystForms::Option>(uri, major, minor, "Option");
