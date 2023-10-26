@@ -4,6 +4,7 @@
  */
 
 #include "form_p.h"
+#include "logging_p.h"
 
 using namespace CutelystForms;
 
@@ -165,13 +166,32 @@ QString Form::tagName() const noexcept
 QQmlListProperty<CutelystForms::Field> Form::fields()
 {
     Q_D(Form);
-    return {this, &d->fields};
+    return {this, &d->fields,
+                &FormPrivate::appendField,
+                &FormPrivate::fieldCount,
+                &FormPrivate::field,
+                &FormPrivate::clearFields,
+                &FormPrivate::replaceField,
+                &FormPrivate::removeLastField
+    };
 }
 
 void Form::appendField(Field *field)
 {
     Q_D(Form);
+    field->setParent(this);
     d->fields.push_back(field);
+    if (!field->name().isEmpty()) {
+        if (d->fieldNameMap.contains(field->name())) {
+            qCWarning(C_FORMS) << *this << "already contains a field with name" << field->name() << "- appending it anyway. Note that this will overwrite the field with the same name in the fieldNameMap!";
+        }
+        d->fieldNameMap.insert(field->name(), field);
+    }
+    if (!field->htmlId().isEmpty()) {
+        if (d->fieldIdMap.contains(field->htmlId())) {
+            qCWarning(C_FORMS) << *this << "already contains a field with id" << field->htmlId() << "- appending it anyway. Note that this will overwrite the field with the same id in the fieldIdMap!";
+        }
+    }
 }
 
 QList<Field*>::size_type Form::fieldCount() const noexcept
@@ -190,17 +210,84 @@ Field* Form::field(QList<Field*>::size_type idx) const
     }
 }
 
+Field* Form::fieldByName(const QString &name) const
+{
+    Q_D(const Form);
+    return d->fieldNameMap.value(name, nullptr);
+}
+
+Field* Form::fieldById(const QString &id) const
+{
+    Q_D(const Form);
+    return d->fieldIdMap.value(id, nullptr);
+}
+
 void Form::clearFields()
 {
     Q_D(Form);
-    qDeleteAll(d->fields);
     d->fields.clear();
+    d->fieldNameMap.clear();
+    d->fieldIdMap.clear();
+}
+
+void Form::replaceField(QList<Field*>::size_type idx, Field *f)
+{
+    Q_D(Form);
+    Field *current = this->field(idx);
+    if (current) {
+        if (!current->name().isEmpty()) {
+            d->fieldNameMap.remove(current->name());
+        }
+        if (!current->htmlId().isEmpty()) {
+            d->fieldIdMap.remove(current->htmlId());
+        }
+    }
+    f->setParent(this);
+    d->fields[idx] = f;
+    if (!f->name().isEmpty()) {
+        if (d->fieldNameMap.contains(f->name())) {
+            qCWarning(C_FORMS) << *this << "already contains a field with name" << f->name() << "- replacing it anyway. Note that this will overwrite the field with the same name in the fieldNameMap!";
+        }
+        d->fieldNameMap.insert(f->name(), f);
+    }
+    if (!f->htmlId().isEmpty()) {
+        if (d->fieldIdMap.contains(f->htmlId())) {
+            qCWarning(C_FORMS) << *this << "already contains a field with id" << f->htmlId() << "- replacing it anyway. Note that this will overwrite the field with the same id in the fieldIdMap!";
+        }
+    }
+}
+
+void Form::removeLastField()
+{
+    Q_D(Form);
+    if (d->fields.empty()) {
+        return;
+    }
+    Field *last = d->fields.takeLast();
+    if (!last->name().isEmpty()) {
+        d->fieldNameMap.remove(last->name());
+    }
+    if (!last->htmlId().isEmpty()) {
+        d->fieldIdMap.remove(last->htmlId());
+    }
 }
 
 QList<Field*> Form::fieldList() const noexcept
 {
     Q_D(const Form);
     return d->fields;
+}
+
+QMap<QString, Field*> Form::fieldNameMap() const noexcept
+{
+    Q_D(const Form);
+    return d->fieldNameMap;
+}
+
+QMap<QString, Field*> Form::fieldIdMap() const noexcept
+{
+    Q_D(const Form);
+    return d->fieldIdMap;
 }
 
 QQmlListProperty<CutelystForms::Fieldset> Form::fieldsets()
@@ -283,6 +370,68 @@ QList<Button*> Form::buttonList() const noexcept
 {
     Q_D(const Form);
     return d->buttons;
+}
+
+void FormPrivate::appendField(QQmlListProperty<Field>* list, Field* field)
+{
+    auto form = qobject_cast<Form*>(list->object);
+    if (form) {
+        form->appendField(field);
+    }
+}
+
+QList<Field*>::size_type FormPrivate::fieldCount(QQmlListProperty<Field>* list)
+{
+    auto form = qobject_cast<Form*>(list->object);
+    if (form) {
+        return form->fieldCount();
+    } else {
+        return 0;
+    }
+}
+
+Field* FormPrivate::field(QQmlListProperty<Field>* list, QList<Field*>::size_type idx)
+{
+    auto form = qobject_cast<Form*>(list->object);
+    if (form) {
+        return form->field(idx);
+    } else {
+        return nullptr;
+    }
+}
+
+void FormPrivate::clearFields(QQmlListProperty<Field>* list)
+{
+    auto form = qobject_cast<Form*>(list->object);
+    if (form) {
+        form->clearFields();
+    }
+}
+
+void FormPrivate::replaceField(QQmlListProperty<Field>* list, QList<Field*>::size_type idx, Field* field)
+{
+    auto form = qobject_cast<Form*>(list->object);
+    if (form) {
+        form->replaceField(idx, field);
+    }
+}
+
+void FormPrivate::removeLastField(QQmlListProperty<Field> *list)
+{
+    auto form = qobject_cast<Form*>(list->object);
+    if (form) {
+        form->removeLastField();
+    }
+}
+
+QDebug operator<<(QDebug dbg, const CutelystForms::Form &form)
+{
+    QDebugStateSaver saver(dbg);
+    dbg.nospace() << "CutelystForms::Form(";
+    dbg << "ID: " << form.htmlId();
+    dbg << ", Name: " << form.name();
+    dbg << ')';
+    return dbg.maybeSpace();
 }
 
 #include "moc_form.cpp"

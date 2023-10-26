@@ -40,6 +40,8 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Form : public FormHtmlElement
     Q_PROPERTY(QString label READ label WRITE setLabel)
     Q_PROPERTY(QString description READ description WRITE setDescription)
     Q_PROPERTY(QQmlListProperty<CutelystForms::Field> fields READ fields)
+    Q_PROPERTY(QMap<QString, CutelystForms::Field*> fieldById READ fieldIdMap)
+    Q_PROPERTY(QMap<QString, CutelystForms::Field*> fieldByName READ fieldNameMap)
     Q_PROPERTY(QQmlListProperty<CutelystForms::Fieldset> fieldsets READ fieldsets)
     Q_PROPERTY(QQmlListProperty<CutelystForms::Button> buttons READ buttons)
     Q_PROPERTY(CutelystForms::Form::Type type READ type WRITE setType)
@@ -116,8 +118,14 @@ public:
     void appendField(Field *field);
     Q_REQUIRED_RESULT QList<Field*>::size_type fieldCount() const noexcept;
     Q_REQUIRED_RESULT Field *field(QList<Field*>::size_type idx) const;
+    Q_REQUIRED_RESULT Field *fieldByName(const QString &name) const;
+    Q_REQUIRED_RESULT Field *fieldById(const QString &id) const;
     void clearFields();
+    void replaceField(QList<Field*>::size_type idx, Field* f);
+    void removeLastField();
     Q_REQUIRED_RESULT QList<Field*> fieldList() const noexcept;
+    Q_REQUIRED_RESULT QMap<QString, CutelystForms::Field*> fieldNameMap() const noexcept;
+    Q_REQUIRED_RESULT QMap<QString, CutelystForms::Field*> fieldIdMap() const noexcept;
 
     QQmlListProperty<CutelystForms::Fieldset> fieldsets();
     void appendFieldset(Fieldset *fieldset);
@@ -142,5 +150,7 @@ private:
 };
 
 }
+
+QDebug operator<<(QDebug dbg, const CutelystForms::Form &form);
 
 #endif // C_FORM_H
