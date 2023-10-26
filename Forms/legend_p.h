@@ -11,15 +11,16 @@
 
 namespace CutelystForms {
 
-class LegendPrivate : FormHtmlElementPrivate
+class LegendPrivate : public FormHtmlElementPrivate
 {
 public:
     LegendPrivate(Legend *q);
+    ~LegendPrivate() override = default;
 
     QString text;
 
 private:
-    Q_DECLARE_PUBLIC(Legend)
+    Q_DECLARE_PUBLIC(Legend) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
     Q_DISABLE_COPY(LegendPrivate)
 };
 

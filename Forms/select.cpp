@@ -25,30 +25,25 @@ Select::Select(SelectPrivate &dd, QObject *parent) :
 
 }
 
-Select::~Select()
-{
-
-}
-
-bool Select::multiple() const
+bool Select::multiple() const noexcept
 {
     Q_D(const Select);
     return d->multiple;
 }
 
-void Select::setMultiple(bool multiple)
+void Select::setMultiple(bool multiple) noexcept
 {
     Q_D(Select);
     d->multiple = multiple;
 }
 
-int Select::size() const
+int Select::size() const noexcept
 {
     Q_D(const Select);
     return d->size;
 }
 
-void Select::setSize(int size)
+void Select::setSize(int size) noexcept
 {
     Q_D(Select);
     d->size = size;
@@ -89,7 +84,7 @@ void Select::clearContent()
     d->content.clear();
 }
 
-QList<SelectContent*> Select::contentList() const
+QList<SelectContent*> Select::contentList() const noexcept
 {
     Q_D(const Select);
     return d->content;

@@ -15,12 +15,13 @@ class SelectContentPrivate : public FormHtmlElementPrivate
 {
 public:
     SelectContentPrivate(SelectContent *q);
+    ~SelectContentPrivate() override = default;
 
     QString label;
-    bool disabled;
+    bool disabled{false};
 
 private:
-    Q_DECLARE_PUBLIC(SelectContent)
+    Q_DECLARE_PUBLIC(SelectContent) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
     Q_DISABLE_COPY(SelectContentPrivate)
 };
 

@@ -15,17 +15,18 @@ class FieldsetPrivate : public FormHtmlElementPrivate
 {
 public:
     FieldsetPrivate(Fieldset *q);
+    ~FieldsetPrivate() override = default;
 
     QList<Field*> fields;
     QString form;
     QString name;
     QString label;
     QString description;
-    Legend *legend = nullptr;
-    bool disabled = false;
+    Legend *legend{nullptr};
+    bool disabled{false};
 
 private:
-    Q_DECLARE_PUBLIC(Fieldset)
+    Q_DECLARE_PUBLIC(Fieldset) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
     Q_DISABLE_COPY(FieldsetPrivate)
 };
 

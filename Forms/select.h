@@ -31,27 +31,27 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Select : public Field
     QML_ELEMENT
 public:
     explicit Select(QObject *parent = nullptr);
-    virtual ~Select() override;
+    ~Select() override = default;
 
-    bool multiple() const;
-    void setMultiple(bool multiple);
+    Q_REQUIRED_RESULT bool multiple() const noexcept;
+    void setMultiple(bool multiple) noexcept;
 
-    int size() const;
-    void setSize(int size);
+    Q_REQUIRED_RESULT int size() const noexcept;
+    void setSize(int size) noexcept;
 
     QQmlListProperty<CutelystForms::SelectContent> options();
     void appendContent(SelectContent *content);
-    QList<SelectContent*>::size_type contentCount() const;
-    SelectContent *content(QList<SelectContent*>::size_type idx) const;
+    Q_REQUIRED_RESULT QList<SelectContent*>::size_type contentCount() const;
+    Q_REQUIRED_RESULT SelectContent *content(QList<SelectContent*>::size_type idx) const;
     void clearContent();
-    QList<SelectContent *> contentList() const;
+    Q_REQUIRED_RESULT QList<SelectContent *> contentList() const noexcept;
 
 protected:
     Select(SelectPrivate &dd, QObject *parent = nullptr);
 
 private:
     Q_DISABLE_COPY(Select)
-    Q_DECLARE_PRIVATE(Select)
+    Q_DECLARE_PRIVATE(Select) // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)
 };
 
 }

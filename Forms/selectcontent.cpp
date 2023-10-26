@@ -25,30 +25,25 @@ SelectContent::SelectContent(SelectContentPrivate &dd, QObject *parent) :
 
 }
 
-SelectContent::~SelectContent()
-{
-
-}
-
-bool SelectContent::isDisabled() const
+bool SelectContent::isDisabled() const noexcept
 {
     Q_D(const SelectContent);
     return d->disabled;
 }
 
-void SelectContent::setDisabled(bool disabled)
+void SelectContent::setDisabled(bool disabled) noexcept
 {
     Q_D(SelectContent);
     d->disabled = disabled;
 }
 
-QString SelectContent::label() const
+QString SelectContent::label() const noexcept
 {
     Q_D(const SelectContent);
     return d->label;
 }
 
-void SelectContent::setLabel(const QString &label)
+void SelectContent::setLabel(const QString &label) noexcept
 {
     Q_D(SelectContent);
     d->label = label;

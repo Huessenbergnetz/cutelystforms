@@ -25,138 +25,133 @@ Form::Form(FormPrivate &dd, QObject *parent) :
 
 }
 
-Form::~Form()
-{
-
-}
-
-QUrl Form::action() const
+QUrl Form::action() const noexcept
 {
     Q_D(const Form);
     return d->action;
 }
 
-void Form::setAction(const QUrl &action)
+void Form::setAction(const QUrl &action) noexcept
 {
     Q_D(Form);
     d->action = action;
 }
 
-QStringList Form::acceptCharset() const
+QStringList Form::acceptCharset() const noexcept
 {
     Q_D(const Form);
     return d->acceptCharset;
 }
 
-void Form::setAcceptCharset(const QStringList &acceptCharset)
+void Form::setAcceptCharset(const QStringList &acceptCharset) noexcept
 {
     Q_D(Form);
     d->acceptCharset = acceptCharset;
 }
 
-bool Form::autocomplete() const
+bool Form::autocomplete() const noexcept
 {
     Q_D(const Form);
     return d->autocomplete;
 }
 
-void Form::setAutocomplete(bool autocomplete)
+void Form::setAutocomplete(bool autocomplete) noexcept
 {
     Q_D(Form);
     d->autocomplete = autocomplete;
 }
 
-CutelystForms::Form::EncType Form::enctype() const
+CutelystForms::Form::EncType Form::enctype() const noexcept
 {
     Q_D(const Form);
     return d->enctype;
 }
 
-void Form::setEnctype(CutelystForms::Form::EncType enctype)
+void Form::setEnctype(CutelystForms::Form::EncType enctype) noexcept
 {
     Q_D(Form);
     d->enctype = enctype;
 }
 
-CutelystForms::Form::Method Form::method() const
+CutelystForms::Form::Method Form::method() const noexcept
 {
     Q_D(const Form);
     return d->method;
 }
 
-void Form::setMethod(CutelystForms::Form::Method method)
+void Form::setMethod(CutelystForms::Form::Method method) noexcept
 {
     Q_D(Form);
     d->method = method;
 }
 
-QString Form::name() const
+QString Form::name() const noexcept
 {
     Q_D(const Form);
     return d->name;
 }
 
-void Form::setName(const QString &name)
+void Form::setName(const QString &name) noexcept
 {
     Q_D(Form);
     d->name = name;
 }
 
-bool Form::novalidate() const
+bool Form::novalidate() const noexcept
 {
     Q_D(const Form);
     return d->novalidate;
 }
 
-void Form::setNovalidate(bool novalidate)
+void Form::setNovalidate(bool novalidate) noexcept
 {
     Q_D(Form);
     d->novalidate = novalidate;
 }
 
-CutelystForms::Form::Target Form::target() const
+CutelystForms::Form::Target Form::target() const noexcept
 {
     Q_D(const Form);
     return d->target;
 }
 
-void Form::setTarget(CutelystForms::Form::Target target)
+void Form::setTarget(CutelystForms::Form::Target target) noexcept
 {
     Q_D(Form);
     d->target = target;
 }
 
-QString Form::label() const
+QString Form::label() const noexcept
 {
     Q_D(const Form);
     return d->label;
 }
 
-void Form::setLabel(const QString &label)
+void Form::setLabel(const QString &label) noexcept
 {
     Q_D(Form);
     d->label = label;
 }
 
-QString Form::description() const
+QString Form::description() const noexcept
 {
     Q_D(const Form);
     return d->description;
 }
 
-void Form::setDescription(const QString &description)
+void Form::setDescription(const QString &description) noexcept
 {
     Q_D(Form);
     d->description = description;
 }
 
-CutelystForms::Form::Type Form::type() const
+CutelystForms::Form::Type Form::type() const noexcept
 {
     Q_D(const Form);
     return d->type;
 }
 
-void Form::setType(CutelystForms::Form::Type type)
+void Form::setType(CutelystForms::Form::Type type) noexcept
 {
     Q_D(Form);
     d->type = type;
@@ -197,7 +192,7 @@ void Form::clearFieldsets()
     d->fieldsets.clear();
 }
 
-QList<Fieldset*> Form::fieldsetList() const
+QList<Fieldset*> Form::fieldsetList() const noexcept
 {
     Q_D(const Form);
     return d->fieldsets;
@@ -238,7 +233,7 @@ void Form::clearButtons()
     d->buttons.clear();
 }
 
-QList<Button*> Form::buttonList() const
+QList<Button*> Form::buttonList() const noexcept
 {
     Q_D(const Form);
     return d->buttons;

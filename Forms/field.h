@@ -29,7 +29,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Field : public FormHtmlElement
     QML_ELEMENT
 public:
     explicit Field(QObject *parent = nullptr);
-    virtual ~Field() override;
+    ~Field() override = default;
 
     enum Type {
         Text            = 0,
@@ -55,27 +55,27 @@ public:
     };
     Q_ENUM(Type)
 
-    Field::Type type() const;
-    void setType(Field::Type type);
+    Q_REQUIRED_RESULT Field::Type type() const noexcept;
+    void setType(Field::Type type) noexcept;
 
-    QString name() const;
-    void setName(const QString &name);
+    Q_REQUIRED_RESULT QString name() const noexcept;
+    void setName(const QString &name) noexcept;
 
-    QString label() const;
-    void setLabel(const QString &label);
+    Q_REQUIRED_RESULT QString label() const noexcept;
+    void setLabel(const QString &label) noexcept;
 
-    QString description() const;
-    void setDescription(const QString &description);
+    Q_REQUIRED_RESULT QString description() const noexcept;
+    void setDescription(const QString &description) noexcept;
 
-    int colspan() const;
-    void setColspan(int colspan);
+    Q_REQUIRED_RESULT int colspan() const noexcept;
+    void setColspan(int colspan) noexcept;
 
 protected:
     Field(FieldPrivate &dd, QObject *parent = nullptr);
 
 private:
     Q_DISABLE_COPY(Field)
-    Q_DECLARE_PRIVATE(Field)
+    Q_DECLARE_PRIVATE(Field) // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)
 };
 
 }

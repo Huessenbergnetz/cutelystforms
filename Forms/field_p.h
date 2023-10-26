@@ -15,15 +15,16 @@ class FieldPrivate : public FormHtmlElementPrivate
 {
 public:
     FieldPrivate(Field *q);
+    ~FieldPrivate() override = default;
 
     QString name;
     QString label;
     QString description;
-    int colspan = 0;
-    Field::Type type = Field::Text;
+    int colspan{0};
+    Field::Type type{Field::Text};
 
 private:
-    Q_DECLARE_PUBLIC(Field)
+    Q_DECLARE_PUBLIC(Field) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
     Q_DISABLE_COPY(FieldPrivate)
 };
 

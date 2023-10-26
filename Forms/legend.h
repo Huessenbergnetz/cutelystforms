@@ -26,17 +26,17 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Legend : public FormHtmlElement
     QML_ELEMENT
 public:
     explicit Legend(QObject *parent = nullptr);
-    virtual ~Legend() override;
+    ~Legend() override = default;
 
-    QString text() const;
-    void setText(const QString &text);
+    Q_REQUIRED_RESULT QString text() const noexcept;
+    void setText(const QString &text) noexcept;
 
 protected:
     Legend(LegendPrivate &dd, QObject *parent = nullptr);
 
 private:
     Q_DISABLE_COPY(Legend)
-    Q_DECLARE_PRIVATE(Legend)
+    Q_DECLARE_PRIVATE(Legend) // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)
 };
 
 }

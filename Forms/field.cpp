@@ -25,66 +25,61 @@ Field::Field(FieldPrivate &dd, QObject *parent) :
 
 }
 
-Field::~Field()
-{
-
-}
-
-CutelystForms::Field::Type Field::type() const
+CutelystForms::Field::Type Field::type() const noexcept
 {
     Q_D(const Field);
     return d->type;
 }
 
-void Field::setType(CutelystForms::Field::Type type)
+void Field::setType(CutelystForms::Field::Type type) noexcept
 {
     Q_D(Field);
     d->type = type;
 }
 
-QString Field::name() const
+QString Field::name() const noexcept
 {
     Q_D(const Field);
     return d->name;
 }
 
-void Field::setName(const QString &name)
+void Field::setName(const QString &name) noexcept
 {
     Q_D(Field);
     d->name = name;
 }
 
-QString Field::label() const
+QString Field::label() const noexcept
 {
     Q_D(const Field);
     return d->label;
 }
 
-void Field::setLabel(const QString &label)
+void Field::setLabel(const QString &label) noexcept
 {
     Q_D(Field);
     d->label = label;
 }
 
-QString Field::description() const
+QString Field::description() const noexcept
 {
     Q_D(const Field);
     return d->description;
 }
 
-void Field::setDescription(const QString &description)
+void Field::setDescription(const QString &description) noexcept
 {
     Q_D(Field);
     d->description = description;
 }
 
-int Field::colspan() const
+int Field::colspan() const noexcept
 {
     Q_D(const Field);
     return d->colspan;
 }
 
-void Field::setColspan(int colspan)
+void Field::setColspan(int colspan) noexcept
 {
     Q_D(Field);
     d->colspan = colspan;

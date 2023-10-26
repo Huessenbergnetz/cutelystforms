@@ -43,7 +43,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Form : public FormHtmlElement
     QML_ELEMENT
 public:
     explicit Form(QObject *parent = nullptr);
-    virtual ~Form() override;
+    ~Form() override = default;
 
     enum EncType {
         WwwFormUrlEncoded   = 0,
@@ -73,59 +73,59 @@ public:
     };
     Q_ENUM(Type)
 
-    QUrl action() const;
-    void setAction(const QUrl &action);
+    Q_REQUIRED_RESULT QUrl action() const noexcept;
+    void setAction(const QUrl &action) noexcept;
 
-    QStringList acceptCharset() const;
-    void setAcceptCharset(const QStringList &acceptCharset);
+    Q_REQUIRED_RESULT QStringList acceptCharset() const noexcept;
+    void setAcceptCharset(const QStringList &acceptCharset) noexcept;
 
-    bool autocomplete() const;
-    void setAutocomplete(bool autocomplete);
+    Q_REQUIRED_RESULT bool autocomplete() const noexcept;
+    void setAutocomplete(bool autocomplete) noexcept;
 
-    EncType enctype() const;
-    void setEnctype(EncType enctype);
+    Q_REQUIRED_RESULT EncType enctype() const noexcept;
+    void setEnctype(EncType enctype) noexcept;
 
-    Method method() const;
-    void setMethod(Method method);
+    Q_REQUIRED_RESULT Method method() const noexcept;
+    void setMethod(Method method) noexcept;
 
-    QString name() const;
-    void setName(const QString &name);
+    Q_REQUIRED_RESULT QString name() const noexcept;
+    void setName(const QString &name) noexcept;
 
-    bool novalidate() const;
-    void setNovalidate(bool novalidate);
+    Q_REQUIRED_RESULT bool novalidate() const noexcept;
+    void setNovalidate(bool novalidate) noexcept;
 
-    Target target() const;
-    void setTarget(Target target);
+    Q_REQUIRED_RESULT Target target() const noexcept;
+    void setTarget(Target target) noexcept;
 
-    QString label() const;
-    void setLabel(const QString &label);
+    Q_REQUIRED_RESULT QString label() const noexcept;
+    void setLabel(const QString &label) noexcept;
 
-    QString description() const;
-    void setDescription(const QString &description);
+    Q_REQUIRED_RESULT QString description() const noexcept;
+    void setDescription(const QString &description) noexcept;
 
-    Type type() const;
-    void setType(Type type);
+    Q_REQUIRED_RESULT Type type() const noexcept;
+    void setType(Type type) noexcept;
 
     QQmlListProperty<CutelystForms::Fieldset> fieldsets();
     void appendFieldset(Fieldset *fieldset);
-    QList<Fieldset*>::size_type fieldsetCount() const;
-    Fieldset *fieldset(QList<Fieldset*>::size_type idx) const;
+    Q_REQUIRED_RESULT QList<Fieldset*>::size_type fieldsetCount() const;
+    Q_REQUIRED_RESULT Fieldset *fieldset(QList<Fieldset*>::size_type idx) const;
     void clearFieldsets();
-    QList<Fieldset*> fieldsetList() const;
+    Q_REQUIRED_RESULT QList<Fieldset*> fieldsetList() const noexcept;
 
     QQmlListProperty<CutelystForms::Button> buttons();
     void appendButton(Button *button);
-    QList<Button*>::size_type buttonCount() const;
-    Button *button(QList<Button*>::size_type idx) const;
+    Q_REQUIRED_RESULT QList<Button*>::size_type buttonCount() const;
+    Q_REQUIRED_RESULT Button *button(QList<Button*>::size_type idx) const;
     void clearButtons();
-    QList<Button*> buttonList() const;
+    Q_REQUIRED_RESULT QList<Button*> buttonList() const noexcept;
 
 protected:
     Form(FormPrivate &dd, QObject *parent = nullptr);
 
 private:
     Q_DISABLE_COPY(Form)
-    Q_DECLARE_PRIVATE(Form)
+    Q_DECLARE_PRIVATE(Form) // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)
 };
 
 }

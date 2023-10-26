@@ -25,42 +25,37 @@ Option::Option(OptionPrivate &dd, QObject *parent) :
 
 }
 
-Option::~Option()
-{
-
-}
-
-bool Option::isSelected() const
+bool Option::isSelected() const noexcept
 {
     Q_D(const Option);
     return d->selected;
 }
 
-void Option::setSelected(bool selected)
+void Option::setSelected(bool selected) noexcept
 {
     Q_D(Option);
     d->selected = selected;
 }
 
-QString Option::text() const
+QString Option::text() const noexcept
 {
     Q_D(const Option);
     return d->text;
 }
 
-void Option::setText(const QString &text)
+void Option::setText(const QString &text) noexcept
 {
     Q_D(Option);
     d->text = text;
 }
 
-QString Option::value() const
+QString Option::value() const noexcept
 {
     Q_D(const Option);
     return d->value;
 }
 
-void Option::setValue(const QString &value)
+void Option::setValue(const QString &value) noexcept
 {
     Q_D(Option);
     d->value = value;

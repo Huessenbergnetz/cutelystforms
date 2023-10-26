@@ -27,20 +27,20 @@ class CUTELYST_PLUGIN_FORMS_EXPORT SelectContent : public FormHtmlElement
     QML_ANONYMOUS
 public:
     explicit SelectContent(QObject *parent = nullptr);
-    virtual ~SelectContent() override;
+    ~SelectContent() override = default;
 
-    bool isDisabled() const;
-    void setDisabled(bool disabled);
+    Q_REQUIRED_RESULT bool isDisabled() const noexcept;
+    void setDisabled(bool disabled) noexcept;
 
-    QString label() const;
-    void setLabel(const QString &label);
+    Q_REQUIRED_RESULT QString label() const noexcept;
+    void setLabel(const QString &label) noexcept;
 
 protected:
     SelectContent(SelectContentPrivate &dd, QObject *parent = nullptr);
 
 private:
     Q_DISABLE_COPY(SelectContent)
-    Q_DECLARE_PRIVATE(SelectContent)
+    Q_DECLARE_PRIVATE(SelectContent) // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)
 };
 
 }

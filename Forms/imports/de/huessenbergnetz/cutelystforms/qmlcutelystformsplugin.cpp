@@ -23,7 +23,7 @@ class QmlCutelystFormsPlugin : public QQmlExtensionPlugin
 public:
     QmlCutelystFormsPlugin(QObject *parent = nullptr) : QQmlExtensionPlugin(parent) {}
 
-    virtual void registerTypes(const char *uri) override
+    void registerTypes(const char *uri) override
     {
         if (Q_LIKELY(QLatin1String(uri) == QLatin1String(FORMS_QML_PLUGIN_URI))) {
 
@@ -43,7 +43,7 @@ public:
             qmlRegisterType<CutelystForms::Optgroup>(uri, major, minor, "Optgroup");
 
         } else {
-            qCritical("Unsupported URI given to load Cutelyst Forms QML plugin: %s", uri);
+            qCritical() << "Unsupported URI given to load Cutelyst Forms QML plugin:" << uri;
         }
     }
 };

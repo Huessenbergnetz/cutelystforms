@@ -29,21 +29,21 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Optgroup : public SelectContent
     QML_ELEMENT
 public:
     explicit Optgroup(QObject *parent = nullptr);
-    virtual ~Optgroup() override;
+    ~Optgroup() override = default;
 
     QQmlListProperty<CutelystForms::Option> options();
     void appendOption(Option *option);
-    QList<Option*>::size_type optionCount() const;
-    Option *option(QList<Option*>::size_type idx) const;
+    Q_REQUIRED_RESULT QList<Option*>::size_type optionCount() const;
+    Q_REQUIRED_RESULT Option *option(QList<Option*>::size_type idx) const;
     void clearOptions();
-    QList<Option*> optionList() const;
+    Q_REQUIRED_RESULT QList<Option*> optionList() const noexcept;
 
 protected:
     Optgroup(OptgroupPrivate &dd, QObject *parent = nullptr);
 
 private:
     Q_DISABLE_COPY(Optgroup)
-    Q_DECLARE_PRIVATE(Optgroup)
+    Q_DECLARE_PRIVATE(Optgroup) // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)
 };
 
 }

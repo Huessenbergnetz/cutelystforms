@@ -25,11 +25,6 @@ Optgroup::Optgroup(OptgroupPrivate &dd, QObject *parent) :
 
 }
 
-Optgroup::~Optgroup()
-{
-
-}
-
 QQmlListProperty<CutelystForms::Option> Optgroup::options()
 {
     Q_D(Optgroup);
@@ -65,7 +60,7 @@ void Optgroup::clearOptions()
     d->options.clear();
 }
 
-QList<Option*> Optgroup::optionList() const
+QList<Option*> Optgroup::optionList() const noexcept
 {
     Q_D(const Optgroup);
     return d->options;

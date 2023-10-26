@@ -25,78 +25,73 @@ Button::Button(ButtonPrivate &dd, QObject *parent) :
 
 }
 
-Button::~Button()
-{
-
-}
-
-bool Button::autofocus() const
+bool Button::autofocus() const noexcept
 {
     Q_D(const Button);
     return d->autocofus;
 }
 
-void Button::setAutofocus(bool autofocus)
+void Button::setAutofocus(bool autofocus) noexcept
 {
     Q_D(Button);
     d->autocofus = autofocus;
 }
 
-bool Button::isDisabled() const
+bool Button::isDisabled() const noexcept
 {
     Q_D(const Button);
     return d->disabled;
 }
 
-void Button::setDisabled(bool disabled)
+void Button::setDisabled(bool disabled) noexcept
 {
     Q_D(Button);
     d->disabled = disabled;
 }
 
-QString Button::name() const
+QString Button::name() const noexcept
 {
     Q_D(const Button);
     return d->name;
 }
 
-void Button::setName(const QString &name)
+void Button::setName(const QString &name) noexcept
 {
     Q_D(Button);
     d->name = name;
 }
 
-CutelystForms::Button::Type Button::type() const
+CutelystForms::Button::Type Button::type() const noexcept
 {
     Q_D(const Button);
     return d->type;
 }
 
-void Button::setType(CutelystForms::Button::Type type)
+void Button::setType(CutelystForms::Button::Type type) noexcept
 {
     Q_D(Button);
     d->type = type;
 }
 
-QString Button::value() const
+QString Button::value() const noexcept
 {
     Q_D(const Button);
     return d->value;
 }
 
-void Button::setValue(const QString &value)
+void Button::setValue(const QString &value) noexcept
 {
     Q_D(Button);
     d->value = value;
 }
 
-QString Button::text() const
+QString Button::text() const noexcept
 {
     Q_D(const Button);
     return d->text;
 }
 
-void Button::setText(const QString &text)
+void Button::setText(const QString &text) noexcept
 {
     Q_D(Button);
     d->text = text;

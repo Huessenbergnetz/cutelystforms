@@ -14,8 +14,7 @@ class FormHtmlElementPrivate
 {
 public:
     FormHtmlElementPrivate(FormHtmlElement *q);
-
-    virtual ~FormHtmlElementPrivate();
+    virtual ~FormHtmlElementPrivate() = default;
 
     FormHtmlElement *q_ptr;
 
@@ -27,15 +26,15 @@ public:
     QString style;
     QString title;
 
-    int tabindex = -2;
-    FormHtmlElement::TextDirection dir = FormHtmlElement::AutoDir;
-    FormHtmlElement::DraggableState draggable = FormHtmlElement::DragAuto;
-    bool contenteditable = false;
-    bool hidden = false;
-    bool spellcheck = true;
+    int tabindex{-2};
+    FormHtmlElement::TextDirection dir{FormHtmlElement::AutoDir};
+    FormHtmlElement::DraggableState draggable{FormHtmlElement::DragAuto};
+    bool contenteditable{false};
+    bool hidden{false};
+    bool spellcheck{true};
 
 private:
-    Q_DECLARE_PUBLIC(FormHtmlElement)
+    Q_DECLARE_PUBLIC(FormHtmlElement) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
     Q_DISABLE_COPY(FormHtmlElementPrivate)
 };
 

@@ -25,18 +25,13 @@ Legend::Legend(LegendPrivate &dd, QObject *parent) :
 
 }
 
-Legend::~Legend()
-{
-
-}
-
-QString Legend::text() const
+QString Legend::text() const noexcept
 {
     Q_D(const Legend);
     return d->text;
 }
 
-void Legend::setText(const QString &text)
+void Legend::setText(const QString &text) noexcept
 {
     Q_D(Legend);
     d->text = text;

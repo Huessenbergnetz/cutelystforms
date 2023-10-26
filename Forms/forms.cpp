@@ -23,7 +23,7 @@ Q_LOGGING_CATEGORY(C_FORMS, "cutelyst.plugin.forms", QtWarningMsg)
 
 using namespace CutelystForms;
 
-static thread_local Forms *forms = nullptr;
+static thread_local Forms *forms = nullptr; // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
 
 FormsContextObject::FormsContextObject(const QString &form, Cutelyst::Context *c) : QObject(c), m_form(form), m_c(c)
 {
@@ -87,7 +87,7 @@ void Forms::addImportPath(const QString &path)
     d->engine.addImportPath(path);
 }
 
-QStringList Forms::importPaths() const
+QStringList Forms::importPaths() const noexcept
 {
     Q_D(const Forms);
     return d->engine.importPathList();
@@ -99,7 +99,7 @@ void Forms::setIncludePaths(const QStringList &paths)
     d->includePaths = paths;
 }
 
-QStringList Forms::includePaths() const
+QStringList Forms::includePaths() const noexcept
 {
     Q_D(const Forms);
     return d->includePaths;
@@ -127,7 +127,7 @@ Form* Forms::getForm(const QString &name, Cutelyst::Context *c)
     }
 
     QQmlContext qmlContext(&forms->d_func()->engine);
-    qmlContext.setContextObject(new FormsContextObject(fi.completeBaseName(), c));
+    qmlContext.setContextObject(new FormsContextObject(fi.completeBaseName(), c)); // NOLINT(cppcoreguidelines-owning-memory)
     auto it = c->stash().cbegin();
     while (it != c->stash().cend()) {
         qmlContext.setContextProperty(it.key(), it.value());

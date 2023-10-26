@@ -28,23 +28,23 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Option : public SelectContent
     QML_ELEMENT
 public:
     explicit Option(QObject *parent = nullptr);
-    virtual ~Option() override;
+    ~Option() override = default;
 
-    bool isSelected() const;
-    void setSelected(bool selected);
+    Q_REQUIRED_RESULT bool isSelected() const noexcept;
+    void setSelected(bool selected) noexcept;
 
-    QString text() const;
-    void setText(const QString &text);
+    Q_REQUIRED_RESULT QString text() const noexcept;
+    void setText(const QString &text) noexcept;
 
-    QString value() const;
-    void setValue(const QString &value);
+    Q_REQUIRED_RESULT QString value() const noexcept;
+    void setValue(const QString &value) noexcept;
 
 protected:
     Option(OptionPrivate &dd, QObject *parent = nullptr);
 
 private:
     Q_DISABLE_COPY(Option)
-    Q_DECLARE_PRIVATE(Option)
+    Q_DECLARE_PRIVATE(Option) // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)
 };
 
 }

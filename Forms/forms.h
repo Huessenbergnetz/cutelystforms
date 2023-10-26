@@ -60,7 +60,7 @@ public:
      * \brief Returns the current list of import paths used by the internal QQmlEngine.
      * \sa addImportPath(), QQmlEngine::importPathList()
      */
-    [[nodiscard]] QStringList importPaths() const;
+    Q_REQUIRED_RESULT QStringList importPaths() const noexcept;
 
     /*!
      * \brief Sets the list of include \a paths.
@@ -77,7 +77,7 @@ public:
      *
      * Use setIncludePahts() to set the list of paths.
      */
-    [[nodiscard]] QStringList includePaths() const;
+    Q_REQUIRED_RESULT QStringList includePaths() const noexcept;
 
     static Form* getForm(const QString &name, Cutelyst::Context *c);
 

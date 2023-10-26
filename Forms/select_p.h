@@ -15,13 +15,14 @@ class SelectPrivate : public FieldPrivate
 {
 public:
     SelectPrivate(Select *q);
+    ~SelectPrivate() override = default;
 
     QList<SelectContent*> content;
-    int size = 0;
-    bool multiple = false;
+    int size{0};
+    bool multiple{false};
 
 private:
-    Q_DECLARE_PUBLIC(Select)
+    Q_DECLARE_PUBLIC(Select) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
     Q_DISABLE_COPY(SelectPrivate)
 };
 

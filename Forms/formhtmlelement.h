@@ -38,7 +38,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT FormHtmlElement : public QObject
     QML_ANONYMOUS
 public:
     explicit FormHtmlElement(QObject *parent = nullptr);
-    virtual ~FormHtmlElement() override;
+    ~FormHtmlElement() override;
 
     enum TextDirection {
         AutoDir = 0,
@@ -54,52 +54,52 @@ public:
     };
     Q_ENUM(DraggableState)
 
-    QString htmlId() const;
-    void setHtmlId(const QString &htmlId);
+    Q_REQUIRED_RESULT QString htmlId() const noexcept;
+    void setHtmlId(const QString &htmlId) noexcept;
 
-    QString htmlClass() const;
-    void setHtmlClass(const QString &htmlClass);
+    Q_REQUIRED_RESULT QString htmlClass() const noexcept;
+    void setHtmlClass(const QString &htmlClass) noexcept;
 
-    QString accesskey() const;
-    void setAccesskey(const QString &accesskey);
+    Q_REQUIRED_RESULT QString accesskey() const noexcept;
+    void setAccesskey(const QString &accesskey) noexcept;
 
-    bool isContenteditable() const;
-    void setContenteditable(bool contenteditable);
+    Q_REQUIRED_RESULT bool isContenteditable() const noexcept;
+    void setContenteditable(bool contenteditable) noexcept;
 
-    QString contextmenu() const;
-    void setContextmenu(const QString &contextmenu);
+    Q_REQUIRED_RESULT QString contextmenu() const noexcept;
+    void setContextmenu(const QString &contextmenu) noexcept;
 
-    TextDirection dir() const;
-    void setDir(TextDirection dir);
+    Q_REQUIRED_RESULT TextDirection dir() const noexcept;
+    void setDir(TextDirection dir) noexcept;
 
-    DraggableState draggable() const;
-    void setDraggable(DraggableState draggable);
+    Q_REQUIRED_RESULT DraggableState draggable() const noexcept;
+    void setDraggable(DraggableState draggable) noexcept;
 
-    bool isHidden() const;
-    void setHidden(bool hidden);
+    Q_REQUIRED_RESULT bool isHidden() const noexcept;
+    void setHidden(bool hidden) noexcept;
 
-    QString lang() const;
-    void setLang(const QString &lang);
+    Q_REQUIRED_RESULT QString lang() const noexcept;
+    void setLang(const QString &lang) noexcept;
 
-    bool spellcheck() const;
-    void setSpellcheck(bool spellcheck);
+    Q_REQUIRED_RESULT bool spellcheck() const noexcept;
+    void setSpellcheck(bool spellcheck) noexcept;
 
-    QString style() const;
-    void setStyle(const QString &style);
+    Q_REQUIRED_RESULT QString style() const noexcept;
+    void setStyle(const QString &style) noexcept;
 
-    int tabindex() const;
-    void setTabindex(int tabindex);
+    Q_REQUIRED_RESULT int tabindex() const noexcept;
+    void setTabindex(int tabindex) noexcept;
 
-    QString title() const;
-    void setTitle(const QString &title);
+    Q_REQUIRED_RESULT QString title() const noexcept;
+    void setTitle(const QString &title) noexcept;
 
 protected:
-    const QScopedPointer<FormHtmlElementPrivate> d_ptr;
+    const QScopedPointer<FormHtmlElementPrivate> d_ptr; // NOLINT(cppcoreguidelines-non-private-member-variables-in-classes)
     FormHtmlElement(FormHtmlElementPrivate &dd, QObject *parent = nullptr);
 
 private:
     Q_DISABLE_COPY(FormHtmlElement)
-    Q_DECLARE_PRIVATE(FormHtmlElement)
+    Q_DECLARE_PRIVATE(FormHtmlElement) // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)
 };
 
 }

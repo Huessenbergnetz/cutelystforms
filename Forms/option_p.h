@@ -15,13 +15,14 @@ class OptionPrivate : public SelectContentPrivate
 {
 public:
     OptionPrivate(Option *q);
+    ~OptionPrivate() override = default;
 
     QString text;
     QString value;
-    bool selected;
+    bool selected{false};
 
 private:
-    Q_DECLARE_PUBLIC(Option)
+    Q_DECLARE_PUBLIC(Option) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
     Q_DISABLE_COPY(OptionPrivate)
 };
 

@@ -32,38 +32,39 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Button : public FormHtmlElement
     QML_ELEMENT
 public:
     explicit Button(QObject *parent = nullptr);
-    virtual ~Button() override;
+    ~Button() override = default;
 
     enum Type {
         Btn     = 0,
         Submit,
         Reset
     };
+    Q_ENUM(Type)
 
-    bool autofocus() const;
-    void setAutofocus(bool autofocus);
+    Q_REQUIRED_RESULT bool autofocus() const noexcept;
+    void setAutofocus(bool autofocus) noexcept;
 
-    bool isDisabled() const;
-    void setDisabled(bool disabled);
+    Q_REQUIRED_RESULT bool isDisabled() const noexcept;
+    void setDisabled(bool disabled) noexcept;
 
-    QString name() const;
-    void setName(const QString &name);
+    Q_REQUIRED_RESULT QString name() const noexcept;
+    void setName(const QString &name) noexcept;
 
-    Type type() const;
-    void setType(Type type);
+    Q_REQUIRED_RESULT Type type() const noexcept;
+    void setType(Type type) noexcept;
 
-    QString value() const;
-    void setValue(const QString &value);
+    Q_REQUIRED_RESULT QString value() const noexcept;
+    void setValue(const QString &value) noexcept;
 
-    QString text() const;
-    void setText(const QString &text);
+    Q_REQUIRED_RESULT QString text() const noexcept;
+    void setText(const QString &text) noexcept;
 
 protected:
     Button(ButtonPrivate &dd, QObject *parent = nullptr);
 
 private:
     Q_DISABLE_COPY(Button)
-    Q_DECLARE_PRIVATE(Button)
+    Q_DECLARE_PRIVATE(Button) // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)
 };
 
 }

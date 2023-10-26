@@ -35,36 +35,36 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Fieldset : public FormHtmlElement
     QML_ELEMENT
 public:
     explicit Fieldset(QObject *parent = nullptr);
-    virtual ~Fieldset() override;
+    ~Fieldset() override = default;
 
-    bool isDisabled() const;
-    void setDisabled(bool disabled);
+    Q_REQUIRED_RESULT bool isDisabled() const noexcept;
+    void setDisabled(bool disabled) noexcept;
 
-    QString form() const;
-    void setForm(const QString &form);
+    Q_REQUIRED_RESULT QString form() const noexcept;
+    void setForm(const QString &form) noexcept;
 
-    QString name() const;
-    void setName(const QString &name);
+    Q_REQUIRED_RESULT QString name() const noexcept;
+    void setName(const QString &name) noexcept;
 
-    QString description() const;
-    void setDescription(const QString &description);
+    Q_REQUIRED_RESULT QString description() const noexcept;
+    void setDescription(const QString &description) noexcept;
 
-    Legend* legend() const;
-    void setLegend(Legend *legend);
+    Q_REQUIRED_RESULT Legend* legend() const noexcept;
+    void setLegend(Legend *legend) noexcept;
 
     QQmlListProperty<CutelystForms::Field> fields();
     void appendField(Field *field);
-    QList<Field*>::size_type fieldCount() const;
-    Field *field(QList<Field*>::size_type idx) const;
+    Q_REQUIRED_RESULT QList<Field*>::size_type fieldCount() const;
+    Q_REQUIRED_RESULT Field *field(QList<Field*>::size_type idx) const;
     void clearFields();
-    QList<Field*> fieldList() const;
+    Q_REQUIRED_RESULT QList<Field*> fieldList() const noexcept;
 
 protected:
     Fieldset(FieldsetPrivate &dd, QObject *parent = nullptr);
 
 private:
     Q_DISABLE_COPY(Fieldset)
-    Q_DECLARE_PRIVATE(Fieldset)
+    Q_DECLARE_PRIVATE(Fieldset) // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)
 };
 
 }

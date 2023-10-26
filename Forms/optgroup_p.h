@@ -15,11 +15,12 @@ class OptgroupPrivate : public SelectContentPrivate
 {
 public:
     OptgroupPrivate(Optgroup *q);
+    ~OptgroupPrivate() override = default;
 
     QList<Option*> options;
 
 private:
-    Q_DECLARE_PUBLIC(Optgroup)
+    Q_DECLARE_PUBLIC(Optgroup) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
     Q_DISABLE_COPY(OptgroupPrivate)
 };
 

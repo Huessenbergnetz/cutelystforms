@@ -13,11 +13,6 @@ FormHtmlElementPrivate::FormHtmlElementPrivate(FormHtmlElement *q) :
 
 }
 
-FormHtmlElementPrivate::~FormHtmlElementPrivate()
-{
-
-}
-
 FormHtmlElement::FormHtmlElement(QObject *parent) :
     QObject(parent), d_ptr(new FormHtmlElementPrivate(this))
 {
@@ -30,162 +25,165 @@ FormHtmlElement::FormHtmlElement(FormHtmlElementPrivate &dd, QObject *parent) :
 
 }
 
-FormHtmlElement::~FormHtmlElement()
+// can not be defaulted as that could create an inline
+// descrustor that is not compatible with forward declared
+// private class and QScopedPointer
+FormHtmlElement::~FormHtmlElement() // NOLINT(modernize-use-equals-default)
 {
 
 }
 
-QString FormHtmlElement::htmlId() const
+QString FormHtmlElement::htmlId() const noexcept
 {
     Q_D(const FormHtmlElement);
     return d->htmlId;
 }
 
-void FormHtmlElement::setHtmlId(const QString &htmlId)
+void FormHtmlElement::setHtmlId(const QString &htmlId) noexcept
 {
     Q_D(FormHtmlElement);
     d->htmlId = htmlId;
 }
 
-QString FormHtmlElement::htmlClass() const
+QString FormHtmlElement::htmlClass() const noexcept
 {
     Q_D(const FormHtmlElement);
     return d->htmlClass;
 }
 
-void FormHtmlElement::setHtmlClass(const QString &htmlClass)
+void FormHtmlElement::setHtmlClass(const QString &htmlClass) noexcept
 {
     Q_D(FormHtmlElement);
     d->htmlClass = htmlClass;
 }
 
-QString FormHtmlElement::accesskey() const
+QString FormHtmlElement::accesskey() const noexcept
 {
     Q_D(const FormHtmlElement);
     return d->accesskey;
 }
 
-void FormHtmlElement::setAccesskey(const QString &accesskey)
+void FormHtmlElement::setAccesskey(const QString &accesskey) noexcept
 {
     Q_D(FormHtmlElement);
     d->accesskey = accesskey;
 }
 
-bool FormHtmlElement::isContenteditable() const
+bool FormHtmlElement::isContenteditable() const noexcept
 {
     Q_D(const FormHtmlElement);
     return d->contenteditable;
 }
 
-void FormHtmlElement::setContenteditable(bool contenteditable)
+void FormHtmlElement::setContenteditable(bool contenteditable) noexcept
 {
     Q_D(FormHtmlElement);
     d->contenteditable = contenteditable;
 }
 
-QString FormHtmlElement::contextmenu() const
+QString FormHtmlElement::contextmenu() const noexcept
 {
     Q_D(const FormHtmlElement);
     return d->contextmenu;
 }
 
-void FormHtmlElement::setContextmenu(const QString &contextmenu)
+void FormHtmlElement::setContextmenu(const QString &contextmenu) noexcept
 {
     Q_D(FormHtmlElement);
     d->contextmenu = contextmenu;
 }
 
-CutelystForms::FormHtmlElement::TextDirection FormHtmlElement::dir() const
+CutelystForms::FormHtmlElement::TextDirection FormHtmlElement::dir() const noexcept
 {
     Q_D(const FormHtmlElement);
     return d->dir;
 }
 
-void FormHtmlElement::setDir(CutelystForms::FormHtmlElement::TextDirection dir)
+void FormHtmlElement::setDir(CutelystForms::FormHtmlElement::TextDirection dir) noexcept
 {
     Q_D(FormHtmlElement);
     d->dir = dir;
 }
 
-CutelystForms::FormHtmlElement::DraggableState FormHtmlElement::draggable() const
+CutelystForms::FormHtmlElement::DraggableState FormHtmlElement::draggable() const noexcept
 {
     Q_D(const FormHtmlElement);
     return d->draggable;
 }
 
-void FormHtmlElement::setDraggable(CutelystForms::FormHtmlElement::DraggableState draggable)
+void FormHtmlElement::setDraggable(CutelystForms::FormHtmlElement::DraggableState draggable) noexcept
 {
     Q_D(FormHtmlElement);
     d->draggable = draggable;
 }
 
-bool FormHtmlElement::isHidden() const
+bool FormHtmlElement::isHidden() const noexcept
 {
     Q_D(const FormHtmlElement);
     return d->hidden;
 }
 
-void FormHtmlElement::setHidden(bool hidden)
+void FormHtmlElement::setHidden(bool hidden) noexcept
 {
     Q_D(FormHtmlElement);
     d->hidden = hidden;
 }
 
-QString FormHtmlElement::lang() const
+QString FormHtmlElement::lang() const noexcept
 {
     Q_D(const FormHtmlElement);
     return d->lang;
 }
 
-void FormHtmlElement::setLang(const QString &lang)
+void FormHtmlElement::setLang(const QString &lang) noexcept
 {
     Q_D(FormHtmlElement);
     d->lang = lang;
 }
 
-bool FormHtmlElement::spellcheck() const
+bool FormHtmlElement::spellcheck() const noexcept
 {
     Q_D(const FormHtmlElement);
     return d->spellcheck;
 }
 
-void FormHtmlElement::setSpellcheck(bool spellcheck)
+void FormHtmlElement::setSpellcheck(bool spellcheck) noexcept
 {
     Q_D(FormHtmlElement);
     d->spellcheck = spellcheck;
 }
 
-QString FormHtmlElement::style() const
+QString FormHtmlElement::style() const noexcept
 {
     Q_D(const FormHtmlElement);
     return d->style;
 }
 
-void FormHtmlElement::setStyle(const QString &style)
+void FormHtmlElement::setStyle(const QString &style) noexcept
 {
     Q_D(FormHtmlElement);
     d->style = style;
 }
 
-int FormHtmlElement::tabindex() const
+int FormHtmlElement::tabindex() const noexcept
 {
     Q_D(const FormHtmlElement);
     return d->tabindex;
 }
 
-void FormHtmlElement::setTabindex(int tabindex)
+void FormHtmlElement::setTabindex(int tabindex) noexcept
 {
     Q_D(FormHtmlElement);
     d->tabindex = tabindex;
 }
 
-QString FormHtmlElement::title() const
+QString FormHtmlElement::title() const noexcept
 {
     Q_D(const FormHtmlElement);
     return d->title;
 }
 
-void FormHtmlElement::setTitle(const QString &title)
+void FormHtmlElement::setTitle(const QString &title) noexcept
 {
     Q_D(FormHtmlElement);
     d->title = title;

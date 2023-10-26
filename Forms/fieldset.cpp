@@ -25,66 +25,61 @@ Fieldset::Fieldset(FieldsetPrivate &dd, QObject *parent) :
 
 }
 
-Fieldset::~Fieldset()
-{
-
-}
-
-bool Fieldset::isDisabled() const
+bool Fieldset::isDisabled() const noexcept
 {
     Q_D(const Fieldset);
     return d->disabled;
 }
 
-void Fieldset::setDisabled(bool disabled)
+void Fieldset::setDisabled(bool disabled) noexcept
 {
     Q_D(Fieldset);
     d->disabled = disabled;
 }
 
-QString Fieldset::form() const
+QString Fieldset::form() const noexcept
 {
     Q_D(const Fieldset);
     return d->form;
 }
 
-void Fieldset::setForm(const QString &form)
+void Fieldset::setForm(const QString &form) noexcept
 {
     Q_D(Fieldset);
     d->form = form;
 }
 
-QString Fieldset::name() const
+QString Fieldset::name() const noexcept
 {
     Q_D(const Fieldset);
     return d->name;
 }
 
-void Fieldset::setName(const QString &name)
+void Fieldset::setName(const QString &name) noexcept
 {
     Q_D(Fieldset);
     d->name = name;
 }
 
-QString Fieldset::description() const
+QString Fieldset::description() const noexcept
 {
     Q_D(const Fieldset);
     return d->description;
 }
 
-void Fieldset::setDescription(const QString &description)
+void Fieldset::setDescription(const QString &description) noexcept
 {
     Q_D(Fieldset);
     d->description = description;
 }
 
-CutelystForms::Legend* Fieldset::legend() const
+CutelystForms::Legend* Fieldset::legend() const noexcept
 {
     Q_D(const Fieldset);
     return d->legend;
 }
 
-void Fieldset::setLegend(CutelystForms::Legend *legend)
+void Fieldset::setLegend(CutelystForms::Legend *legend) noexcept
 {
     Q_D(Fieldset);
     d->legend = legend;
@@ -125,7 +120,7 @@ void Fieldset::clearFields()
     d->fields.clear();
 }
 
-QList<Field*> Fieldset::fieldList() const
+QList<Field*> Fieldset::fieldList() const noexcept
 {
     Q_D(const Fieldset);
     return d->fields;

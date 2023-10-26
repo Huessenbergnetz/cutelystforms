@@ -15,6 +15,7 @@ class ButtonPrivate : public FormHtmlElementPrivate
 {
 public:
     ButtonPrivate(Button *q);
+    ~ButtonPrivate() override = default;
 
     QString name;
     QString value;
@@ -22,11 +23,11 @@ public:
 
     Button::Type type = Button::Submit;
 
-    bool autocofus = false;
-    bool disabled = false;
+    bool autocofus{false};
+    bool disabled{false};
 
 private:
-    Q_DECLARE_PUBLIC(Button)
+    Q_DECLARE_PUBLIC(Button) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
     Q_DISABLE_COPY(ButtonPrivate)
 };
 
