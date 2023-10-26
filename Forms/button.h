@@ -61,6 +61,8 @@ public:
     Q_REQUIRED_RESULT QString text() const noexcept;
     void setText(const QString &text) noexcept;
 
+    Q_REQUIRED_RESULT QString tagName() const noexcept override;
+
 protected:
     Button(ButtonPrivate &dd, QObject *parent = nullptr);
 

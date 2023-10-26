@@ -37,4 +37,9 @@ void Legend::setText(const QString &text) noexcept
     d->text = text;
 }
 
+QString Legend::tagName() const noexcept
+{
+    return QStringLiteral("legend");
+}
+
 #include "moc_legend.cpp"

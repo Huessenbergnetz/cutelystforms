@@ -189,4 +189,9 @@ void FormHtmlElement::setTitle(const QString &title) noexcept
     d->title = title;
 }
 
+QString FormHtmlElement::tagName() const noexcept
+{
+    return {};
+}
+
 #include "moc_formhtmlelement.cpp"

@@ -34,3 +34,10 @@ QString Input::typeString() const noexcept
 {
     return QStringLiteral("text");
 }
+
+QString Input::tagName() const noexcept
+{
+    return QStringLiteral("input");
+}
+
+#include "moc_input.cpp"

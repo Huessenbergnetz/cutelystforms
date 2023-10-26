@@ -110,6 +110,8 @@ public:
     Q_REQUIRED_RESULT Type type() const noexcept;
     void setType(Type type) noexcept;
 
+    Q_REQUIRED_RESULT QString tagName() const noexcept override;
+
     QQmlListProperty<CutelystForms::Field> fields();
     void appendField(Field *field);
     Q_REQUIRED_RESULT QList<Field*>::size_type fieldCount() const noexcept;

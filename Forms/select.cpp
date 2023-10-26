@@ -49,6 +49,11 @@ void Select::setSize(int size) noexcept
     d->size = size;
 }
 
+QString Select::tagName() const noexcept
+{
+    return QStringLiteral("select");
+}
+
 QQmlListProperty<CutelystForms::Option> Select::options()
 {
     Q_D(Select);

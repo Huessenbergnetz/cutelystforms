@@ -85,6 +85,11 @@ void Fieldset::setLegend(CutelystForms::Legend *legend) noexcept
     d->legend = legend;
 }
 
+QString Fieldset::tagName() const noexcept
+{
+    return QStringLiteral("fieldset");
+}
+
 QQmlListProperty<CutelystForms::Field> Fieldset::fields()
 {
     Q_D(Fieldset);

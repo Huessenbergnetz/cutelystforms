@@ -97,4 +97,9 @@ void Button::setText(const QString &text) noexcept
     d->text = text;
 }
 
+QString Button::tagName() const noexcept
+{
+    return QStringLiteral("button");
+}
+
 #include "moc_button.cpp"

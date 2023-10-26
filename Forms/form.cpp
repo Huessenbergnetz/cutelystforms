@@ -157,6 +157,11 @@ void Form::setType(CutelystForms::Form::Type type) noexcept
     d->type = type;
 }
 
+QString Form::tagName() const noexcept
+{
+    return QStringLiteral("form");
+}
+
 QQmlListProperty<CutelystForms::Field> Form::fields()
 {
     Q_D(Form);

@@ -41,6 +41,8 @@ public:
     Q_REQUIRED_RESULT QString value() const noexcept;
     void setValue(const QString &value) noexcept;
 
+    Q_REQUIRED_RESULT QString tagName() const noexcept override;
+
 protected:
     Option(OptionPrivate &dd, QObject *parent = nullptr);
 

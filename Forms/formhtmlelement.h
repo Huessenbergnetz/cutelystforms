@@ -37,6 +37,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT FormHtmlElement : public QObject
     Q_PROPERTY(QString style READ style WRITE setStyle)
     Q_PROPERTY(int tabindex READ tabindex WRITE setTabindex)
     Q_PROPERTY(QString title READ title WRITE setTitle)
+    Q_PROPERTY(QString tagName READ tagName CONSTANT)
     QML_ANONYMOUS
 public:
     explicit FormHtmlElement(QObject *parent = nullptr);
@@ -94,6 +95,8 @@ public:
 
     Q_REQUIRED_RESULT QString title() const noexcept;
     void setTitle(const QString &title) noexcept;
+
+    Q_REQUIRED_RESULT virtual QString tagName() const noexcept;
 
 protected:
     const QScopedPointer<FormHtmlElementPrivate> d_ptr; // NOLINT(cppcoreguidelines-non-private-member-variables-in-classes)

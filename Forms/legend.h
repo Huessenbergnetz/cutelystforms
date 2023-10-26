@@ -33,6 +33,8 @@ public:
     Q_REQUIRED_RESULT QString text() const noexcept;
     void setText(const QString &text) noexcept;
 
+    Q_REQUIRED_RESULT QString tagName() const noexcept override;
+
 protected:
     Legend(LegendPrivate &dd, QObject *parent = nullptr);
 

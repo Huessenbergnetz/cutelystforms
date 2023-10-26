@@ -56,6 +56,8 @@ public:
 
     Q_REQUIRED_RESULT virtual QString typeString() const noexcept;
 
+    Q_REQUIRED_RESULT QString tagName() const noexcept override;
+
 protected:
     Input(InputPrivate &dd, QObject *parent = nullptr);
 

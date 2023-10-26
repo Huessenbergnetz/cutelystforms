@@ -61,4 +61,9 @@ void Option::setValue(const QString &value) noexcept
     d->value = value;
 }
 
+QString Option::tagName() const noexcept
+{
+    return QStringLiteral("option");
+}
+
 #include "moc_option.cpp"

@@ -54,6 +54,8 @@ public:
     Q_REQUIRED_RESULT Legend* legend() const noexcept;
     void setLegend(Legend *legend) noexcept;
 
+    Q_REQUIRED_RESULT QString tagName() const noexcept override;
+
     QQmlListProperty<CutelystForms::Field> fields();
     void appendField(Field *field);
     Q_REQUIRED_RESULT QList<Field*>::size_type fieldCount() const noexcept;

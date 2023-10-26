@@ -25,6 +25,11 @@ Optgroup::Optgroup(OptgroupPrivate &dd, QObject *parent) :
 
 }
 
+QString Optgroup::tagName() const noexcept
+{
+    return QStringLiteral("optgroup");
+}
+
 QQmlListProperty<CutelystForms::Option> Optgroup::options()
 {
     Q_D(Optgroup);

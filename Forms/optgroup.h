@@ -33,6 +33,8 @@ public:
     explicit Optgroup(QObject *parent = nullptr);
     ~Optgroup() override = default;
 
+    Q_REQUIRED_RESULT QString tagName() const noexcept override;
+
     QQmlListProperty<CutelystForms::Option> options();
     void appendOption(Option *option);
     Q_REQUIRED_RESULT QList<Option*>::size_type optionCount() const noexcept;
