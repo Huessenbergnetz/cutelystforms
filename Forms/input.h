@@ -25,6 +25,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Input : public Field
     Q_OBJECT
     Q_PROPERTY(CutelystForms::Input::Type type READ type CONSTANT)
     Q_PROPERTY(QString typeString READ typeString CONSTANT)
+    Q_PROPERTY(QString valueString READ valueString CONSTANT)
     QML_ANONYMOUS
 public:
     explicit Input(QObject *parent = nullptr);
@@ -55,6 +56,8 @@ public:
     Q_REQUIRED_RESULT virtual Input::Type type() const noexcept;
 
     Q_REQUIRED_RESULT virtual QString typeString() const noexcept;
+
+    Q_REQUIRED_RESULT virtual QString valueString() const noexcept;
 
     Q_REQUIRED_RESULT QString tagName() const noexcept override;
 

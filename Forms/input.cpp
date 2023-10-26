@@ -35,6 +35,11 @@ QString Input::typeString() const noexcept
     return QStringLiteral("text");
 }
 
+QString Input::valueString() const noexcept
+{
+    return {};
+}
+
 QString Input::tagName() const noexcept
 {
     return QStringLiteral("input");
