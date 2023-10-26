@@ -97,7 +97,7 @@ void Fieldset::appendField(Field *field)
     d->fields.push_back(field);
 }
 
-QList<Field*>::size_type Fieldset::fieldCount() const
+QList<Field*>::size_type Fieldset::fieldCount() const noexcept
 {
     Q_D(const Fieldset);
     return d->fields.size();

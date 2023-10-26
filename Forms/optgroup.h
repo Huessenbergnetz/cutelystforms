@@ -35,7 +35,7 @@ public:
 
     QQmlListProperty<CutelystForms::Option> options();
     void appendOption(Option *option);
-    Q_REQUIRED_RESULT QList<Option*>::size_type optionCount() const;
+    Q_REQUIRED_RESULT QList<Option*>::size_type optionCount() const noexcept;
     Q_REQUIRED_RESULT Option *option(QList<Option*>::size_type idx) const;
     void clearOptions();
     Q_REQUIRED_RESULT QList<Option*> optionList() const noexcept;

@@ -169,7 +169,7 @@ void Form::appendField(Field *field)
     d->fields.push_back(field);
 }
 
-QList<Field*>::size_type Form::fieldCount() const
+QList<Field*>::size_type Form::fieldCount() const noexcept
 {
     Q_D(const Form);
     return d->fields.size();
@@ -210,7 +210,7 @@ void Form::appendFieldset(Fieldset *fieldset)
     d->fieldsets.push_back(fieldset);
 }
 
-QList<Fieldset*>::size_type Form::fieldsetCount() const
+QList<Fieldset*>::size_type Form::fieldsetCount() const noexcept
 {
     Q_D(const Form);
     return d->fieldsets.size();
@@ -251,7 +251,7 @@ void Form::appendButton(Button *button)
     d->buttons.push_back(button);
 }
 
-QList<Button*>::size_type Form::buttonCount() const
+QList<Button*>::size_type Form::buttonCount() const noexcept
 {
     Q_D(const Form);
     return d->buttons.size();

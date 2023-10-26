@@ -37,7 +37,7 @@ void Optgroup::appendOption(Option *option)
     d->options.push_back(option);
 }
 
-QList<Option*>::size_type Optgroup::optionCount() const
+QList<Option*>::size_type Optgroup::optionCount() const noexcept
 {
     Q_D(const Optgroup);
     return static_cast<int>(d->options.size());

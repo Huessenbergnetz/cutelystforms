@@ -43,7 +43,7 @@ public:
 
     QQmlListProperty<CutelystForms::SelectContent> options();
     void appendContent(SelectContent *content);
-    Q_REQUIRED_RESULT QList<SelectContent*>::size_type contentCount() const;
+    Q_REQUIRED_RESULT QList<SelectContent*>::size_type contentCount() const noexcept;
     Q_REQUIRED_RESULT SelectContent *content(QList<SelectContent*>::size_type idx) const;
     void clearContent();
     Q_REQUIRED_RESULT QList<SelectContent *> contentList() const noexcept;

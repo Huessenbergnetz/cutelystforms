@@ -112,21 +112,21 @@ public:
 
     QQmlListProperty<CutelystForms::Field> fields();
     void appendField(Field *field);
-    Q_REQUIRED_RESULT QList<Field*>::size_type fieldCount() const;
+    Q_REQUIRED_RESULT QList<Field*>::size_type fieldCount() const noexcept;
     Q_REQUIRED_RESULT Field *field(QList<Field*>::size_type idx) const;
     void clearFields();
     Q_REQUIRED_RESULT QList<Field*> fieldList() const noexcept;
 
     QQmlListProperty<CutelystForms::Fieldset> fieldsets();
     void appendFieldset(Fieldset *fieldset);
-    Q_REQUIRED_RESULT QList<Fieldset*>::size_type fieldsetCount() const;
+    Q_REQUIRED_RESULT QList<Fieldset*>::size_type fieldsetCount() const noexcept;
     Q_REQUIRED_RESULT Fieldset *fieldset(QList<Fieldset*>::size_type idx) const;
     void clearFieldsets();
     Q_REQUIRED_RESULT QList<Fieldset*> fieldsetList() const noexcept;
 
     QQmlListProperty<CutelystForms::Button> buttons();
     void appendButton(Button *button);
-    Q_REQUIRED_RESULT QList<Button*>::size_type buttonCount() const;
+    Q_REQUIRED_RESULT QList<Button*>::size_type buttonCount() const noexcept;
     Q_REQUIRED_RESULT Button *button(QList<Button*>::size_type idx) const;
     void clearButtons();
     Q_REQUIRED_RESULT QList<Button*> buttonList() const noexcept;

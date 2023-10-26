@@ -61,7 +61,7 @@ void Select::appendContent(SelectContent *content)
     d->content.push_back(content);
 }
 
-QList<SelectContent*>::size_type Select::contentCount() const
+QList<SelectContent*>::size_type Select::contentCount() const noexcept
 {
     Q_D(const Select);
     return static_cast<int>(d->content.size());
