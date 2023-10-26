@@ -64,6 +64,10 @@ Form {
             legend: Legend {
                 text: cTranslate("MyForm", "Another great legend")
             }
+
+            HiddenInput {
+
+            }
         }
     ]
 }

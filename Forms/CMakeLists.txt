@@ -26,6 +26,8 @@ set(cutelystforms_SRC
     optgroup_p.h
     input.cpp
     input_p.h
+    hiddeninput.cpp
+    hiddeninput_p.h
 )
 
 set(cutelystforms_HEADERS
@@ -42,6 +44,7 @@ set(cutelystforms_HEADERS
     option.h
     optgroup.h
     input.h
+    hiddeninput.h
 )
 
 add_library(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms
