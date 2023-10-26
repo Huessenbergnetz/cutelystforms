@@ -19,7 +19,11 @@
 #include <Cutelyst/Plugins/CSRFProtection/CSRFProtection>
 #endif
 
+#if defined(QT_DEBUG)
+Q_LOGGING_CATEGORY(C_FORMS, "cutelyst.plugin.forms")
+#else
 Q_LOGGING_CATEGORY(C_FORMS, "cutelyst.plugin.forms", QtWarningMsg)
+#endif
 
 using namespace CutelystForms;
 
@@ -118,7 +122,8 @@ Form* Forms::getForm(const QString &name, Cutelyst::Context *c)
     }
 
     QFileInfo fi;
-    for (const QString &path : forms->includePaths()) {
+    const QStringList includePaths = forms->includePaths();
+    for (const QString &path : includePaths) {
         const QString fn = path + QLatin1Char('/') + name + QLatin1String(".qml");
         fi.setFile(fn);
         if (fi.exists()) {
@@ -152,6 +157,7 @@ Form* Forms::getForm(const QString &name, Cutelyst::Context *c)
     }
     realFormObject->setObjectName(name);
     realFormObject->setParent(c);
+    qCDebug(C_FORMS).noquote() << "Successfully loaded QML form data from" << fi.filePath();
     return realFormObject;
 }
 
