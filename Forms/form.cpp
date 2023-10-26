@@ -157,6 +157,47 @@ void Form::setType(CutelystForms::Form::Type type) noexcept
     d->type = type;
 }
 
+QQmlListProperty<CutelystForms::Field> Form::fields()
+{
+    Q_D(Form);
+    return {this, &d->fields};
+}
+
+void Form::appendField(Field *field)
+{
+    Q_D(Form);
+    d->fields.push_back(field);
+}
+
+QList<Field*>::size_type Form::fieldCount() const
+{
+    Q_D(const Form);
+    return d->fields.size();
+}
+
+Field* Form::field(QList<Field*>::size_type idx) const
+{
+    Q_D(const Form);
+    if (idx < d->fields.size()) {
+        return d->fields.at(idx);
+    } else {
+        return nullptr;
+    }
+}
+
+void Form::clearFields()
+{
+    Q_D(Form);
+    qDeleteAll(d->fields);
+    d->fields.clear();
+}
+
+QList<Field*> Form::fieldList() const noexcept
+{
+    Q_D(const Form);
+    return d->fields;
+}
+
 QQmlListProperty<CutelystForms::Fieldset> Form::fieldsets()
 {
     Q_D(Form);

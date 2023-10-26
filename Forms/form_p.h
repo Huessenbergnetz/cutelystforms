@@ -17,6 +17,7 @@ public:
     FormPrivate(Form *q);
     ~FormPrivate() override = default;
 
+    QList<Field *> fields;
     QList<Fieldset *> fieldsets;
     QList<Button *> buttons;
     QUrl action;

@@ -9,6 +9,7 @@
 #include "cutelyst_plugin_forms_export.h"
 #include "formhtmlelement.h"
 #include "fieldset.h"
+#include "field.h"
 #include "button.h"
 #include <QObject>
 #include <QQmlListProperty>
@@ -38,10 +39,11 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Form : public FormHtmlElement
     Q_PROPERTY(CutelystForms::Form::Target target READ target WRITE setTarget)
     Q_PROPERTY(QString label READ label WRITE setLabel)
     Q_PROPERTY(QString description READ description WRITE setDescription)
+    Q_PROPERTY(QQmlListProperty<CutelystForms::Field> fields READ fields)
     Q_PROPERTY(QQmlListProperty<CutelystForms::Fieldset> fieldsets READ fieldsets)
     Q_PROPERTY(QQmlListProperty<CutelystForms::Button> buttons READ buttons)
     Q_PROPERTY(CutelystForms::Form::Type type READ type WRITE setType)
-    Q_CLASSINFO("DefaultProperty", "fieldsets")
+    Q_CLASSINFO("DefaultProperty", "fields")
     QML_ELEMENT
 public:
     explicit Form(QObject *parent = nullptr);
@@ -107,6 +109,13 @@ public:
 
     Q_REQUIRED_RESULT Type type() const noexcept;
     void setType(Type type) noexcept;
+
+    QQmlListProperty<CutelystForms::Field> fields();
+    void appendField(Field *field);
+    Q_REQUIRED_RESULT QList<Field*>::size_type fieldCount() const;
+    Q_REQUIRED_RESULT Field *field(QList<Field*>::size_type idx) const;
+    void clearFields();
+    Q_REQUIRED_RESULT QList<Field*> fieldList() const noexcept;
 
     QQmlListProperty<CutelystForms::Fieldset> fieldsets();
     void appendFieldset(Fieldset *fieldset);
