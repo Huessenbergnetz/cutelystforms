@@ -109,7 +109,7 @@ void TestForms::getForm()
     QCOMPARE(fs0->htmlClass(), QStringLiteral("hallo"));
     Select *selectField = qobject_cast<Select*>(fs0->field(0));
     QVERIFY(selectField);
-    auto option = selectField->content(0);
+    auto option = selectField->option(0);
     QVERIFY(option);
     QCOMPARE(QString::fromLatin1(option->metaObject()->className()), QStringLiteral("CutelystForms::Option"));
     auto fs1 = f->fieldset(1);

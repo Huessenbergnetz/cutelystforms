@@ -8,7 +8,8 @@
 
 #include "cutelyst_plugin_forms_export.h"
 #include "field.h"
-#include "selectcontent.h"
+#include "option.h"
+#include "optgroup.h"
 #include <QObject>
 #include <QQmlListProperty>
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
@@ -28,7 +29,8 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Select : public Field
     Q_OBJECT
     Q_PROPERTY(bool multiple READ multiple WRITE setMultiple)
     Q_PROPERTY(int size READ size WRITE setSize)
-    Q_PROPERTY(QQmlListProperty<CutelystForms::SelectContent> options READ options)
+    Q_PROPERTY(QQmlListProperty<CutelystForms::Option> options READ options)
+    Q_PROPERTY(QQmlListProperty<CutelystForms::Optgroup> optgroups READ optgroups)
     Q_CLASSINFO("DefaultProperty", "options")
     QML_ELEMENT
 public:
@@ -41,12 +43,19 @@ public:
     Q_REQUIRED_RESULT int size() const noexcept;
     void setSize(int size) noexcept;
 
-    QQmlListProperty<CutelystForms::SelectContent> options();
-    void appendContent(SelectContent *content);
-    Q_REQUIRED_RESULT QList<SelectContent*>::size_type contentCount() const noexcept;
-    Q_REQUIRED_RESULT SelectContent *content(QList<SelectContent*>::size_type idx) const;
-    void clearContent();
-    Q_REQUIRED_RESULT QList<SelectContent *> contentList() const noexcept;
+    QQmlListProperty<CutelystForms::Option> options();
+    void appendOption(Option *option);
+    Q_REQUIRED_RESULT QList<Option*>::size_type optionCount() const noexcept;
+    Q_REQUIRED_RESULT Option *option(QList<Option*>::size_type idx) const;
+    void clearOptions();
+    Q_REQUIRED_RESULT QList<Option *> optionList() const noexcept;
+
+    QQmlListProperty<CutelystForms::Optgroup> optgroups();
+    void appendOptgroup(Optgroup *optgroup);
+    Q_REQUIRED_RESULT QList<Optgroup*>::size_type optgroupCount() const noexcept;
+    Q_REQUIRED_RESULT Optgroup *optgroup(QList<Optgroup*>::size_type idx) const;
+    void clearOptgroups();
+    Q_REQUIRED_RESULT QList<Optgroup*> optgroupList() const noexcept;
 
 protected:
     Select(SelectPrivate &dd, QObject *parent = nullptr);

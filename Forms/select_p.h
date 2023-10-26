@@ -17,7 +17,8 @@ public:
     SelectPrivate(Select *q);
     ~SelectPrivate() override = default;
 
-    QList<SelectContent*> content;
+    QList<Option*> options;
+    QList<Optgroup*> optgroups;
     int size{0};
     bool multiple{false};
 

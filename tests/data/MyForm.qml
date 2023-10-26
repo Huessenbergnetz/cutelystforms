@@ -33,28 +33,30 @@ Form {
             }
 
             Select {
-                Optgroup {
-                    label: "Group A"
-                    Option {
-                        text: "Opt 1"
-                        value: "1"
+                optgroups: [
+                    Optgroup {
+                        label: "Group A"
+                        Option {
+                            text: "Opt 1"
+                            value: "1"
+                        }
+                        Option {
+                            text: "Opt 2"
+                            value: "2"
+                        }
+                    },
+                    Optgroup {
+                        label: "Group B"
+                        Option {
+                            text: "Opt 3"
+                            value: "3"
+                        }
+                        Option {
+                            text: "Opt 4"
+                            value: "4"
+                        }
                     }
-                    Option {
-                        text: "Opt 2"
-                        value: "2"
-                    }
-                }
-                Optgroup {
-                    label: "Group B"
-                    Option {
-                        text: "Opt 3"
-                        value: "3"
-                    }
-                    Option {
-                        text: "Opt 4"
-                        value: "4"
-                    }
-                }
+                ]
             }
         },
         Fieldset {
