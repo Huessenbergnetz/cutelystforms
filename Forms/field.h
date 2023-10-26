@@ -14,6 +14,8 @@
 #include <QtQml/qqml.h>
 #endif
 
+// clazy:excludeall=qproperty-without-notify
+
 namespace CutelystForms {
 
 class FieldPrivate;

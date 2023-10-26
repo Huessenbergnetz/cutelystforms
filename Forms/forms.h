@@ -35,7 +35,7 @@ class FormsPrivate;
  * \class Forms forms.h <CutelystForms/Forms>
  * \brief The Forms plugin class.
  */
-class CUTELYST_PLUGIN_FORMS_EXPORT Forms : public Cutelyst::Plugin // clazy::exclude(ctor-missing-parent-argument)
+class CUTELYST_PLUGIN_FORMS_EXPORT Forms : public Cutelyst::Plugin // clazy:exclude=ctor-missing-parent-argument
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(Forms) // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)

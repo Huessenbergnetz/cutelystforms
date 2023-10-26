@@ -18,7 +18,7 @@ public:
     QStringList includePaths;
 };
 
-class FormsContextObject final : public QObject // clazy::exclude(ctor-missing-parent-argument)
+class FormsContextObject final : public QObject // clazy:exclude=ctor-missing-parent-argument
 {
     Q_OBJECT
 public:
