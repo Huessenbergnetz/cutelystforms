@@ -8,6 +8,7 @@
 
 #include "form.h"
 #include "formhtmlelement_p.h"
+#include "namedlistproperty_p.h"
 
 namespace CutelystForms {
 
@@ -17,11 +18,9 @@ public:
     FormPrivate(Form *q);
     ~FormPrivate() override = default;
 
-    QList<Field *> fields;
-    QMap<QString, Field *> fieldIdMap;
-    QMap<QString, Field *> fieldNameMap;
-    QList<Fieldset *> fieldsets;
-    QList<Button *> buttons;
+    NamedListProperty<Field, Form> fields;
+    NamedListProperty<Fieldset, Form> fieldsets;
+    NamedListProperty<Button, Form> buttons;
     QUrl action;
     QStringList acceptCharset;
     QString name;
@@ -34,12 +33,9 @@ public:
     bool autocomplete{true};
     bool novalidate{false};
 
-    static void appendField(QQmlListProperty<Field>*, Field*);
-    static QList<Field*>::size_type fieldCount(QQmlListProperty<Field>*);
-    static Field* field(QQmlListProperty<Field>*, QList<Field*>::size_type);
-    static void clearFields(QQmlListProperty<Field>*);
-    static void replaceField(QQmlListProperty<Field>*, QList<Field*>::size_type, Field*);
-    static void removeLastField(QQmlListProperty<Field>*);
+    C_FORMS_QMLLIST_FUNCS(Field, field, Form);
+    C_FORMS_QMLLIST_FUNCS(Fieldset, fieldset, Form)
+    C_FORMS_QMLLIST_FUNCS(Button, button, Form)
 
 private:
     Q_DECLARE_PUBLIC(Form) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)

@@ -8,6 +8,7 @@
 
 #include "optgroup.h"
 #include "selectcontent_p.h"
+#include "namedlistproperty_p.h"
 
 namespace CutelystForms {
 
@@ -17,7 +18,9 @@ public:
     OptgroupPrivate(Optgroup *q);
     ~OptgroupPrivate() override = default;
 
-    QList<Option*> options;
+    NamedListProperty<Option, Optgroup> options;
+
+    C_FORMS_QMLLIST_FUNCS(Option, option, Optgroup)
 
 private:
     Q_DECLARE_PUBLIC(Optgroup) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)

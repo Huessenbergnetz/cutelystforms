@@ -8,6 +8,7 @@
 
 #include "fieldset.h"
 #include "formhtmlelement_p.h"
+#include "namedlistproperty_p.h"
 
 namespace CutelystForms {
 
@@ -17,13 +18,15 @@ public:
     FieldsetPrivate(Fieldset *q);
     ~FieldsetPrivate() override = default;
 
-    QList<Field*> fields;
+    NamedListProperty<Field, Fieldset> fields;
     QString form;
     QString name;
     QString label;
     QString description;
     Legend *legend{nullptr};
     bool disabled{false};
+
+    C_FORMS_QMLLIST_FUNCS(Field, field, Fieldset)
 
 private:
     Q_DECLARE_PUBLIC(Fieldset) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)

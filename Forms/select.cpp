@@ -8,7 +8,7 @@
 using namespace CutelystForms;
 
 SelectPrivate::SelectPrivate(Select *q) :
-    FieldPrivate(q)
+    FieldPrivate(q), options(q), optgroups(q)
 {
 
 }
@@ -57,83 +57,135 @@ QString Select::tagName() const noexcept
 QQmlListProperty<CutelystForms::Option> Select::options()
 {
     Q_D(Select);
-    return {this, &d->options};
+    return {this, nullptr,
+        &SelectPrivate::appendOption,
+        &SelectPrivate::optionCount,
+        &SelectPrivate::option,
+        &SelectPrivate::clearOptions,
+        &SelectPrivate::replaceOption,
+        &SelectPrivate::removeLastOption
+    };
 }
 
 void Select::appendOption(Option *option)
 {
     Q_D(Select);
-    d->options.push_back(option);
+    d->options.append(option);
 }
 
 QList<Option*>::size_type Select::optionCount() const noexcept
 {
     Q_D(const Select);
-    return d->options.size();
+    return d->options.count();
 }
 
 Option* Select::option(QList<Option*>::size_type idx) const
 {
     Q_D(const Select);
-    if (idx < d->options.size()) {
-        return d->options.at(idx);
-    } else {
-        return nullptr;
-    }
+    return d->options.item(idx);
+}
+
+Option* Select::optionById(const QString &id) const
+{
+    Q_D(const Select);
+    return d->options.itemById(id);
 }
 
 void Select::clearOptions()
 {
     Q_D(Select);
-    qDeleteAll(d->options);
     d->options.clear();
+}
+
+void Select::replaceOption(QList<Option*>::size_type idx, Option *o)
+{
+    Q_D(Select);
+    d->options.replace(idx, o);
+}
+
+void Select::removeLastOption()
+{
+    Q_D(Select);
+    d->options.removeLast();
 }
 
 QList<Option*> Select::optionList() const noexcept
 {
     Q_D(const Select);
-    return d->options;
+    return d->options.list();
+}
+
+QMap<QString, Option*> Select::optionIdMap() const noexcept
+{
+    Q_D(const Select);
+    return d->options.idMap();
 }
 
 QQmlListProperty<CutelystForms::Optgroup> Select::optgroups()
 {
     Q_D(Select);
-    return {this, &d->optgroups};
+    return {this, nullptr,
+        &SelectPrivate::appendOptgroup,
+        &SelectPrivate::optgroupCount,
+        &SelectPrivate::optgroup,
+        &SelectPrivate::clearOptgroups,
+        &SelectPrivate::replaceOptgroup,
+        &SelectPrivate::removeLastOptgroup
+    };
 }
 
 void Select::appendOptgroup(Optgroup *optgroup)
 {
     Q_D(Select);
-    d->optgroups.push_back(optgroup);
+    d->optgroups.append(optgroup);
 }
 
 QList<Optgroup*>::size_type Select::optgroupCount() const noexcept
 {
     Q_D(const Select);
-    return d->optgroups.size();
+    return d->optgroups.count();
 }
 
 Optgroup* Select::optgroup(QList<Optgroup*>::size_type idx) const
 {
     Q_D(const Select);
-    if (idx >= 0 && idx < d->optgroups.size()) {
-        return d->optgroups.at(idx);
-    } else {
-        return nullptr;
-    }
+    return d->optgroups.item(idx);
+}
+
+Optgroup* Select::optgroupById(const QString &id) const
+{
+    Q_D(const Select);
+    return d->optgroups.itemById(id);
 }
 
 void Select::clearOptgroups()
 {
     Q_D(Select);
-    qDeleteAll(d->optgroups);
     d->optgroups.clear();
+}
+
+void Select::replaceOptgroup(QList<Optgroup*>::size_type idx, Optgroup *o)
+{
+    Q_D(Select);
+    d->optgroups.replace(idx, o);
+}
+
+void Select::removeLastOptgroup()
+{
+    Q_D(Select);
+    d->optgroups.removeLast();
 }
 
 QList<Optgroup*> Select::optgroupList() const noexcept
 {
     Q_D(const Select);
-    return d->optgroups;
+    return d->optgroups.list();
+}
+
+QMap<QString, Optgroup*> Select::optgroupIdMap() const noexcept
+{
+    Q_D(const Select);
+    return d->optgroups.idMap();
 }
 
 #include "moc_select.cpp"

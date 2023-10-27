@@ -29,6 +29,7 @@ set(cutelystforms_SRC
     input_p.h
     hiddeninput.cpp
     hiddeninput_p.h
+    namedlistproperty_p.h
 )
 
 set(cutelystforms_HEADERS

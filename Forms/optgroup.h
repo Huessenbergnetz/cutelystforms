@@ -27,11 +27,15 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Optgroup : public SelectContent
 {
     Q_OBJECT
     Q_PROPERTY(QQmlListProperty<CutelystForms::Option> options READ options)
+    Q_PROPERTY(QMap<QString, CutelystForms::Option*> optionById READ optionIdMap)
     Q_CLASSINFO("DefaultProperty", "options")
     QML_ELEMENT
 public:
     explicit Optgroup(QObject *parent = nullptr);
     ~Optgroup() override = default;
+
+    Q_REQUIRED_RESULT QString name() const noexcept
+    { return {}; }
 
     Q_REQUIRED_RESULT QString tagName() const noexcept override;
 
@@ -39,8 +43,12 @@ public:
     void appendOption(Option *option);
     Q_REQUIRED_RESULT QList<Option*>::size_type optionCount() const noexcept;
     Q_REQUIRED_RESULT Option *option(QList<Option*>::size_type idx) const;
+    Q_REQUIRED_RESULT Option *optionById(const QString &id) const;
     void clearOptions();
+    void replaceOption(QList<Option*>::size_type idx, Option *o);
+    void removeLastOption();
     Q_REQUIRED_RESULT QList<Option*> optionList() const noexcept;
+    Q_REQUIRED_RESULT QMap<QString, Option*> optionIdMap() const noexcept;
 
 protected:
     Optgroup(OptgroupPrivate &dd, QObject *parent = nullptr);

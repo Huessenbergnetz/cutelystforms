@@ -8,7 +8,7 @@
 using namespace CutelystForms;
 
 FieldsetPrivate::FieldsetPrivate(Fieldset *q) :
-    FormHtmlElementPrivate(q)
+    FormHtmlElementPrivate(q), fields(q)
 {
 
 }
@@ -93,42 +93,80 @@ QString Fieldset::tagName() const noexcept
 QQmlListProperty<CutelystForms::Field> Fieldset::fields()
 {
     Q_D(Fieldset);
-    return {this, &d->fields};
+    return {this, nullptr,
+                &FieldsetPrivate::appendField,
+                &FieldsetPrivate::fieldCount,
+                &FieldsetPrivate::field,
+                &FieldsetPrivate::clearFields,
+                &FieldsetPrivate::replaceField,
+                &FieldsetPrivate::removeLastField
+    };
 }
 
 void Fieldset::appendField(Field *field)
 {
     Q_D(Fieldset);
-    d->fields.push_back(field);
+    d->fields.append(field);
 }
 
 QList<Field*>::size_type Fieldset::fieldCount() const noexcept
 {
     Q_D(const Fieldset);
-    return d->fields.size();
+    return d->fields.count();
 }
 
 Field* Fieldset::field(QList<Field*>::size_type idx) const
 {
     Q_D(const Fieldset);
-    if (idx < d->fields.size()) {
-        return d->fields.at(idx);
-    } else {
-        return nullptr;
-    }
+    return d->fields.item(idx);
+}
+
+Field* Fieldset::fieldByName(const QString &name) const
+{
+    Q_D(const Fieldset);
+    return d->fields.itemByName(name);
+}
+
+Field* Fieldset::fieldById(const QString &id) const
+{
+    Q_D(const Fieldset);
+    return d->fields.itemById(id);
 }
 
 void Fieldset::clearFields()
 {
     Q_D(Fieldset);
-    qDeleteAll(d->fields);
     d->fields.clear();
+}
+
+void Fieldset::replaceField(QList<Field*>::size_type idx, Field* f)
+{
+    Q_D(Fieldset);
+    d->fields.replace(idx, f);
+}
+
+void Fieldset::removeLastField()
+{
+    Q_D(Fieldset);
+    d->fields.removeLast();
 }
 
 QList<Field*> Fieldset::fieldList() const noexcept
 {
     Q_D(const Fieldset);
-    return d->fields;
+    return d->fields.list();
+}
+
+QMap<QString, Field*> Fieldset::fieldNameMap() const noexcept
+{
+    Q_D(const Fieldset);
+    return d->fields.nameMap();
+}
+
+QMap<QString, Field*> Fieldset::fieldIdMap() const noexcept
+{
+    Q_D(const Fieldset);
+    return d->fields.idMap();
 }
 
 #include "moc_fieldset.cpp"

@@ -33,6 +33,8 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Fieldset : public FormHtmlElement
     Q_PROPERTY(QString description READ description WRITE setDescription)
     Q_PROPERTY(CutelystForms::Legend* legend READ legend WRITE setLegend)
     Q_PROPERTY(QQmlListProperty<CutelystForms::Field> fields READ fields)
+    Q_PROPERTY(QMap<QString, CutelystForms::Field*> fieldById READ fieldIdMap)
+    Q_PROPERTY(QMap<QString, CutelystForms::Field*> fieldByName READ fieldNameMap)
     Q_CLASSINFO("DefaultProperty", "fields")
     QML_ELEMENT
 public:
@@ -60,8 +62,14 @@ public:
     void appendField(Field *field);
     Q_REQUIRED_RESULT QList<Field*>::size_type fieldCount() const noexcept;
     Q_REQUIRED_RESULT Field *field(QList<Field*>::size_type idx) const;
+    Q_REQUIRED_RESULT Field *fieldByName(const QString &name) const;
+    Q_REQUIRED_RESULT Field *fieldById(const QString &id) const;
     void clearFields();
+    void replaceField(QList<Field*>::size_type idx, Field* f);
+    void removeLastField();
     Q_REQUIRED_RESULT QList<Field*> fieldList() const noexcept;
+    Q_REQUIRED_RESULT QMap<QString, Field*> fieldNameMap() const noexcept;
+    Q_REQUIRED_RESULT QMap<QString, Field*> fieldIdMap() const noexcept;
 
 protected:
     Fieldset(FieldsetPrivate &dd, QObject *parent = nullptr);
