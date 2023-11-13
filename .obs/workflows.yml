@@ -5,10 +5,7 @@ rebuild_master:
   steps:
     - trigger_services:
         project: home:buschmann23:Cutelyst:devel
-        package: qt5-cutelystforms
-    - trigger_services:
-        project: home:buschmann23:Cutelyst:devel
-        package: qt6-cutelystforms
+        package: cutelyst4forms-qt6
   filters:
     event: push
     branches:
