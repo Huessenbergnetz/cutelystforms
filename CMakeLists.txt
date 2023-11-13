@@ -232,13 +232,13 @@ if (BUILD_DOCS)
     endif(DOXYGEN_QHG_LOCATION)
 
     install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/htmldocs/
-        DESTINATION ${DOCS_QTDOCSDIR}/cutelystforms
+        DESTINATION ${DOCS_QTDOCSDIR}/cutelyst4forms
         COMPONENT docs
         OPTIONAL
     )
 
     install(FILES ${CMAKE_CURRENT_BINARY_DIR}/cutelystforms.tags
-        DESTINATION ${DOCS_QTDOCSDIR}/cutelystforms
+        DESTINATION ${DOCS_QTDOCSDIR}/cutelyst4forms
         COMPONENT devel
         OPTIONAL
     )
