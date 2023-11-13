@@ -224,7 +224,7 @@ if (BUILD_DOCS)
         add_dependencies(docs qtdocs)
         message(STATUS "Adding build target qtdocs")
 
-        install(FILES ${CMAKE_CURRENT_BINARY_DIR}/cutelystforms.qch
+        install(FILES ${CMAKE_CURRENT_BINARY_DIR}/cutelyst4forms.qch
             DESTINATION ${DOCS_QTDOCSDIR}
             COMPONENT docs
             OPTIONAL
