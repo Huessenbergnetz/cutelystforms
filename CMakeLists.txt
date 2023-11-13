@@ -90,7 +90,29 @@ endif (ENABLE_TESTS)
 if (BUILD_DOCS)
     find_package(Doxygen REQUIRED dot)
 
-    # Umbreall target to build local docs in HTML and QCH format
+    # get qmake location and query some Qt installation paths for later use
+    get_property(QMAKE_EXE_PATH TARGET Qt${QT_VERSION_MAJOR}::qmake PROPERTY LOCATION)
+
+    execute_process(COMMAND ${QMAKE_EXE_PATH} -query QT_INSTALL_DOCS RESULT_VARIABLE QMAKE_RESULT OUTPUT_VARIABLE QT_INSTALL_DOCS OUTPUT_STRIP_TRAILING_WHITESPACE)
+    if(QMAKE_RESULT)
+        message(FATAL_ERROR "Failed to use qmake to query QT_INSTALL_DOCS")
+    endif(QMAKE_RESULT)
+
+    execute_process(COMMAND ${QMAKE_EXE_PATH} -query QT_INSTALL_LIBEXECS RESULT_VARIABLE QMAKE_RESULT OUTPUT_VARIABLE QT_INSTALL_LIBEXECS OUTPUT_STRIP_TRAILING_WHITESPACE)
+    if(QMAKE_RESULT)
+        message(FATAL_ERROR "Failed to use qmake to query QT_INSTALL_LIBEXECS")
+    endif(QMAKE_RESULT)
+
+    execute_process(COMMAND ${QMAKE_EXE_PATH} -query QT_INSTALL_BINS RESULT_VARIABLE QMAKE_RESULT OUTPUT_VARIABLE QT_INSTALL_BINS OUTPUT_STRIP_TRAILING_WHITESPACE)
+    if (QMAKE_RESULT)
+        message(FATAL_ERROR "Failed to use qmake to query QT_INSTALL_BINS")
+    endif (QMAKE_RESULT)
+
+    set(DOCS_QTDOCSDIR ${QT_INSTALL_DOCS} CACHE PATH "Path to a directory containing the Qt Documentation")
+
+    message(STATUS "Searching for Qt documentation at ${DOCS_QTDOCSDIR}")
+
+    # Umbrella target to build local docs in HTML and QCH format
     add_custom_target(docs)
 
     if (BUILD_DOCS_QUIET)
@@ -136,22 +158,8 @@ if (BUILD_DOCS)
         set(DOXYGEN_DOT_FONTSIZE 10)
     endif (DOXYGEN_VERSION VERSION_GREATER_EQUAL 1.9.5)
 
-    find_program(QMAKE_EXE_PATH NAMES qmake-qt${QT_VERSION_MAJOR} qmake${QT_VERSION_MAJOR} qmake)
-    if (QMAKE_EXE_PATH)
-        execute_process(COMMAND ${QMAKE_EXE_PATH} -query QT_INSTALL_DOCS OUTPUT_VARIABLE QT_INSTALL_DOCS OUTPUT_STRIP_TRAILING_WHITESPACE)
-        if (NOT IS_DIRECTORY "${QT_INSTALL_DOCS}")
-            set(QT_INSTALL_DOCS "/usr/share/qt${QT_VERSION_MAJOR}/doc")
-        endif (NOT IS_DIRECTORY "${QT_INSTALL_DOCS}")
-    else (QMAKE_EXE_PATH)
-        set(QT_INSTALL_DOCS "/usr/share/qt${QT_VERSION_MAJOR}/doc")
-    endif (QMAKE_EXE_PATH)
-
     set(QT_ONLINE_DOCS_URL "https://doc.qt.io/qt-${QT_VERSION_MAJOR}/")
     set(QT_DOCS_COMPONENTS "qtcore" "qtqml")
-
-    set(DOCS_QTDOCSDIR ${QT_INSTALL_DOCS} CACHE PATH "Path to a directory containing the Qt Documentation")
-
-    message(STATUS "Searching for Qt documentation at ${DOCS_QTDOCSDIR}")
 
     foreach(_QTDOCCOMP ${QT_DOCS_COMPONENTS})
         find_file(_QTDOCCOMPTAGS "${_QTDOCCOMP}.tags" PATHS "${DOCS_QTDOCSDIR}" PATH_SUFFIXES "${_QTDOCCOMP}" NO_DEFAULT_PATH)
@@ -171,7 +179,7 @@ if (BUILD_DOCS)
     endforeach(_QTDOCCOMP ${QT_DOCS_COMPONENTS})
 
     set(CUTELYST_ONLINE_DOCS_URL "https://api.cutelyst.org/")
-    set(CUTELYST_DOCS_COMP "cutelyst3")
+    set(CUTELYST_DOCS_COMP "cutelyst${CUTELYST_VERSION_MAJOR}")
 
     find_file(_CUTELYSTTAGS "${CUTELYST_DOCS_COMP}.tags" PATHS "${DOCS_QTDOCSDIR}" PATH_SUFFIXES "${CUTELYST_DOCS_COMP}" NO_DEFAULT_PATH)
     if (_CUTELYSTTAGS)
@@ -206,8 +214,6 @@ if (BUILD_DOCS)
     add_dependencies(docs htmldocs)
     message(STATUS "Adding build target htmldocs")
 
-    execute_process(COMMAND ${QMAKE_EXE_PATH} -query QT_INSTALL_LIBEXECS OUTPUT_VARIABLE QT_INSTALL_LIBEXECS OUTPUT_STRIP_TRAILING_WHITESPACE)
-    execute_process(COMMAND ${QMAKE_EXE_PATH} -query QT_INSTALL_BINS OUTPUT_VARIABLE QT_INSTALL_BINS OUTPUT_STRIP_TRAILING_WHITESPACE)
     find_program(DOXYGEN_QHG_LOCATION NAMES qhelpgenerator-qt${QT_VERSION_MAJOR} qhelpgenerator${QT_VERSION_MAJOR} qhelpgenerator HINTS ${QT_INSTALL_LIBEXECS} ${QT_INSTALL_BINS})
     if(DOXYGEN_QHG_LOCATION)
         set(DOXYGEN_TAGFILES ${QCHTAGS})
