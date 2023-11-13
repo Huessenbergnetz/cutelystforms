@@ -5,6 +5,7 @@
 #include <Cutelyst/Context>
 #include <Cutelyst/Controller>
 #include <Cutelyst/Engine>
+#include <Cutelyst/TestEngine>
 
 #include <QBuffer>
 #include <QObject>
@@ -28,45 +29,6 @@ protected Q_SLOTS:
 private:
     void saveCoverageData();
     QString generateTestName() const;
-};
-
-class TestEngine : public Engine
-{
-    Q_OBJECT
-public:
-    explicit TestEngine(Application *app, const QVariantMap &opts);
-
-    virtual int workerId() const override;
-
-    QVariantMap createRequest(const QString &method,
-                              const QString &path,
-                              const QByteArray &query,
-                              const Headers &headers,
-                              QByteArray *body);
-
-    virtual bool init() override;
-
-    inline static const char *httpStatusMessage(quint16 status, int *len = nullptr)
-    {
-        return Engine::httpStatusMessage(status, len);
-    }
-};
-
-class SequentialBuffer : public QIODevice
-{
-    Q_OBJECT
-public:
-    SequentialBuffer(QByteArray *buffer);
-    virtual bool isSequential() const override;
-
-    virtual qint64 bytesAvailable() const override;
-
-protected:
-    qint64 readData(char *data, qint64 maxlen) override;
-    qint64 writeData(const char *data, qint64 len) override;
-
-private:
-    QByteArray *buf;
 };
 
 class RootController : public Controller
@@ -120,7 +82,7 @@ public:
     void index(Context *c)
     {
         c->response()->setBody(
-            QStringLiteral("path /%1 args %2")
+            QStringLiteral("path %1 args %2")
                 .arg(c->request()->path(), c->request()->args().join(QLatin1Char('/'))));
     }
 
@@ -128,7 +90,7 @@ public:
     void hello(Context *c)
     {
         c->response()->setBody(
-            QStringLiteral("path /%1 args %2")
+            QStringLiteral("path %1 args %2")
                 .arg(c->request()->path(), c->request()->args().join(QLatin1Char('/'))));
     }
 
@@ -136,7 +98,7 @@ public:
     void global(Context *c)
     {
         c->response()->setBody(
-            QStringLiteral("path /%1 args %2")
+            QStringLiteral("path %1 args %2")
                 .arg(c->request()->path(), c->request()->args().join(QLatin1Char('/'))));
     }
 
@@ -145,7 +107,7 @@ public:
     {
         Q_UNUSED(args)
         c->response()->setBody(
-            QStringLiteral("path /%1 args %2")
+            QStringLiteral("path %1 args %2")
                 .arg(c->request()->path(), c->request()->args().join(QLatin1Char('/'))));
     }
 
@@ -154,7 +116,7 @@ public:
     {
         Q_UNUSED(one)
         c->response()->setBody(
-            QStringLiteral("path /%1 args %2")
+            QStringLiteral("path %1 args %2")
                 .arg(c->request()->path(), c->request()->args().join(QLatin1Char('/'))));
     }
 
@@ -164,7 +126,7 @@ public:
         Q_UNUSED(one)
         Q_UNUSED(two)
         c->response()->setBody(
-            QStringLiteral("path /%1 args %2")
+            QStringLiteral("path %1 args %2")
                 .arg(c->request()->path(), c->request()->args().join(QLatin1Char('/'))));
     }
 
@@ -172,7 +134,7 @@ public:
     void manyOld(Context *c)
     {
         c->response()->setBody(
-            QStringLiteral("path /%1 args %2")
+            QStringLiteral("path %1 args %2")
                 .arg(c->request()->path(), c->request()->args().join(QLatin1Char('/'))));
     }
 
@@ -180,7 +142,7 @@ public:
     void manyOldWithNoArgs(Context *c)
     {
         c->response()->setBody(
-            QStringLiteral("path /%1 args %2")
+            QStringLiteral("path %1 args %2")
                 .arg(c->request()->path(), c->request()->args().join(QLatin1Char('/'))));
     }
 
@@ -188,7 +150,7 @@ public:
     void oneOld(Context *c)
     {
         c->response()->setBody(
-            QStringLiteral("path /%1 args %2")
+            QStringLiteral("path %1 args %2")
                 .arg(c->request()->path(), c->request()->args().join(QLatin1Char('/'))));
     }
 
@@ -196,7 +158,7 @@ public:
     void twoOld(Context *c)
     {
         c->response()->setBody(
-            QStringLiteral("path /%1 args %2")
+            QStringLiteral("path %1 args %2")
                 .arg(c->request()->path(), c->request()->args().join(QLatin1Char('/'))));
     }
 
