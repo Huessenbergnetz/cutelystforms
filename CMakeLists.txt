@@ -18,10 +18,11 @@ include(GNUInstallDirs)
 include(GenerateExportHeader)
 include(CMakePackageConfigHelpers)
 
-set(CUTELYST_VERSION_MAJOR 3)
+set(CUTELYST_VERSION_MAJOR 4)
+set(QT_VERSION_MAJOR 6)
+set(QT_MINIMUM_VERSION 6.2)
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Qml LinguistTools REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} 5.15.2 COMPONENTS Core Qml LinguistTools REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} ${QT_MINIMUM_VERSION} COMPONENTS Core Qml LinguistTools REQUIRED)
 find_package(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR} 3.8.0 REQUIRED)
 
 set(CUTELYSTFORMS_API_LEVEL "0")
@@ -59,7 +60,7 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
   set(CMAKE_INSTALL_PREFIX "/usr/local" CACHE PATH "libfirfuorida default install prefix" FORCE)
 endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 
-write_basic_package_version_file(${CMAKE_CURRENT_BINARY_DIR}/Cutelyst3Qt${QT_VERSION_MAJOR}FormsConfigVersion.cmake
+write_basic_package_version_file(${CMAKE_CURRENT_BINARY_DIR}/Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}FormsConfigVersion.cmake
     VERSION ${cutelystforms_VERSION}
     COMPATIBILITY AnyNewerVersion
 )
@@ -214,7 +215,7 @@ if (BUILD_DOCS)
         set(DOXYGEN_GENERATE_QHP "YES")
         set(DOXYGEN_QHP_NAMESPACE "de.huessenbergnetz.cutelystforms.${PROJECT_VERSION_MAJOR}${PROJECT_VERSION_MINOR}${PROJECT_VERSION_PATCH}")
         set(DOXYGEN_QHP_VIRTUAL_FOLDER "cutelystforms")
-        set(DOXYGEN_QCH_FILE "${CMAKE_CURRENT_BINARY_DIR}/cutelystforms.qch")
+        set(DOXYGEN_QCH_FILE "${CMAKE_CURRENT_BINARY_DIR}/cutelyst${CUTELYST_VERSION_MAJOR}forms.qch")
         set(DOXYGEN_SEARCHENGINE "NO")
         doxygen_add_docs(qtdocs
             ${CMAKE_CURRENT_SOURCE_DIR}/Forms
