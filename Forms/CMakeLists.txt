@@ -32,6 +32,8 @@ set(cutelystforms_SRC
     namedlistproperty_p.h
     emailinput.cpp
     emailinput_p.h
+    textinput.cpp
+    textinput_p.h
 )
 
 set(cutelystforms_HEADERS
@@ -50,6 +52,7 @@ set(cutelystforms_HEADERS
     input.h
     hiddeninput.h
     emailinput.h
+    textinput.h
 )
 
 add_library(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms

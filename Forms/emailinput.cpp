@@ -46,3 +46,5 @@ QString EmailInput::valueString() const noexcept
     Q_D(const EmailInput);
     return d->value;
 }
+
+#include "moc_emailinput.cpp"
