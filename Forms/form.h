@@ -128,10 +128,6 @@ public:
     Q_REQUIRED_RESULT QMap<QString, Field*> fieldNameMap() const noexcept;
     Q_REQUIRED_RESULT QMap<QString, Field*> fieldIdMap() const noexcept;
 
-    [[nodiscard]] QList<Input*> inputList() const noexcept;
-    [[nodiscard]] QMap<QString, Input*> inputNameMap() const noexcept;
-    [[nodiscard]] QMap<QString, Input*> inputIdMap() const noexcept;
-
     QQmlListProperty<CutelystForms::Fieldset> fieldsets();
     void appendFieldset(Fieldset *fieldset);
     Q_REQUIRED_RESULT QList<Fieldset*>::size_type fieldsetCount() const noexcept;
