@@ -33,7 +33,9 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Form : public FormHtmlElement
     Q_PROPERTY(QStringList acceptCharset READ acceptCharset WRITE setAcceptCharset)
     Q_PROPERTY(bool autocomplete READ autocomplete WRITE setAutocomplete)
     Q_PROPERTY(CutelystForms::Form::EncType enctype READ enctype WRITE setEnctype)
+    Q_PROPERTY(QString enctypeString READ enctypeString)
     Q_PROPERTY(CutelystForms::Form::Method method READ method WRITE setMethod)
+    Q_PROPERTY(QString methodString READ methodString)
     Q_PROPERTY(QString name READ name WRITE setName)
     Q_PROPERTY(bool novalidate READ novalidate WRITE setNovalidate)
     Q_PROPERTY(CutelystForms::Form::Target target READ target WRITE setTarget)
@@ -86,9 +88,11 @@ public:
 
     Q_REQUIRED_RESULT EncType enctype() const noexcept;
     void setEnctype(EncType enctype) noexcept;
+    [[nodiscard]] QString enctypeString() const noexcept;
 
     Q_REQUIRED_RESULT Method method() const noexcept;
     void setMethod(Method method) noexcept;
+    [[nodiscard]] QString methodString() const noexcept;
 
     Q_REQUIRED_RESULT QString name() const noexcept;
     void setName(const QString &name) noexcept;
@@ -98,6 +102,7 @@ public:
 
     Q_REQUIRED_RESULT Target target() const noexcept;
     void setTarget(Target target) noexcept;
+    [[nodiscard]] QString targetString() const noexcept;
 
     Q_REQUIRED_RESULT QString label() const noexcept;
     void setLabel(const QString &label) noexcept;

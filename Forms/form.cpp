@@ -4,7 +4,6 @@
  */
 
 #include "form_p.h"
-#include "logging_p.h"
 
 using namespace CutelystForms;
 
@@ -74,6 +73,22 @@ void Form::setEnctype(CutelystForms::Form::EncType enctype) noexcept
     d->enctype = enctype;
 }
 
+QString Form::enctypeString() const noexcept
+{
+    Q_D(const Form);
+    switch(d->enctype) {
+    case WwwFormUrlEncoded:
+        return QStringLiteral("application/x-www-form-urlencoded");
+    case MultipartFormData:
+        return QStringLiteral("multipart/form-data");
+    case TextPlain:
+        return QStringLiteral("text/plain");
+    }
+
+    Q_UNREACHABLE();
+    return {};
+}
+
 CutelystForms::Form::Method Form::method() const noexcept
 {
     Q_D(const Form);
@@ -84,6 +99,20 @@ void Form::setMethod(CutelystForms::Form::Method method) noexcept
 {
     Q_D(Form);
     d->method = method;
+}
+
+QString Form::methodString() const noexcept
+{
+    Q_D(const Form);
+    switch(d->method) {
+    case Get:
+        return QStringLiteral("get");
+    case Post:
+        return QStringLiteral("post");
+    }
+
+    Q_UNREACHABLE();
+    return {};
 }
 
 QString Form::name() const noexcept
@@ -120,6 +149,24 @@ void Form::setTarget(CutelystForms::Form::Target target) noexcept
 {
     Q_D(Form);
     d->target = target;
+}
+
+QString Form::targetString() const noexcept
+{
+    Q_D(const Form);
+    switch(d->target) {
+    case Self:
+        return QStringLiteral("_self");
+    case Blank:
+        return QStringLiteral("_blank");
+    case Parent:
+        return QStringLiteral("_parent");
+    case Top:
+        return QStringLiteral("_top");
+    }
+
+    Q_UNREACHABLE();
+    return {};
 }
 
 QString Form::label() const noexcept
