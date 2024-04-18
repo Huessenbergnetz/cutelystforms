@@ -7,7 +7,7 @@
 #define C_FORMS_HIDDENINPUT_H
 
 #include "cutelyst_plugin_forms_export.h"
-#include "input.h"
+#include "field.h"
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 #include <QtQml/qqmlregistration.h>
 #else
@@ -20,23 +20,17 @@ namespace CutelystForms {
 
 class HiddenInputPrivate;
 
-class CUTELYST_PLUGIN_FORMS_EXPORT HiddenInput : public Input
+class CUTELYST_PLUGIN_FORMS_EXPORT HiddenInput : public Field
 {
     Q_OBJECT
-    Q_PROPERTY(QString value READ value WRITE setValue)
     QML_ELEMENT
 public:
     explicit HiddenInput(QObject *parent = nullptr);
     ~HiddenInput() override = default;
 
-    Q_REQUIRED_RESULT QString value() const noexcept;
-    void setValue(const QString &value) noexcept;
-
-    Q_REQUIRED_RESULT Input::Type type() const noexcept override;
+    Q_REQUIRED_RESULT Field::Type type() const noexcept override;
 
     Q_REQUIRED_RESULT QString typeString() const noexcept override;
-
-    Q_REQUIRED_RESULT QString valueString() const noexcept override;
 
 private:
     Q_DISABLE_COPY(HiddenInput)

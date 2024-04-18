@@ -8,43 +8,25 @@
 using namespace CutelystForms;
 
 TextInputPrivate::TextInputPrivate(TextInput *q)
-    : InputPrivate(q)
+    : FieldPrivate(q)
 {
 
 }
 
 TextInput::TextInput(QObject *parent)
-    : Input{* new TextInputPrivate{this}, parent}
+    : Field{* new TextInputPrivate{this}, parent}
 {
 
 }
 
-QString TextInput::value() const noexcept
+CutelystForms::Field::Type TextInput::type() const noexcept
 {
-    Q_D(const TextInput);
-    return d->value;
-}
-
-void TextInput::setValue(const QString &value) noexcept
-{
-    Q_D(TextInput);
-    d->value = value;
-}
-
-CutelystForms::Input::Type TextInput::type() const noexcept
-{
-    return Input::Text;
+    return Field::Text;
 }
 
 QString TextInput::typeString() const noexcept
 {
     return QStringLiteral("text");
-}
-
-QString TextInput::valueString() const noexcept
-{
-    Q_D(const TextInput);
-    return d->value;
 }
 
 #include "moc_textinput.cpp"

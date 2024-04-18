@@ -7,11 +7,11 @@
 #define C_FORMS_HIDDENINPUT_P_H
 
 #include "hiddeninput.h"
-#include "input_p.h"
+#include "field_p.h"
 
 namespace CutelystForms {
 
-class HiddenInputPrivate : public InputPrivate
+class HiddenInputPrivate : public FieldPrivate
 {
 public:
     HiddenInputPrivate(HiddenInput *q);

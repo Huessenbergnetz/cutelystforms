@@ -8,7 +8,7 @@
 using namespace CutelystForms;
 
 FieldPrivate::FieldPrivate(Field *q) :
-    FormHtmlElementPrivate(q)
+    FormHtmlElementPrivate(q), options(q), optgroups(q)
 {
 
 }
@@ -23,6 +23,28 @@ Field::Field(FieldPrivate &dd, QObject *parent) :
     FormHtmlElement(dd, parent)
 {
 
+}
+
+CutelystForms::Field::Type Field::type() const noexcept
+{
+    return None;
+}
+
+QString Field::typeString() const noexcept
+{
+    return {};
+}
+
+QVariant Field::value() const noexcept
+{
+    Q_D(const Field);
+    return d->value;
+}
+
+void Field::setValue(const QVariant &value) noexcept
+{
+    Q_D(Field);
+    d->value = value;
 }
 
 QString Field::name() const noexcept
@@ -83,6 +105,176 @@ void Field::setAutocomplete(const QString &autocomplete) noexcept
 {
     Q_D(Field);
     d->autocomplete = autocomplete;
+}
+
+bool Field::multiple() const noexcept
+{
+    Q_D(const Field);
+    return d->multiple;
+}
+
+void Field::setMultiple(bool multiple) noexcept
+{
+    Q_D(Field);
+    d->multiple = multiple;
+}
+
+int Field::size() const noexcept
+{
+    Q_D(const Field);
+    return d->size;
+}
+
+void Field::setSize(int size) noexcept
+{
+    Q_D(Field);
+    d->size = size;
+}
+
+bool Field::disabled() const noexcept
+{
+    Q_D(const Field);
+    return d->disabled;
+}
+
+void Field::setDisabled(bool disabled) noexcept
+{
+    Q_D(Field);
+    d->disabled = disabled;
+}
+
+QQmlListProperty<CutelystForms::Option> Field::options()
+{
+    Q_D(Field);
+    return {this, nullptr,
+        &FieldPrivate::appendOption,
+        &FieldPrivate::optionCount,
+        &FieldPrivate::option,
+        &FieldPrivate::clearOptions,
+        &FieldPrivate::replaceOption,
+        &FieldPrivate::removeLastOption
+    };
+}
+
+void Field::appendOption(Option *option)
+{
+    Q_D(Field);
+    d->options.append(option);
+}
+
+QList<Option*>::size_type Field::optionCount() const noexcept
+{
+    Q_D(const Field);
+    return d->options.count();
+}
+
+Option* Field::option(QList<Option*>::size_type idx) const
+{
+    Q_D(const Field);
+    return d->options.item(idx);
+}
+
+Option* Field::optionById(const QString &id) const
+{
+    Q_D(const Field);
+    return d->options.itemById(id);
+}
+
+void Field::clearOptions()
+{
+    Q_D(Field);
+    d->options.clear();
+}
+
+void Field::replaceOption(QList<Option*>::size_type idx, Option *o)
+{
+    Q_D(Field);
+    d->options.replace(idx, o);
+}
+
+void Field::removeLastOption()
+{
+    Q_D(Field);
+    d->options.removeLast();
+}
+
+QList<Option*> Field::optionList() const noexcept
+{
+    Q_D(const Field);
+    return d->options.list();
+}
+
+QMap<QString, Option*> Field::optionIdMap() const noexcept
+{
+    Q_D(const Field);
+    return d->options.idMap();
+}
+
+QQmlListProperty<CutelystForms::Optgroup> Field::optgroups()
+{
+    Q_D(Field);
+    return {this, nullptr,
+        &FieldPrivate::appendOptgroup,
+        &FieldPrivate::optgroupCount,
+        &FieldPrivate::optgroup,
+        &FieldPrivate::clearOptgroups,
+        &FieldPrivate::replaceOptgroup,
+        &FieldPrivate::removeLastOptgroup
+    };
+}
+
+void Field::appendOptgroup(Optgroup *optgroup)
+{
+    Q_D(Field);
+    d->optgroups.append(optgroup);
+}
+
+QList<Optgroup*>::size_type Field::optgroupCount() const noexcept
+{
+    Q_D(const Field);
+    return d->optgroups.count();
+}
+
+Optgroup* Field::optgroup(QList<Optgroup*>::size_type idx) const
+{
+    Q_D(const Field);
+    return d->optgroups.item(idx);
+}
+
+Optgroup* Field::optgroupById(const QString &id) const
+{
+    Q_D(const Field);
+    return d->optgroups.itemById(id);
+}
+
+void Field::clearOptgroups()
+{
+    Q_D(Field);
+    d->optgroups.clear();
+}
+
+void Field::replaceOptgroup(QList<Optgroup*>::size_type idx, Optgroup *o)
+{
+    Q_D(Field);
+    d->optgroups.replace(idx, o);
+}
+
+void Field::removeLastOptgroup()
+{
+    Q_D(Field);
+    d->optgroups.removeLast();
+}
+
+QList<Optgroup*> Field::optgroupList() const noexcept
+{
+    Q_D(const Field);
+    return d->optgroups.list();
+}
+
+QMap<QString, Optgroup*> Field::optgroupIdMap() const noexcept
+{
+    Q_D(const Field);
+    return d->optgroups.idMap();
 }
 
 #include "moc_field.cpp"

@@ -7,11 +7,11 @@
 #define C_FORMS_TEXTINPUT_P_H
 
 #include "textinput.h"
-#include "input_p.h"
+#include "field_p.h"
 
 namespace CutelystForms {
 
-class TextInputPrivate : public InputPrivate
+class TextInputPrivate : public FieldPrivate
 {
 public:
     TextInputPrivate(TextInput *q);

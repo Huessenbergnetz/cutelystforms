@@ -25,8 +25,6 @@ set(cutelystforms_SRC
     option_p.h
     optgroup.cpp
     optgroup_p.h
-    input.cpp
-    input_p.h
     hiddeninput.cpp
     hiddeninput_p.h
     namedlistproperty_p.h
@@ -49,7 +47,6 @@ set(cutelystforms_HEADERS
     selectcontent.h
     option.h
     optgroup.h
-    input.h
     hiddeninput.h
     emailinput.h
     textinput.h

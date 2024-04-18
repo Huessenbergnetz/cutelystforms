@@ -7,7 +7,7 @@
 #define C_FORMS_TEXTINPUT_H
 
 #include "cutelyst_plugin_forms_export.h"
-#include "input.h"
+#include "field.h"
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 #include <QtQml/qqmlregistration.h>
 #else
@@ -20,23 +20,17 @@ namespace CutelystForms {
 
 class TextInputPrivate;
 
-class CUTELYST_PLUGIN_FORMS_EXPORT TextInput : public Input
+class CUTELYST_PLUGIN_FORMS_EXPORT TextInput : public Field
 {
     Q_OBJECT
-    Q_PROPERTY(QString value READ value WRITE setValue)
     QML_ELEMENT
 public:
     explicit TextInput(QObject *parent = nullptr);
     ~TextInput() override = default;
 
-    [[nodiscard]] QString value() const noexcept;
-    void setValue(const QString &value) noexcept;
-
-    [[nodiscard]] Input::Type type() const noexcept override;
+    [[nodiscard]] Field::Type type() const noexcept override;
 
     [[nodiscard]] QString typeString() const noexcept override;
-
-    [[nodiscard]] QString valueString() const noexcept override;
 
 private:
     Q_DISABLE_COPY(TextInput)

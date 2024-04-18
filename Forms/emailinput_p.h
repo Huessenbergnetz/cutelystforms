@@ -7,11 +7,11 @@
 #define C_FORMS_EMAILINPUT_P_H
 
 #include "emailinput.h"
-#include "input_p.h"
+#include "field_p.h"
 
 namespace CutelystForms {
 
-class EmailInputPrivate : public InputPrivate
+class EmailInputPrivate : public FieldPrivate
 {
 public:
     EmailInputPrivate(EmailInput *q);

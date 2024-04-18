@@ -8,43 +8,25 @@
 using namespace CutelystForms;
 
 EmailInputPrivate::EmailInputPrivate(EmailInput *q)
-    : InputPrivate{q}
+    : FieldPrivate{q}
 {
 
 }
 
 EmailInput::EmailInput(QObject *parent)
-    : Input{* new EmailInputPrivate{this}, parent}
+    : Field{* new EmailInputPrivate{this}, parent}
 {
 
 }
 
-QString EmailInput::value() const noexcept
+CutelystForms::Field::Type EmailInput::type() const noexcept
 {
-    Q_D(const EmailInput);
-    return d->value;
-}
-
-void EmailInput::setValue(const QString &value) noexcept
-{
-    Q_D(EmailInput);
-    d->value = value;
-}
-
-CutelystForms::Input::Type EmailInput::type() const noexcept
-{
-    return Input::Email;
+    return Field::Email;
 }
 
 QString EmailInput::typeString() const noexcept
 {
     return QStringLiteral("email");
-}
-
-QString EmailInput::valueString() const noexcept
-{
-    Q_D(const EmailInput);
-    return d->value;
 }
 
 #include "moc_emailinput.cpp"
