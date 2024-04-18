@@ -231,7 +231,7 @@ if (BUILD_DOCS)
         add_dependencies(docs qtdocs)
         message(STATUS "Adding build target qtdocs")
 
-        install(FILES ${CMAKE_CURRENT_BINARY_DIR}/cutelyst4forms.qch
+        install(FILES ${CMAKE_CURRENT_BINARY_DIR}/cutelyst${CUTELYST_VERSION_MAJOR}forms.qch
             DESTINATION ${DOCS_QTDOCSDIR}
             COMPONENT docs
             OPTIONAL
@@ -239,13 +239,13 @@ if (BUILD_DOCS)
     endif(DOXYGEN_QHG_LOCATION)
 
     install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/htmldocs/
-        DESTINATION ${DOCS_QTDOCSDIR}/cutelyst4forms
+        DESTINATION ${DOCS_QTDOCSDIR}/cutelyst${CUTELYST_VERSION_MAJOR}forms
         COMPONENT docs
         OPTIONAL
     )
 
     install(FILES ${CMAKE_CURRENT_BINARY_DIR}/cutelystforms.tags
-        DESTINATION ${DOCS_QTDOCSDIR}/cutelyst4forms
+        DESTINATION ${DOCS_QTDOCSDIR}/cutelyst${CUTELYST_VERSION_MAJOR}forms
         COMPONENT devel
         OPTIONAL
     )

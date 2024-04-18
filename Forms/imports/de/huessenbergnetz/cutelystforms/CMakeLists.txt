@@ -55,9 +55,9 @@ set_target_properties(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Form
 )
 
 target_link_libraries(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}FormsQml
-    PRIVATE Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms::Core
-    PRIVATE Qt${QT_VERSION_MAJOR}::Core
-    PRIVATE Qt${QT_VERSION_MAJOR}::Qml
+    PRIVATE Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms
+    PRIVATE Qt::Core
+    PRIVATE Qt::Qml
 )
 
 ### Find location of qmlplugindump (stored in QMLPLUGINDUMP_BIN)

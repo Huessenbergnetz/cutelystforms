@@ -54,7 +54,7 @@ add_library(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms
     ${cutelystforms_HEADERS}
 )
 
-add_library(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms::Core ALIAS Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms)
+add_library(CutelystForms::Core ALIAS Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms)
 
 generate_export_header(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms BASE_NAME cutelyst_plugin_forms)
 
@@ -90,8 +90,8 @@ set_target_properties(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Form
 target_link_libraries(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms
     PUBLIC
         Cutelyst::Core
-        Qt${QT_VERSION_MAJOR}::Core
-        Qt${QT_VERSION_MAJOR}::Qml
+        Qt::Core
+        Qt::Qml
 )
 
 set(PLUGIN_FORMS_PKGCONFIG_REQUIRES "Qt${QT_VERSION_MAJOR}Core Qt${QT_VERSION_MAJOR}Qml Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Core")
