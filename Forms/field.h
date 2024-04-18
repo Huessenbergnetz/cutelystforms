@@ -26,6 +26,8 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Field : public FormHtmlElement
     Q_PROPERTY(QString name READ name WRITE setName)
     Q_PROPERTY(QString label READ label WRITE setLabel)
     Q_PROPERTY(QString description READ description WRITE setDescription)
+    Q_PROPERTY(bool required READ required WRITE setRequired)
+    Q_PROPERTY(QString autocomplete READ autocomplete WRITE setAutocomplete)
     QML_ANONYMOUS
 public:
     explicit Field(QObject *parent = nullptr);
@@ -39,6 +41,12 @@ public:
 
     Q_REQUIRED_RESULT QString description() const noexcept;
     void setDescription(const QString &description) noexcept;
+
+    [[nodiscard]] bool required() const noexcept;
+    void setRequired(bool required) noexcept;
+
+    [[nodiscard]] QString autocomplete() const noexcept;
+    void setAutocomplete(const QString &autocomplete) noexcept;
 
 protected:
     Field(FieldPrivate &dd, QObject *parent = nullptr);

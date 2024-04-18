@@ -20,6 +20,8 @@ public:
     QString name;
     QString label;
     QString description;
+    QString autocomplete{QStringLiteral("off")};
+    bool required{false};
 
 private:
     Q_DECLARE_PUBLIC(Field) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)

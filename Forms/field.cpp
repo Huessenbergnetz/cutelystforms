@@ -61,4 +61,28 @@ void Field::setDescription(const QString &description) noexcept
     d->description = description;
 }
 
+bool Field::required() const noexcept
+{
+    Q_D(const Field);
+    return d->required;
+}
+
+void Field::setRequired(bool required) noexcept
+{
+    Q_D(Field);
+    d->required = required;
+}
+
+QString Field::autocomplete() const noexcept
+{
+    Q_D(const Field);
+    return d->autocomplete;
+}
+
+void Field::setAutocomplete(const QString &autocomplete) noexcept
+{
+    Q_D(Field);
+    d->autocomplete = autocomplete;
+}
+
 #include "moc_field.cpp"
