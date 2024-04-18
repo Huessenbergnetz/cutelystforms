@@ -48,7 +48,6 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Form : public FormHtmlElement
     Q_PROPERTY(QQmlListProperty<CutelystForms::Button> buttons READ buttons)
     Q_PROPERTY(QMap<QString, CutelystForms::Button*> buttonById READ buttonIdMap)
     Q_PROPERTY(QMap<QString, CutelystForms::Button*> buttonByName READ buttonNameMap)
-    Q_PROPERTY(CutelystForms::Form::Type type READ type WRITE setType)
     Q_CLASSINFO("DefaultProperty", "fields")
     QML_ELEMENT
 public:
@@ -75,13 +74,6 @@ public:
         Top
     };
     Q_ENUM(Target)
-
-    enum Type : quint8 {
-        Vertical    = 0,
-        Horizontal  = 1,
-        Inline      = 2
-    };
-    Q_ENUM(Type)
 
     Q_REQUIRED_RESULT QUrl action() const noexcept;
     void setAction(const QUrl &action) noexcept;
@@ -112,9 +104,6 @@ public:
 
     Q_REQUIRED_RESULT QString description() const noexcept;
     void setDescription(const QString &description) noexcept;
-
-    Q_REQUIRED_RESULT Type type() const noexcept;
-    void setType(Type type) noexcept;
 
     Q_REQUIRED_RESULT QString tagName() const noexcept override;
 

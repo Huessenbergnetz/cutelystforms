@@ -146,18 +146,6 @@ void Form::setDescription(const QString &description) noexcept
     d->description = description;
 }
 
-CutelystForms::Form::Type Form::type() const noexcept
-{
-    Q_D(const Form);
-    return d->type;
-}
-
-void Form::setType(CutelystForms::Form::Type type) noexcept
-{
-    Q_D(Form);
-    d->type = type;
-}
-
 QString Form::tagName() const noexcept
 {
     return QStringLiteral("form");
