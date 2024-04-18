@@ -277,6 +277,48 @@ QMap<QString, Field*> Form::fieldIdMap() const noexcept
     return d->fields.idMap();
 }
 
+QList<Input*> Form::inputList() const noexcept
+{
+    QList<Input*> lst;
+    Q_D(const Form);
+    const auto fields = d->fields.list();
+    for (auto f : fields) {
+        auto input = qobject_cast<Input*>(f);
+        if (input) {
+            lst << input;
+        }
+    }
+    return lst;
+}
+
+QMap<QString, Input*> Form::inputNameMap() const noexcept
+{
+    QMap<QString, Input*> map;
+    Q_D(const Form);
+    const auto fields = d->fields.nameMap();
+    for (auto i = fields.cbegin(), end = fields.cend(); i != end; ++i) {
+        auto input = qobject_cast<Input*>(i.value());
+        if (input) {
+            map.insert(i.key(), input);
+        }
+    }
+    return map;
+}
+
+QMap<QString, Input*> Form::inputIdMap() const noexcept
+{
+    QMap<QString, Input*> map;
+    Q_D(const Form);
+    const auto fields = d->fields.idMap();
+    for (auto i = fields.cbegin(), end = fields.cend(); i != end; ++i) {
+        auto input = qobject_cast<Input*>(i.value());
+        if (input) {
+            map.insert(i.key(), input);
+        }
+    }
+    return map;
+}
+
 QQmlListProperty<CutelystForms::Fieldset> Form::fieldsets()
 {
     Q_D(Form);

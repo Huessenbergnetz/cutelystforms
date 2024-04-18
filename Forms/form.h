@@ -11,6 +11,7 @@
 #include "fieldset.h"
 #include "field.h"
 #include "button.h"
+#include "input.h"
 #include <QObject>
 #include <QQmlListProperty>
 #include <QUrl>
@@ -44,6 +45,8 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Form : public FormHtmlElement
     Q_PROPERTY(QQmlListProperty<CutelystForms::Field> fields READ fields)
     Q_PROPERTY(QMap<QString, CutelystForms::Field*> fieldById READ fieldIdMap)
     Q_PROPERTY(QMap<QString, CutelystForms::Field*> fieldByName READ fieldNameMap)
+    Q_PROPERTY(QMap<QString, CutelystForms::Input*> inputById READ inputIdMap)
+    Q_PROPERTY(QMap<QString, CutelystForms::Input*> inputByName READ inputNameMap)
     Q_PROPERTY(QQmlListProperty<CutelystForms::Fieldset> fieldsets READ fieldsets)
     Q_PROPERTY(QMap<QString, CutelystForms::Fieldset*> fieldsetById READ fieldsetIdMap)
     Q_PROPERTY(QMap<QString, CutelystForms::Fieldset*> fieldsetByName READ fieldsetNameMap)
@@ -124,6 +127,10 @@ public:
     Q_REQUIRED_RESULT QList<Field*> fieldList() const noexcept;
     Q_REQUIRED_RESULT QMap<QString, Field*> fieldNameMap() const noexcept;
     Q_REQUIRED_RESULT QMap<QString, Field*> fieldIdMap() const noexcept;
+
+    [[nodiscard]] QList<Input*> inputList() const noexcept;
+    [[nodiscard]] QMap<QString, Input*> inputNameMap() const noexcept;
+    [[nodiscard]] QMap<QString, Input*> inputIdMap() const noexcept;
 
     QQmlListProperty<CutelystForms::Fieldset> fieldsets();
     void appendFieldset(Fieldset *fieldset);
