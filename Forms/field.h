@@ -26,7 +26,6 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Field : public FormHtmlElement
     Q_PROPERTY(QString name READ name WRITE setName)
     Q_PROPERTY(QString label READ label WRITE setLabel)
     Q_PROPERTY(QString description READ description WRITE setDescription)
-    Q_PROPERTY(int colspan READ colspan WRITE setColspan)
     QML_ANONYMOUS
 public:
     explicit Field(QObject *parent = nullptr);
@@ -40,9 +39,6 @@ public:
 
     Q_REQUIRED_RESULT QString description() const noexcept;
     void setDescription(const QString &description) noexcept;
-
-    Q_REQUIRED_RESULT int colspan() const noexcept;
-    void setColspan(int colspan) noexcept;
 
 protected:
     Field(FieldPrivate &dd, QObject *parent = nullptr);

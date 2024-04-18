@@ -61,16 +61,4 @@ void Field::setDescription(const QString &description) noexcept
     d->description = description;
 }
 
-int Field::colspan() const noexcept
-{
-    Q_D(const Field);
-    return d->colspan;
-}
-
-void Field::setColspan(int colspan) noexcept
-{
-    Q_D(Field);
-    d->colspan = colspan;
-}
-
 #include "moc_field.cpp"

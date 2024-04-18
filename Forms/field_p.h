@@ -20,7 +20,6 @@ public:
     QString name;
     QString label;
     QString description;
-    int colspan{0};
 
 private:
     Q_DECLARE_PUBLIC(Field) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
