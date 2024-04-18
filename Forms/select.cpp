@@ -49,6 +49,18 @@ void Select::setSize(int size) noexcept
     d->size = size;
 }
 
+bool Select::disabled() const noexcept
+{
+    Q_D(const Select);
+    return d->disabled;
+}
+
+void Select::setDisabled(bool disabled) noexcept
+{
+    Q_D(Select);
+    d->disabled = disabled;
+}
+
 QString Select::tagName() const noexcept
 {
     return QStringLiteral("select");

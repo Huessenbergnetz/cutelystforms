@@ -22,6 +22,7 @@ public:
     NamedListProperty<Optgroup, Select> optgroups;
     int size{0};
     bool multiple{false};
+    bool disabled{false};
 
     C_FORMS_QMLLIST_FUNCS(Option, option, Select)
     C_FORMS_QMLLIST_FUNCS(Optgroup, optgroup, Select)

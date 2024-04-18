@@ -29,6 +29,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Select : public Field
     Q_OBJECT
     Q_PROPERTY(bool multiple READ multiple WRITE setMultiple)
     Q_PROPERTY(int size READ size WRITE setSize)
+    Q_PROPERTY(bool disabled READ disabled WRITE setDisabled)
     Q_PROPERTY(QQmlListProperty<CutelystForms::Option> options READ options)
     Q_PROPERTY(QMap<QString, CutelystForms::Option*> optionById READ optionIdMap)
     Q_PROPERTY(QQmlListProperty<CutelystForms::Optgroup> optgroups READ optgroups)
@@ -44,6 +45,9 @@ public:
 
     Q_REQUIRED_RESULT int size() const noexcept;
     void setSize(int size) noexcept;
+
+    [[nodiscard]] bool disabled() const noexcept;
+    void setDisabled(bool disabled) noexcept;
 
     Q_REQUIRED_RESULT QString tagName() const noexcept override;
 
