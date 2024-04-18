@@ -15,6 +15,7 @@
 #include <Forms/selectcontent.h>
 #include <Forms/option.h>
 #include <Forms/optgroup.h>
+#include <Forms/emailinput.h>
 
 #include <QtQml>
 
@@ -41,6 +42,7 @@ public:
             qmlRegisterAnonymousType<CutelystForms::Field>(uri, major);
             qmlRegisterAnonymousType<CutelystForms::Input>(uri, major);
             qmlRegisterType<CutelystForms::HiddenInput>(uri, major, minor, "HiddenInput");
+            qmlRegisterType<CutelystForms::EmailInput>(uri, major, minor, "EmailInput");
             qmlRegisterType<CutelystForms::Select>(uri, major, minor, "Select");
             qmlRegisterAnonymousType<CutelystForms::SelectContent>(uri, major);
             qmlRegisterType<CutelystForms::Option>(uri, major, minor, "Option");
