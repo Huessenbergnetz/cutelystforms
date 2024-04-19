@@ -23,9 +23,9 @@ public:
     NamedListProperty<Button, Form> buttons;
     QUrl action;
     QStringList acceptCharset;
-    QString name;
-    QString label;
     QString description;
+    QString label;
+    QString name;
     Form::EncType enctype{Form::WwwFormUrlEncoded};
     Form::Method method{Form::Get};
     Form::Target target{Form::Self};
@@ -35,6 +35,11 @@ public:
     C_FORMS_QMLLIST_FUNCS(Field, field, Form);
     C_FORMS_QMLLIST_FUNCS(Fieldset, fieldset, Form)
     C_FORMS_QMLLIST_FUNCS(Button, button, Form)
+
+    virtual QStringList attrList() const override;
+    QString enctypeString() const;
+    QString methodString() const;
+    QString targetString() const;
 
 private:
     Q_DECLARE_PUBLIC(Form) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)

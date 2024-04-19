@@ -29,18 +29,19 @@ class FormPrivate;
 class CUTELYST_PLUGIN_FORMS_EXPORT Form : public FormHtmlElement
 {
     Q_OBJECT
-    Q_PROPERTY(QUrl action READ action WRITE setAction)
     Q_PROPERTY(QStringList acceptCharset READ acceptCharset WRITE setAcceptCharset)
+    Q_PROPERTY(QUrl action READ action WRITE setAction)
     Q_PROPERTY(bool autocomplete READ autocomplete WRITE setAutocomplete)
+    Q_PROPERTY(QString description READ description WRITE setDescription)
     Q_PROPERTY(CutelystForms::Form::EncType enctype READ enctype WRITE setEnctype)
     Q_PROPERTY(QString enctypeString READ enctypeString)
+    Q_PROPERTY(QString label READ label WRITE setLabel)
     Q_PROPERTY(CutelystForms::Form::Method method READ method WRITE setMethod)
     Q_PROPERTY(QString methodString READ methodString)
     Q_PROPERTY(QString name READ name WRITE setName)
     Q_PROPERTY(bool novalidate READ novalidate WRITE setNovalidate)
     Q_PROPERTY(CutelystForms::Form::Target target READ target WRITE setTarget)
-    Q_PROPERTY(QString label READ label WRITE setLabel)
-    Q_PROPERTY(QString description READ description WRITE setDescription)
+    Q_PROPERTY(QString targetString READ targetString)
     Q_PROPERTY(QQmlListProperty<CutelystForms::Field> fields READ fields)
     Q_PROPERTY(QMap<QString, CutelystForms::Field*> fieldById READ fieldIdMap)
     Q_PROPERTY(QMap<QString, CutelystForms::Field*> fieldByName READ fieldNameMap)
@@ -77,18 +78,24 @@ public:
     };
     Q_ENUM(Target)
 
-    Q_REQUIRED_RESULT QUrl action() const noexcept;
-    void setAction(const QUrl &action) noexcept;
-
     Q_REQUIRED_RESULT QStringList acceptCharset() const noexcept;
     void setAcceptCharset(const QStringList &acceptCharset) noexcept;
+
+    Q_REQUIRED_RESULT QUrl action() const noexcept;
+    void setAction(const QUrl &action) noexcept;
 
     Q_REQUIRED_RESULT bool autocomplete() const noexcept;
     void setAutocomplete(bool autocomplete) noexcept;
 
+    Q_REQUIRED_RESULT QString description() const noexcept;
+    void setDescription(const QString &description) noexcept;
+
     Q_REQUIRED_RESULT EncType enctype() const noexcept;
     void setEnctype(EncType enctype) noexcept;
     [[nodiscard]] QString enctypeString() const noexcept;
+
+    Q_REQUIRED_RESULT QString label() const noexcept;
+    void setLabel(const QString &label) noexcept;
 
     Q_REQUIRED_RESULT Method method() const noexcept;
     void setMethod(Method method) noexcept;
@@ -100,17 +107,11 @@ public:
     Q_REQUIRED_RESULT bool novalidate() const noexcept;
     void setNovalidate(bool novalidate) noexcept;
 
+    Q_REQUIRED_RESULT QString tagName() const noexcept override;
+
     Q_REQUIRED_RESULT Target target() const noexcept;
     void setTarget(Target target) noexcept;
     [[nodiscard]] QString targetString() const noexcept;
-
-    Q_REQUIRED_RESULT QString label() const noexcept;
-    void setLabel(const QString &label) noexcept;
-
-    Q_REQUIRED_RESULT QString description() const noexcept;
-    void setDescription(const QString &description) noexcept;
-
-    Q_REQUIRED_RESULT QString tagName() const noexcept override;
 
     QQmlListProperty<CutelystForms::Field> fields();
     void appendField(Field *field);

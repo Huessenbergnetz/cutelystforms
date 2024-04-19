@@ -13,6 +13,81 @@ FormPrivate::FormPrivate(Form *q) :
 
 }
 
+QStringList FormPrivate::attrList() const
+{
+    QStringList lst = FormHtmlElementPrivate::attrList();
+
+    if (!acceptCharset.empty()) {
+        lst.append(u"accept-charset=\""_qs + acceptCharset.join(QLatin1Char(',')) + QLatin1Char('"'));
+    }
+    if (action.isValid()) {
+        lst.append(u"action=\""_qs + action.toString(QUrl::FullyEncoded) + QLatin1Char('"'));
+    }
+    lst.append(u"autocomplete=\""_qs + (autocomplete ? u"on"_qs : u"off"_qs) + QLatin1Char('"'));
+    if (enctype != Form::WwwFormUrlEncoded) {
+        lst.append(u"enctype=\""_qs + enctypeString() + QLatin1Char('"'));
+    }
+    if (method != Form::Get) {
+        lst.append(u"method=\""_qs + methodString() + QLatin1Char('"'));
+    }
+    if (!name.isEmpty()) {
+        lst.append(u"name=\""_qs + name + QLatin1Char('"'));
+    }
+    if (novalidate) {
+        lst.append(u"novalidate"_qs);
+    }
+    if (target != Form::Self) {
+        lst.append(u"target=\""_qs + targetString() + QLatin1Char('"'));
+    }
+
+    return lst;
+}
+
+QString FormPrivate::enctypeString() const
+{
+    switch(enctype) {
+    case Form::WwwFormUrlEncoded:
+        return QStringLiteral("application/x-www-form-urlencoded");
+    case Form::MultipartFormData:
+        return QStringLiteral("multipart/form-data");
+    case Form::TextPlain:
+        return QStringLiteral("text/plain");
+    }
+
+    Q_UNREACHABLE();
+    return {};
+}
+
+QString FormPrivate::methodString() const
+{
+    switch(method) {
+    case Form::Get:
+        return QStringLiteral("get");
+    case Form::Post:
+        return QStringLiteral("post");
+    }
+
+    Q_UNREACHABLE();
+    return {};
+}
+
+QString FormPrivate::targetString() const
+{
+    switch(target) {
+    case Form::Self:
+        return QStringLiteral("_self");
+    case Form::Blank:
+        return QStringLiteral("_blank");
+    case Form::Parent:
+        return QStringLiteral("_parent");
+    case Form::Top:
+        return QStringLiteral("_top");
+    }
+
+    Q_UNREACHABLE();
+    return {};
+}
+
 Form::Form(QObject *parent) :
     FormHtmlElement(* new FormPrivate(this), parent)
 {
@@ -76,17 +151,7 @@ void Form::setEnctype(CutelystForms::Form::EncType enctype) noexcept
 QString Form::enctypeString() const noexcept
 {
     Q_D(const Form);
-    switch(d->enctype) {
-    case WwwFormUrlEncoded:
-        return QStringLiteral("application/x-www-form-urlencoded");
-    case MultipartFormData:
-        return QStringLiteral("multipart/form-data");
-    case TextPlain:
-        return QStringLiteral("text/plain");
-    }
-
-    Q_UNREACHABLE();
-    return {};
+    return d->enctypeString();
 }
 
 CutelystForms::Form::Method Form::method() const noexcept
@@ -104,15 +169,7 @@ void Form::setMethod(CutelystForms::Form::Method method) noexcept
 QString Form::methodString() const noexcept
 {
     Q_D(const Form);
-    switch(d->method) {
-    case Get:
-        return QStringLiteral("get");
-    case Post:
-        return QStringLiteral("post");
-    }
-
-    Q_UNREACHABLE();
-    return {};
+    return d->methodString();
 }
 
 QString Form::name() const noexcept
@@ -154,19 +211,7 @@ void Form::setTarget(CutelystForms::Form::Target target) noexcept
 QString Form::targetString() const noexcept
 {
     Q_D(const Form);
-    switch(d->target) {
-    case Self:
-        return QStringLiteral("_self");
-    case Blank:
-        return QStringLiteral("_blank");
-    case Parent:
-        return QStringLiteral("_parent");
-    case Top:
-        return QStringLiteral("_top");
-    }
-
-    Q_UNREACHABLE();
-    return {};
+    return d->targetString();
 }
 
 QString Form::label() const noexcept
