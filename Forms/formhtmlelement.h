@@ -24,16 +24,15 @@ class FormHtmlElementPrivate;
 class CUTELYST_PLUGIN_FORMS_EXPORT FormHtmlElement : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString htmlId READ htmlId WRITE setHtmlId)
-    Q_PROPERTY(QString htmlClass READ htmlClass WRITE setHtmlClass)
     Q_PROPERTY(QString accesskey READ accesskey WRITE setAccesskey)
-    Q_PROPERTY(bool contenteditable READ isContenteditable WRITE setContenteditable)
     Q_PROPERTY(CutelystForms::FormHtmlElement::DraggableState draggable READ draggable WRITE setDraggable)
     Q_PROPERTY(bool hidden READ isHidden WRITE setHidden)
+    Q_PROPERTY(QString htmlClass READ htmlClass WRITE setHtmlClass)
+    Q_PROPERTY(QString htmlId READ htmlId WRITE setHtmlId)
     Q_PROPERTY(bool spellcheck READ spellcheck WRITE setSpellcheck)
     Q_PROPERTY(int tabindex READ tabindex WRITE setTabindex)
-    Q_PROPERTY(QString title READ title WRITE setTitle)
     Q_PROPERTY(QString tagName READ tagName CONSTANT)
+    Q_PROPERTY(QString title READ title WRITE setTitle)
     QML_ANONYMOUS
 public:
     explicit FormHtmlElement(QObject *parent = nullptr);
@@ -46,17 +45,8 @@ public:
     };
     Q_ENUM(DraggableState)
 
-    Q_REQUIRED_RESULT QString htmlId() const noexcept;
-    void setHtmlId(const QString &htmlId) noexcept;
-
-    Q_REQUIRED_RESULT QString htmlClass() const noexcept;
-    void setHtmlClass(const QString &htmlClass) noexcept;
-
     Q_REQUIRED_RESULT QString accesskey() const noexcept;
     void setAccesskey(const QString &accesskey) noexcept;
-
-    Q_REQUIRED_RESULT bool isContenteditable() const noexcept;
-    void setContenteditable(bool contenteditable) noexcept;
 
     Q_REQUIRED_RESULT DraggableState draggable() const noexcept;
     void setDraggable(DraggableState draggable) noexcept;
@@ -64,16 +54,22 @@ public:
     Q_REQUIRED_RESULT bool isHidden() const noexcept;
     void setHidden(bool hidden) noexcept;
 
+    Q_REQUIRED_RESULT QString htmlClass() const noexcept;
+    void setHtmlClass(const QString &htmlClass) noexcept;
+
+    Q_REQUIRED_RESULT QString htmlId() const noexcept;
+    void setHtmlId(const QString &htmlId) noexcept;
+
     Q_REQUIRED_RESULT bool spellcheck() const noexcept;
     void setSpellcheck(bool spellcheck) noexcept;
 
     Q_REQUIRED_RESULT int tabindex() const noexcept;
     void setTabindex(int tabindex) noexcept;
 
+    Q_REQUIRED_RESULT virtual QString tagName() const noexcept;
+
     Q_REQUIRED_RESULT QString title() const noexcept;
     void setTitle(const QString &title) noexcept;
-
-    Q_REQUIRED_RESULT virtual QString tagName() const noexcept;
 
 protected:
     const QScopedPointer<FormHtmlElementPrivate> d_ptr; // NOLINT(cppcoreguidelines-non-private-member-variables-in-classes)

@@ -33,30 +33,6 @@ FormHtmlElement::~FormHtmlElement() // NOLINT(modernize-use-equals-default)
 
 }
 
-QString FormHtmlElement::htmlId() const noexcept
-{
-    Q_D(const FormHtmlElement);
-    return d->htmlId;
-}
-
-void FormHtmlElement::setHtmlId(const QString &htmlId) noexcept
-{
-    Q_D(FormHtmlElement);
-    d->htmlId = htmlId;
-}
-
-QString FormHtmlElement::htmlClass() const noexcept
-{
-    Q_D(const FormHtmlElement);
-    return d->htmlClass;
-}
-
-void FormHtmlElement::setHtmlClass(const QString &htmlClass) noexcept
-{
-    Q_D(FormHtmlElement);
-    d->htmlClass = htmlClass;
-}
-
 QString FormHtmlElement::accesskey() const noexcept
 {
     Q_D(const FormHtmlElement);
@@ -67,18 +43,6 @@ void FormHtmlElement::setAccesskey(const QString &accesskey) noexcept
 {
     Q_D(FormHtmlElement);
     d->accesskey = accesskey;
-}
-
-bool FormHtmlElement::isContenteditable() const noexcept
-{
-    Q_D(const FormHtmlElement);
-    return d->contenteditable;
-}
-
-void FormHtmlElement::setContenteditable(bool contenteditable) noexcept
-{
-    Q_D(FormHtmlElement);
-    d->contenteditable = contenteditable;
 }
 
 CutelystForms::FormHtmlElement::DraggableState FormHtmlElement::draggable() const noexcept
@@ -105,6 +69,30 @@ void FormHtmlElement::setHidden(bool hidden) noexcept
     d->hidden = hidden;
 }
 
+QString FormHtmlElement::htmlClass() const noexcept
+{
+    Q_D(const FormHtmlElement);
+    return d->htmlClass;
+}
+
+void FormHtmlElement::setHtmlClass(const QString &htmlClass) noexcept
+{
+    Q_D(FormHtmlElement);
+    d->htmlClass = htmlClass;
+}
+
+QString FormHtmlElement::htmlId() const noexcept
+{
+    Q_D(const FormHtmlElement);
+    return d->htmlId;
+}
+
+void FormHtmlElement::setHtmlId(const QString &htmlId) noexcept
+{
+    Q_D(FormHtmlElement);
+    d->htmlId = htmlId;
+}
+
 bool FormHtmlElement::spellcheck() const noexcept
 {
     Q_D(const FormHtmlElement);
@@ -129,6 +117,11 @@ void FormHtmlElement::setTabindex(int tabindex) noexcept
     d->tabindex = tabindex;
 }
 
+QString FormHtmlElement::tagName() const noexcept
+{
+    return {};
+}
+
 QString FormHtmlElement::title() const noexcept
 {
     Q_D(const FormHtmlElement);
@@ -139,11 +132,6 @@ void FormHtmlElement::setTitle(const QString &title) noexcept
 {
     Q_D(FormHtmlElement);
     d->title = title;
-}
-
-QString FormHtmlElement::tagName() const noexcept
-{
-    return {};
 }
 
 #include "moc_formhtmlelement.cpp"

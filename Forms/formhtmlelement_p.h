@@ -25,7 +25,6 @@ public:
 
     int tabindex{-2};
     FormHtmlElement::DraggableState draggable{FormHtmlElement::DragAuto};
-    bool contenteditable{false};
     bool hidden{false};
     bool spellcheck{true};
 
