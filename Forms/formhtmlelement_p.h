@@ -21,13 +21,9 @@ public:
     QString htmlId;
     QString htmlClass;
     QString accesskey;
-    QString contextmenu;
-    QString lang;
-    QString style;
     QString title;
 
     int tabindex{-2};
-    FormHtmlElement::TextDirection dir{FormHtmlElement::AutoDir};
     FormHtmlElement::DraggableState draggable{FormHtmlElement::DragAuto};
     bool contenteditable{false};
     bool hidden{false};

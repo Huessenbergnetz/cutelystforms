@@ -81,30 +81,6 @@ void FormHtmlElement::setContenteditable(bool contenteditable) noexcept
     d->contenteditable = contenteditable;
 }
 
-QString FormHtmlElement::contextmenu() const noexcept
-{
-    Q_D(const FormHtmlElement);
-    return d->contextmenu;
-}
-
-void FormHtmlElement::setContextmenu(const QString &contextmenu) noexcept
-{
-    Q_D(FormHtmlElement);
-    d->contextmenu = contextmenu;
-}
-
-CutelystForms::FormHtmlElement::TextDirection FormHtmlElement::dir() const noexcept
-{
-    Q_D(const FormHtmlElement);
-    return d->dir;
-}
-
-void FormHtmlElement::setDir(CutelystForms::FormHtmlElement::TextDirection dir) noexcept
-{
-    Q_D(FormHtmlElement);
-    d->dir = dir;
-}
-
 CutelystForms::FormHtmlElement::DraggableState FormHtmlElement::draggable() const noexcept
 {
     Q_D(const FormHtmlElement);
@@ -129,18 +105,6 @@ void FormHtmlElement::setHidden(bool hidden) noexcept
     d->hidden = hidden;
 }
 
-QString FormHtmlElement::lang() const noexcept
-{
-    Q_D(const FormHtmlElement);
-    return d->lang;
-}
-
-void FormHtmlElement::setLang(const QString &lang) noexcept
-{
-    Q_D(FormHtmlElement);
-    d->lang = lang;
-}
-
 bool FormHtmlElement::spellcheck() const noexcept
 {
     Q_D(const FormHtmlElement);
@@ -151,18 +115,6 @@ void FormHtmlElement::setSpellcheck(bool spellcheck) noexcept
 {
     Q_D(FormHtmlElement);
     d->spellcheck = spellcheck;
-}
-
-QString FormHtmlElement::style() const noexcept
-{
-    Q_D(const FormHtmlElement);
-    return d->style;
-}
-
-void FormHtmlElement::setStyle(const QString &style) noexcept
-{
-    Q_D(FormHtmlElement);
-    d->style = style;
 }
 
 int FormHtmlElement::tabindex() const noexcept
