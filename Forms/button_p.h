@@ -17,13 +17,24 @@ public:
     ButtonPrivate(Button *q);
     ~ButtonPrivate() override = default;
 
+    QString formenctypeString() const;
+    QString formmethodString() const;
+    QString formtargetString() const;
+    QString typeString() const;
+    virtual QStringList attrList() const override;
+
+    QVariant value;
+    QUrl formaction;
     QString name;
     QString text;
-    QString value;
 
-    Button::Type type = Button::Submit;
+    Button::EncType formenctype{Button::NoEncType};
+    Button::Method formmethod{Button::NoMethod};
+    Button::Target formtarget{Button::NoTarget};
+    Button::Type type{Button::Submit};
 
     bool disabled{false};
+    bool formnovalidate{false};
 
 private:
     Q_DECLARE_PUBLIC(Button) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
