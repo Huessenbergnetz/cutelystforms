@@ -28,6 +28,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Field : public FormHtmlElement
     Q_OBJECT
     Q_PROPERTY(QString accept READ accept WRITE setAccept)
     Q_PROPERTY(QString autocomplete READ autocomplete WRITE setAutocomplete)
+    Q_PROPERTY(bool checked READ checked WRITE setChecked)
     Q_PROPERTY(QString description READ description WRITE setDescription)
     Q_PROPERTY(bool disabled READ disabled WRITE setDisabled)
     Q_PROPERTY(QString label READ label WRITE setLabel)
@@ -77,6 +78,9 @@ public:
 
     [[nodiscard]] QString autocomplete() const noexcept;
     void setAutocomplete(const QString &autocomplete) noexcept;
+
+    [[nodiscard]] bool checked() const noexcept;
+    void setChecked(bool checked) noexcept;
 
     Q_REQUIRED_RESULT QString description() const noexcept;
     void setDescription(const QString &description) noexcept;

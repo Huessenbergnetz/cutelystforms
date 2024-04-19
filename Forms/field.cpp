@@ -23,6 +23,9 @@ QStringList FieldPrivate::attrList() const
     if (autocomplete.isEmpty()) {
         lst.append(u"autocomplete=\""_qs + autocomplete + QLatin1Char('"'));
     }
+    if (checked && (type == Field::Radio || type == Field::Checkbox)) {
+        lst.append(u"checked"_qs);
+    }
     if (disabled) {
         lst.append(u"disabled"_qs);
     }
@@ -76,6 +79,18 @@ void Field::setAutocomplete(const QString &autocomplete) noexcept
 {
     Q_D(Field);
     d->autocomplete = autocomplete;
+}
+
+bool Field::checked() const noexcept
+{
+    Q_D(const Field);
+    return d->checked;
+}
+
+void Field::setChecked(bool checked) noexcept
+{
+    Q_D(Field);
+    d->checked = checked;
 }
 
 QString Field::description() const noexcept

@@ -24,14 +24,15 @@ public:
     NamedListProperty<Optgroup, Field> optgroups;
     QVariant value;
     QString accept;
-    QString name;
-    QString label;
-    QString description;
     QString autocomplete;
+    QString description;
+    QString label;
+    QString name;
     Field::Type type{Field::None};
-    bool required{false};
-    bool multiple{false};
+    bool checked{false};
     bool disabled{false};
+    bool multiple{false};
+    bool required{false};
 
     C_FORMS_QMLLIST_FUNCS(Option, option, Field)
     C_FORMS_QMLLIST_FUNCS(Optgroup, optgroup, Field)
