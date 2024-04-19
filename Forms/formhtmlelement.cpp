@@ -4,6 +4,8 @@
  */
 
 #include "formhtmlelement_p.h"
+// #include "form.h"
+// #include "fieldset.h"
 
 using namespace CutelystForms;
 
@@ -19,6 +21,9 @@ QStringList FormHtmlElementPrivate::attrList() const
 
     if (!accesskey.isEmpty()) {
         lst.append(u"accesskey=\""_qs + accesskey + QLatin1Char('"'));
+    }
+    if (!form.isEmpty()) {
+        lst.append(u"form=\""_qs + form + QLatin1Char('"'));
     }
     if (hidden) {
         lst.append(u"hidden"_qs);
@@ -38,6 +43,31 @@ QStringList FormHtmlElementPrivate::attrList() const
 
     return lst;
 }
+
+// QString FormHtmlElementPrivate::getForm() const
+// {
+//     if (!form.isEmpty()) {
+//         return form;
+//     } else {
+//         Q_Q(const FormHtmlElement);
+//         if (q->parent()) {
+//             auto form = qobject_cast<Form*>(q->parent());
+//             if (form) {
+//                 return form->htmlId();
+//             } else {
+//                 auto fieldset = qobject_cast<Fieldset*>(q->parent());
+//                 if (fieldset) {
+//                     form = qobject_cast<Form*>(fieldset->parent());
+//                     if (form) {
+//                         return form->htmlId();
+//                     }
+//                 }
+//             }
+//         }
+//     }
+
+//     return {};
+// }
 
 FormHtmlElement::FormHtmlElement(QObject *parent) :
     QObject(parent), d_ptr(new FormHtmlElementPrivate(FormHtmlElementPrivate::Tag::None, this))
@@ -75,6 +105,18 @@ QString FormHtmlElement::attrs() const
 {
     Q_D(const FormHtmlElement);
     return d->attrList().join(QChar(QChar::Space));
+}
+
+QString FormHtmlElement::form() const noexcept
+{
+    Q_D(const FormHtmlElement);
+    return d->form;
+}
+
+void FormHtmlElement::setForm(const QString &form) noexcept
+{
+    Q_D(FormHtmlElement);
+    d->form = form;
 }
 
 bool FormHtmlElement::isHidden() const noexcept

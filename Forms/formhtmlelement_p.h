@@ -19,7 +19,9 @@ public:
         Fieldset,
         Form,
         Input,
+        Keygen,
         Legend,
+        Meter,
         Optgroup,
         Option,
         Select,
@@ -31,11 +33,14 @@ public:
 
     virtual QStringList attrList() const;
 
+    // QString getForm() const;
+
     FormHtmlElement *q_ptr;
 
+    QString accesskey;
+    QString form;
     QString htmlId;
     QString htmlClass;
-    QString accesskey;
     QString title;
 
     int tabindex{0};
