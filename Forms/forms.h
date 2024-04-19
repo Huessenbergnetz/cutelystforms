@@ -1,5 +1,5 @@
 /*!
- * SPDX-FileCopyrightText: (C) 2023 Matthias Fehring <https://www.huessenbergnetz.de>
+ * SPDX-FileCopyrightText: (C) 2023-2024 Matthias Fehring <https://www.huessenbergnetz.de>
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
@@ -80,6 +80,10 @@ public:
     Q_REQUIRED_RESULT QStringList includePaths() const noexcept;
 
     static Form* getForm(const QString &name, Cutelyst::Context *c);
+
+    static QString templatesDirPath();
+
+    static QString templateDirPath(QStringView templ);
 
 protected:
     /*!

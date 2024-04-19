@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: (C) 2023 Matthias Fehring <https://www.huessenbergnetz.de>
+# SPDX-FileCopyrightText: (C) 2023-2024 Matthias Fehring <https://www.huessenbergnetz.de>
 # SPDX-License-Identifier: BSD-3-Clause
 
 set(cutelystforms_SRC
@@ -69,6 +69,8 @@ target_include_directories(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/cutelyst${CUTELYST_VERSION_MAJOR}forms-qt${QT_VERSION_MAJOR}>
 )
 
+GNUInstallDirs_get_absolute_install_dir(CUTELYSTFORMS_FULL_TEMPLATESDIR CUTELYSTFORMS_TEMPLATESDIR DATADIR)
+
 target_compile_definitions(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms
     PRIVATE
         QT_NO_KEYWORDS
@@ -81,6 +83,7 @@ target_compile_definitions(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR
         QT_NO_SIGNALS_SLOTS_KEYWORDS
         QT_USE_FAST_OPERATOR_PLUS
         QT_DISABLE_DEPRECATED_BEFORE=0x050E00
+        CUTELYSTFORMS_TEMPLATESDIR="${CUTELYSTFORMS_FULL_TEMPLATESDIR}"
 )
 
 set_target_properties(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms PROPERTIES

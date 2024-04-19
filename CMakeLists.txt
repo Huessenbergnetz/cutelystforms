@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: (C) 2023 Matthias Fehring <https://www.huessenbergnetz.de>
+# SPDX-FileCopyrightText: (C) 2023-2024 Matthias Fehring <https://www.huessenbergnetz.de>
 # SPDX-License-Identifier: BSD-3-Clause
 
 cmake_minimum_required(VERSION 3.16)
@@ -52,6 +52,9 @@ option(ENABLE_TESTS "Build the unit tests" OFF)
 option(BUILD_DOCS "Enable the build of doxygen docs" OFF)
 option(BUILD_DOCS_QUIET "Tell doxygen to be quiet while building the documentation." OFF)
 
+set(CUTELYSTFORMS_APPDIR ${CMAKE_INSTALL_DATADIR}/cutelystforms CACHE PATH "Directory to install cutelystforms data files into")
+set(CUTELYSTFORMS_TEMPLATESDIR ${CUTELYSTFORMS_APPDIR}/templates CACHE PATH "Directory install cutelystforms template files into")
+
 if (ENABLE_TESTS)
     enable_testing()
 endif (ENABLE_TESTS)
@@ -84,6 +87,7 @@ install(EXPORT CutelystFormsTargets
 )
 
 add_subdirectory(Forms)
+add_subdirectory(templates/cutelee/bootstrap5/cutelystforms)
 if (ENABLE_TESTS)
     add_subdirectory(tests)
 endif (ENABLE_TESTS)

@@ -1,0 +1,7 @@
+{# SPDX-FileCopyrightText: (C) 2024 Matthias Fehring <https://www.huessenbergnetz.de> #}
+{# SPDX-License-Identifier: BSD-3-Clause #}
+
+<input type="{{ field.typeString }}" class="form-control{% if inputClass %} {{ inputClass }}{% endif %}" {{ field.attrs }}{% if field.description %}aria-describedby="{{ field.htmlId }}Desc"{% endif %}>
+{% if field.description %}
+<div id="{{ field.htmlId }}Desc" class="form-text">{{ field.description }}</div>
+{% endif %}

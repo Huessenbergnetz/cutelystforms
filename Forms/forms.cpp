@@ -1,5 +1,5 @@
 /*!
- * SPDX-FileCopyrightText: (C) 2023 Matthias Fehring <https://www.huessenbergnetz.de>
+ * SPDX-FileCopyrightText: (C) 2023-2024 Matthias Fehring <https://www.huessenbergnetz.de>
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
@@ -159,6 +159,16 @@ Form* Forms::getForm(const QString &name, Cutelyst::Context *c)
     realFormObject->setParent(c);
     qCDebug(C_FORMS).noquote() << "Successfully loaded QML form data from" << fi.filePath();
     return realFormObject;
+}
+
+QString Forms::templatesDirPath()
+{
+    return QStringLiteral(CUTELYSTFORMS_TEMPLATESDIR);
+}
+
+QString Forms::templateDirPath(QStringView templ)
+{
+    return QStringLiteral(CUTELYSTFORMS_TEMPLATESDIR) + QLatin1Char('/') + templ;
 }
 
 bool Forms::setup(Cutelyst::Application *app)
