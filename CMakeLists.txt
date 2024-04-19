@@ -52,16 +52,16 @@ option(ENABLE_TESTS "Build the unit tests" OFF)
 option(BUILD_DOCS "Enable the build of doxygen docs" OFF)
 option(BUILD_DOCS_QUIET "Tell doxygen to be quiet while building the documentation." OFF)
 
-set(CUTELYSTFORMS_APPDIR ${CMAKE_INSTALL_DATADIR}/cutelystforms CACHE PATH "Directory to install cutelystforms data files into")
+if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+  set(CMAKE_INSTALL_PREFIX "/usr/local" CACHE PATH "cutelystforms default install prefix" FORCE)
+endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+
+set(CUTELYSTFORMS_APPDIR ${CMAKE_INSTALL_DATADIR}/cutelyst${CUTELYST_VERSION_MAJOR}forms-qt${QT_VERSION_MAJOR} CACHE PATH "Directory to install cutelystforms data files into")
 set(CUTELYSTFORMS_TEMPLATESDIR ${CUTELYSTFORMS_APPDIR}/templates CACHE PATH "Directory install cutelystforms template files into")
 
 if (ENABLE_TESTS)
     enable_testing()
 endif (ENABLE_TESTS)
-
-if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-  set(CMAKE_INSTALL_PREFIX "/usr/local" CACHE PATH "libfirfuorida default install prefix" FORCE)
-endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 
 write_basic_package_version_file(${CMAKE_CURRENT_BINARY_DIR}/Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}FormsConfigVersion.cmake
     VERSION ${cutelystforms_VERSION}
