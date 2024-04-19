@@ -20,7 +20,7 @@ QStringList FieldPrivate::attrList() const
     if (type == Field::File && !accept.isEmpty()) {
         lst.append(u"accept=\""_qs + accept + QLatin1Char('"'));
     }
-    if (autocomplete.isEmpty()) {
+    if (!autocomplete.isEmpty()) {
         lst.append(u"autocomplete=\""_qs + autocomplete + QLatin1Char('"'));
     }
     if (checked && (type == Field::Radio || type == Field::Checkbox)) {

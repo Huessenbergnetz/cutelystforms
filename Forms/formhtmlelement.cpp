@@ -32,7 +32,7 @@ QStringList FormHtmlElementPrivate::attrList() const
         lst.append(u"id=\""_qs + htmlId + QLatin1Char('"'));
     }
     if (spellcheck && (tag == Tag::Input || tag == Tag::Textarea)) {
-        lst.append(u"hidden=\"true\""_qs);
+        lst.append(u"spellcheck=\"true\""_qs);
     }
     if (tabindex != 0) {
         lst.append(u"tabindex=\""_qs + QString::number(tabindex) + QLatin1Char('"'));

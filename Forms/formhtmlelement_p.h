@@ -46,7 +46,7 @@ public:
     int tabindex{0};
     Tag tag{Tag::None};
     bool hidden{false};
-    bool spellcheck{true};
+    bool spellcheck{false};
 
 private:
     Q_DECLARE_PUBLIC(FormHtmlElement) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
