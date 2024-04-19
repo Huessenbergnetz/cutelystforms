@@ -26,21 +26,23 @@ class FieldPrivate;
 class CUTELYST_PLUGIN_FORMS_EXPORT Field : public FormHtmlElement
 {
     Q_OBJECT
+    Q_PROPERTY(QString accept READ accept WRITE setAccept)
+    Q_PROPERTY(QString autocomplete READ autocomplete WRITE setAutocomplete)
+    Q_PROPERTY(QString description READ description WRITE setDescription)
+    Q_PROPERTY(bool disabled READ disabled WRITE setDisabled)
+    Q_PROPERTY(QString label READ label WRITE setLabel)
+    Q_PROPERTY(bool multiple READ multiple WRITE setMultiple)
+    Q_PROPERTY(QString name READ name WRITE setName)
+    Q_PROPERTY(bool required READ required WRITE setRequired)
     Q_PROPERTY(CutelystForms::Field::Type type READ type CONSTANT)
     Q_PROPERTY(QString typeString READ typeString CONSTANT)
     Q_PROPERTY(QVariant value READ value WRITE setValue)
-    Q_PROPERTY(QString name READ name WRITE setName)
-    Q_PROPERTY(QString label READ label WRITE setLabel)
-    Q_PROPERTY(QString description READ description WRITE setDescription)
-    Q_PROPERTY(bool required READ required WRITE setRequired)
-    Q_PROPERTY(QString autocomplete READ autocomplete WRITE setAutocomplete)
-    Q_PROPERTY(bool multiple READ multiple WRITE setMultiple)
-    Q_PROPERTY(int size READ size WRITE setSize)
-    Q_PROPERTY(bool disabled READ disabled WRITE setDisabled)
+
     Q_PROPERTY(QQmlListProperty<CutelystForms::Option> options READ options)
     Q_PROPERTY(QMap<QString, CutelystForms::Option*> optionById READ optionIdMap)
     Q_PROPERTY(QQmlListProperty<CutelystForms::Optgroup> optgroups READ optgroups)
     Q_PROPERTY(QMap<QString, CutelystForms::Optgroup*> optgroupById READ optgroupIdMap)
+
     Q_CLASSINFO("DefaultProperty", "options")
     QML_ANONYMOUS
 public:
@@ -70,36 +72,36 @@ public:
     };
     Q_ENUM(Type)
 
+    [[nodiscard]] QString accept() const noexcept;
+    void setAccept(const QString &accept) noexcept;
+
+    [[nodiscard]] QString autocomplete() const noexcept;
+    void setAutocomplete(const QString &autocomplete) noexcept;
+
+    Q_REQUIRED_RESULT QString description() const noexcept;
+    void setDescription(const QString &description) noexcept;
+
+    [[nodiscard]] bool disabled() const noexcept;
+    void setDisabled(bool disabled) noexcept;
+
+    Q_REQUIRED_RESULT QString label() const noexcept;
+    void setLabel(const QString &label) noexcept;
+
+    Q_REQUIRED_RESULT bool multiple() const noexcept;
+    void setMultiple(bool multiple) noexcept;
+
+    Q_REQUIRED_RESULT QString name() const noexcept;
+    void setName(const QString &name) noexcept;
+
+    [[nodiscard]] bool required() const noexcept;
+    void setRequired(bool required) noexcept;
+
     Q_REQUIRED_RESULT virtual Field::Type type() const noexcept;
 
     Q_REQUIRED_RESULT virtual QString typeString() const noexcept;
 
     [[nodiscard]] QVariant value() const noexcept;
     void setValue(const QVariant &value) noexcept;
-
-    Q_REQUIRED_RESULT QString name() const noexcept;
-    void setName(const QString &name) noexcept;
-
-    Q_REQUIRED_RESULT QString label() const noexcept;
-    void setLabel(const QString &label) noexcept;
-
-    Q_REQUIRED_RESULT QString description() const noexcept;
-    void setDescription(const QString &description) noexcept;
-
-    [[nodiscard]] bool required() const noexcept;
-    void setRequired(bool required) noexcept;
-
-    [[nodiscard]] QString autocomplete() const noexcept;
-    void setAutocomplete(const QString &autocomplete) noexcept;
-
-    Q_REQUIRED_RESULT bool multiple() const noexcept;
-    void setMultiple(bool multiple) noexcept;
-
-    Q_REQUIRED_RESULT int size() const noexcept;
-    void setSize(int size) noexcept;
-
-    [[nodiscard]] bool disabled() const noexcept;
-    void setDisabled(bool disabled) noexcept;
 
     QQmlListProperty<CutelystForms::Option> options();
     void appendOption(Option *option);

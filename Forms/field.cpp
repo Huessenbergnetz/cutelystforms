@@ -25,6 +25,102 @@ Field::Field(FieldPrivate &dd, QObject *parent) :
 
 }
 
+QString Field::accept() const noexcept
+{
+    Q_D(const Field);
+    return d->accept;
+}
+
+void Field::setAccept(const QString &accept) noexcept
+{
+    Q_D(Field);
+    d->accept = accept;
+}
+
+QString Field::autocomplete() const noexcept
+{
+    Q_D(const Field);
+    return d->autocomplete;
+}
+
+void Field::setAutocomplete(const QString &autocomplete) noexcept
+{
+    Q_D(Field);
+    d->autocomplete = autocomplete;
+}
+
+QString Field::description() const noexcept
+{
+    Q_D(const Field);
+    return d->description;
+}
+
+void Field::setDescription(const QString &description) noexcept
+{
+    Q_D(Field);
+    d->description = description;
+}
+
+bool Field::disabled() const noexcept
+{
+    Q_D(const Field);
+    return d->disabled;
+}
+
+void Field::setDisabled(bool disabled) noexcept
+{
+    Q_D(Field);
+    d->disabled = disabled;
+}
+
+QString Field::label() const noexcept
+{
+    Q_D(const Field);
+    return d->label;
+}
+
+void Field::setLabel(const QString &label) noexcept
+{
+    Q_D(Field);
+    d->label = label;
+}
+
+bool Field::multiple() const noexcept
+{
+    Q_D(const Field);
+    return d->multiple;
+}
+
+void Field::setMultiple(bool multiple) noexcept
+{
+    Q_D(Field);
+    d->multiple = multiple;
+}
+
+QString Field::name() const noexcept
+{
+    Q_D(const Field);
+    return d->name;
+}
+
+void Field::setName(const QString &name) noexcept
+{
+    Q_D(Field);
+    d->name = name;
+}
+
+bool Field::required() const noexcept
+{
+    Q_D(const Field);
+    return d->required;
+}
+
+void Field::setRequired(bool required) noexcept
+{
+    Q_D(Field);
+    d->required = required;
+}
+
 CutelystForms::Field::Type Field::type() const noexcept
 {
     return None;
@@ -45,102 +141,6 @@ void Field::setValue(const QVariant &value) noexcept
 {
     Q_D(Field);
     d->value = value;
-}
-
-QString Field::name() const noexcept
-{
-    Q_D(const Field);
-    return d->name;
-}
-
-void Field::setName(const QString &name) noexcept
-{
-    Q_D(Field);
-    d->name = name;
-}
-
-QString Field::label() const noexcept
-{
-    Q_D(const Field);
-    return d->label;
-}
-
-void Field::setLabel(const QString &label) noexcept
-{
-    Q_D(Field);
-    d->label = label;
-}
-
-QString Field::description() const noexcept
-{
-    Q_D(const Field);
-    return d->description;
-}
-
-void Field::setDescription(const QString &description) noexcept
-{
-    Q_D(Field);
-    d->description = description;
-}
-
-bool Field::required() const noexcept
-{
-    Q_D(const Field);
-    return d->required;
-}
-
-void Field::setRequired(bool required) noexcept
-{
-    Q_D(Field);
-    d->required = required;
-}
-
-QString Field::autocomplete() const noexcept
-{
-    Q_D(const Field);
-    return d->autocomplete;
-}
-
-void Field::setAutocomplete(const QString &autocomplete) noexcept
-{
-    Q_D(Field);
-    d->autocomplete = autocomplete;
-}
-
-bool Field::multiple() const noexcept
-{
-    Q_D(const Field);
-    return d->multiple;
-}
-
-void Field::setMultiple(bool multiple) noexcept
-{
-    Q_D(Field);
-    d->multiple = multiple;
-}
-
-int Field::size() const noexcept
-{
-    Q_D(const Field);
-    return d->size;
-}
-
-void Field::setSize(int size) noexcept
-{
-    Q_D(Field);
-    d->size = size;
-}
-
-bool Field::disabled() const noexcept
-{
-    Q_D(const Field);
-    return d->disabled;
-}
-
-void Field::setDisabled(bool disabled) noexcept
-{
-    Q_D(Field);
-    d->disabled = disabled;
 }
 
 QQmlListProperty<CutelystForms::Option> Field::options()

@@ -21,11 +21,11 @@ public:
     NamedListProperty<Option, Field> options;
     NamedListProperty<Optgroup, Field> optgroups;
     QVariant value;
+    QString accept;
     QString name;
     QString label;
     QString description;
     QString autocomplete{QStringLiteral("off")};
-    int size{0};
     bool required{false};
     bool multiple{false};
     bool disabled{false};
