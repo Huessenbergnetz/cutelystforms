@@ -18,12 +18,11 @@ public:
     ~ButtonPrivate() override = default;
 
     QString name;
-    QString value;
     QString text;
+    QString value;
 
     Button::Type type = Button::Submit;
 
-    bool autocofus{false};
     bool disabled{false};
 
 private:

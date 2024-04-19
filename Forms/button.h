@@ -25,12 +25,11 @@ class ButtonPrivate;
 class CUTELYST_PLUGIN_FORMS_EXPORT Button : public FormHtmlElement
 {
     Q_OBJECT
-    Q_PROPERTY(bool autofocus READ autofocus WRITE setAutofocus)
     Q_PROPERTY(bool disabled READ isDisabled WRITE setDisabled)
     Q_PROPERTY(QString name READ name WRITE setName)
+    Q_PROPERTY(QString text READ text WRITE setText)
     Q_PROPERTY(CutelystForms::Button::Type type READ type WRITE setType)
     Q_PROPERTY(QString value READ value WRITE setValue)
-    Q_PROPERTY(QString text READ text WRITE setText)
     QML_ELEMENT
 public:
     explicit Button(QObject *parent = nullptr);
@@ -43,25 +42,22 @@ public:
     };
     Q_ENUM(Type)
 
-    Q_REQUIRED_RESULT bool autofocus() const noexcept;
-    void setAutofocus(bool autofocus) noexcept;
-
     Q_REQUIRED_RESULT bool isDisabled() const noexcept;
     void setDisabled(bool disabled) noexcept;
 
     Q_REQUIRED_RESULT QString name() const noexcept;
     void setName(const QString &name) noexcept;
 
+    Q_REQUIRED_RESULT QString tagName() const noexcept override;
+
+    Q_REQUIRED_RESULT QString text() const noexcept;
+    void setText(const QString &text) noexcept;
+
     Q_REQUIRED_RESULT Type type() const noexcept;
     void setType(Type type) noexcept;
 
     Q_REQUIRED_RESULT QString value() const noexcept;
     void setValue(const QString &value) noexcept;
-
-    Q_REQUIRED_RESULT QString text() const noexcept;
-    void setText(const QString &text) noexcept;
-
-    Q_REQUIRED_RESULT QString tagName() const noexcept override;
 
 protected:
     Button(ButtonPrivate &dd, QObject *parent = nullptr);

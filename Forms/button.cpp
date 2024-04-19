@@ -25,18 +25,6 @@ Button::Button(ButtonPrivate &dd, QObject *parent) :
 
 }
 
-bool Button::autofocus() const noexcept
-{
-    Q_D(const Button);
-    return d->autocofus;
-}
-
-void Button::setAutofocus(bool autofocus) noexcept
-{
-    Q_D(Button);
-    d->autocofus = autofocus;
-}
-
 bool Button::isDisabled() const noexcept
 {
     Q_D(const Button);
@@ -67,6 +55,23 @@ CutelystForms::Button::Type Button::type() const noexcept
     return d->type;
 }
 
+QString Button::tagName() const noexcept
+{
+    return QStringLiteral("button");
+}
+
+QString Button::text() const noexcept
+{
+    Q_D(const Button);
+    return d->text;
+}
+
+void Button::setText(const QString &text) noexcept
+{
+    Q_D(Button);
+    d->text = text;
+}
+
 void Button::setType(CutelystForms::Button::Type type) noexcept
 {
     Q_D(Button);
@@ -83,23 +88,6 @@ void Button::setValue(const QString &value) noexcept
 {
     Q_D(Button);
     d->value = value;
-}
-
-QString Button::text() const noexcept
-{
-    Q_D(const Button);
-    return d->text;
-}
-
-void Button::setText(const QString &text) noexcept
-{
-    Q_D(Button);
-    d->text = text;
-}
-
-QString Button::tagName() const noexcept
-{
-    return QStringLiteral("button");
 }
 
 #include "moc_button.cpp"
