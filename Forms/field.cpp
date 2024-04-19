@@ -7,14 +7,43 @@
 
 using namespace CutelystForms;
 
-FieldPrivate::FieldPrivate(Field *q) :
-    FormHtmlElementPrivate(q), options(q), optgroups(q)
+FieldPrivate::FieldPrivate(Field::Type _type, Field *q) :
+    FormHtmlElementPrivate(Tag::Input, q), options(q), optgroups(q), type(_type)
 {
 
 }
 
+QStringList FieldPrivate::attrList() const
+{
+    QStringList lst = FormHtmlElementPrivate::attrList();
+
+    if (type == Field::File && !accept.isEmpty()) {
+        lst.append(u"accept=\""_qs + accept + QLatin1Char('"'));
+    }
+    if (autocomplete.isEmpty()) {
+        lst.append(u"autocomplete=\""_qs + autocomplete + QLatin1Char('"'));
+    }
+    if (disabled) {
+        lst.append(u"disabled"_qs);
+    }
+    if (multiple && (tag == Tag::Select || type == Field::File || Field::Email)) {
+        lst.append(u"multiple"_qs);
+    }
+    if (name.isEmpty()) {
+        lst.append(u"name=\""_qs + name + QLatin1Char('"'));
+    }
+    if (required) {
+        lst.append(u"required"_qs);
+    }
+    if (value.isValid()) {
+        lst.append(u"value=\""_qs + value.toString() + QLatin1Char('"'));
+    }
+
+    return lst;
+}
+
 Field::Field(QObject *parent) :
-    FormHtmlElement(* new FieldPrivate(this), parent)
+    FormHtmlElement(* new FieldPrivate(Field::None, this), parent)
 {
 
 }

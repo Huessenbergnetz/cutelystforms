@@ -8,7 +8,7 @@
 using namespace CutelystForms;
 
 FormPrivate::FormPrivate(Form *q) :
-    FormHtmlElementPrivate{q}, fields{q}, fieldsets{q}, buttons{q}
+    FormHtmlElementPrivate{Tag::Form, q}, fields{q}, fieldsets{q}, buttons{q}
 {
 
 }

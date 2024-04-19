@@ -8,7 +8,7 @@
 using namespace CutelystForms;
 
 LegendPrivate::LegendPrivate(Legend *q) :
-    FormHtmlElementPrivate(q)
+    FormHtmlElementPrivate(Tag::Legend, q)
 {
 
 }

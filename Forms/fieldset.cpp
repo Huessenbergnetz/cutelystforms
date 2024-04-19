@@ -8,9 +8,26 @@
 using namespace CutelystForms;
 
 FieldsetPrivate::FieldsetPrivate(Fieldset *q) :
-    FormHtmlElementPrivate(q), fields(q)
+    FormHtmlElementPrivate(Tag::Fieldset, q), fields(q)
 {
 
+}
+
+QStringList FieldsetPrivate::attrList() const
+{
+    QStringList lst = FormHtmlElementPrivate::attrList();
+
+    if (disabled) {
+        lst.append(u"disabled"_qs);
+    }
+    if (!form.isEmpty()) {
+        lst.append(u"form=\""_qs + form + QLatin1Char('"'));
+    }
+    if (!name.isEmpty()) {
+        lst.append(u"name=\""_qs + name + QLatin1Char('"'));
+    }
+
+    return lst;
 }
 
 Fieldset::Fieldset(QObject *parent) :

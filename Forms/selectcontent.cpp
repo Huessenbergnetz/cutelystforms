@@ -8,7 +8,7 @@
 using namespace CutelystForms;
 
 SelectContentPrivate::SelectContentPrivate(SelectContent *q) :
-    FormHtmlElementPrivate(q)
+    FormHtmlElementPrivate(Tag::None, q)
 {
 
 }

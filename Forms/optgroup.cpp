@@ -10,7 +10,7 @@ using namespace CutelystForms;
 OptgroupPrivate::OptgroupPrivate(Optgroup *q) :
     SelectContentPrivate(q), options(q)
 {
-
+    tag = Tag::Optgroup;
 }
 
 Optgroup::Optgroup(QObject *parent) :

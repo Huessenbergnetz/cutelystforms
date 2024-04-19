@@ -18,6 +18,8 @@ public:
     FieldsetPrivate(Fieldset *q);
     ~FieldsetPrivate() override = default;
 
+    virtual QStringList attrList() const override;
+
     NamedListProperty<Field, Fieldset> fields;
     QString form;
     QString name;

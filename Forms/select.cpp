@@ -8,9 +8,9 @@
 using namespace CutelystForms;
 
 SelectPrivate::SelectPrivate(Select *q) :
-    FieldPrivate(q)
+    FieldPrivate(Field::None, q)
 {
-
+    tag = Tag::Select;
 }
 
 Select::Select(QObject *parent) :

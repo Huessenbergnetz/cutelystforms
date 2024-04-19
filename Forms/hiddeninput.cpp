@@ -8,7 +8,7 @@
 using namespace CutelystForms;
 
 HiddenInputPrivate::HiddenInputPrivate(HiddenInput *q) :
-    FieldPrivate{q}
+    FieldPrivate{Field::Hidden, q}
 {
 
 }

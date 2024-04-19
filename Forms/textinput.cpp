@@ -8,7 +8,7 @@
 using namespace CutelystForms;
 
 TextInputPrivate::TextInputPrivate(TextInput *q)
-    : FieldPrivate(q)
+    : FieldPrivate(Field::Text, q)
 {
 
 }

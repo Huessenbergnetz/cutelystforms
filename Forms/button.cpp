@@ -8,7 +8,7 @@
 using namespace CutelystForms;
 
 ButtonPrivate::ButtonPrivate(Button *q) :
-    FormHtmlElementPrivate(q)
+    FormHtmlElementPrivate(Tag::Button ,q)
 {
 
 }

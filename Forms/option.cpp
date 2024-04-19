@@ -10,7 +10,7 @@ using namespace CutelystForms;
 OptionPrivate::OptionPrivate(Option *q) :
     SelectContentPrivate(q)
 {
-
+    tag = Tag::Option;
 }
 
 Option::Option(QObject *parent) :

@@ -15,8 +15,10 @@ namespace CutelystForms {
 class FieldPrivate : public FormHtmlElementPrivate
 {
 public:
-    FieldPrivate(Field *q);
+    FieldPrivate(Field::Type _type, Field *q);
     ~FieldPrivate() override = default;
+
+    virtual QStringList attrList() const override;
 
     NamedListProperty<Option, Field> options;
     NamedListProperty<Optgroup, Field> optgroups;
@@ -25,7 +27,8 @@ public:
     QString name;
     QString label;
     QString description;
-    QString autocomplete{QStringLiteral("off")};
+    QString autocomplete;
+    Field::Type type{Field::None};
     bool required{false};
     bool multiple{false};
     bool disabled{false};

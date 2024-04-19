@@ -8,7 +8,7 @@
 using namespace CutelystForms;
 
 EmailInputPrivate::EmailInputPrivate(EmailInput *q)
-    : FieldPrivate{q}
+    : FieldPrivate{Field::Email, q}
 {
 
 }

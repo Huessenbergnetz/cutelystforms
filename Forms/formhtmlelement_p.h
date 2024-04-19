@@ -13,8 +13,23 @@ namespace CutelystForms {
 class FormHtmlElementPrivate
 {
 public:
-    FormHtmlElementPrivate(FormHtmlElement *q);
+    enum class Tag {
+        None,
+        Button,
+        Fieldset,
+        Form,
+        Input,
+        Legend,
+        Optgroup,
+        Option,
+        Select,
+        Textarea
+    };
+
+    FormHtmlElementPrivate(Tag _tag, FormHtmlElement *q);
     virtual ~FormHtmlElementPrivate() = default;
+
+    virtual QStringList attrList() const;
 
     FormHtmlElement *q_ptr;
 
@@ -23,8 +38,8 @@ public:
     QString accesskey;
     QString title;
 
-    int tabindex{-2};
-    FormHtmlElement::DraggableState draggable{FormHtmlElement::DragAuto};
+    int tabindex{0};
+    Tag tag{Tag::None};
     bool hidden{false};
     bool spellcheck{true};
 

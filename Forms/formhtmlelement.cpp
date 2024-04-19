@@ -7,14 +7,40 @@
 
 using namespace CutelystForms;
 
-FormHtmlElementPrivate::FormHtmlElementPrivate(FormHtmlElement *q) :
-    q_ptr(q)
+FormHtmlElementPrivate::FormHtmlElementPrivate(Tag _tag, FormHtmlElement *q) :
+    q_ptr(q), tag(_tag)
 {
 
 }
 
+QStringList FormHtmlElementPrivate::attrList() const
+{
+    QStringList lst;
+
+    if (!accesskey.isEmpty()) {
+        lst.append(u"accesskey=\""_qs + accesskey + QLatin1Char('"'));
+    }
+    if (hidden) {
+        lst.append(u"hidden"_qs);
+    }
+    if (!htmlId.isEmpty()) {
+        lst.append(u"id=\""_qs + htmlId + QLatin1Char('"'));
+    }
+    if (spellcheck && (tag == Tag::Input || tag == Tag::Textarea)) {
+        lst.append(u"hidden=\"true\""_qs);
+    }
+    if (tabindex != 0) {
+        lst.append(u"tabindex=\""_qs + QString::number(tabindex) + QLatin1Char('"'));
+    }
+    if (!title.isEmpty()) {
+        lst.append(u"title=\""_qs + title + QLatin1Char('"'));
+    }
+
+    return lst;
+}
+
 FormHtmlElement::FormHtmlElement(QObject *parent) :
-    QObject(parent), d_ptr(new FormHtmlElementPrivate(this))
+    QObject(parent), d_ptr(new FormHtmlElementPrivate(FormHtmlElementPrivate::Tag::None, this))
 {
 
 }
@@ -45,16 +71,10 @@ void FormHtmlElement::setAccesskey(const QString &accesskey) noexcept
     d->accesskey = accesskey;
 }
 
-CutelystForms::FormHtmlElement::DraggableState FormHtmlElement::draggable() const noexcept
+QString FormHtmlElement::attrs() const
 {
     Q_D(const FormHtmlElement);
-    return d->draggable;
-}
-
-void FormHtmlElement::setDraggable(CutelystForms::FormHtmlElement::DraggableState draggable) noexcept
-{
-    Q_D(FormHtmlElement);
-    d->draggable = draggable;
+    return d->attrList().join(QChar(QChar::Space));
 }
 
 bool FormHtmlElement::isHidden() const noexcept

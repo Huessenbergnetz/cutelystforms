@@ -25,7 +25,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT FormHtmlElement : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString accesskey READ accesskey WRITE setAccesskey)
-    Q_PROPERTY(CutelystForms::FormHtmlElement::DraggableState draggable READ draggable WRITE setDraggable)
+    Q_PROPERTY(QString attrs READ attrs)
     Q_PROPERTY(bool hidden READ isHidden WRITE setHidden)
     Q_PROPERTY(QString htmlClass READ htmlClass WRITE setHtmlClass)
     Q_PROPERTY(QString htmlId READ htmlId WRITE setHtmlId)
@@ -38,18 +38,10 @@ public:
     explicit FormHtmlElement(QObject *parent = nullptr);
     ~FormHtmlElement() override;
 
-    enum DraggableState {
-        DragAuto    = 0,
-        DragTrue,
-        DragFalse
-    };
-    Q_ENUM(DraggableState)
-
     Q_REQUIRED_RESULT QString accesskey() const noexcept;
     void setAccesskey(const QString &accesskey) noexcept;
 
-    Q_REQUIRED_RESULT DraggableState draggable() const noexcept;
-    void setDraggable(DraggableState draggable) noexcept;
+    [[nodiscard]] virtual QString attrs() const;
 
     Q_REQUIRED_RESULT bool isHidden() const noexcept;
     void setHidden(bool hidden) noexcept;
