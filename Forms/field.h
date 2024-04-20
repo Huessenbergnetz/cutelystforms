@@ -32,9 +32,17 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Field : public FormHtmlElement
     Q_PROPERTY(QString description READ description WRITE setDescription)
     Q_PROPERTY(bool disabled READ disabled WRITE setDisabled)
     Q_PROPERTY(QString label READ label WRITE setLabel)
+    Q_PROPERTY(QVariant max READ max WRITE setMax)
+    Q_PROPERTY(int maxlength READ maxlength WRITE setMaxlength)
+    Q_PROPERTY(QVariant min READ min WRITE setMin)
+    Q_PROPERTY(int minlength READ minlength WRITE setMinlength)
     Q_PROPERTY(bool multiple READ multiple WRITE setMultiple)
     Q_PROPERTY(QString name READ name WRITE setName)
+    Q_PROPERTY(QString placeholder READ placeholder WRITE setPlaceholder)
+    Q_PROPERTY(QString pattern READ pattern WRITE setPattern)
+    Q_PROPERTY(bool readonly READ readonly WRITE setReadonly)
     Q_PROPERTY(bool required READ required WRITE setRequired)
+    Q_PROPERTY(QVariant step READ step WRITE setStep)
     Q_PROPERTY(CutelystForms::Field::Type type READ type CONSTANT)
     Q_PROPERTY(QString typeString READ typeString CONSTANT)
     Q_PROPERTY(QVariant value READ value WRITE setValue)
@@ -91,14 +99,38 @@ public:
     Q_REQUIRED_RESULT QString label() const noexcept;
     void setLabel(const QString &label) noexcept;
 
+    [[nodiscard]] QVariant max() const noexcept;
+    void setMax(const QVariant &max) noexcept;
+
+    [[nodiscard]] int maxlength() const noexcept;
+    void setMaxlength(int maxlength) noexcept;
+
+    [[nodiscard]] QVariant min() const noexcept;
+    void setMin(const QVariant &min) noexcept;
+
+    [[nodiscard]] int minlength() const noexcept;
+    void setMinlength(int minlength) noexcept;
+
     Q_REQUIRED_RESULT bool multiple() const noexcept;
     void setMultiple(bool multiple) noexcept;
 
     Q_REQUIRED_RESULT QString name() const noexcept;
     void setName(const QString &name) noexcept;
 
+    [[nodiscard]] QString placeholder() const noexcept;
+    void setPlaceholder(const QString &placeholder) noexcept;
+
+    [[nodiscard]] QString pattern() const noexcept;
+    void setPattern(const QString &pattern) noexcept;
+
+    [[nodiscard]] bool readonly() const noexcept;
+    void setReadonly(bool readonly) noexcept;
+
     [[nodiscard]] bool required() const noexcept;
     void setRequired(bool required) noexcept;
+
+    [[nodiscard]] QVariant step() const noexcept;
+    void setStep(const QVariant &step) noexcept;
 
     Q_REQUIRED_RESULT virtual Field::Type type() const noexcept;
 

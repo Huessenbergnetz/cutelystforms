@@ -4,6 +4,9 @@
  */
 
 #include "field_p.h"
+#include <QDate>
+#include <QDateTime>
+#include <QTime>
 
 using namespace CutelystForms;
 
@@ -29,20 +32,69 @@ QStringList FieldPrivate::attrList() const
     if (disabled) {
         lst.append(u"disabled"_qs);
     }
+    if (max.isValid()) {
+        lst.append(u"max=\""_qs + getAttrString(max) + QLatin1Char('"'));
+    }
+    if (maxlength > -1) {
+        lst.append(u"maxlength=\""_qs + QString::number(maxlength) + QLatin1Char('"'));
+    }
+    if (min.isValid()) {
+        lst.append(u"min=\""_qs + getAttrString(min) + QLatin1Char('"'));
+    }
+    if (minlength > -1) {
+        lst.append(u"minlength=\""_qs + QString::number(minlength) + QLatin1Char('"'));
+    }
     if (multiple && (tag == Tag::Select || type == Field::File || Field::Email)) {
         lst.append(u"multiple"_qs);
     }
-    if (name.isEmpty()) {
+    if (!name.isEmpty()) {
         lst.append(u"name=\""_qs + name + QLatin1Char('"'));
+    }
+    if (!placeholder.isEmpty()) {
+        lst.append(u"placeholder=\""_qs + placeholder + QLatin1Char('"'));
+    }
+    if (!pattern.isEmpty()) {
+        lst.append(u"pattern=\""_qs + pattern + QLatin1Char('"'));
+    }
+    if (readonly) {
+        lst.append(u"readonly"_qs);
     }
     if (required) {
         lst.append(u"required"_qs);
     }
+    if (step.isValid()) {
+        lst.append(u"step=\""_qs + step.toString() + QLatin1Char('"'));
+    }
     if (value.isValid()) {
-        lst.append(u"value=\""_qs + value.toString() + QLatin1Char('"'));
+        lst.append(u"value=\""_qs + getAttrString(value) + QLatin1Char('"'));
     }
 
     return lst;
+}
+
+QString FieldPrivate::getAttrString(const QVariant &v) const
+{
+    if (type == Field::Date) {
+        if (v.userType() == QMetaType::QDate) {
+            return v.toDate().toString(Qt::ISODate);
+        } else {
+            return v.toString();
+        }
+    } else if (type == Field::DatetimeLocal) {
+        if (v.userType() == QMetaType::QDateTime) {
+            return v.toDateTime().toString(u"yyyy-MM-ddTHH:mm:ss");
+        } else {
+            return v.toString();
+        }
+    } else if (type == Field::Time) {
+        if (v.userType() == QMetaType::QTime) {
+            return v.toTime().toString(u"HH:mm:ss");
+        } else {
+            return v.toString();
+        }
+    } else {
+        return v.toString();
+    }
 }
 
 Field::Field(QObject *parent) :
@@ -129,6 +181,54 @@ void Field::setLabel(const QString &label) noexcept
     d->label = label;
 }
 
+QVariant Field::max() const noexcept
+{
+    Q_D(const Field);
+    return d->max;
+}
+
+void Field::setMax(const QVariant &max) noexcept
+{
+    Q_D(Field);
+    d->max = max;
+}
+
+int Field::maxlength() const noexcept
+{
+    Q_D(const Field);
+    return d->maxlength;
+}
+
+void Field::setMaxlength(int maxlength) noexcept
+{
+    Q_D(Field);
+    d->maxlength = maxlength;
+}
+
+QVariant Field::min() const noexcept
+{
+    Q_D(const Field);
+    return d->min;
+}
+
+void Field::setMin(const QVariant &min) noexcept
+{
+    Q_D(Field);
+    d->min = min;
+}
+
+int Field::minlength() const noexcept
+{
+    Q_D(const Field);
+    return d->minlength;
+}
+
+void Field::setMinlength(int minlength) noexcept
+{
+    Q_D(Field);
+    d->minlength = minlength;
+}
+
 bool Field::multiple() const noexcept
 {
     Q_D(const Field);
@@ -153,6 +253,42 @@ void Field::setName(const QString &name) noexcept
     d->name = name;
 }
 
+QString Field::placeholder() const noexcept
+{
+    Q_D(const Field);
+    return d->placeholder;
+}
+
+void Field::setPlaceholder(const QString &placeholder) noexcept
+{
+    Q_D(Field);
+    d->placeholder = placeholder;
+}
+
+QString Field::pattern() const noexcept
+{
+    Q_D(const Field);
+    return d->pattern;
+}
+
+void Field::setPattern(const QString &pattern) noexcept
+{
+    Q_D(Field);
+    d->pattern = pattern;
+}
+
+bool Field::readonly() const noexcept
+{
+    Q_D(const Field);
+    return d->readonly;
+}
+
+void Field::setReadonly(bool readonly) noexcept
+{
+    Q_D(Field);
+    d->readonly = readonly;
+}
+
 bool Field::required() const noexcept
 {
     Q_D(const Field);
@@ -163,6 +299,18 @@ void Field::setRequired(bool required) noexcept
 {
     Q_D(Field);
     d->required = required;
+}
+
+QVariant Field::step() const noexcept
+{
+    Q_D(const Field);
+    return d->step;
+}
+
+void Field::setStep(const QVariant &step) noexcept
+{
+    Q_D(Field);
+    d->step = step;
 }
 
 CutelystForms::Field::Type Field::type() const noexcept

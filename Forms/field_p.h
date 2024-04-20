@@ -19,19 +19,28 @@ public:
     ~FieldPrivate() override = default;
 
     virtual QStringList attrList() const override;
+    QString getAttrString(const QVariant &v) const;
 
     NamedListProperty<Option, Field> options;
     NamedListProperty<Optgroup, Field> optgroups;
+    QVariant max;
+    QVariant min;
+    QVariant step;
     QVariant value;
     QString accept;
     QString autocomplete;
     QString description;
     QString label;
     QString name;
+    QString pattern;
+    QString placeholder;
+    int minlength{-1};
+    int maxlength{-1};
     Field::Type type{Field::None};
     bool checked{false};
     bool disabled{false};
     bool multiple{false};
+    bool readonly{false};
     bool required{false};
 
     C_FORMS_QMLLIST_FUNCS(Option, option, Field)
