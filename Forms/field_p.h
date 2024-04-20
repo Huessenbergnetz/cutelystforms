@@ -31,6 +31,7 @@ public:
     QString autocomplete;
     QString description;
     QString label;
+    QString list;
     QString name;
     QString pattern;
     QString placeholder;

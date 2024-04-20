@@ -42,13 +42,19 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Form : public FormHtmlElement
     Q_PROPERTY(bool novalidate READ novalidate WRITE setNovalidate)
     Q_PROPERTY(CutelystForms::Form::Target target READ target WRITE setTarget)
     Q_PROPERTY(QString targetString READ targetString)
+
     Q_PROPERTY(QQmlListProperty<CutelystForms::Field> fields READ fields)
+    Q_PROPERTY(QList<CutelystForms::Field*> fieldList READ fieldList)
     Q_PROPERTY(QMap<QString, CutelystForms::Field*> fieldById READ fieldIdMap)
     Q_PROPERTY(QMap<QString, CutelystForms::Field*> fieldByName READ fieldNameMap)
+
     Q_PROPERTY(QQmlListProperty<CutelystForms::Fieldset> fieldsets READ fieldsets)
+    Q_PROPERTY(QList<CutelystForms::Fieldset*> fieldsetList READ fieldsetList)
     Q_PROPERTY(QMap<QString, CutelystForms::Fieldset*> fieldsetById READ fieldsetIdMap)
     Q_PROPERTY(QMap<QString, CutelystForms::Fieldset*> fieldsetByName READ fieldsetNameMap)
+
     Q_PROPERTY(QQmlListProperty<CutelystForms::Button> buttons READ buttons)
+    Q_PROPERTY(QList<CutelystForms::Button*> buttonList READ buttonList)
     Q_PROPERTY(QMap<QString, CutelystForms::Button*> buttonById READ buttonIdMap)
     Q_PROPERTY(QMap<QString, CutelystForms::Button*> buttonByName READ buttonNameMap)
     Q_CLASSINFO("DefaultProperty", "fields")

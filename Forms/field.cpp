@@ -181,6 +181,18 @@ void Field::setLabel(const QString &label) noexcept
     d->label = label;
 }
 
+QString Field::list() const noexcept
+{
+    Q_D(const Field);
+    return d->list;
+}
+
+void Field::setList(const QString &list) noexcept
+{
+    Q_D(Field);
+    d->list = list;
+}
+
 QVariant Field::max() const noexcept
 {
     Q_D(const Field);

@@ -32,6 +32,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Field : public FormHtmlElement
     Q_PROPERTY(QString description READ description WRITE setDescription)
     Q_PROPERTY(bool disabled READ disabled WRITE setDisabled)
     Q_PROPERTY(QString label READ label WRITE setLabel)
+    Q_PROPERTY(QString list READ list WRITE setList)
     Q_PROPERTY(QVariant max READ max WRITE setMax)
     Q_PROPERTY(int maxlength READ maxlength WRITE setMaxlength)
     Q_PROPERTY(QVariant min READ min WRITE setMin)
@@ -48,8 +49,11 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Field : public FormHtmlElement
     Q_PROPERTY(QVariant value READ value WRITE setValue)
 
     Q_PROPERTY(QQmlListProperty<CutelystForms::Option> options READ options)
+    Q_PROPERTY(QList<CutelystForms::Option*> optionList READ optionList)
     Q_PROPERTY(QMap<QString, CutelystForms::Option*> optionById READ optionIdMap)
+
     Q_PROPERTY(QQmlListProperty<CutelystForms::Optgroup> optgroups READ optgroups)
+    Q_PROPERTY(QList<CutelystForms::Optgroup*> optgroupList READ optgroupList)
     Q_PROPERTY(QMap<QString, CutelystForms::Optgroup*> optgroupById READ optgroupIdMap)
 
     Q_CLASSINFO("DefaultProperty", "options")
@@ -98,6 +102,9 @@ public:
 
     Q_REQUIRED_RESULT QString label() const noexcept;
     void setLabel(const QString &label) noexcept;
+
+    [[nodiscard]] QString list() const noexcept;
+    void setList(const QString &list) noexcept;
 
     [[nodiscard]] QVariant max() const noexcept;
     void setMax(const QVariant &max) noexcept;
