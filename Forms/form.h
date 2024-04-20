@@ -85,7 +85,7 @@ public:
     Q_ENUM(Target)
 
     Q_REQUIRED_RESULT QStringList acceptCharset() const noexcept;
-    void setAcceptCharset(const QStringList &acceptCharset) noexcept;
+    void setAcceptCharset(const QStringList &acceptCharset);
 
     Q_REQUIRED_RESULT QUrl action() const noexcept;
     void setAction(const QUrl &action) noexcept;
@@ -112,6 +112,8 @@ public:
 
     Q_REQUIRED_RESULT bool novalidate() const noexcept;
     void setNovalidate(bool novalidate) noexcept;
+
+    void setErrors(const QHash<QString, QStringList> &errors);
 
     Q_REQUIRED_RESULT QString tagName() const noexcept override;
 

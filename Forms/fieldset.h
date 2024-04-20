@@ -33,6 +33,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Fieldset : public FormHtmlElement
     Q_PROPERTY(QString description READ description WRITE setDescription)
     Q_PROPERTY(CutelystForms::Legend* legend READ legend WRITE setLegend)
     Q_PROPERTY(QQmlListProperty<CutelystForms::Field> fields READ fields)
+    Q_PROPERTY(QList<CutelystForms::Field*> fieldList READ fieldList)
     Q_PROPERTY(QMap<QString, CutelystForms::Field*> fieldById READ fieldIdMap)
     Q_PROPERTY(QMap<QString, CutelystForms::Field*> fieldByName READ fieldNameMap)
     Q_CLASSINFO("DefaultProperty", "fields")

@@ -118,7 +118,7 @@ QStringList Form::acceptCharset() const noexcept
     return d->acceptCharset;
 }
 
-void Form::setAcceptCharset(const QStringList &acceptCharset) noexcept
+void Form::setAcceptCharset(const QStringList &acceptCharset)
 {
     Q_D(Form);
     d->acceptCharset = acceptCharset;
@@ -194,6 +194,25 @@ void Form::setNovalidate(bool novalidate) noexcept
 {
     Q_D(Form);
     d->novalidate = novalidate;
+}
+
+void Form::setErrors(const QHash<QString, QStringList> &errors)
+{
+    Q_D(Form);
+
+    const auto fieldsets = d->fieldsets.list();
+    for (auto e = errors.cbegin(), end = errors.cend(); e != end; e++) {
+        const auto field = d->fields.itemByName(e.key());
+        if (field) {
+            field->addErrors(e.value());
+        }
+        for (auto fs : fieldsets) {
+            const auto fsfield = fs->fieldByName(e.key()) ;
+            if (fsfield) {
+                fsfield->addErrors(e.value());
+            }
+        }
+    }
 }
 
 CutelystForms::Form::Target Form::target() const noexcept

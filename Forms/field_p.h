@@ -27,6 +27,7 @@ public:
     QVariant min;
     QVariant step;
     QVariant value;
+    QStringList errors;
     QString accept;
     QString autocomplete;
     QString description;

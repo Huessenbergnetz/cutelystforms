@@ -125,6 +125,11 @@ public:
         return m_idMap;
     }
 
+    bool isEmpty() const noexcept
+    {
+        return m_list.isEmpty();
+    }
+
 private:
     P *m_parent{nullptr};
     QList<T *> m_list;

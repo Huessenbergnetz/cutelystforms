@@ -31,6 +31,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Field : public FormHtmlElement
     Q_PROPERTY(bool checked READ checked WRITE setChecked)
     Q_PROPERTY(QString description READ description WRITE setDescription)
     Q_PROPERTY(bool disabled READ disabled WRITE setDisabled)
+    Q_PROPERTY(QStringList errors READ errors WRITE setErrors)
     Q_PROPERTY(QString label READ label WRITE setLabel)
     Q_PROPERTY(QString list READ list WRITE setList)
     Q_PROPERTY(QVariant max READ max WRITE setMax)
@@ -96,6 +97,10 @@ public:
 
     Q_REQUIRED_RESULT QString description() const noexcept;
     void setDescription(const QString &description) noexcept;
+
+    [[nodiscard]] QStringList errors() const noexcept;
+    void setErrors(const QStringList &errors);
+    void addErrors(const QStringList &errors);
 
     [[nodiscard]] bool disabled() const noexcept;
     void setDisabled(bool disabled) noexcept;

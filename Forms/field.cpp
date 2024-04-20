@@ -169,6 +169,24 @@ void Field::setDisabled(bool disabled) noexcept
     d->disabled = disabled;
 }
 
+QStringList Field::errors() const noexcept
+{
+    Q_D(const Field);
+    return d->errors;
+}
+
+void Field::setErrors(const QStringList &errors)
+{
+    Q_D(Field);
+    d->errors = errors;
+}
+
+void Field::addErrors(const QStringList &errors)
+{
+    Q_D(Field);
+    d->errors.append(errors);
+}
+
 QString Field::label() const noexcept
 {
     Q_D(const Field);
