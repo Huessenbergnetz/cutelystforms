@@ -27,6 +27,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Optgroup : public SelectContent
 {
     Q_OBJECT
     Q_PROPERTY(QQmlListProperty<CutelystForms::Option> options READ options)
+    Q_PROPERTY(QList<CutelystForms::Option*> optionList READ optionList)
     Q_PROPERTY(QMap<QString, CutelystForms::Option*> optionById READ optionIdMap)
     Q_CLASSINFO("DefaultProperty", "options")
     QML_ELEMENT
