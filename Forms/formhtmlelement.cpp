@@ -9,10 +9,10 @@
 
 using namespace CutelystForms;
 
-FormHtmlElementPrivate::FormHtmlElementPrivate(Tag _tag, FormHtmlElement *q) :
-    q_ptr(q), tag(_tag)
+FormHtmlElementPrivate::FormHtmlElementPrivate(Tag _tag, FormHtmlElement *q)
+    : q_ptr(q)
+    , tag(_tag)
 {
-
 }
 
 QStringList FormHtmlElementPrivate::attrList() const
@@ -69,16 +69,16 @@ QStringList FormHtmlElementPrivate::attrList() const
 //     return {};
 // }
 
-FormHtmlElement::FormHtmlElement(QObject *parent) :
-    QObject(parent), d_ptr(new FormHtmlElementPrivate(FormHtmlElementPrivate::Tag::None, this))
+FormHtmlElement::FormHtmlElement(QObject *parent)
+    : QObject(parent)
+    , d_ptr(new FormHtmlElementPrivate(FormHtmlElementPrivate::Tag::None, this))
 {
-
 }
 
-FormHtmlElement::FormHtmlElement(FormHtmlElementPrivate &dd, QObject *parent) :
-    QObject(parent), d_ptr(&dd)
+FormHtmlElement::FormHtmlElement(FormHtmlElementPrivate &dd, QObject *parent)
+    : QObject(parent)
+    , d_ptr(&dd)
 {
-
 }
 
 // can not be defaulted as that could create an inline
@@ -86,7 +86,6 @@ FormHtmlElement::FormHtmlElement(FormHtmlElementPrivate &dd, QObject *parent) :
 // private class and QScopedPointer
 FormHtmlElement::~FormHtmlElement() // NOLINT(modernize-use-equals-default)
 {
-
 }
 
 QString FormHtmlElement::accesskey() const noexcept

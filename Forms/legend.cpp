@@ -7,22 +7,19 @@
 
 using namespace CutelystForms;
 
-LegendPrivate::LegendPrivate(Legend *q) :
-    FormHtmlElementPrivate(Tag::Legend, q)
+LegendPrivate::LegendPrivate(Legend *q)
+    : FormHtmlElementPrivate(Tag::Legend, q)
 {
-
 }
 
-Legend::Legend(QObject *parent) :
-    FormHtmlElement(* new LegendPrivate(this), parent)
+Legend::Legend(QObject *parent)
+    : FormHtmlElement(*new LegendPrivate(this), parent)
 {
-
 }
 
-Legend::Legend(LegendPrivate &dd, QObject *parent) :
-    FormHtmlElement(dd, parent)
+Legend::Legend(LegendPrivate &dd, QObject *parent)
+    : FormHtmlElement(dd, parent)
 {
-
 }
 
 QString Legend::text() const noexcept

@@ -10,9 +10,9 @@
 #include <Forms/form.h>
 #include <Forms/formhtmlelement.h>
 #include <Forms/hiddeninput.h>
+#include <Forms/legend.h>
 #include <Forms/optgroup.h>
 #include <Forms/option.h>
-#include <Forms/legend.h>
 #include <Forms/searchinput.h>
 #include <Forms/select.h>
 #include <Forms/selectcontent.h>
@@ -25,7 +25,10 @@ class QmlCutelystFormsPlugin : public QQmlExtensionPlugin
     Q_OBJECT
     Q_PLUGIN_METADATA(IID QQmlExtensionInterface_iid FILE "plugin.json")
 public:
-    QmlCutelystFormsPlugin(QObject *parent = nullptr) : QQmlExtensionPlugin(parent) {}
+    QmlCutelystFormsPlugin(QObject *parent = nullptr)
+        : QQmlExtensionPlugin(parent)
+    {
+    }
 
     void registerTypes(const char *uri) override
     {

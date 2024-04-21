@@ -10,13 +10,11 @@ using namespace CutelystForms;
 EmailInputPrivate::EmailInputPrivate(EmailInput *q)
     : FieldPrivate{Field::Email, q}
 {
-
 }
 
 EmailInput::EmailInput(QObject *parent)
-    : Field{* new EmailInputPrivate{this}, parent}
+    : Field{*new EmailInputPrivate{this}, parent}
 {
-
 }
 
 CutelystForms::Field::Type EmailInput::type() const noexcept

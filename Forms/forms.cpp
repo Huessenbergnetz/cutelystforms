@@ -9,14 +9,14 @@
 #include <Cutelyst/Application>
 #include <Cutelyst/Context>
 
-#include <QStringList>
 #include <QFileInfo>
 #include <QQmlComponent>
 #include <QQmlContext>
 #include <QQmlError>
+#include <QStringList>
 
 #ifdef PLUGIN_CSRFPROTECTION_ENABLED
-#include <Cutelyst/Plugins/CSRFProtection/CSRFProtection>
+#    include <Cutelyst/Plugins/CSRFProtection/CSRFProtection>
 #endif
 
 #if defined(QT_DEBUG)
@@ -27,16 +27,23 @@ Q_LOGGING_CATEGORY(C_FORMS, "cutelyst.plugin.forms", QtWarningMsg)
 
 using namespace CutelystForms;
 
-static thread_local Forms *forms = nullptr; // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
+static thread_local Forms *forms =
+    nullptr; // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
 
-FormsContextObject::FormsContextObject(const QString &form, Cutelyst::Context *c) : QObject(c), m_form(form), m_c(c)
+FormsContextObject::FormsContextObject(const QString &form, Cutelyst::Context *c)
+    : QObject(c)
+    , m_form(form)
+    , m_c(c)
 {
-
 }
 
-QString FormsContextObject::cTr(const QString &sourceText, const QString &disambiguation, int n) const
+QString
+    FormsContextObject::cTr(const QString &sourceText, const QString &disambiguation, int n) const
 {
-    return m_c->translate(m_form.toUtf8().constData(), sourceText.toUtf8().constData(), disambiguation.toUtf8().constData(), n);
+    return m_c->translate(m_form.toUtf8().constData(),
+                          sourceText.toUtf8().constData(),
+                          disambiguation.toUtf8().constData(),
+                          n);
 }
 
 QString FormsContextObject::cTrId(const QString &id, int n) const
@@ -44,12 +51,20 @@ QString FormsContextObject::cTrId(const QString &id, int n) const
     return m_c->translate(nullptr, id.toUtf8().constData(), nullptr, n);
 }
 
-QString FormsContextObject::cTranslate(const QString &context, const QString &sourceText, const QString &disambiguation, int n) const
+QString FormsContextObject::cTranslate(const QString &context,
+                                       const QString &sourceText,
+                                       const QString &disambiguation,
+                                       int n) const
 {
-    return m_c->translate(context.toUtf8().constData(), sourceText.toUtf8().constData(), disambiguation.toUtf8().constData(), n);
+    return m_c->translate(context.toUtf8().constData(),
+                          sourceText.toUtf8().constData(),
+                          disambiguation.toUtf8().constData(),
+                          n);
 }
 
-QUrl FormsContextObject::cUriFor(const QString &path, const QStringList &args, const QVariantMap &queryValues) const
+QUrl FormsContextObject::cUriFor(const QString &path,
+                                 const QStringList &args,
+                                 const QVariantMap &queryValues) const
 {
     if (queryValues.empty()) {
         return m_c->uriFor(path, args);
@@ -74,11 +89,13 @@ QString FormsContextObject::cCsrfToken()
 #endif
 }
 
-Forms::Forms(Cutelyst::Application *parent) : Plugin(parent), d_ptr(new FormsPrivate)
+Forms::Forms(Cutelyst::Application *parent)
+    : Plugin(parent)
+    , d_ptr(new FormsPrivate)
 {
     Q_D(Forms);
     d->engine.setOutputWarningsToStandardError(false);
-    connect(&d->engine, &QQmlEngine::warnings, &d->engine, [](const QList<QQmlError> &warnings){
+    connect(&d->engine, &QQmlEngine::warnings, &d->engine, [](const QList<QQmlError> &warnings) {
         for (const QQmlError &warning : warnings) {
             qCWarning(C_FORMS) << warning.toString();
         }
@@ -114,7 +131,7 @@ QStringList Forms::includePaths() const noexcept
     return d->includePaths;
 }
 
-Form* Forms::getForm(const QString &name, Cutelyst::Context *c)
+Form *Forms::getForm(const QString &name, Cutelyst::Context *c)
 {
     if (!forms) {
         qCCritical(C_FORMS) << "Forms plugin not registered";
@@ -137,7 +154,8 @@ Form* Forms::getForm(const QString &name, Cutelyst::Context *c)
     }
 
     QQmlContext qmlContext(&forms->d_func()->engine);
-    qmlContext.setContextObject(new FormsContextObject(fi.completeBaseName(), c)); // NOLINT(cppcoreguidelines-owning-memory)
+    qmlContext.setContextObject(new FormsContextObject(
+        fi.completeBaseName(), c)); // NOLINT(cppcoreguidelines-owning-memory)
     auto it = c->stash().cbegin();
     while (it != c->stash().cend()) {
         qmlContext.setContextProperty(it.key(), it.value());
@@ -147,12 +165,15 @@ Form* Forms::getForm(const QString &name, Cutelyst::Context *c)
     QQmlComponent component(&forms->d_func()->engine, fi.filePath());
     auto formObject = component.create(&qmlContext);
     if (!formObject) {
-        qCWarning(C_FORMS) << "Failed to load form" << name << "from QML file:" << component.errorString();
+        qCWarning(C_FORMS) << "Failed to load form" << name
+                           << "from QML file:" << component.errorString();
         return nullptr;
     }
-    auto realFormObject = qobject_cast<Form*>(formObject);
+    auto realFormObject = qobject_cast<Form *>(formObject);
     if (!realFormObject) {
-        qCWarning(C_FORMS) << "Failed to load form" << name << "from QML file. Maybe the root item in the QML file is not of type Form.";
+        qCWarning(C_FORMS)
+            << "Failed to load form" << name
+            << "from QML file. Maybe the root item in the QML file is not of type Form.";
         return nullptr;
     }
     realFormObject->setObjectName(name);
@@ -173,7 +194,7 @@ QString Forms::templateDirPath(QStringView templ)
 
 bool Forms::setup(Cutelyst::Application *app)
 {
-    connect(app, &Cutelyst::Application::postForked, this, [](Cutelyst::Application *app){
+    connect(app, &Cutelyst::Application::postForked, this, [](Cutelyst::Application *app) {
         forms = app->plugin<Forms *>();
     });
 

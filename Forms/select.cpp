@@ -7,22 +7,20 @@
 
 using namespace CutelystForms;
 
-SelectPrivate::SelectPrivate(Select *q) :
-    FieldPrivate(Field::None, q)
+SelectPrivate::SelectPrivate(Select *q)
+    : FieldPrivate(Field::None, q)
 {
     tag = Tag::Select;
 }
 
-Select::Select(QObject *parent) :
-    Field(* new SelectPrivate(this), parent)
+Select::Select(QObject *parent)
+    : Field(*new SelectPrivate(this), parent)
 {
-
 }
 
-Select::Select(SelectPrivate &dd, QObject *parent) :
-    Field(dd, parent)
+Select::Select(SelectPrivate &dd, QObject *parent)
+    : Field(dd, parent)
 {
-
 }
 
 QString Select::tagName() const noexcept

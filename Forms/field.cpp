@@ -4,16 +4,19 @@
  */
 
 #include "field_p.h"
+
 #include <QDate>
 #include <QDateTime>
 #include <QTime>
 
 using namespace CutelystForms;
 
-FieldPrivate::FieldPrivate(Field::Type _type, Field *q) :
-    FormHtmlElementPrivate(Tag::Input, q), options(q), optgroups(q), type(_type)
+FieldPrivate::FieldPrivate(Field::Type _type, Field *q)
+    : FormHtmlElementPrivate(Tag::Input, q)
+    , options(q)
+    , optgroups(q)
+    , type(_type)
 {
-
 }
 
 QStringList FieldPrivate::attrList() const
@@ -97,16 +100,14 @@ QString FieldPrivate::getAttrString(const QVariant &v) const
     }
 }
 
-Field::Field(QObject *parent) :
-    FormHtmlElement(* new FieldPrivate(Field::None, this), parent)
+Field::Field(QObject *parent)
+    : FormHtmlElement(*new FieldPrivate(Field::None, this), parent)
 {
-
 }
 
-Field::Field(FieldPrivate &dd, QObject *parent) :
-    FormHtmlElement(dd, parent)
+Field::Field(FieldPrivate &dd, QObject *parent)
+    : FormHtmlElement(dd, parent)
 {
-
 }
 
 QString Field::accept() const noexcept
@@ -368,14 +369,14 @@ void Field::setValue(const QVariant &value) noexcept
 QQmlListProperty<CutelystForms::Option> Field::options()
 {
     Q_D(Field);
-    return {this, nullptr,
-        &FieldPrivate::appendOption,
-        &FieldPrivate::optionCount,
-        &FieldPrivate::option,
-        &FieldPrivate::clearOptions,
-        &FieldPrivate::replaceOption,
-        &FieldPrivate::removeLastOption
-    };
+    return {this,
+            nullptr,
+            &FieldPrivate::appendOption,
+            &FieldPrivate::optionCount,
+            &FieldPrivate::option,
+            &FieldPrivate::clearOptions,
+            &FieldPrivate::replaceOption,
+            &FieldPrivate::removeLastOption};
 }
 
 void Field::appendOption(Option *option)
@@ -384,19 +385,19 @@ void Field::appendOption(Option *option)
     d->options.append(option);
 }
 
-QList<Option*>::size_type Field::optionCount() const noexcept
+QList<Option *>::size_type Field::optionCount() const noexcept
 {
     Q_D(const Field);
     return d->options.count();
 }
 
-Option* Field::option(QList<Option*>::size_type idx) const
+Option *Field::option(QList<Option *>::size_type idx) const
 {
     Q_D(const Field);
     return d->options.item(idx);
 }
 
-Option* Field::optionById(const QString &id) const
+Option *Field::optionById(const QString &id) const
 {
     Q_D(const Field);
     return d->options.itemById(id);
@@ -408,7 +409,7 @@ void Field::clearOptions()
     d->options.clear();
 }
 
-void Field::replaceOption(QList<Option*>::size_type idx, Option *o)
+void Field::replaceOption(QList<Option *>::size_type idx, Option *o)
 {
     Q_D(Field);
     d->options.replace(idx, o);
@@ -420,13 +421,13 @@ void Field::removeLastOption()
     d->options.removeLast();
 }
 
-QList<Option*> Field::optionList() const noexcept
+QList<Option *> Field::optionList() const noexcept
 {
     Q_D(const Field);
     return d->options.list();
 }
 
-QMap<QString, Option*> Field::optionIdMap() const noexcept
+QMap<QString, Option *> Field::optionIdMap() const noexcept
 {
     Q_D(const Field);
     return d->options.idMap();
@@ -435,14 +436,14 @@ QMap<QString, Option*> Field::optionIdMap() const noexcept
 QQmlListProperty<CutelystForms::Optgroup> Field::optgroups()
 {
     Q_D(Field);
-    return {this, nullptr,
-        &FieldPrivate::appendOptgroup,
-        &FieldPrivate::optgroupCount,
-        &FieldPrivate::optgroup,
-        &FieldPrivate::clearOptgroups,
-        &FieldPrivate::replaceOptgroup,
-        &FieldPrivate::removeLastOptgroup
-    };
+    return {this,
+            nullptr,
+            &FieldPrivate::appendOptgroup,
+            &FieldPrivate::optgroupCount,
+            &FieldPrivate::optgroup,
+            &FieldPrivate::clearOptgroups,
+            &FieldPrivate::replaceOptgroup,
+            &FieldPrivate::removeLastOptgroup};
 }
 
 void Field::appendOptgroup(Optgroup *optgroup)
@@ -451,19 +452,19 @@ void Field::appendOptgroup(Optgroup *optgroup)
     d->optgroups.append(optgroup);
 }
 
-QList<Optgroup*>::size_type Field::optgroupCount() const noexcept
+QList<Optgroup *>::size_type Field::optgroupCount() const noexcept
 {
     Q_D(const Field);
     return d->optgroups.count();
 }
 
-Optgroup* Field::optgroup(QList<Optgroup*>::size_type idx) const
+Optgroup *Field::optgroup(QList<Optgroup *>::size_type idx) const
 {
     Q_D(const Field);
     return d->optgroups.item(idx);
 }
 
-Optgroup* Field::optgroupById(const QString &id) const
+Optgroup *Field::optgroupById(const QString &id) const
 {
     Q_D(const Field);
     return d->optgroups.itemById(id);
@@ -475,7 +476,7 @@ void Field::clearOptgroups()
     d->optgroups.clear();
 }
 
-void Field::replaceOptgroup(QList<Optgroup*>::size_type idx, Optgroup *o)
+void Field::replaceOptgroup(QList<Optgroup *>::size_type idx, Optgroup *o)
 {
     Q_D(Field);
     d->optgroups.replace(idx, o);
@@ -487,13 +488,13 @@ void Field::removeLastOptgroup()
     d->optgroups.removeLast();
 }
 
-QList<Optgroup*> Field::optgroupList() const noexcept
+QList<Optgroup *> Field::optgroupList() const noexcept
 {
     Q_D(const Field);
     return d->optgroups.list();
 }
 
-QMap<QString, Optgroup*> Field::optgroupIdMap() const noexcept
+QMap<QString, Optgroup *> Field::optgroupIdMap() const noexcept
 {
     Q_D(const Field);
     return d->optgroups.idMap();

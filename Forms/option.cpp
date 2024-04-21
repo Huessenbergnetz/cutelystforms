@@ -7,22 +7,20 @@
 
 using namespace CutelystForms;
 
-OptionPrivate::OptionPrivate(Option *q) :
-    SelectContentPrivate(q)
+OptionPrivate::OptionPrivate(Option *q)
+    : SelectContentPrivate(q)
 {
     tag = Tag::Option;
 }
 
-Option::Option(QObject *parent) :
-    SelectContent(* new OptionPrivate(this), parent)
+Option::Option(QObject *parent)
+    : SelectContent(*new OptionPrivate(this), parent)
 {
-
 }
 
-Option::Option(OptionPrivate &dd, QObject *parent) :
-    SelectContent(dd, parent)
+Option::Option(OptionPrivate &dd, QObject *parent)
+    : SelectContent(dd, parent)
 {
-
 }
 
 bool Option::isSelected() const noexcept

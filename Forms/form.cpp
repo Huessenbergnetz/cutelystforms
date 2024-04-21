@@ -7,10 +7,12 @@
 
 using namespace CutelystForms;
 
-FormPrivate::FormPrivate(Form *q) :
-    FormHtmlElementPrivate{Tag::Form, q}, fields{q}, fieldsets{q}, buttons{q}
+FormPrivate::FormPrivate(Form *q)
+    : FormHtmlElementPrivate{Tag::Form, q}
+    , fields{q}
+    , fieldsets{q}
+    , buttons{q}
 {
-
 }
 
 QStringList FormPrivate::attrList() const
@@ -18,7 +20,8 @@ QStringList FormPrivate::attrList() const
     QStringList lst = FormHtmlElementPrivate::attrList();
 
     if (!acceptCharset.empty()) {
-        lst.append(u"accept-charset=\""_qs + acceptCharset.join(QLatin1Char(',')) + QLatin1Char('"'));
+        lst.append(u"accept-charset=\""_qs + acceptCharset.join(QLatin1Char(',')) +
+                   QLatin1Char('"'));
     }
     if (action.isValid()) {
         lst.append(u"action=\""_qs + action.toString(QUrl::FullyEncoded) + QLatin1Char('"'));
@@ -45,7 +48,7 @@ QStringList FormPrivate::attrList() const
 
 QString FormPrivate::enctypeString() const
 {
-    switch(enctype) {
+    switch (enctype) {
     case Form::WwwFormUrlEncoded:
         return QStringLiteral("application/x-www-form-urlencoded");
     case Form::MultipartFormData:
@@ -60,7 +63,7 @@ QString FormPrivate::enctypeString() const
 
 QString FormPrivate::methodString() const
 {
-    switch(method) {
+    switch (method) {
     case Form::Get:
         return QStringLiteral("get");
     case Form::Post:
@@ -73,7 +76,7 @@ QString FormPrivate::methodString() const
 
 QString FormPrivate::targetString() const
 {
-    switch(target) {
+    switch (target) {
     case Form::Self:
         return QStringLiteral("_self");
     case Form::Blank:
@@ -88,16 +91,14 @@ QString FormPrivate::targetString() const
     return {};
 }
 
-Form::Form(QObject *parent) :
-    FormHtmlElement(* new FormPrivate(this), parent)
+Form::Form(QObject *parent)
+    : FormHtmlElement(*new FormPrivate(this), parent)
 {
-
 }
 
-Form::Form(FormPrivate &dd, QObject *parent) :
-    FormHtmlElement(dd, parent)
+Form::Form(FormPrivate &dd, QObject *parent)
+    : FormHtmlElement(dd, parent)
 {
-
 }
 
 QUrl Form::action() const noexcept
@@ -207,7 +208,7 @@ void Form::setErrors(const QHash<QString, QStringList> &errors)
             field->addErrors(e.value());
         }
         for (auto fs : fieldsets) {
-            const auto fsfield = fs->fieldByName(e.key()) ;
+            const auto fsfield = fs->fieldByName(e.key());
             if (fsfield) {
                 fsfield->addErrors(e.value());
             }
@@ -265,14 +266,14 @@ QString Form::tagName() const noexcept
 QQmlListProperty<CutelystForms::Field> Form::fields()
 {
     Q_D(Form);
-    return {this, nullptr,
-                &FormPrivate::appendField,
-                &FormPrivate::fieldCount,
-                &FormPrivate::field,
-                &FormPrivate::clearFields,
-                &FormPrivate::replaceField,
-                &FormPrivate::removeLastField
-    };
+    return {this,
+            nullptr,
+            &FormPrivate::appendField,
+            &FormPrivate::fieldCount,
+            &FormPrivate::field,
+            &FormPrivate::clearFields,
+            &FormPrivate::replaceField,
+            &FormPrivate::removeLastField};
 }
 
 void Form::appendField(Field *field)
@@ -281,25 +282,25 @@ void Form::appendField(Field *field)
     d->fields.append(field);
 }
 
-QList<Field*>::size_type Form::fieldCount() const noexcept
+QList<Field *>::size_type Form::fieldCount() const noexcept
 {
     Q_D(const Form);
     return d->fields.count();
 }
 
-Field* Form::field(QList<Field*>::size_type idx) const
+Field *Form::field(QList<Field *>::size_type idx) const
 {
     Q_D(const Form);
     return d->fields.item(idx);
 }
 
-Field* Form::fieldByName(const QString &name) const
+Field *Form::fieldByName(const QString &name) const
 {
     Q_D(const Form);
     return d->fields.itemByName(name);
 }
 
-Field* Form::fieldById(const QString &id) const
+Field *Form::fieldById(const QString &id) const
 {
     Q_D(const Form);
     return d->fields.itemById(id);
@@ -311,7 +312,7 @@ void Form::clearFields()
     d->fields.clear();
 }
 
-void Form::replaceField(QList<Field*>::size_type idx, Field *f)
+void Form::replaceField(QList<Field *>::size_type idx, Field *f)
 {
     Q_D(Form);
     d->fields.replace(idx, f);
@@ -323,19 +324,19 @@ void Form::removeLastField()
     d->fields.removeLast();
 }
 
-QList<Field*> Form::fieldList() const noexcept
+QList<Field *> Form::fieldList() const noexcept
 {
     Q_D(const Form);
     return d->fields.list();
 }
 
-QMap<QString, Field*> Form::fieldNameMap() const noexcept
+QMap<QString, Field *> Form::fieldNameMap() const noexcept
 {
     Q_D(const Form);
     return d->fields.nameMap();
 }
 
-QMap<QString, Field*> Form::fieldIdMap() const noexcept
+QMap<QString, Field *> Form::fieldIdMap() const noexcept
 {
     Q_D(const Form);
     return d->fields.idMap();
@@ -344,14 +345,14 @@ QMap<QString, Field*> Form::fieldIdMap() const noexcept
 QQmlListProperty<CutelystForms::Fieldset> Form::fieldsets()
 {
     Q_D(Form);
-    return {this, nullptr,
-        &FormPrivate::appendFieldset,
-        &FormPrivate::fieldsetCount,
-        &FormPrivate::fieldset,
-        &FormPrivate::clearFieldsets,
-        &FormPrivate::replaceFieldset,
-        &FormPrivate::removeLastFieldset
-    };
+    return {this,
+            nullptr,
+            &FormPrivate::appendFieldset,
+            &FormPrivate::fieldsetCount,
+            &FormPrivate::fieldset,
+            &FormPrivate::clearFieldsets,
+            &FormPrivate::replaceFieldset,
+            &FormPrivate::removeLastFieldset};
 }
 
 void Form::appendFieldset(Fieldset *fieldset)
@@ -360,25 +361,25 @@ void Form::appendFieldset(Fieldset *fieldset)
     d->fieldsets.append(fieldset);
 }
 
-QList<Fieldset*>::size_type Form::fieldsetCount() const noexcept
+QList<Fieldset *>::size_type Form::fieldsetCount() const noexcept
 {
     Q_D(const Form);
     return d->fieldsets.count();
 }
 
-Fieldset* Form::fieldset(QList<Fieldset*>::size_type idx) const
+Fieldset *Form::fieldset(QList<Fieldset *>::size_type idx) const
 {
     Q_D(const Form);
     return d->fieldsets.item(idx);
 }
 
-Fieldset* Form::fieldsetByName(const QString &name) const
+Fieldset *Form::fieldsetByName(const QString &name) const
 {
     Q_D(const Form);
     return d->fieldsets.itemByName(name);
 }
 
-Fieldset* Form::fieldsetById(const QString &id) const
+Fieldset *Form::fieldsetById(const QString &id) const
 {
     Q_D(const Form);
     return d->fieldsets.itemById(id);
@@ -390,7 +391,7 @@ void Form::clearFieldsets()
     d->fieldsets.clear();
 }
 
-void Form::replaceFieldset(QList<Fieldset*>::size_type idx, Fieldset *f)
+void Form::replaceFieldset(QList<Fieldset *>::size_type idx, Fieldset *f)
 {
     Q_D(Form);
     d->fieldsets.replace(idx, f);
@@ -402,19 +403,19 @@ void Form::removeLastFieldset()
     d->fieldsets.removeLast();
 }
 
-QList<Fieldset*> Form::fieldsetList() const noexcept
+QList<Fieldset *> Form::fieldsetList() const noexcept
 {
     Q_D(const Form);
     return d->fieldsets.list();
 }
 
-QMap<QString, Fieldset*> Form::fieldsetNameMap() const noexcept
+QMap<QString, Fieldset *> Form::fieldsetNameMap() const noexcept
 {
     Q_D(const Form);
     return d->fieldsets.nameMap();
 }
 
-QMap<QString, Fieldset*> Form::fieldsetIdMap() const noexcept
+QMap<QString, Fieldset *> Form::fieldsetIdMap() const noexcept
 {
     Q_D(const Form);
     return d->fieldsets.idMap();
@@ -423,14 +424,14 @@ QMap<QString, Fieldset*> Form::fieldsetIdMap() const noexcept
 QQmlListProperty<CutelystForms::Button> Form::buttons()
 {
     Q_D(Form);
-    return {this, nullptr,
-        &FormPrivate::appendButton,
-        &FormPrivate::buttonCount,
-        &FormPrivate::button,
-        &FormPrivate::clearButtons,
-        &FormPrivate::replaceButton,
-        &FormPrivate::removeLastButton
-    };
+    return {this,
+            nullptr,
+            &FormPrivate::appendButton,
+            &FormPrivate::buttonCount,
+            &FormPrivate::button,
+            &FormPrivate::clearButtons,
+            &FormPrivate::replaceButton,
+            &FormPrivate::removeLastButton};
 }
 
 void Form::appendButton(Button *button)
@@ -439,25 +440,25 @@ void Form::appendButton(Button *button)
     d->buttons.append(button);
 }
 
-QList<Button*>::size_type Form::buttonCount() const noexcept
+QList<Button *>::size_type Form::buttonCount() const noexcept
 {
     Q_D(const Form);
     return d->buttons.count();
 }
 
-Button* Form::button(QList<Button*>::size_type idx) const
+Button *Form::button(QList<Button *>::size_type idx) const
 {
     Q_D(const Form);
     return d->buttons.item(idx);
 }
 
-Button* Form::buttonByName(const QString &name) const
+Button *Form::buttonByName(const QString &name) const
 {
     Q_D(const Form);
     return d->buttons.itemByName(name);
 }
 
-Button* Form::buttonById(const QString &id) const
+Button *Form::buttonById(const QString &id) const
 {
     Q_D(const Form);
     return d->buttons.itemById(id);
@@ -469,7 +470,7 @@ void Form::clearButtons()
     d->buttons.clear();
 }
 
-void Form::replaceButton(QList<Button*>::size_type idx, Button *b)
+void Form::replaceButton(QList<Button *>::size_type idx, Button *b)
 {
     Q_D(Form);
     d->buttons.replace(idx, b);
@@ -481,19 +482,19 @@ void Form::removeLastButton()
     d->buttons.removeLast();
 }
 
-QList<Button*> Form::buttonList() const noexcept
+QList<Button *> Form::buttonList() const noexcept
 {
     Q_D(const Form);
     return d->buttons.list();
 }
 
-QMap<QString, Button*> Form::buttonNameMap() const noexcept
+QMap<QString, Button *> Form::buttonNameMap() const noexcept
 {
     Q_D(const Form);
     return d->buttons.nameMap();
 }
 
-QMap<QString, Button*> Form::buttonIdMap() const noexcept
+QMap<QString, Button *> Form::buttonIdMap() const noexcept
 {
     Q_D(const Form);
     return d->buttons.idMap();

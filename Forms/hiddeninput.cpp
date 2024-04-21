@@ -7,16 +7,14 @@
 
 using namespace CutelystForms;
 
-HiddenInputPrivate::HiddenInputPrivate(HiddenInput *q) :
-    FieldPrivate{Field::Hidden, q}
+HiddenInputPrivate::HiddenInputPrivate(HiddenInput *q)
+    : FieldPrivate{Field::Hidden, q}
 {
-
 }
 
-HiddenInput::HiddenInput(QObject *parent) :
-    Field{* new HiddenInputPrivate{this}, parent}
+HiddenInput::HiddenInput(QObject *parent)
+    : Field{*new HiddenInputPrivate{this}, parent}
 {
-
 }
 
 CutelystForms::Field::Type HiddenInput::type() const noexcept

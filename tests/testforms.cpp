@@ -6,22 +6,22 @@
 #ifndef FORMSTEST_H
 #define FORMSTEST_H
 
-#include <QTest>
-#include <QObject>
-#include <QLocale>
-
 #include "coverageobject.h"
 
 #include <Cutelyst/application.h>
-#include <Cutelyst/controller.h>
 #include <Cutelyst/context.h>
+#include <Cutelyst/controller.h>
+
+#include <QLocale>
+#include <QObject>
+#include <QTest>
 #ifdef PLUGIN_CSRFPROTECTION_ENABLED
-#include <Cutelyst/Plugins/CSRFProtection/csrfprotection.h>
+#    include <Cutelyst/Plugins/CSRFProtection/csrfprotection.h>
 #endif
-#include <Forms/forms.h>
 #include <Forms/form.h>
-#include <Forms/select.h>
+#include <Forms/forms.h>
 #include <Forms/hiddeninput.h>
+#include <Forms/select.h>
 
 using namespace CutelystForms;
 
@@ -29,19 +29,23 @@ class TestFormsController : public Cutelyst::Controller
 {
     Q_OBJECT
 public:
-    explicit TestFormsController(QObject *parent) : Cutelyst::Controller(parent) {}
+    explicit TestFormsController(QObject *parent)
+        : Cutelyst::Controller(parent)
+    {
+    }
 
     C_ATTR(test0, :Local)
-    void test0(Context *c) {
-        Q_UNUSED(c)
-    }
+    void test0(Context *c) { Q_UNUSED(c) }
 };
 
 class TestForms : public CoverageObject
 {
     Q_OBJECT
 public:
-    explicit TestForms(QObject *parent = nullptr) : CoverageObject(parent) {}
+    explicit TestForms(QObject *parent = nullptr)
+        : CoverageObject(parent)
+    {
+    }
 
 private Q_SLOTS:
     void initTestCase();
@@ -56,9 +60,9 @@ private:
     TestEngine *getEngine();
 };
 
-TestEngine* TestForms::getEngine()
+TestEngine *TestForms::getEngine()
 {
-    auto app = new TestApplication(this);
+    auto app    = new TestApplication(this);
     auto engine = new TestEngine(app, QVariantMap());
     new TestFormsController(app);
 
@@ -108,15 +112,16 @@ void TestForms::getForm()
     QVERIFY(fs0);
     QCOMPARE(fs0->htmlId(), QStringLiteral("fieldset1"));
     QCOMPARE(fs0->htmlClass(), QStringLiteral("hallo"));
-    Select *selectField = qobject_cast<Select*>(fs0->field(0));
+    Select *selectField = qobject_cast<Select *>(fs0->field(0));
     QVERIFY(selectField);
     auto option = selectField->option(0);
     QVERIFY(option);
-    QCOMPARE(QString::fromLatin1(option->metaObject()->className()), QStringLiteral("CutelystForms::Option"));
+    QCOMPARE(QString::fromLatin1(option->metaObject()->className()),
+             QStringLiteral("CutelystForms::Option"));
     auto fs1 = f->fieldset(1);
     QVERIFY(fs1);
     QCOMPARE(fs1->legend()->text(), QStringLiteral("Eine weitere große Legende"));
-    auto csrf = qobject_cast<HiddenInput*>(fs1->field(0));
+    auto csrf = qobject_cast<HiddenInput *>(fs1->field(0));
     QVERIFY(csrf);
     QVERIFY(!csrf->value().isNull());
 }

@@ -7,22 +7,19 @@
 
 using namespace CutelystForms;
 
-SelectContentPrivate::SelectContentPrivate(SelectContent *q) :
-    FormHtmlElementPrivate(Tag::None, q)
+SelectContentPrivate::SelectContentPrivate(SelectContent *q)
+    : FormHtmlElementPrivate(Tag::None, q)
 {
-
 }
 
-SelectContent::SelectContent(QObject *parent) :
-    FormHtmlElement(* new SelectContentPrivate(this), parent)
+SelectContent::SelectContent(QObject *parent)
+    : FormHtmlElement(*new SelectContentPrivate(this), parent)
 {
-
 }
 
-SelectContent::SelectContent(SelectContentPrivate &dd, QObject *parent) :
-    FormHtmlElement(dd, parent)
+SelectContent::SelectContent(SelectContentPrivate &dd, QObject *parent)
+    : FormHtmlElement(dd, parent)
 {
-
 }
 
 bool SelectContent::isDisabled() const noexcept

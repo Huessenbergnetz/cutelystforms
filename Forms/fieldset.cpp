@@ -7,10 +7,10 @@
 
 using namespace CutelystForms;
 
-FieldsetPrivate::FieldsetPrivate(Fieldset *q) :
-    FormHtmlElementPrivate(Tag::Fieldset, q), fields(q)
+FieldsetPrivate::FieldsetPrivate(Fieldset *q)
+    : FormHtmlElementPrivate(Tag::Fieldset, q)
+    , fields(q)
 {
-
 }
 
 QStringList FieldsetPrivate::attrList() const
@@ -30,16 +30,14 @@ QStringList FieldsetPrivate::attrList() const
     return lst;
 }
 
-Fieldset::Fieldset(QObject *parent) :
-    FormHtmlElement(* new FieldsetPrivate(this), parent)
+Fieldset::Fieldset(QObject *parent)
+    : FormHtmlElement(*new FieldsetPrivate(this), parent)
 {
-
 }
 
-Fieldset::Fieldset(FieldsetPrivate &dd, QObject *parent) :
-    FormHtmlElement(dd, parent)
+Fieldset::Fieldset(FieldsetPrivate &dd, QObject *parent)
+    : FormHtmlElement(dd, parent)
 {
-
 }
 
 bool Fieldset::isDisabled() const noexcept
@@ -90,7 +88,7 @@ void Fieldset::setDescription(const QString &description) noexcept
     d->description = description;
 }
 
-CutelystForms::Legend* Fieldset::legend() const noexcept
+CutelystForms::Legend *Fieldset::legend() const noexcept
 {
     Q_D(const Fieldset);
     return d->legend;
@@ -110,14 +108,14 @@ QString Fieldset::tagName() const noexcept
 QQmlListProperty<CutelystForms::Field> Fieldset::fields()
 {
     Q_D(Fieldset);
-    return {this, nullptr,
-                &FieldsetPrivate::appendField,
-                &FieldsetPrivate::fieldCount,
-                &FieldsetPrivate::field,
-                &FieldsetPrivate::clearFields,
-                &FieldsetPrivate::replaceField,
-                &FieldsetPrivate::removeLastField
-    };
+    return {this,
+            nullptr,
+            &FieldsetPrivate::appendField,
+            &FieldsetPrivate::fieldCount,
+            &FieldsetPrivate::field,
+            &FieldsetPrivate::clearFields,
+            &FieldsetPrivate::replaceField,
+            &FieldsetPrivate::removeLastField};
 }
 
 void Fieldset::appendField(Field *field)
@@ -126,25 +124,25 @@ void Fieldset::appendField(Field *field)
     d->fields.append(field);
 }
 
-QList<Field*>::size_type Fieldset::fieldCount() const noexcept
+QList<Field *>::size_type Fieldset::fieldCount() const noexcept
 {
     Q_D(const Fieldset);
     return d->fields.count();
 }
 
-Field* Fieldset::field(QList<Field*>::size_type idx) const
+Field *Fieldset::field(QList<Field *>::size_type idx) const
 {
     Q_D(const Fieldset);
     return d->fields.item(idx);
 }
 
-Field* Fieldset::fieldByName(const QString &name) const
+Field *Fieldset::fieldByName(const QString &name) const
 {
     Q_D(const Fieldset);
     return d->fields.itemByName(name);
 }
 
-Field* Fieldset::fieldById(const QString &id) const
+Field *Fieldset::fieldById(const QString &id) const
 {
     Q_D(const Fieldset);
     return d->fields.itemById(id);
@@ -156,7 +154,7 @@ void Fieldset::clearFields()
     d->fields.clear();
 }
 
-void Fieldset::replaceField(QList<Field*>::size_type idx, Field* f)
+void Fieldset::replaceField(QList<Field *>::size_type idx, Field *f)
 {
     Q_D(Fieldset);
     d->fields.replace(idx, f);
@@ -168,19 +166,19 @@ void Fieldset::removeLastField()
     d->fields.removeLast();
 }
 
-QList<Field*> Fieldset::fieldList() const noexcept
+QList<Field *> Fieldset::fieldList() const noexcept
 {
     Q_D(const Fieldset);
     return d->fields.list();
 }
 
-QMap<QString, Field*> Fieldset::fieldNameMap() const noexcept
+QMap<QString, Field *> Fieldset::fieldNameMap() const noexcept
 {
     Q_D(const Fieldset);
     return d->fields.nameMap();
 }
 
-QMap<QString, Field*> Fieldset::fieldIdMap() const noexcept
+QMap<QString, Field *> Fieldset::fieldIdMap() const noexcept
 {
     Q_D(const Fieldset);
     return d->fields.idMap();

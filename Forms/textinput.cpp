@@ -10,13 +10,11 @@ using namespace CutelystForms;
 TextInputPrivate::TextInputPrivate(TextInput *q)
     : FieldPrivate(Field::Text, q)
 {
-
 }
 
 TextInput::TextInput(QObject *parent)
-    : Field{* new TextInputPrivate{this}, parent}
+    : Field{*new TextInputPrivate{this}, parent}
 {
-
 }
 
 CutelystForms::Field::Type TextInput::type() const noexcept

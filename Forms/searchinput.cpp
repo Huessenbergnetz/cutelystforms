@@ -10,13 +10,11 @@ using namespace CutelystForms;
 SearchInputPrivate::SearchInputPrivate(SearchInput *q)
     : FieldPrivate{Field::Search, q}
 {
-
 }
 
 SearchInput::SearchInput(QObject *parent)
-    : Field{* new SearchInputPrivate{this}, parent}
+    : Field{*new SearchInputPrivate{this}, parent}
 {
-
 }
 
 CutelystForms::Field::Type SearchInput::type() const noexcept

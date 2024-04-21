@@ -7,10 +7,9 @@
 
 using namespace CutelystForms;
 
-ButtonPrivate::ButtonPrivate(Button *q) :
-    FormHtmlElementPrivate(Tag::Button ,q)
+ButtonPrivate::ButtonPrivate(Button *q)
+    : FormHtmlElementPrivate(Tag::Button, q)
 {
-
 }
 
 QString ButtonPrivate::formenctypeString() const
@@ -57,7 +56,7 @@ QString ButtonPrivate::formtargetString() const
 
 QString ButtonPrivate::typeString() const
 {
-    switch(type) {
+    switch (type) {
     case Button::Submit:
         return u"submit"_qs;
     case Button::Reset:
@@ -78,7 +77,8 @@ QStringList ButtonPrivate::attrList() const
         lst.append(u"disabled"_qs);
     }
     if (formaction.isValid()) {
-        lst.append(u"formaction=\""_qs + formaction.toString(QUrl::FullyEncoded) + QLatin1Char('"'));
+        lst.append(u"formaction=\""_qs + formaction.toString(QUrl::FullyEncoded) +
+                   QLatin1Char('"'));
     }
     if (formenctype != Button::NoEncType) {
         lst.append(u"formenctype=\""_qs + formenctypeString() + QLatin1Char('"'));
@@ -102,16 +102,14 @@ QStringList ButtonPrivate::attrList() const
     return lst;
 }
 
-Button::Button(QObject *parent) :
-    FormHtmlElement(* new ButtonPrivate(this), parent)
+Button::Button(QObject *parent)
+    : FormHtmlElement(*new ButtonPrivate(this), parent)
 {
-
 }
 
-Button::Button(ButtonPrivate &dd, QObject *parent) :
-    FormHtmlElement(dd, parent)
+Button::Button(ButtonPrivate &dd, QObject *parent)
+    : FormHtmlElement(dd, parent)
 {
-
 }
 
 bool Button::isDisabled() const noexcept

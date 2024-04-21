@@ -4,9 +4,8 @@
 
 #include "coverageobject.h"
 
-#include <Cutelyst/enginerequest.h>
-
 #include <Cutelyst/context.h>
+#include <Cutelyst/enginerequest.h>
 
 #include <QDebug>
 #include <QLibrary>
