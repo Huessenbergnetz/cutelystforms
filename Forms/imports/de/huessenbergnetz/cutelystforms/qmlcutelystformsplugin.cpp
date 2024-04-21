@@ -13,6 +13,7 @@
 #include <Forms/formhtmlelement.h>
 #include <Forms/hiddeninput.h>
 #include <Forms/legend.h>
+#include <Forms/monthinput.h>
 #include <Forms/optgroup.h>
 #include <Forms/option.h>
 #include <Forms/passwordinput.h>
@@ -55,6 +56,7 @@ public:
                 uri, major, minor, "DateTimeLocalInput");
             qmlRegisterType<CutelystForms::EmailInput>(uri, major, minor, "EmailInput");
             qmlRegisterType<CutelystForms::HiddenInput>(uri, major, minor, "HiddenInput");
+            qmlRegisterType<CutelystForms::MonthInput>(uri, major, minor, "MonthInput");
             qmlRegisterType<CutelystForms::PasswordInput>(uri, major, minor, "PasswordInput");
             qmlRegisterType<CutelystForms::SearchInput>(uri, major, minor, "SearchInput");
             qmlRegisterType<CutelystForms::TelInput>(uri, major, minor, "TelInput");
