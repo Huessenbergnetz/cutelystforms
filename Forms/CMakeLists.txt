@@ -38,6 +38,8 @@ set(cutelystforms_SRC
     passwordinput_p.h
     telinput.cpp
     telinput_p.h
+    urlinput.cpp
+    urlinput_p.h
 )
 
 set(cutelystforms_HEADERS
@@ -59,6 +61,7 @@ set(cutelystforms_HEADERS
     searchinput.h
     passwordinput.h
     telinput.h
+    urlinput.h
 )
 
 add_library(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms

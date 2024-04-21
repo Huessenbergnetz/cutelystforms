@@ -19,6 +19,7 @@
 #include <Forms/selectcontent.h>
 #include <Forms/telinput.h>
 #include <Forms/textinput.h>
+#include <Forms/urlinput.h>
 
 #include <QtQml>
 
@@ -52,6 +53,7 @@ public:
             qmlRegisterType<CutelystForms::SearchInput>(uri, major, minor, "SearchInput");
             qmlRegisterType<CutelystForms::TelInput>(uri, major, minor, "TelInput");
             qmlRegisterType<CutelystForms::TextInput>(uri, major, minor, "TextInput");
+            qmlRegisterType<CutelystForms::UrlInput>(uri, major, minor, "UrlInput");
             qmlRegisterType<CutelystForms::Select>(uri, major, minor, "Select");
             qmlRegisterAnonymousType<CutelystForms::SelectContent>(uri, major);
             qmlRegisterType<CutelystForms::Option>(uri, major, minor, "Option");
