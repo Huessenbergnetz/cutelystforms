@@ -78,26 +78,32 @@ QStringList FieldPrivate::attrList() const
 QString FieldPrivate::getAttrString(const QVariant &v) const
 {
     if (type == Field::Date) {
-        if (v.userType() == QMetaType::QDate) {
+        if (v.userType() == QMetaType::QDate || v.userType() == QMetaType::QDateTime) {
             return v.toDate().toString(Qt::ISODate);
-        } else {
-            return v.toString();
         }
     } else if (type == Field::DateTimeLocal) {
-        if (v.userType() == QMetaType::QDateTime) {
+        if (v.userType() == QMetaType::QDateTime || v.userType() == QMetaType::QDate) {
             return convertedDateTime(v.toDateTime()).toString(u"yyyy-MM-ddTHH:mm:ss");
-        } else {
-            return v.toString();
         }
     } else if (type == Field::Time) {
-        if (v.userType() == QMetaType::QTime) {
+        if (v.userType() == QMetaType::QTime || v.userType() == QMetaType::QDateTime) {
             return v.toTime().toString(u"HH:mm:ss");
-        } else {
-            return v.toString();
         }
-    } else {
-        return v.toString();
+    } else if (type == Field::Week) {
+        if (v.userType() == QMetaType::QDate || v.userType() == QMetaType::QDateTime) {
+            const auto date = v.toDate();
+            int yearNumber{date.year()};
+            int weekNumber = date.weekNumber(&yearNumber);
+            return QString::number(yearNumber) + u"-W" +
+                   QString::number(weekNumber).rightJustified(2, u'0');
+        }
+    } else if (type == Field::Month) {
+        if (v.userType() == QMetaType::QDate || v.userType() == QMetaType::QDateTime) {
+            return v.toDate().toString(u"yyyy-MM");
+        }
     }
+
+    return v.toString();
 }
 
 Field::Field(QObject *parent)
