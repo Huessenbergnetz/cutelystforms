@@ -13,6 +13,7 @@
 #include <Forms/legend.h>
 #include <Forms/optgroup.h>
 #include <Forms/option.h>
+#include <Forms/passwordinput.h>
 #include <Forms/searchinput.h>
 #include <Forms/select.h>
 #include <Forms/selectcontent.h>
@@ -37,7 +38,7 @@ public:
             constexpr int major{1};
             constexpr int minor{0};
 
-            // @uri org.cutelyst.forms
+            // @uri de.huessenbergnetz.cutelystforms
             qmlRegisterAnonymousType<CutelystForms::FormHtmlElement>(uri, major);
             qmlRegisterType<CutelystForms::Form>(uri, major, minor, "Form");
             qmlRegisterType<CutelystForms::Fieldset>(uri, major, minor, "Fieldset");
@@ -46,6 +47,7 @@ public:
             qmlRegisterAnonymousType<CutelystForms::Field>(uri, major);
             qmlRegisterType<CutelystForms::EmailInput>(uri, major, minor, "EmailInput");
             qmlRegisterType<CutelystForms::HiddenInput>(uri, major, minor, "HiddenInput");
+            qmlRegisterType<CutelystForms::PasswordInput>(uri, major, minor, "PasswordInput");
             qmlRegisterType<CutelystForms::SearchInput>(uri, major, minor, "SearchInput");
             qmlRegisterType<CutelystForms::TextInput>(uri, major, minor, "TextInput");
             qmlRegisterType<CutelystForms::Select>(uri, major, minor, "Select");
