@@ -5,6 +5,7 @@
 
 #include <Forms/button.h>
 #include <Forms/dateinput.h>
+#include <Forms/datetimelocalinput.h>
 #include <Forms/emailinput.h>
 #include <Forms/field.h>
 #include <Forms/fieldset.h>
@@ -49,6 +50,8 @@ public:
             qmlRegisterType<CutelystForms::Button>(uri, major, minor, "Button");
             qmlRegisterAnonymousType<CutelystForms::Field>(uri, major);
             qmlRegisterType<CutelystForms::DateInput>(uri, major, minor, "DateInput");
+            qmlRegisterType<CutelystForms::DateTimeLocalInput>(
+                uri, major, minor, "DateTimeLocalInput");
             qmlRegisterType<CutelystForms::EmailInput>(uri, major, minor, "EmailInput");
             qmlRegisterType<CutelystForms::HiddenInput>(uri, major, minor, "HiddenInput");
             qmlRegisterType<CutelystForms::PasswordInput>(uri, major, minor, "PasswordInput");

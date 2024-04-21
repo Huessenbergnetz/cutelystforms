@@ -76,7 +76,7 @@ public:
         File,
         Color,
         Date,
-        DatetimeLocal,
+        DateTimeLocal,
         Week,
         Month,
         Time
