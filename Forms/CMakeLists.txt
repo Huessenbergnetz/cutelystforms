@@ -48,6 +48,8 @@ set(cutelystforms_SRC
     weekinput_p.h
     timeinput.cpp
     timeinput_p.h
+    monthinput.cpp
+    monthinput_p.h
 )
 
 set(cutelystforms_HEADERS
@@ -74,6 +76,7 @@ set(cutelystforms_HEADERS
     datetimelocalinput.h
     weekinput.h
     timeinput.h
+    monthinput.h
 )
 
 add_library(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms
