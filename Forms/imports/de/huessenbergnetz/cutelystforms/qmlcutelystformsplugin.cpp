@@ -3,18 +3,19 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-#include <Forms/formhtmlelement.h>
-#include <Forms/form.h>
-#include <Forms/fieldset.h>
-#include <Forms/legend.h>
 #include <Forms/button.h>
+#include <Forms/emailinput.h>
 #include <Forms/field.h>
+#include <Forms/fieldset.h>
+#include <Forms/form.h>
+#include <Forms/formhtmlelement.h>
 #include <Forms/hiddeninput.h>
+#include <Forms/optgroup.h>
+#include <Forms/option.h>
+#include <Forms/legend.h>
+#include <Forms/searchinput.h>
 #include <Forms/select.h>
 #include <Forms/selectcontent.h>
-#include <Forms/option.h>
-#include <Forms/optgroup.h>
-#include <Forms/emailinput.h>
 #include <Forms/textinput.h>
 
 #include <QtQml>
@@ -30,8 +31,8 @@ public:
     {
         if (Q_LIKELY(QLatin1String(uri) == QLatin1String(FORMS_QML_PLUGIN_URI))) {
 
-            const int major = 1;
-            const int minor = 0;
+            constexpr int major{1};
+            constexpr int minor{0};
 
             // @uri org.cutelyst.forms
             qmlRegisterAnonymousType<CutelystForms::FormHtmlElement>(uri, major);
@@ -40,8 +41,9 @@ public:
             qmlRegisterType<CutelystForms::Legend>(uri, major, minor, "Legend");
             qmlRegisterType<CutelystForms::Button>(uri, major, minor, "Button");
             qmlRegisterAnonymousType<CutelystForms::Field>(uri, major);
-            qmlRegisterType<CutelystForms::HiddenInput>(uri, major, minor, "HiddenInput");
             qmlRegisterType<CutelystForms::EmailInput>(uri, major, minor, "EmailInput");
+            qmlRegisterType<CutelystForms::HiddenInput>(uri, major, minor, "HiddenInput");
+            qmlRegisterType<CutelystForms::SearchInput>(uri, major, minor, "SearchInput");
             qmlRegisterType<CutelystForms::TextInput>(uri, major, minor, "TextInput");
             qmlRegisterType<CutelystForms::Select>(uri, major, minor, "Select");
             qmlRegisterAnonymousType<CutelystForms::SelectContent>(uri, major);
