@@ -64,8 +64,6 @@ add_library(CutelystForms::Core ALIAS Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VE
 
 generate_export_header(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms BASE_NAME cutelyst_plugin_forms)
 
-target_compile_features(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms PUBLIC $<IF:$<VERSION_GREATER_EQUAL:${QT_VERSION},"6.0.0">,cxx_std_17,cxx_std_14>)
-
 target_include_directories(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
