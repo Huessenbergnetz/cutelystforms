@@ -78,16 +78,20 @@ QStringList FieldPrivate::attrList() const
 QString FieldPrivate::getAttrString(const QVariant &v) const
 {
     if (type == Field::Date) {
-        if (v.userType() == QMetaType::QDate || v.userType() == QMetaType::QDateTime) {
+        if (v.userType() == QMetaType::QDate) {
             return v.toDate().toString(Qt::ISODate);
+        } else if (v.userType() == QMetaType::QDateTime) {
+            return convertedDateTime(v.toDateTime()).date().toString(Qt::ISODate);
         }
     } else if (type == Field::DateTimeLocal) {
         if (v.userType() == QMetaType::QDateTime || v.userType() == QMetaType::QDate) {
             return convertedDateTime(v.toDateTime()).toString(u"yyyy-MM-ddTHH:mm:ss");
         }
     } else if (type == Field::Time) {
-        if (v.userType() == QMetaType::QTime || v.userType() == QMetaType::QDateTime) {
+        if (v.userType() == QMetaType::QTime) {
             return v.toTime().toString(u"HH:mm:ss");
+        } else if (v.userType() == QMetaType::QDateTime) {
+            return convertedDateTime(v.toDateTime()).time().toString(u"HH:mm:ss");
         }
     } else if (type == Field::Week) {
         if (v.userType() == QMetaType::QDate || v.userType() == QMetaType::QDateTime) {
