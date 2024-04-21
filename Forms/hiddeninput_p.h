@@ -17,8 +17,6 @@ public:
     HiddenInputPrivate(HiddenInput *q);
     ~HiddenInputPrivate() override = default;
 
-    QString value;
-
 private:
     Q_DECLARE_PUBLIC(HiddenInput) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
     Q_DISABLE_COPY(HiddenInputPrivate)

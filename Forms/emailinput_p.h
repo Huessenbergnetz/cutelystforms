@@ -17,8 +17,6 @@ public:
     EmailInputPrivate(EmailInput *q);
     ~EmailInputPrivate() override = default;
 
-    QString value;
-
 private:
     Q_DECLARE_PUBLIC(EmailInput) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
     Q_DISABLE_COPY(EmailInputPrivate)

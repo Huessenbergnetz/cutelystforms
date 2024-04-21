@@ -17,8 +17,6 @@ public:
     TextInputPrivate(TextInput *q);
     ~TextInputPrivate() override = default;
 
-    QString value;
-
 private:
     Q_DECLARE_PUBLIC(TextInput) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
     Q_DISABLE_COPY(TextInputPrivate)
