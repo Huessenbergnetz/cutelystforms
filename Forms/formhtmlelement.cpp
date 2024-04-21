@@ -228,8 +228,13 @@ void FormHtmlElement::setContext(Cutelyst::Context *c)
 {
     Q_D(FormHtmlElement);
     d->context = c;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 7, 0)
     const auto children =
         findChildren<CutelystForms::FormHtmlElement *>(Qt::FindDirectChildrenOnly);
+#else
+    const auto children =
+        findChildren<CutelystForms::FormHtmlElement *>({}, Qt::FindDirectChildrenOnly);
+#endif
     for (auto child : children) {
         child->setContext(c);
     }
