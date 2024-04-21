@@ -7,13 +7,10 @@
 #define C_FORMHTMLELEMENT_H
 
 #include "cutelyst_plugin_forms_export.h"
+
 #include <QObject>
 #include <QScopedPointer>
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 #include <QtQml/qqmlregistration.h>
-#else
-#include <QtQml/qqml.h>
-#endif
 
 // clazy:excludeall=qproperty-without-notify
 
@@ -68,7 +65,8 @@ public:
     void setTitle(const QString &title) noexcept;
 
 protected:
-    const QScopedPointer<FormHtmlElementPrivate> d_ptr; // NOLINT(cppcoreguidelines-non-private-member-variables-in-classes)
+    const QScopedPointer<FormHtmlElementPrivate>
+        d_ptr; // NOLINT(cppcoreguidelines-non-private-member-variables-in-classes)
     FormHtmlElement(FormHtmlElementPrivate &dd, QObject *parent = nullptr);
 
 private:
@@ -76,6 +74,6 @@ private:
     Q_DECLARE_PRIVATE(FormHtmlElement) // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)
 };
 
-}
+} // namespace CutelystForms
 
 #endif // C_FORMHTMLELEMENT_H

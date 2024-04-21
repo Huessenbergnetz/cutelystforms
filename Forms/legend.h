@@ -8,12 +8,8 @@
 
 #include "cutelyst_plugin_forms_export.h"
 #include "formhtmlelement.h"
-#include <QObject>
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+
 #include <QtQml/qqmlregistration.h>
-#else
-#include <QtQml/qqml.h>
-#endif
 
 // clazy:excludeall=qproperty-without-notify
 
@@ -43,6 +39,6 @@ private:
     Q_DECLARE_PRIVATE(Legend) // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)
 };
 
-}
+} // namespace CutelystForms
 
 #endif // C_LEGEND_H

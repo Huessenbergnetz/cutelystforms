@@ -6,19 +6,15 @@
 #ifndef C_FORM_H
 #define C_FORM_H
 
-#include "cutelyst_plugin_forms_export.h"
-#include "formhtmlelement.h"
-#include "fieldset.h"
-#include "field.h"
 #include "button.h"
-#include <QObject>
+#include "cutelyst_plugin_forms_export.h"
+#include "field.h"
+#include "fieldset.h"
+#include "formhtmlelement.h"
+
 #include <QQmlListProperty>
 #include <QUrl>
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 #include <QtQml/qqmlregistration.h>
-#else
-#include <QtQml/qqml.h>
-#endif
 
 // clazy:excludeall=qproperty-without-notify
 
@@ -44,44 +40,32 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Form : public FormHtmlElement
     Q_PROPERTY(QString targetString READ targetString)
 
     Q_PROPERTY(QQmlListProperty<CutelystForms::Field> fields READ fields)
-    Q_PROPERTY(QList<CutelystForms::Field*> fieldList READ fieldList)
-    Q_PROPERTY(QMap<QString, CutelystForms::Field*> fieldById READ fieldIdMap)
-    Q_PROPERTY(QMap<QString, CutelystForms::Field*> fieldByName READ fieldNameMap)
+    Q_PROPERTY(QList<CutelystForms::Field *> fieldList READ fieldList)
+    Q_PROPERTY(QMap<QString, CutelystForms::Field *> fieldById READ fieldIdMap)
+    Q_PROPERTY(QMap<QString, CutelystForms::Field *> fieldByName READ fieldNameMap)
 
     Q_PROPERTY(QQmlListProperty<CutelystForms::Fieldset> fieldsets READ fieldsets)
-    Q_PROPERTY(QList<CutelystForms::Fieldset*> fieldsetList READ fieldsetList)
-    Q_PROPERTY(QMap<QString, CutelystForms::Fieldset*> fieldsetById READ fieldsetIdMap)
-    Q_PROPERTY(QMap<QString, CutelystForms::Fieldset*> fieldsetByName READ fieldsetNameMap)
+    Q_PROPERTY(QList<CutelystForms::Fieldset *> fieldsetList READ fieldsetList)
+    Q_PROPERTY(QMap<QString, CutelystForms::Fieldset *> fieldsetById READ fieldsetIdMap)
+    Q_PROPERTY(QMap<QString, CutelystForms::Fieldset *> fieldsetByName READ fieldsetNameMap)
 
     Q_PROPERTY(QQmlListProperty<CutelystForms::Button> buttons READ buttons)
-    Q_PROPERTY(QList<CutelystForms::Button*> buttonList READ buttonList)
-    Q_PROPERTY(QMap<QString, CutelystForms::Button*> buttonById READ buttonIdMap)
-    Q_PROPERTY(QMap<QString, CutelystForms::Button*> buttonByName READ buttonNameMap)
+    Q_PROPERTY(QList<CutelystForms::Button *> buttonList READ buttonList)
+    Q_PROPERTY(QMap<QString, CutelystForms::Button *> buttonById READ buttonIdMap)
+    Q_PROPERTY(QMap<QString, CutelystForms::Button *> buttonByName READ buttonNameMap)
     Q_CLASSINFO("DefaultProperty", "fields")
     QML_ELEMENT
 public:
     explicit Form(QObject *parent = nullptr);
     ~Form() override = default;
 
-    enum EncType {
-        WwwFormUrlEncoded   = 0,
-        MultipartFormData,
-        TextPlain
-    };
+    enum EncType { WwwFormUrlEncoded = 0, MultipartFormData, TextPlain };
     Q_ENUM(EncType)
 
-    enum Method {
-        Post    = 0,
-        Get
-    };
+    enum Method { Post = 0, Get };
     Q_ENUM(Method)
 
-    enum Target {
-        Self    = 0,
-        Blank,
-        Parent,
-        Top
-    };
+    enum Target { Self = 0, Blank, Parent, Top };
     Q_ENUM(Target)
 
     Q_REQUIRED_RESULT QStringList acceptCharset() const noexcept;
@@ -123,42 +107,42 @@ public:
 
     QQmlListProperty<CutelystForms::Field> fields();
     void appendField(Field *field);
-    Q_REQUIRED_RESULT QList<Field*>::size_type fieldCount() const noexcept;
-    Q_REQUIRED_RESULT Field *field(QList<Field*>::size_type idx) const;
+    Q_REQUIRED_RESULT QList<Field *>::size_type fieldCount() const noexcept;
+    Q_REQUIRED_RESULT Field *field(QList<Field *>::size_type idx) const;
     Q_REQUIRED_RESULT Field *fieldByName(const QString &name) const;
     Q_REQUIRED_RESULT Field *fieldById(const QString &id) const;
     void clearFields();
-    void replaceField(QList<Field*>::size_type idx, Field* f);
+    void replaceField(QList<Field *>::size_type idx, Field *f);
     void removeLastField();
-    Q_REQUIRED_RESULT QList<Field*> fieldList() const noexcept;
-    Q_REQUIRED_RESULT QMap<QString, Field*> fieldNameMap() const noexcept;
-    Q_REQUIRED_RESULT QMap<QString, Field*> fieldIdMap() const noexcept;
+    Q_REQUIRED_RESULT QList<Field *> fieldList() const noexcept;
+    Q_REQUIRED_RESULT QMap<QString, Field *> fieldNameMap() const noexcept;
+    Q_REQUIRED_RESULT QMap<QString, Field *> fieldIdMap() const noexcept;
 
     QQmlListProperty<CutelystForms::Fieldset> fieldsets();
     void appendFieldset(Fieldset *fieldset);
-    Q_REQUIRED_RESULT QList<Fieldset*>::size_type fieldsetCount() const noexcept;
-    Q_REQUIRED_RESULT Fieldset *fieldset(QList<Fieldset*>::size_type idx) const;
+    Q_REQUIRED_RESULT QList<Fieldset *>::size_type fieldsetCount() const noexcept;
+    Q_REQUIRED_RESULT Fieldset *fieldset(QList<Fieldset *>::size_type idx) const;
     Q_REQUIRED_RESULT Fieldset *fieldsetByName(const QString &name) const;
     Q_REQUIRED_RESULT Fieldset *fieldsetById(const QString &id) const;
     void clearFieldsets();
-    void replaceFieldset(QList<Fieldset*>::size_type idx, Fieldset *f);
+    void replaceFieldset(QList<Fieldset *>::size_type idx, Fieldset *f);
     void removeLastFieldset();
-    Q_REQUIRED_RESULT QList<Fieldset*> fieldsetList() const noexcept;
-    Q_REQUIRED_RESULT QMap<QString, Fieldset*> fieldsetNameMap() const noexcept;
-    Q_REQUIRED_RESULT QMap<QString, Fieldset*> fieldsetIdMap() const noexcept;
+    Q_REQUIRED_RESULT QList<Fieldset *> fieldsetList() const noexcept;
+    Q_REQUIRED_RESULT QMap<QString, Fieldset *> fieldsetNameMap() const noexcept;
+    Q_REQUIRED_RESULT QMap<QString, Fieldset *> fieldsetIdMap() const noexcept;
 
     QQmlListProperty<CutelystForms::Button> buttons();
     void appendButton(Button *button);
-    Q_REQUIRED_RESULT QList<Button*>::size_type buttonCount() const noexcept;
-    Q_REQUIRED_RESULT Button *button(QList<Button*>::size_type idx) const;
+    Q_REQUIRED_RESULT QList<Button *>::size_type buttonCount() const noexcept;
+    Q_REQUIRED_RESULT Button *button(QList<Button *>::size_type idx) const;
     Q_REQUIRED_RESULT Button *buttonByName(const QString &name) const;
     Q_REQUIRED_RESULT Button *buttonById(const QString &id) const;
     void clearButtons();
-    void replaceButton(QList<Button*>::size_type idx, Button *b);
+    void replaceButton(QList<Button *>::size_type idx, Button *b);
     void removeLastButton();
-    Q_REQUIRED_RESULT QList<Button*> buttonList() const noexcept;
-    Q_REQUIRED_RESULT QMap<QString, Button*> buttonNameMap() const noexcept;
-    Q_REQUIRED_RESULT QMap<QString, Button*> buttonIdMap() const noexcept;
+    Q_REQUIRED_RESULT QList<Button *> buttonList() const noexcept;
+    Q_REQUIRED_RESULT QMap<QString, Button *> buttonNameMap() const noexcept;
+    Q_REQUIRED_RESULT QMap<QString, Button *> buttonIdMap() const noexcept;
 
 protected:
     Form(FormPrivate &dd, QObject *parent = nullptr);
@@ -168,7 +152,7 @@ private:
     Q_DECLARE_PRIVATE(Form) // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)
 };
 
-}
+} // namespace CutelystForms
 
 QDebug operator<<(QDebug dbg, const CutelystForms::Form &form);
 

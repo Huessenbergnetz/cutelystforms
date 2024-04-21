@@ -8,13 +8,8 @@
 
 #include "cutelyst_plugin_forms_export.h"
 #include "field.h"
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-#include <QtQml/qqmlregistration.h>
-#else
-#include <QtQml/qqml.h>
-#endif
 
-// clazy:excludeall=qproperty-without-notify
+#include <QtQml/qqmlregistration.h>
 
 namespace CutelystForms {
 
@@ -37,6 +32,6 @@ private:
     Q_DECLARE_PRIVATE(EmailInput) // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)
 };
 
-}
+} // namespace CutelystForms
 
 #endif // C_FORMS_EMAILINPUT_H

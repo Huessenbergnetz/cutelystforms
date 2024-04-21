@@ -8,14 +8,10 @@
 
 #include "cutelyst_plugin_forms_export.h"
 #include "formhtmlelement.h"
-#include <QObject>
+
 #include <QUrl>
 #include <QVariant>
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 #include <QtQml/qqmlregistration.h>
-#else
-#include <QtQml/qqml.h>
-#endif
 
 // clazy:excludeall=qproperty-without-notify
 
@@ -45,35 +41,16 @@ public:
     explicit Button(QObject *parent = nullptr);
     ~Button() override = default;
 
-    enum Type {
-        Btn     = 0,
-        Submit,
-        Reset
-    };
+    enum Type { Btn = 0, Submit, Reset };
     Q_ENUM(Type)
 
-    enum EncType {
-        NoEncType = 0,
-        WwwFormUrlEncoded,
-        MultipartFormData,
-        TextPlain
-    };
+    enum EncType { NoEncType = 0, WwwFormUrlEncoded, MultipartFormData, TextPlain };
     Q_ENUM(EncType)
 
-    enum Method {
-        NoMethod = 0,
-        Post,
-        Get
-    };
+    enum Method { NoMethod = 0, Post, Get };
     Q_ENUM(Method)
 
-    enum Target {
-        NoTarget = 0,
-        Self,
-        Blank,
-        Parent,
-        Top
-    };
+    enum Target { NoTarget = 0, Self, Blank, Parent, Top };
     Q_ENUM(Target)
 
     Q_REQUIRED_RESULT bool isDisabled() const noexcept;
@@ -120,6 +97,6 @@ private:
     Q_DECLARE_PRIVATE(Button) // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)
 };
 
-}
+} // namespace CutelystForms
 
 #endif // C_BUTTON_H

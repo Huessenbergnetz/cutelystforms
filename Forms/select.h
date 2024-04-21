@@ -8,17 +8,8 @@
 
 #include "cutelyst_plugin_forms_export.h"
 #include "field.h"
-#include "option.h"
-#include "optgroup.h"
-#include <QObject>
-#include <QQmlListProperty>
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-#include <QtQml/qqmlregistration.h>
-#else
-#include <QtQml/qqml.h>
-#endif
 
-// clazy:excludeall=qproperty-without-notify
+#include <QtQml/qqmlregistration.h>
 
 namespace CutelystForms {
 
@@ -27,7 +18,6 @@ class SelectPrivate;
 class CUTELYST_PLUGIN_FORMS_EXPORT Select : public Field
 {
     Q_OBJECT
-
     QML_ELEMENT
 public:
     explicit Select(QObject *parent = nullptr);
@@ -43,6 +33,6 @@ private:
     Q_DECLARE_PRIVATE(Select) // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)
 };
 
-}
+} // namespace CutelystForms
 
 #endif // C_FORMS_SELECT_H

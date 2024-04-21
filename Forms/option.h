@@ -8,12 +8,8 @@
 
 #include "cutelyst_plugin_forms_export.h"
 #include "selectcontent.h"
-#include <QObject>
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+
 #include <QtQml/qqmlregistration.h>
-#else
-#include <QtQml/qqml.h>
-#endif
 
 // clazy:excludeall=qproperty-without-notify
 
@@ -43,8 +39,7 @@ public:
 
     Q_REQUIRED_RESULT QString tagName() const noexcept override;
 
-    Q_REQUIRED_RESULT QString name() const noexcept
-    { return {}; }
+    Q_REQUIRED_RESULT QString name() const noexcept { return {}; }
 
 protected:
     Option(OptionPrivate &dd, QObject *parent = nullptr);
@@ -54,6 +49,6 @@ private:
     Q_DECLARE_PRIVATE(Option) // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)
 };
 
-}
+} // namespace CutelystForms
 
 #endif // C_FORMS_OPTION_H
