@@ -131,6 +131,22 @@ QStringList Forms::includePaths() const noexcept
     return d->includePaths;
 }
 
+void Forms::setTimezoneStashKey(const QString &key)
+{
+    Q_D(Forms);
+    d->timezoneStashKey = key;
+}
+
+QString Forms::timezoneStashKey()
+{
+    if (!forms) {
+        qCCritical(C_FORMS) << "Forms plugin not registered";
+        return {};
+    }
+
+    return forms->d_func()->timezoneStashKey;
+}
+
 Form *Forms::getForm(const QString &name, Cutelyst::Context *c)
 {
     if (!forms) {

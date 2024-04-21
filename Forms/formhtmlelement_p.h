@@ -10,6 +10,8 @@
 
 #include <Cutelyst/context.h>
 
+#include <QDateTime>
+
 namespace CutelystForms {
 
 class FormHtmlElementPrivate
@@ -34,6 +36,8 @@ public:
     virtual ~FormHtmlElementPrivate() = default;
 
     virtual QStringList attrList() const;
+
+    QDateTime convertedDateTime(const QDateTime &dt) const;
 
     // QString getForm() const;
 

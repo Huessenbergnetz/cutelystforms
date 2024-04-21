@@ -8,6 +8,7 @@
 
 #include "cutelyst_plugin_forms_export.h"
 #include "form.h"
+
 #include <Cutelyst/plugin.h>
 
 namespace Cutelyst {
@@ -35,7 +36,8 @@ class FormsPrivate;
  * \class Forms forms.h <CutelystForms/Forms>
  * \brief The Forms plugin class.
  */
-class CUTELYST_PLUGIN_FORMS_EXPORT Forms : public Cutelyst::Plugin // clazy:exclude=ctor-missing-parent-argument
+class CUTELYST_PLUGIN_FORMS_EXPORT Forms // clazy:exclude=ctor-missing-parent-argument
+    : public Cutelyst::Plugin
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(Forms) // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)
@@ -79,7 +81,11 @@ public:
      */
     Q_REQUIRED_RESULT QStringList includePaths() const noexcept;
 
-    static Form* getForm(const QString &name, Cutelyst::Context *c);
+    void setTimezoneStashKey(const QString &key);
+
+    static QString timezoneStashKey();
+
+    static Form *getForm(const QString &name, Cutelyst::Context *c);
 
     static QString templatesDirPath();
 
@@ -95,6 +101,6 @@ private:
     FormsPrivate *const d_ptr;
 };
 
-}
+} // namespace CutelystForms
 
 #endif // C_FORMS_H

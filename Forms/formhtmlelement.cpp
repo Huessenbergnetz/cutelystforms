@@ -4,7 +4,9 @@
  */
 
 #include "formhtmlelement_p.h"
-#include "logging_p.h"
+#include "forms.h"
+
+#include <QTimeZone>
 
 using namespace CutelystForms;
 
@@ -41,6 +43,28 @@ QStringList FormHtmlElementPrivate::attrList() const
     }
 
     return lst;
+}
+
+QDateTime FormHtmlElementPrivate::convertedDateTime(const QDateTime &dt) const
+{
+    const QString stashKey = Forms::timezoneStashKey();
+
+    if (!stashKey.isEmpty()) {
+        const QVariant v = context->stash(stashKey);
+        if (!v.isNull()) {
+            QTimeZone tz;
+            if (v.canConvert<QTimeZone>()) {
+                tz = v.value<QTimeZone>();
+            } else if (v.canConvert<QString>()) {
+                tz = QTimeZone(v.toString().toLatin1());
+            }
+            if (tz.isValid()) {
+                return dt.toTimeZone(tz);
+            }
+        }
+    }
+
+    return dt;
 }
 
 // QString FormHtmlElementPrivate::getForm() const

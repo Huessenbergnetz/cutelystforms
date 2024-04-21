@@ -85,7 +85,7 @@ QString FieldPrivate::getAttrString(const QVariant &v) const
         }
     } else if (type == Field::DatetimeLocal) {
         if (v.userType() == QMetaType::QDateTime) {
-            return v.toDateTime().toString(u"yyyy-MM-ddTHH:mm:ss");
+            return convertedDateTime(v.toDateTime()).toString(u"yyyy-MM-ddTHH:mm:ss");
         } else {
             return v.toString();
         }
