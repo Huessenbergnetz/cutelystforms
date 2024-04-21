@@ -4,8 +4,7 @@
  */
 
 #include "formhtmlelement_p.h"
-// #include "form.h"
-// #include "fieldset.h"
+#include "logging_p.h"
 
 using namespace CutelystForms;
 
@@ -193,6 +192,23 @@ void FormHtmlElement::setTitle(const QString &title) noexcept
 {
     Q_D(FormHtmlElement);
     d->title = title;
+}
+
+Cutelyst::Context *FormHtmlElement::context() const noexcept
+{
+    Q_D(const FormHtmlElement);
+    return d->context;
+}
+
+void FormHtmlElement::setContext(Cutelyst::Context *c)
+{
+    Q_D(FormHtmlElement);
+    d->context = c;
+    const auto children =
+        findChildren<CutelystForms::FormHtmlElement *>(Qt::FindDirectChildrenOnly);
+    for (auto child : children) {
+        child->setContext(c);
+    }
 }
 
 #include "moc_formhtmlelement.cpp"

@@ -14,6 +14,10 @@
 
 // clazy:excludeall=qproperty-without-notify
 
+namespace Cutelyst {
+class Context;
+}
+
 namespace CutelystForms {
 
 class FormHtmlElementPrivate;
@@ -64,10 +68,14 @@ public:
     Q_REQUIRED_RESULT QString title() const noexcept;
     void setTitle(const QString &title) noexcept;
 
+    void setContext(Cutelyst::Context *c);
+
 protected:
     const QScopedPointer<FormHtmlElementPrivate>
         d_ptr; // NOLINT(cppcoreguidelines-non-private-member-variables-in-classes)
     FormHtmlElement(FormHtmlElementPrivate &dd, QObject *parent = nullptr);
+
+    Cutelyst::Context *context() const noexcept;
 
 private:
     Q_DISABLE_COPY(FormHtmlElement)

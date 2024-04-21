@@ -178,6 +178,7 @@ Form *Forms::getForm(const QString &name, Cutelyst::Context *c)
     }
     realFormObject->setObjectName(name);
     realFormObject->setParent(c);
+    realFormObject->setContext(c);
     qCDebug(C_FORMS).noquote() << "Successfully loaded QML form data from" << fi.filePath();
     return realFormObject;
 }

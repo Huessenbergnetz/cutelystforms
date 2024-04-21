@@ -8,6 +8,8 @@
 
 #include "formhtmlelement.h"
 
+#include <Cutelyst/context.h>
+
 namespace CutelystForms {
 
 class FormHtmlElementPrivate
@@ -43,6 +45,8 @@ public:
     QString htmlClass;
     QString title;
 
+    Cutelyst::Context *context{nullptr};
+
     int tabindex{0};
     Tag tag{Tag::None};
     bool hidden{false};
@@ -53,6 +57,6 @@ private:
     Q_DISABLE_COPY(FormHtmlElementPrivate)
 };
 
-}
+} // namespace CutelystForms
 
 #endif // C_FORMHTMLELEMENT_P_H
