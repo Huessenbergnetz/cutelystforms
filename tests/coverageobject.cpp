@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: (C) 2023 - 2024 Matthias Fehring <https://www.huessenbergnetz.de>
+//
+// SPDX-License-Identifier: BSD-3-Clause
+
 #include "coverageobject.h"
 
 #include <Cutelyst/enginerequest.h>

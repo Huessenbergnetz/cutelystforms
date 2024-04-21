@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: (C) 2023 - 2024 Matthias Fehring <https://www.huessenbergnetz.de>
+//
+// SPDX-License-Identifier: BSD-3-Clause
+
 import QtQuick 2.0
 import de.huessenbergnetz.cutelystforms 1.0
 
