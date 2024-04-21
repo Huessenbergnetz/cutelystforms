@@ -233,7 +233,7 @@ void FormHtmlElement::setContext(Cutelyst::Context *c)
         findChildren<CutelystForms::FormHtmlElement *>(Qt::FindDirectChildrenOnly);
 #else
     const auto children =
-        findChildren<CutelystForms::FormHtmlElement *>({}, Qt::FindDirectChildrenOnly);
+        findChildren<CutelystForms::FormHtmlElement *>(QString(), Qt::FindDirectChildrenOnly);
 #endif
     for (auto child : children) {
         child->setContext(c);
