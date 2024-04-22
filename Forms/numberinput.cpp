@@ -21,7 +21,7 @@ QStringList NumberInputPrivate::attrList() const
     }
 
     if (!max.isNull()) {
-        lst.append(u"max\""_qs + max.toString() + QLatin1Char('"'));
+        lst.append(u"max=\""_qs + max.toString() + QLatin1Char('"'));
     }
 
     if (!min.isNull()) {
