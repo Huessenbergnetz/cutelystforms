@@ -13,6 +13,21 @@ OptionPrivate::OptionPrivate(Option *q)
     tag = Tag::Option;
 }
 
+QStringList OptionPrivate::attrList() const
+{
+    QStringList lst = SelectContentPrivate::attrList();
+
+    if (!value.isNull()) {
+        lst.append(u"value=\""_qs + value + QLatin1Char('"'));
+    }
+
+    if (selected) {
+        lst.append(u"selected"_qs);
+    }
+
+    return lst;
+}
+
 Option::Option(QObject *parent)
     : SelectContent(*new OptionPrivate(this), parent)
 {

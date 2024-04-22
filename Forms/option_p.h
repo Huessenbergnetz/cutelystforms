@@ -17,6 +17,8 @@ public:
     OptionPrivate(Option *q);
     ~OptionPrivate() override = default;
 
+    QStringList attrList() const override;
+
     QString text;
     QString value;
     bool selected{false};
@@ -26,6 +28,6 @@ private:
     Q_DISABLE_COPY(OptionPrivate)
 };
 
-}
+} // namespace CutelystForms
 
 #endif // C_FORMS_OPTION_P_H

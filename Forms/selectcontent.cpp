@@ -12,6 +12,21 @@ SelectContentPrivate::SelectContentPrivate(SelectContent *q)
 {
 }
 
+QStringList SelectContentPrivate::attrList() const
+{
+    QStringList lst = FormHtmlElementPrivate::attrList();
+
+    if (disabled) {
+        lst.append(u"disabled"_qs);
+    }
+
+    if (!label.isEmpty()) {
+        lst.append(u"label=\""_qs + label + QLatin1Char('"'));
+    }
+
+    return lst;
+}
+
 SelectContent::SelectContent(QObject *parent)
     : FormHtmlElement(*new SelectContentPrivate(this), parent)
 {
