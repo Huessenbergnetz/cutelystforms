@@ -27,6 +27,7 @@
 #include <Forms/select.h>
 #include <Forms/selectcontent.h>
 #include <Forms/telinput.h>
+#include <Forms/textarea.h>
 #include <Forms/textinput.h>
 #include <Forms/timeinput.h>
 #include <Forms/urlinput.h>
@@ -73,6 +74,7 @@ public:
             qmlRegisterType<CutelystForms::RangeInput>(uri, major, minor, "RangeInput");
             qmlRegisterType<CutelystForms::SearchInput>(uri, major, minor, "SearchInput");
             qmlRegisterType<CutelystForms::TelInput>(uri, major, minor, "TelInput");
+            qmlRegisterType<CutelystForms::Textarea>(uri, major, minor, "Textarea");
             qmlRegisterType<CutelystForms::TextInput>(uri, major, minor, "TextInput");
             qmlRegisterType<CutelystForms::TimeInput>(uri, major, minor, "TimeInput");
             qmlRegisterType<CutelystForms::UrlInput>(uri, major, minor, "UrlInput");

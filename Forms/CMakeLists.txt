@@ -62,6 +62,8 @@ set(cutelystforms_SRC
     radioinput_p.h
     fileinput.cpp
     fileinput_p.h
+    textarea.cpp
+    textarea_p.h
 )
 
 set(cutelystforms_HEADERS
@@ -95,6 +97,7 @@ set(cutelystforms_HEADERS
     checkboxinput.h
     radioinput.h
     fileinput.h
+    textarea.h
 )
 
 add_library(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms
