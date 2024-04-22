@@ -6,9 +6,8 @@
 #ifndef C_FORMS_SELECT_P_H
 #define C_FORMS_SELECT_P_H
 
-#include "select.h"
 #include "field_p.h"
-#include "namedlistproperty_p.h"
+#include "select.h"
 
 namespace CutelystForms {
 
@@ -18,11 +17,13 @@ public:
     SelectPrivate(Select *q);
     ~SelectPrivate() override = default;
 
+    QStringList attrList() const override;
+
 private:
     Q_DECLARE_PUBLIC(Select) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
     Q_DISABLE_COPY(SelectPrivate)
 };
 
-}
+} // namespace CutelystForms
 
 #endif // C_FORMS_SELECT_P_H

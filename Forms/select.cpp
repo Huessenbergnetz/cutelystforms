@@ -13,6 +13,17 @@ SelectPrivate::SelectPrivate(Select *q)
     tag = Tag::Select;
 }
 
+QStringList SelectPrivate::attrList() const
+{
+    QStringList lst = FieldPrivate::attrList();
+
+    if (multiple) {
+        lst.append(u"multiple"_qs);
+    }
+
+    return lst;
+}
+
 Select::Select(QObject *parent)
     : Field(*new SelectPrivate(this), parent)
 {
