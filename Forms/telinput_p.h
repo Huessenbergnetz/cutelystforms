@@ -17,6 +17,8 @@ public:
     TelInputPrivate(TelInput *q);
     ~TelInputPrivate() override = default;
 
+    QStringList attrList() const override;
+
 private:
     Q_DECLARE_PUBLIC(TelInput) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
     Q_DISABLE_COPY(TelInputPrivate)

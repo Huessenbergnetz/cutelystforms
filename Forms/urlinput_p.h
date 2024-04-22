@@ -17,6 +17,9 @@ public:
     UrlInputPrivate(UrlInput *q);
     ~UrlInputPrivate() override = default;
 
+    QStringList attrList() const override;
+    QString getValueString() const override;
+
 private:
     Q_DECLARE_PUBLIC(UrlInput) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
     Q_DISABLE_COPY(UrlInputPrivate)

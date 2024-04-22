@@ -19,7 +19,7 @@ public:
     ~FieldPrivate() override = default;
 
     virtual QStringList attrList() const override;
-    QString getAttrString(const QVariant &v) const;
+    virtual QString getValueString() const;
 
     NamedListProperty<Option, Field> options;
     NamedListProperty<Optgroup, Field> optgroups;
@@ -53,6 +53,6 @@ private:
     Q_DISABLE_COPY(FieldPrivate)
 };
 
-}
+} // namespace CutelystForms
 
 #endif // C_FORMS_FIELD_P_H

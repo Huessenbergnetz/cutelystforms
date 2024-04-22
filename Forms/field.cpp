@@ -23,91 +23,28 @@ QStringList FieldPrivate::attrList() const
 {
     QStringList lst = FormHtmlElementPrivate::attrList();
 
-    if (type == Field::File && !accept.isEmpty()) {
-        lst.append(u"accept=\""_qs + accept + QLatin1Char('"'));
+    if (!value.isNull()) {
+        lst.append(u"value=\""_qs + getValueString() + QLatin1Char('"'));
     }
-    if (!autocomplete.isEmpty()) {
+
+    if (!autocomplete.isEmpty() && !(type == Field::Checkbox || Field::Radio || Field::File)) {
         lst.append(u"autocomplete=\""_qs + autocomplete + QLatin1Char('"'));
     }
-    if (checked && (type == Field::Radio || type == Field::Checkbox)) {
-        lst.append(u"checked"_qs);
-    }
+
     if (disabled) {
         lst.append(u"disabled"_qs);
     }
-    if (max.isValid()) {
-        lst.append(u"max=\""_qs + getAttrString(max) + QLatin1Char('"'));
-    }
-    if (maxlength > -1) {
-        lst.append(u"maxlength=\""_qs + QString::number(maxlength) + QLatin1Char('"'));
-    }
-    if (min.isValid()) {
-        lst.append(u"min=\""_qs + getAttrString(min) + QLatin1Char('"'));
-    }
-    if (minlength > -1) {
-        lst.append(u"minlength=\""_qs + QString::number(minlength) + QLatin1Char('"'));
-    }
-    if (multiple && (tag == Tag::Select || type == Field::File || Field::Email)) {
-        lst.append(u"multiple"_qs);
-    }
-    if (!name.isEmpty()) {
-        lst.append(u"name=\""_qs + name + QLatin1Char('"'));
-    }
-    if (!placeholder.isEmpty()) {
-        lst.append(u"placeholder=\""_qs + placeholder + QLatin1Char('"'));
-    }
-    if (!pattern.isEmpty()) {
-        lst.append(u"pattern=\""_qs + pattern + QLatin1Char('"'));
-    }
-    if (readonly) {
-        lst.append(u"readonly"_qs);
-    }
-    if (required) {
+
+    if (required && !(type == Field::Hidden || type == Field::Color || Field::Range)) {
         lst.append(u"required"_qs);
-    }
-    if (step.isValid()) {
-        lst.append(u"step=\""_qs + step.toString() + QLatin1Char('"'));
-    }
-    if (value.isValid()) {
-        lst.append(u"value=\""_qs + getAttrString(value) + QLatin1Char('"'));
     }
 
     return lst;
 }
 
-QString FieldPrivate::getAttrString(const QVariant &v) const
+QString FieldPrivate::getValueString() const
 {
-    if (type == Field::Date) {
-        if (v.userType() == QMetaType::QDate) {
-            return v.toDate().toString(Qt::ISODate);
-        } else if (v.userType() == QMetaType::QDateTime) {
-            return convertedDateTime(v.toDateTime()).date().toString(Qt::ISODate);
-        }
-    } else if (type == Field::DateTimeLocal) {
-        if (v.userType() == QMetaType::QDateTime || v.userType() == QMetaType::QDate) {
-            return convertedDateTime(v.toDateTime()).toString(u"yyyy-MM-ddTHH:mm:ss");
-        }
-    } else if (type == Field::Time) {
-        if (v.userType() == QMetaType::QTime) {
-            return v.toTime().toString(u"HH:mm:ss");
-        } else if (v.userType() == QMetaType::QDateTime) {
-            return convertedDateTime(v.toDateTime()).time().toString(u"HH:mm:ss");
-        }
-    } else if (type == Field::Week) {
-        if (v.userType() == QMetaType::QDate || v.userType() == QMetaType::QDateTime) {
-            const auto date = v.toDate();
-            int yearNumber{date.year()};
-            int weekNumber = date.weekNumber(&yearNumber);
-            return QString::number(yearNumber) + u"-W" +
-                   QString::number(weekNumber).rightJustified(2, u'0');
-        }
-    } else if (type == Field::Month) {
-        if (v.userType() == QMetaType::QDate || v.userType() == QMetaType::QDateTime) {
-            return v.toDate().toString(u"yyyy-MM");
-        }
-    }
-
-    return v.toString();
+    return value.toString();
 }
 
 Field::Field(QObject *parent)

@@ -12,6 +12,50 @@ DateTimeLocalInputPrivate::DateTimeLocalInputPrivate(DateTimeLocalInput *q)
 {
 }
 
+QString DateTimeLocalInputPrivate::getDateTimeString(const QVariant &v) const
+{
+    if (v.userType() == QMetaType::QDateTime || v.userType() == QMetaType::QDate) {
+        return convertedDateTime(v.toDateTime()).toString(u"yyyy-MM-ddTHH:mm:ss");
+    }
+
+    return v.toString();
+}
+
+QStringList DateTimeLocalInputPrivate::attrList() const
+{
+    QStringList lst = FieldPrivate::attrList();
+
+    if (!list.isEmpty()) {
+        lst.append(u"list=\""_qs + list + QLatin1Char('"'));
+    }
+
+    if (!max.isNull()) {
+        lst.append(u"max=\""_qs + getDateTimeString(max) + QLatin1Char('"'));
+    }
+
+    if (!min.isNull()) {
+        lst.append(u"min=\""_qs + getDateTimeString(min) + QLatin1Char('"'));
+    }
+
+    if (!step.isNull()) {
+        const auto stepInt = step.toInt();
+        if (stepInt > 0) {
+            lst.append(u"step=\""_qs + QString::number(stepInt) + QLatin1Char('"'));
+        }
+    }
+
+    if (readonly) {
+        lst.append(u"readonly"_qs);
+    }
+
+    return lst;
+}
+
+QString DateTimeLocalInputPrivate::getValueString() const
+{
+    return getDateTimeString(value);
+}
+
 DateTimeLocalInput::DateTimeLocalInput(QObject *parent)
     : Field{*new DateTimeLocalInputPrivate{this}, parent}
 {

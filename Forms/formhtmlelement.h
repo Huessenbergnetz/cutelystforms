@@ -32,7 +32,6 @@ class CUTELYST_PLUGIN_FORMS_EXPORT FormHtmlElement : public QObject
     Q_PROPERTY(QString htmlClass READ htmlClass WRITE setHtmlClass)
     Q_PROPERTY(QString htmlId READ htmlId WRITE setHtmlId)
     Q_PROPERTY(bool spellcheck READ spellcheck WRITE setSpellcheck)
-    Q_PROPERTY(int tabindex READ tabindex WRITE setTabindex)
     Q_PROPERTY(QString tagName READ tagName CONSTANT)
     Q_PROPERTY(QString title READ title WRITE setTitle)
     QML_ANONYMOUS

@@ -17,6 +17,8 @@ public:
     PasswordInputPrivate(PasswordInput *q);
     ~PasswordInputPrivate() override = default;
 
+    QStringList attrList() const override;
+
 private:
     Q_DECLARE_PUBLIC(PasswordInput) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
     Q_DISABLE_COPY(PasswordInputPrivate)

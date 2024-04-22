@@ -20,6 +20,9 @@ QStringList FormHtmlElementPrivate::attrList() const
 {
     QStringList lst;
 
+    if (!htmlId.isEmpty()) {
+        lst.append(u"id=\""_qs + htmlId + QLatin1Char('"'));
+    }
     if (!accesskey.isEmpty()) {
         lst.append(u"accesskey=\""_qs + accesskey + QLatin1Char('"'));
     }
@@ -29,14 +32,8 @@ QStringList FormHtmlElementPrivate::attrList() const
     if (hidden) {
         lst.append(u"hidden"_qs);
     }
-    if (!htmlId.isEmpty()) {
-        lst.append(u"id=\""_qs + htmlId + QLatin1Char('"'));
-    }
     if (spellcheck && (tag == Tag::Input || tag == Tag::Textarea)) {
         lst.append(u"spellcheck=\"true\""_qs);
-    }
-    if (tabindex != 0) {
-        lst.append(u"tabindex=\""_qs + QString::number(tabindex) + QLatin1Char('"'));
     }
     if (!title.isEmpty()) {
         lst.append(u"title=\""_qs + title + QLatin1Char('"'));
@@ -187,18 +184,6 @@ void FormHtmlElement::setSpellcheck(bool spellcheck) noexcept
 {
     Q_D(FormHtmlElement);
     d->spellcheck = spellcheck;
-}
-
-int FormHtmlElement::tabindex() const noexcept
-{
-    Q_D(const FormHtmlElement);
-    return d->tabindex;
-}
-
-void FormHtmlElement::setTabindex(int tabindex) noexcept
-{
-    Q_D(FormHtmlElement);
-    d->tabindex = tabindex;
 }
 
 QString FormHtmlElement::tagName() const noexcept

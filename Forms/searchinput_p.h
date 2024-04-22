@@ -6,8 +6,8 @@
 #ifndef C_FORMS_SEARCHINPUT_P_H
 #define C_FORMS_SEARCHINPUT_P_H
 
-#include "searchinput.h"
 #include "field_p.h"
+#include "searchinput.h"
 
 namespace CutelystForms {
 
@@ -17,11 +17,13 @@ public:
     SearchInputPrivate(SearchInput *q);
     ~SearchInputPrivate() override = default;
 
+    QStringList attrList() const override;
+
 private:
     Q_DECLARE_PUBLIC(SearchInput) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
     Q_DISABLE_COPY(SearchInputPrivate)
 };
 
-}
+} // namespace CutelystForms
 
 #endif // C_FORMS_SEARCHINPUT_P_H

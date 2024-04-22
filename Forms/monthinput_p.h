@@ -17,7 +17,12 @@ public:
     MonthInputPrivate(MonthInput *q);
     ~MonthInputPrivate() override = default;
 
+    QStringList attrList() const override;
+    QString getValueString() const override;
+
 private:
+    QString getMonthString(const QVariant &v) const;
+
     Q_DECLARE_PUBLIC(MonthInput) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
     Q_DISABLE_COPY(MonthInputPrivate)
 };

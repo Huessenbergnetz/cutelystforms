@@ -25,7 +25,6 @@ public:
         Input,
         Keygen,
         Legend,
-        Meter,
         Optgroup,
         Option,
         Select,
@@ -51,7 +50,6 @@ public:
 
     Cutelyst::Context *context{nullptr};
 
-    int tabindex{0};
     Tag tag{Tag::None};
     bool hidden{false};
     bool spellcheck{false};
