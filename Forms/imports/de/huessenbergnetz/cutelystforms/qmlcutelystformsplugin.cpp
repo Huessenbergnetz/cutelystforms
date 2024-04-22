@@ -4,19 +4,25 @@
  */
 
 #include <Forms/button.h>
+#include <Forms/checkboxinput.h>
+#include <Forms/colorinput.h>
 #include <Forms/dateinput.h>
 #include <Forms/datetimelocalinput.h>
 #include <Forms/emailinput.h>
 #include <Forms/field.h>
 #include <Forms/fieldset.h>
+#include <Forms/fileinput.h>
 #include <Forms/form.h>
 #include <Forms/formhtmlelement.h>
 #include <Forms/hiddeninput.h>
 #include <Forms/legend.h>
 #include <Forms/monthinput.h>
+#include <Forms/numberinput.h>
 #include <Forms/optgroup.h>
 #include <Forms/option.h>
 #include <Forms/passwordinput.h>
+#include <Forms/radioinput.h>
+#include <Forms/rangeinput.h>
 #include <Forms/searchinput.h>
 #include <Forms/select.h>
 #include <Forms/selectcontent.h>
@@ -52,13 +58,19 @@ public:
             qmlRegisterType<CutelystForms::Legend>(uri, major, minor, "Legend");
             qmlRegisterType<CutelystForms::Button>(uri, major, minor, "Button");
             qmlRegisterAnonymousType<CutelystForms::Field>(uri, major);
+            qmlRegisterType<CutelystForms::CheckboxInput>(uri, major, minor, "CheckboxInput");
+            qmlRegisterType<CutelystForms::ColorInput>(uri, major, minor, "ColorInput");
             qmlRegisterType<CutelystForms::DateInput>(uri, major, minor, "DateInput");
             qmlRegisterType<CutelystForms::DateTimeLocalInput>(
                 uri, major, minor, "DateTimeLocalInput");
             qmlRegisterType<CutelystForms::EmailInput>(uri, major, minor, "EmailInput");
+            qmlRegisterType<CutelystForms::FileInput>(uri, major, minor, "FileInput");
             qmlRegisterType<CutelystForms::HiddenInput>(uri, major, minor, "HiddenInput");
             qmlRegisterType<CutelystForms::MonthInput>(uri, major, minor, "MonthInput");
+            qmlRegisterType<CutelystForms::NumberInput>(uri, major, minor, "NumberInput");
             qmlRegisterType<CutelystForms::PasswordInput>(uri, major, minor, "PasswordInput");
+            qmlRegisterType<CutelystForms::RadioInput>(uri, major, minor, "RadioInput");
+            qmlRegisterType<CutelystForms::RangeInput>(uri, major, minor, "RangeInput");
             qmlRegisterType<CutelystForms::SearchInput>(uri, major, minor, "SearchInput");
             qmlRegisterType<CutelystForms::TelInput>(uri, major, minor, "TelInput");
             qmlRegisterType<CutelystForms::TextInput>(uri, major, minor, "TextInput");

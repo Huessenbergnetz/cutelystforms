@@ -50,6 +50,18 @@ set(cutelystforms_SRC
     timeinput_p.h
     monthinput.cpp
     monthinput_p.h
+    numberinput.cpp
+    numberinput_p.h
+    rangeinput.cpp
+    rangeinput_p.h
+    colorinput.cpp
+    colorinput_p.h
+    checkboxinput.cpp
+    checkboxinput_p.h
+    radioinput.cpp
+    radioinput_p.h
+    fileinput.cpp
+    fileinput_p.h
 )
 
 set(cutelystforms_HEADERS
@@ -77,6 +89,12 @@ set(cutelystforms_HEADERS
     weekinput.h
     timeinput.h
     monthinput.h
+    numberinput.h
+    rangeinput.h
+    colorinput.h
+    checkboxinput.h
+    radioinput.h
+    fileinput.h
 )
 
 add_library(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms
