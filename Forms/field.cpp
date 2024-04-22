@@ -27,7 +27,8 @@ QStringList FieldPrivate::attrList() const
         lst.append(u"value=\""_qs + getValueString() + QLatin1Char('"'));
     }
 
-    if (!autocomplete.isEmpty() && !(type == Field::Checkbox || Field::Radio || Field::File)) {
+    if (!autocomplete.isEmpty() &&
+        !(type == Field::Checkbox || type == Field::Radio || type == Field::File)) {
         lst.append(u"autocomplete=\""_qs + autocomplete + QLatin1Char('"'));
     }
 
@@ -35,7 +36,7 @@ QStringList FieldPrivate::attrList() const
         lst.append(u"disabled"_qs);
     }
 
-    if (required && !(type == Field::Hidden || type == Field::Color || Field::Range)) {
+    if (required && !(type == Field::Hidden || type == Field::Color || type == Field::Range)) {
         lst.append(u"required"_qs);
     }
 
