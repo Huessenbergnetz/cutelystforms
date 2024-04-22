@@ -23,6 +23,10 @@ QStringList FieldPrivate::attrList() const
 {
     QStringList lst = FormHtmlElementPrivate::attrList();
 
+    if (!name.isNull()) {
+        lst.append(u"value=\""_qs + name + QLatin1Char('"'));
+    }
+
     if (!value.isNull()) {
         lst.append(u"value=\""_qs + getValueString() + QLatin1Char('"'));
     }
