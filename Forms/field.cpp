@@ -318,6 +318,11 @@ void Field::setValue(const QVariant &value) noexcept
     d->value = value;
 }
 
+QString Field::tagName() const noexcept
+{
+    return u"input"_qs;
+}
+
 QQmlListProperty<CutelystForms::Option> Field::options()
 {
     Q_D(Field);

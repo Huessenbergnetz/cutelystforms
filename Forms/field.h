@@ -148,6 +148,8 @@ public:
     [[nodiscard]] QVariant value() const noexcept;
     void setValue(const QVariant &value) noexcept;
 
+    [[nodiscard]] QString tagName() const noexcept override;
+
     QQmlListProperty<CutelystForms::Option> options();
     void appendOption(Option *option);
     Q_REQUIRED_RESULT QList<Option *>::size_type optionCount() const noexcept;
