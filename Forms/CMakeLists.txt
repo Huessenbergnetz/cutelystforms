@@ -100,9 +100,12 @@ set(cutelystforms_HEADERS
     textarea.h
 )
 
-add_library(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms
-    ${cutelystforms_SRC}
-    ${cutelystforms_HEADERS}
+qt_add_library(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms
+    MANUAL_FINALIZATION
+)
+
+target_sources(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms
+    PRIVATE ${cutelystforms_SRC} ${cutelystforms_HEADERS}
 )
 
 add_library(CutelystForms::Core ALIAS Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms)
@@ -111,6 +114,7 @@ generate_export_header(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}For
 
 target_include_directories(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms
     PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/cutelyst${CUTELYST_VERSION_MAJOR}forms-qt${QT_VERSION_MAJOR}>
 )
@@ -176,5 +180,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/CutelystQtForms.pc.in
 INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms.pc
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
 )
+
+qt_finalize_target(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms)
 
 add_subdirectory("imports/de/huessenbergnetz/cutelystforms")

@@ -14,7 +14,6 @@ project(cutelystforms
     LANGUAGES CXX
 )
 
-include(GNUInstallDirs)
 include(GenerateExportHeader)
 include(CMakePackageConfigHelpers)
 
@@ -26,23 +25,25 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+set(CMAKE_CXX_VISIBILITY_PRESET hidden)
+set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
+
 find_package(Qt${QT_VERSION_MAJOR} ${QT_MINIMUM_VERSION} COMPONENTS Core Qml LinguistTools REQUIRED)
 find_package(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR} 4.0.0 REQUIRED)
+
+if (Qt${QT_VERSION_MAJOR}_VERSION VERSION_GREATER_EQUAL "6.5.0")
+    if (QT_KNOWN_POLICY_QTP0003)
+        qt_policy(SET QTP0003 NEW)
+    endif (QT_KNOWN_POLICY_QTP0003)
+endif (Qt${QT_VERSION_MAJOR}_VERSION VERSION_GREATER_EQUAL "6.5.0")
+
+qt_standard_project_setup(
+    REQUIRES ${QT_MINIMUM_VERSION}
+)
 
 set(CUTELYSTFORMS_API_LEVEL "0")
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
-
-# Auto generate moc files
-set(CMAKE_AUTOMOC ON)
-
-# As moc files are generated in the binary dir, tell CMake
-# to always look for includes there:
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_INCLUDE_CURRENT_DIR_IN_INTERFACE ON)
-
-set(CMAKE_CXX_VISIBILITY_PRESET hidden)
-set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
 
 # Forbid in-tree building
 if(${CMAKE_SOURCE_DIR} MATCHES ${CMAKE_BINARY_DIR})
