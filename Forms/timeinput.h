@@ -18,7 +18,7 @@ class TimeInputPrivate;
 class CUTELYST_PLUGIN_FORMS_EXPORT TimeInput : public Field
 {
     Q_OBJECT
-    QML_ELEMENT
+    QML_NAMED_ELEMENT(TimeForm)
 public:
     explicit TimeInput(QObject *parent = nullptr);
     ~TimeInput() override = default;

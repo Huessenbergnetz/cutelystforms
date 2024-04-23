@@ -18,7 +18,7 @@ class MonthInputPrivate;
 class CUTELYST_PLUGIN_FORMS_EXPORT MonthInput : public Field
 {
     Q_OBJECT
-    QML_ELEMENT
+    QML_NAMED_ELEMENT(MonthForm)
 public:
     explicit MonthInput(QObject *parent = nullptr);
     ~MonthInput() override = default;

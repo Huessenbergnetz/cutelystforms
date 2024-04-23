@@ -18,7 +18,7 @@ class PasswordInputPrivate;
 class CUTELYST_PLUGIN_FORMS_EXPORT PasswordInput : public Field
 {
     Q_OBJECT
-    QML_ELEMENT
+    QML_NAMED_ELEMENT(PasswordForm)
 public:
     explicit PasswordInput(QObject *parent = nullptr);
     ~PasswordInput() override = default;

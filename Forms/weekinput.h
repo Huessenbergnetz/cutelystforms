@@ -17,7 +17,7 @@ class WeekInputPrivate;
 class CUTELYST_PLUGIN_FORMS_EXPORT WeekInput : public Field
 {
     Q_OBJECT
-    QML_ELEMENT
+    QML_NAMED_ELEMENT(WeekForm)
 public:
     explicit WeekInput(QObject *parent = nullptr);
     ~WeekInput() override = default;

@@ -18,7 +18,7 @@ class HiddenInputPrivate;
 class CUTELYST_PLUGIN_FORMS_EXPORT HiddenInput : public Field
 {
     Q_OBJECT
-    QML_ELEMENT
+    QML_NAMED_ELEMENT(HiddenForm)
 public:
     explicit HiddenInput(QObject *parent = nullptr);
     ~HiddenInput() override = default;

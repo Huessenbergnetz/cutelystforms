@@ -18,7 +18,7 @@ class EmailInputPrivate;
 class CUTELYST_PLUGIN_FORMS_EXPORT EmailInput : public Field
 {
     Q_OBJECT
-    QML_ELEMENT
+    QML_NAMED_ELEMENT(EmailForm)
 public:
     explicit EmailInput(QObject *parent = nullptr);
     ~EmailInput() override = default;

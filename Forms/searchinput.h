@@ -8,6 +8,7 @@
 
 #include "cutelyst_plugin_forms_export.h"
 #include "field.h"
+
 #include <QtQml/qqmlregistration.h>
 
 namespace CutelystForms {
@@ -17,7 +18,7 @@ class SearchInputPrivate;
 class CUTELYST_PLUGIN_FORMS_EXPORT SearchInput : public Field
 {
     Q_OBJECT
-    QML_ELEMENT
+    QML_NAMED_ELEMENT(SearchForm)
 public:
     explicit SearchInput(QObject *parent = nullptr);
     ~SearchInput() override = default;
@@ -31,6 +32,6 @@ private:
     Q_DECLARE_PRIVATE(SearchInput) // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)
 };
 
-}
+} // namespace CutelystForms
 
 #endif // C_FORMS_SEARCHINPUT_H

@@ -18,7 +18,7 @@ class TextInputPrivate;
 class CUTELYST_PLUGIN_FORMS_EXPORT TextInput : public Field
 {
     Q_OBJECT
-    QML_ELEMENT
+    QML_NAMED_ELEMENT(TextForm)
 public:
     explicit TextInput(QObject *parent = nullptr);
     ~TextInput() override = default;

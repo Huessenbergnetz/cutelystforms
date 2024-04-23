@@ -18,7 +18,7 @@ class DateInputPrivate;
 class CUTELYST_PLUGIN_FORMS_EXPORT DateInput : public Field
 {
     Q_OBJECT
-    QML_ELEMENT
+    QML_NAMED_ELEMENT(DateForm)
 public:
     explicit DateInput(QObject *parent = nullptr);
     ~DateInput() override = default;

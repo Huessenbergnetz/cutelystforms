@@ -36,7 +36,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Button : public FormHtmlElement
     Q_PROPERTY(CutelystForms::Button::Type type READ type WRITE setType)
     Q_PROPERTY(QString typeString READ typeString)
     Q_PROPERTY(QVariant value READ value WRITE setValue)
-    QML_ELEMENT
+    QML_NAMED_ELEMENT(FormButton)
 public:
     explicit Button(QObject *parent = nullptr);
     ~Button() override = default;

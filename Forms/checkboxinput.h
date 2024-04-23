@@ -18,7 +18,7 @@ class CheckboxInputPrivate;
 class CUTELYST_PLUGIN_FORMS_EXPORT CheckboxInput : public Field
 {
     Q_OBJECT
-    QML_ELEMENT
+    QML_NAMED_ELEMENT(CheckBoxForm)
 public:
     explicit CheckboxInput(QObject *parent = nullptr);
     ~CheckboxInput() override = default;

@@ -18,7 +18,7 @@ class FileInputPrivate;
 class CUTELYST_PLUGIN_FORMS_EXPORT FileInput : public Field
 {
     Q_OBJECT
-    QML_ELEMENT
+    QML_NAMED_ELEMENT(FileForm)
 public:
     explicit FileInput(QObject *parent = nullptr);
     ~FileInput() override = default;

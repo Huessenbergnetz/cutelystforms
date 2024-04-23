@@ -2,7 +2,6 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
-import QtQuick 2.0
 import de.huessenbergnetz.cutelystforms 1.0
 
 Form {
@@ -12,10 +11,10 @@ Form {
     label: cTr("%n dwarf(s)", "", dwarfsCount)
 
     buttons: [
-        Button {
+        FormButton {
 
         },
-        Button {
+        FormButton {
 
         }
     ]
@@ -24,7 +23,7 @@ Form {
         Fieldset {
             htmlId: "fieldset1"
             htmlClass: test
-            legend: Legend {
+            legend: FormLegend {
                 text: "A greate legend"
             }
 
@@ -65,11 +64,11 @@ Form {
         },
         Fieldset {
             htmlId: "fieldset2"
-            legend: Legend {
+            legend: FormLegend {
                 text: cTranslate("MyForm", "Another great legend")
             }
 
-            HiddenInput {
+            HiddenForm {
                 name: "csrfprotectiontoken"
                 value: cCsrfToken()
             }

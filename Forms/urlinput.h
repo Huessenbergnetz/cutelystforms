@@ -18,7 +18,7 @@ class UrlInputPrivate;
 class CUTELYST_PLUGIN_FORMS_EXPORT UrlInput : public Field
 {
     Q_OBJECT
-    QML_ELEMENT
+    QML_NAMED_ELEMENT(UrlForm)
 public:
     explicit UrlInput(QObject *parent = nullptr);
     ~UrlInput() override = default;

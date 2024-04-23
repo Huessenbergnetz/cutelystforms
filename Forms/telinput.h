@@ -18,7 +18,7 @@ class TelInputPrivate;
 class CUTELYST_PLUGIN_FORMS_EXPORT TelInput : public Field
 {
     Q_OBJECT
-    QML_ELEMENT
+    QML_NAMED_ELEMENT(TelForm)
 public:
     explicit TelInput(QObject *parent = nullptr);
     ~TelInput() override = default;

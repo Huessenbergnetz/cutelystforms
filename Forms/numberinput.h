@@ -18,7 +18,7 @@ class NumberInputPrivate;
 class CUTELYST_PLUGIN_FORMS_EXPORT NumberInput : public Field
 {
     Q_OBJECT
-    QML_ELEMENT
+    QML_NAMED_ELEMENT(NumberForm)
 public:
     explicit NumberInput(QObject *parent = nullptr);
     ~NumberInput() override = default;

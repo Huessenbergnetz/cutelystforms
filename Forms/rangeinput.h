@@ -18,7 +18,7 @@ class RangeInputPrivate;
 class CUTELYST_PLUGIN_FORMS_EXPORT RangeInput : public Field
 {
     Q_OBJECT
-    QML_ELEMENT
+    QML_NAMED_ELEMENT(RangeForm)
 public:
     explicit RangeInput(QObject *parent = nullptr);
     ~RangeInput() override = default;

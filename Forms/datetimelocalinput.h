@@ -18,7 +18,7 @@ class DateTimeLocalInputPrivate;
 class CUTELYST_PLUGIN_FORMS_EXPORT DateTimeLocalInput : public Field
 {
     Q_OBJECT
-    QML_ELEMENT
+    QML_NAMED_ELEMENT(DateTimeLocalForm)
 public:
     explicit DateTimeLocalInput(QObject *parent = nullptr);
     ~DateTimeLocalInput() override = default;

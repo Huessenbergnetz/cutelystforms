@@ -18,7 +18,7 @@ class TextareaPrivate;
 class CUTELYST_PLUGIN_FORMS_EXPORT Textarea : public Field
 {
     Q_OBJECT
-    QML_ELEMENT
+    QML_NAMED_ELEMENT(TextAreaForm)
 public:
     explicit Textarea(QObject *parent = nullptr);
     ~Textarea() override = default;

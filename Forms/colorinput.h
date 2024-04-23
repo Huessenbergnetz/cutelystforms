@@ -18,7 +18,7 @@ class ColorInputPrivate;
 class CUTELYST_PLUGIN_FORMS_EXPORT ColorInput : public Field
 {
     Q_OBJECT
-    QML_ELEMENT
+    QML_NAMED_ELEMENT(ColorForm)
 public:
     explicit ColorInput(QObject *parent = nullptr);
     ~ColorInput() override = default;

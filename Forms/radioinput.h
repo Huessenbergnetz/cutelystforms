@@ -18,7 +18,7 @@ class RadioInputPrivate;
 class CUTELYST_PLUGIN_FORMS_EXPORT RadioInput : public Field
 {
     Q_OBJECT
-    QML_ELEMENT
+    QML_NAMED_ELEMENT(RadioForm)
 public:
     explicit RadioInput(QObject *parent = nullptr);
     ~RadioInput() override = default;

@@ -21,7 +21,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Legend : public FormHtmlElement
 {
     Q_OBJECT
     Q_PROPERTY(QString text READ text WRITE setText)
-    QML_ELEMENT
+    QML_NAMED_ELEMENT(FormLegend)
 public:
     explicit Legend(QObject *parent = nullptr);
     ~Legend() override = default;
