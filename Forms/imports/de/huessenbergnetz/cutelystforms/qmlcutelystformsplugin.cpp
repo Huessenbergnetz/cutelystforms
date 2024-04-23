@@ -15,7 +15,6 @@
 #include <Forms/form.h>
 #include <Forms/formhtmlelement.h>
 #include <Forms/hiddeninput.h>
-#include <Forms/legend.h>
 #include <Forms/monthinput.h>
 #include <Forms/numberinput.h>
 #include <Forms/optgroup.h>
@@ -56,7 +55,6 @@ public:
             qmlRegisterAnonymousType<CutelystForms::FormHtmlElement>(uri, major);
             qmlRegisterType<CutelystForms::Form>(uri, major, minor, "Form");
             qmlRegisterType<CutelystForms::Fieldset>(uri, major, minor, "Fieldset");
-            qmlRegisterType<CutelystForms::Legend>(uri, major, minor, "FormLegend");
             qmlRegisterType<CutelystForms::Button>(uri, major, minor, "FormButton");
             qmlRegisterAnonymousType<CutelystForms::Field>(uri, major);
             qmlRegisterType<CutelystForms::CheckboxInput>(uri, major, minor, "CheckBoxForm");

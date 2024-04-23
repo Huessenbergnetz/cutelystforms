@@ -9,7 +9,6 @@
 #include "cutelyst_plugin_forms_export.h"
 #include "field.h"
 #include "formhtmlelement.h"
-#include "legend.h"
 
 #include <QQmlListProperty>
 #include <QtQml/qqmlregistration.h>
@@ -27,7 +26,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Fieldset : public FormHtmlElement
     Q_PROPERTY(QString form READ form WRITE setForm)
     Q_PROPERTY(QString name READ name WRITE setName)
     Q_PROPERTY(QString description READ description WRITE setDescription)
-    Q_PROPERTY(CutelystForms::Legend *legend READ legend WRITE setLegend)
+    Q_PROPERTY(QString legend READ legend WRITE setLegend)
     Q_PROPERTY(QQmlListProperty<CutelystForms::Field> fields READ fields)
     Q_PROPERTY(QList<CutelystForms::Field *> fieldList READ fieldList)
     Q_PROPERTY(QMap<QString, CutelystForms::Field *> fieldById READ fieldIdMap)
@@ -50,8 +49,8 @@ public:
     Q_REQUIRED_RESULT QString description() const noexcept;
     void setDescription(const QString &description) noexcept;
 
-    Q_REQUIRED_RESULT Legend *legend() const noexcept;
-    void setLegend(Legend *legend) noexcept;
+    Q_REQUIRED_RESULT QString legend() const noexcept;
+    void setLegend(const QString &legend) noexcept;
 
     Q_REQUIRED_RESULT QString tagName() const noexcept override;
 

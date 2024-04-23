@@ -24,8 +24,8 @@ public:
     QString form;
     QString name;
     QString label;
+    QString legend;
     QString description;
-    Legend *legend{nullptr};
     bool disabled{false};
 
     C_FORMS_QMLLIST_FUNCS(Field, field, Fieldset)
@@ -35,6 +35,6 @@ private:
     Q_DISABLE_COPY(FieldsetPrivate)
 };
 
-}
+} // namespace CutelystForms
 
 #endif // C_FORMS_FIELDSET_P_H

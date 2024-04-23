@@ -120,7 +120,7 @@ void TestForms::getForm()
              QStringLiteral("CutelystForms::Option"));
     auto fs1 = f->fieldset(1);
     QVERIFY(fs1);
-    QCOMPARE(fs1->legend()->text(), QStringLiteral("Eine weitere große Legende"));
+    QCOMPARE(fs1->legend(), QStringLiteral("Eine weitere große Legende"));
     auto csrf = qobject_cast<HiddenInput *>(fs1->field(0));
     QVERIFY(csrf);
     QVERIFY(!csrf->value().isNull());

@@ -23,9 +23,7 @@ Form {
         Fieldset {
             htmlId: "fieldset1"
             htmlClass: test
-            legend: FormLegend {
-                text: "A greate legend"
-            }
+            legend: "A greate legend"
 
             Select {
                 htmlId: "selectField"
@@ -64,9 +62,7 @@ Form {
         },
         Fieldset {
             htmlId: "fieldset2"
-            legend: FormLegend {
-                text: cTranslate("MyForm", "Another great legend")
-            }
+            legend: cTranslate("MyForm", "Another great legend")
 
             HiddenForm {
                 name: "csrfprotectiontoken"

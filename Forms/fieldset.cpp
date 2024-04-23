@@ -88,13 +88,13 @@ void Fieldset::setDescription(const QString &description) noexcept
     d->description = description;
 }
 
-CutelystForms::Legend *Fieldset::legend() const noexcept
+QString Fieldset::legend() const noexcept
 {
     Q_D(const Fieldset);
     return d->legend;
 }
 
-void Fieldset::setLegend(CutelystForms::Legend *legend) noexcept
+void Fieldset::setLegend(const QString &legend) noexcept
 {
     Q_D(Fieldset);
     d->legend = legend;

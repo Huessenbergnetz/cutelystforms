@@ -11,8 +11,6 @@ set(cutelystforms_SRC
     form_p.h
     fieldset.cpp
     fieldset_p.h
-    legend.cpp
-    legend_p.h
     button.cpp
     button_p.h
     field.cpp
@@ -72,7 +70,6 @@ set(cutelystforms_HEADERS
     formhtmlelement.h
     form.h
     fieldset.h
-    legend.h
     button.h
     field.h
     select.h
