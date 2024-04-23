@@ -41,8 +41,8 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/qmldir.in ${CMAKE_CURRENT_BINARY_DIR}
 add_custom_command(
     TARGET Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}FormsQml
     POST_BUILD
-    COMMAND ${QT_INSTALL_BINS}/qmlplugindump -nonrelocatable ${QMLPLUGIN_URI} ${QMLPLUGIN_VERSION} ${CMAKE_BINARY_DIR}/Forms/imports > ${CMAKE_CURRENT_BINARY_DIR}/plugin.qmltypes
-    COMMENT "Generating plugin.qmltypes"
+    COMMAND ${QT_INSTALL_BINS}/qmlplugindump -nonrelocatable ${QMLPLUGIN_URI} ${QMLPLUGIN_VERSION} ${CMAKE_BINARY_DIR}/Forms/imports > ${CMAKE_CURRENT_BINARY_DIR}/Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}FormsQml.qmltypes
+    COMMENT "Generating ${CMAKE_CURRENT_BINARY_DIR}/Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}FormsQml.qmltypes"
 )
 
 ### Install library
