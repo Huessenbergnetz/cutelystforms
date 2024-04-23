@@ -102,7 +102,7 @@ void TestForms::getForm()
     c->setLocale(QLocale(QLocale::German));
     c->setStash(QStringLiteral("test"), QStringLiteral("hallo"));
     c->setStash(QStringLiteral("dwarfsCount"), 7);
-    auto f = Forms::getForm(QStringLiteral("MyForm"), c);
+    auto f = Forms::getForm(QStringLiteral("MyForm.qml"), c);
     QVERIFY(f);
     QCOMPARE(f->htmlId(), QStringLiteral("littleForm"));
     QCOMPARE(f->htmlClass(), QStringLiteral("form"));

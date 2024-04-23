@@ -157,7 +157,7 @@ Form *Forms::getForm(const QString &name, Cutelyst::Context *c)
     QFileInfo fi;
     const QStringList includePaths = forms->includePaths();
     for (const QString &path : includePaths) {
-        const QString fn = path + QLatin1Char('/') + name + QLatin1String(".qml");
+        const QString fn = path + QLatin1Char('/') + name;
         fi.setFile(fn);
         if (fi.exists()) {
             break;
