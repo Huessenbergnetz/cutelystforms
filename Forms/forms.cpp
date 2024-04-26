@@ -89,6 +89,11 @@ QString FormsContextObject::cCsrfToken()
 #endif
 }
 
+QVariant FormsContextObject::cStashValue(const QString &key, const QVariant &defVal)
+{
+    return m_c->stash(key, defVal);
+}
+
 Forms::Forms(Cutelyst::Application *parent)
     : Plugin(parent)
     , d_ptr(new FormsPrivate)
