@@ -26,6 +26,10 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Option : public SelectContent
     QML_ELEMENT
 public:
     explicit Option(QObject *parent = nullptr);
+    Option(const QString &text,
+           const QString &value,
+           bool selected   = false,
+           QObject *parent = nullptr);
     ~Option() override = default;
 
     Q_REQUIRED_RESULT bool isSelected() const noexcept;

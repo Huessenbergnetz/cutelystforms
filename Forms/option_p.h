@@ -15,6 +15,7 @@ class OptionPrivate : public SelectContentPrivate
 {
 public:
     OptionPrivate(Option *q);
+    OptionPrivate(const QString &_text, const QString &_value, bool _selected, Option *q);
     ~OptionPrivate() override = default;
 
     QStringList attrList() const override;

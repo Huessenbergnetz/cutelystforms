@@ -13,6 +13,14 @@ OptionPrivate::OptionPrivate(Option *q)
     tag = Tag::Option;
 }
 
+OptionPrivate::OptionPrivate(const QString &_text, const QString &_value, bool _selected, Option *q)
+    : SelectContentPrivate(q)
+    , text(_text)
+    , value(_value)
+    , selected(_selected)
+{
+}
+
 QStringList OptionPrivate::attrList() const
 {
     QStringList lst = SelectContentPrivate::attrList();
@@ -30,6 +38,11 @@ QStringList OptionPrivate::attrList() const
 
 Option::Option(QObject *parent)
     : SelectContent(*new OptionPrivate(this), parent)
+{
+}
+
+Option::Option(const QString &text, const QString &value, bool selected, QObject *parent)
+    : SelectContent(*new OptionPrivate(text, value, selected, this), parent)
 {
 }
 
