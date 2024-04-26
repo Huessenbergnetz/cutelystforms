@@ -25,6 +25,8 @@ public:
 
     Q_REQUIRED_RESULT QString tagName() const noexcept override;
 
+    [[nodiscard]] QString tmpl() const noexcept override;
+
 protected:
     Select(SelectPrivate &dd, QObject *parent = nullptr);
 

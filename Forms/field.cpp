@@ -296,6 +296,11 @@ void Field::setStep(const QVariant &step) noexcept
     d->step = step;
 }
 
+QString Field::tmpl() const noexcept
+{
+    return u"cutelystforms/input.html"_qs;
+}
+
 CutelystForms::Field::Type Field::type() const noexcept
 {
     return None;

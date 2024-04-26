@@ -25,6 +25,8 @@ public:
 
     [[nodiscard]] QString tagName() const noexcept override;
 
+    [[nodiscard]] QString tmpl() const noexcept override;
+
 protected:
     Textarea(TextareaPrivate &dd, QObject *parent = nullptr);
 

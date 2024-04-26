@@ -42,6 +42,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Field : public FormHtmlElement
     Q_PROPERTY(bool readonly READ readonly WRITE setReadonly)
     Q_PROPERTY(bool required READ required WRITE setRequired)
     Q_PROPERTY(QVariant step READ step WRITE setStep)
+    Q_PROPERTY(QString tmpl READ tmpl CONSTANT)
     Q_PROPERTY(CutelystForms::Field::Type type READ type CONSTANT)
     Q_PROPERTY(QString typeString READ typeString CONSTANT)
     Q_PROPERTY(QVariant value READ value WRITE setValue)
@@ -140,6 +141,8 @@ public:
 
     [[nodiscard]] QVariant step() const noexcept;
     void setStep(const QVariant &step) noexcept;
+
+    [[nodiscard]] virtual QString tmpl() const noexcept;
 
     Q_REQUIRED_RESULT virtual Field::Type type() const noexcept;
 

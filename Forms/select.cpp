@@ -39,4 +39,9 @@ QString Select::tagName() const noexcept
     return QStringLiteral("select");
 }
 
+QString Select::tmpl() const noexcept
+{
+    return u"cutelystforms/select.html"_qs;
+}
+
 #include "moc_select.cpp"

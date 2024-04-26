@@ -2,8 +2,12 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 set(cuteleebootstrap5_SRC
+    field.html
+    fieldwithlabel.html
     input.html
     inputwithlabel.html
+    select.html
+    selectwithlabel.html
 )
 
 add_custom_target(cuteleebootstrap5

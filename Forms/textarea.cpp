@@ -51,4 +51,9 @@ QString Textarea::tagName() const noexcept
     return QStringLiteral("textarea");
 }
 
+QString Textarea::tmpl() const noexcept
+{
+    return u"cutelystforms/textarea.html"_qs;
+}
+
 #include "moc_textarea.cpp"
