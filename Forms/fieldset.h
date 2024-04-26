@@ -56,6 +56,7 @@ public:
 
     QQmlListProperty<CutelystForms::Field> fields();
     void appendField(Field *field);
+    void appendFields(const QList<Field *> &fields);
     Q_REQUIRED_RESULT QList<Field *>::size_type fieldCount() const noexcept;
     Q_REQUIRED_RESULT Field *field(QList<Field *>::size_type idx) const;
     Q_REQUIRED_RESULT Field *fieldByName(const QString &name) const;

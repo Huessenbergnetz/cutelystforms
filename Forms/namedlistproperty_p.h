@@ -6,18 +6,19 @@
 #ifndef C_FORMS_NAMEDLISTPROPERTY_P_H
 #define C_FORMS_NAMEDLISTPROPERTY_P_H
 
-#include "logging_p.h"
-
 #include <QList>
 #include <QMap>
-#include <QString>
 #include <QQmlListProperty>
+#include <QString>
 
-template<typename T, typename P>
+template <typename T, typename P>
 class NamedListProperty
 {
 public:
-    explicit NamedListProperty(P *p) : m_parent{p} {}
+    explicit NamedListProperty(P *p)
+        : m_parent{p}
+    {
+    }
     ~NamedListProperty() = default;
 
     void append(T *item)
@@ -25,23 +26,31 @@ public:
         item->setParent(m_parent);
         m_list.push_back(item);
         if (!item->name().isEmpty()) {
-            if (m_nameMap.contains(item->name())) {
-//                qCWarning(C_FORMS) << *m_parent << "already contains a" << *item << " with this name - appending it anyway. Note that this will overwrite the item with the same name in the nameMap!";
-            }
+            // if (m_nameMap.contains(item->name())) {
+            //                qCWarning(C_FORMS) << *m_parent << "already contains a" << *item << "
+            //                with this name - appending it anyway. Note that this will overwrite
+            //                the item with the same name in the nameMap!";
+            // }
             m_nameMap.insert(item->name(), item);
         }
         if (!item->htmlId().isEmpty()) {
-            if (m_idMap.contains(item->htmlId())) {
-//                qCWarning(C_FORMS) << *m_parent << "already contains a" << *item << " with this HTML id - appending it anyway. Note that this will overwrite the item with the same HTML id in the idMap!";
-            }
+            // if (m_idMap.contains(item->htmlId())) {
+            //                qCWarning(C_FORMS) << *m_parent << "already contains a" << *item << "
+            //                with this HTML id - appending it anyway. Note that this will overwrite
+            //                the item with the same HTML id in the idMap!";
+            // }
             m_idMap.insert(item->htmlId(), item);
         }
     }
 
-    typename QList<T *>::size_type count() const noexcept
+    void append(const QList<T *> &items)
     {
-        return m_list.count();
+        for (T *item : items) {
+            append(item);
+        }
     }
+
+    typename QList<T *>::size_type count() const noexcept { return m_list.count(); }
 
     T *item(typename QList<T *>::size_type idx) const
     {
@@ -52,15 +61,9 @@ public:
         }
     }
 
-    T *itemByName(const QString &name) const
-    {
-        return m_nameMap.value(name, nullptr);
-    }
+    T *itemByName(const QString &name) const { return m_nameMap.value(name, nullptr); }
 
-    T *itemById(const QString &id) const
-    {
-        return m_idMap.value(id, nullptr);
-    }
+    T *itemById(const QString &id) const { return m_idMap.value(id, nullptr); }
 
     void clear()
     {
@@ -84,13 +87,17 @@ public:
         m_list[idx] = i;
         if (!i->name().isEmpty()) {
             if (m_nameMap.contains(i->name())) {
-//                qCWarning(C_FORMS) << *m_parent << "already contains a" << *i << " with this name - replacing it anyway. Note that this will overwrite the item with the same name in the nameMap!";
+                //                qCWarning(C_FORMS) << *m_parent << "already contains a" << *i << "
+                //                with this name - replacing it anyway. Note that this will
+                //                overwrite the item with the same name in the nameMap!";
             }
             m_nameMap.insert(i->name(), i);
         }
         if (!i->htmlId().isEmpty()) {
             if (m_idMap.contains(i->htmlId())) {
-//                qCWarning(C_FORMS) << *m_parent << "already contains a" << *i << " with this HTML id - replacing it anyway. Note that this will overwrite the item with the same HTML id in the idMap!";
+                //                qCWarning(C_FORMS) << *m_parent << "already contains a" << *i << "
+                //                with this HTML id - replacing it anyway. Note that this will
+                //                overwrite the item with the same HTML id in the idMap!";
             }
             m_idMap.insert(i->htmlId(), i);
         }
@@ -110,25 +117,13 @@ public:
         }
     }
 
-    QList<T *> list() const noexcept
-    {
-        return m_list;
-    }
+    QList<T *> list() const noexcept { return m_list; }
 
-    QMap<QString, T *> nameMap() const noexcept
-    {
-        return m_nameMap;
-    }
+    QMap<QString, T *> nameMap() const noexcept { return m_nameMap; }
 
-    QMap<QString, T *> idMap() const noexcept
-    {
-        return m_idMap;
-    }
+    QMap<QString, T *> idMap() const noexcept { return m_idMap; }
 
-    bool isEmpty() const noexcept
-    {
-        return m_list.isEmpty();
-    }
+    bool isEmpty() const noexcept { return m_list.isEmpty(); }
 
 private:
     P *m_parent{nullptr};
@@ -147,27 +142,27 @@ private:
             p->append##type(item); \
         } \
     } \
-    \
+\
     static QList<type *>::size_type typeLow##Count(QQmlListProperty<type> *list) \
     { \
         auto p = qobject_cast<parentType *>(list->object); \
         if (p) { \
             return p->typeLow##Count(); \
-        } else {\
+        } else { \
             return 0; \
         } \
     } \
-    \
-    static type * typeLow(QQmlListProperty<type> *list, QList<type *>::size_type idx) \
+\
+    static type *typeLow(QQmlListProperty<type> *list, QList<type *>::size_type idx) \
     { \
         auto p = qobject_cast<parentType *>(list->object); \
         if (p) { \
             return p->typeLow(idx); \
-        } else {\
+        } else { \
             return nullptr; \
         } \
     } \
-    \
+\
     static void clear##type##s(QQmlListProperty<type> *list) \
     { \
         auto p = qobject_cast<parentType *>(list->object); \
@@ -175,15 +170,16 @@ private:
             p->clear##type##s(); \
         } \
     } \
-    \
-    static void replace##type(QQmlListProperty<type> *list, QList<type *>::size_type idx, type *item) \
+\
+    static void replace##type( \
+        QQmlListProperty<type> *list, QList<type *>::size_type idx, type *item) \
     { \
         auto p = qobject_cast<parentType *>(list->object); \
         if (p) { \
             p->replace##type(idx, item); \
         } \
     } \
-    \
+\
     static void removeLast##type(QQmlListProperty<type> *list) \
     { \
         auto p = qobject_cast<parentType *>(list->object); \

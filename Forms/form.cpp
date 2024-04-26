@@ -282,6 +282,12 @@ void Form::appendField(Field *field)
     d->fields.append(field);
 }
 
+void Form::appendFields(const QList<Field *> &fields)
+{
+    Q_D(Form);
+    d->fields.append(fields);
+}
+
 QList<Field *>::size_type Form::fieldCount() const noexcept
 {
     Q_D(const Form);
@@ -361,6 +367,12 @@ void Form::appendFieldset(Fieldset *fieldset)
     d->fieldsets.append(fieldset);
 }
 
+void Form::appendFieldsets(const QList<Fieldset *> &fieldsets)
+{
+    Q_D(Form);
+    d->fieldsets.append(fieldsets);
+}
+
 QList<Fieldset *>::size_type Form::fieldsetCount() const noexcept
 {
     Q_D(const Form);
@@ -438,6 +450,12 @@ void Form::appendButton(Button *button)
 {
     Q_D(Form);
     d->buttons.append(button);
+}
+
+void Form::appendButtons(const QList<Button *> &buttons)
+{
+    Q_D(Form);
+    d->buttons.append(buttons);
 }
 
 QList<Button *>::size_type Form::buttonCount() const noexcept

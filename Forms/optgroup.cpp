@@ -48,6 +48,12 @@ void Optgroup::appendOption(Option *option)
     d->options.append(option);
 }
 
+void Optgroup::appendOptions(const QList<Option *> &options)
+{
+    Q_D(Optgroup);
+    d->options.append(options);
+}
+
 QList<Option *>::size_type Optgroup::optionCount() const noexcept
 {
     Q_D(const Optgroup);

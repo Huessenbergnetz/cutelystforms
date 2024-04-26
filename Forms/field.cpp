@@ -347,6 +347,12 @@ void Field::appendOption(Option *option)
     d->options.append(option);
 }
 
+void Field::appendOptions(const QList<Option *> &options)
+{
+    Q_D(Field);
+    d->options.append(options);
+}
+
 QList<Option *>::size_type Field::optionCount() const noexcept
 {
     Q_D(const Field);
@@ -412,6 +418,12 @@ void Field::appendOptgroup(Optgroup *optgroup)
 {
     Q_D(Field);
     d->optgroups.append(optgroup);
+}
+
+void Field::appendOptgroups(const QList<Optgroup *> &optgroups)
+{
+    Q_D(Field);
+    d->optgroups.append(optgroups);
 }
 
 QList<Optgroup *>::size_type Field::optgroupCount() const noexcept

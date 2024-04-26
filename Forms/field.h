@@ -155,6 +155,7 @@ public:
 
     QQmlListProperty<CutelystForms::Option> options();
     void appendOption(Option *option);
+    void appendOptions(const QList<Option *> &options);
     Q_REQUIRED_RESULT QList<Option *>::size_type optionCount() const noexcept;
     Q_REQUIRED_RESULT Option *option(QList<Option *>::size_type idx) const;
     Q_REQUIRED_RESULT Option *optionById(const QString &id) const;
@@ -166,6 +167,7 @@ public:
 
     QQmlListProperty<CutelystForms::Optgroup> optgroups();
     void appendOptgroup(Optgroup *optgroup);
+    void appendOptgroups(const QList<Optgroup *> &optgroups);
     Q_REQUIRED_RESULT QList<Optgroup *>::size_type optgroupCount() const noexcept;
     Q_REQUIRED_RESULT Optgroup *optgroup(QList<Optgroup *>::size_type idx) const;
     Q_REQUIRED_RESULT Optgroup *optgroupById(const QString &id) const;
