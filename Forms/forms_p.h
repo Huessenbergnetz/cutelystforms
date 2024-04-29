@@ -40,7 +40,7 @@ public:
                 const QStringList &args        = QStringList(),
                 const QVariantMap &queryValues = QVariantMap()) const;
     Q_REQUIRED_RESULT Q_INVOKABLE QString cCsrfToken();
-    [[nodiscard]] QVariant cStashValue(const QString &key, const QVariant &defVal);
+    [[nodiscard]] Q_INVOKABLE QVariant cStashValue(const QString &key, const QVariant &defVal);
 
 private:
     const QString m_form;
