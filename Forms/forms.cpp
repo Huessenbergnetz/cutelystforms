@@ -152,8 +152,10 @@ QString Forms::timezoneStashKey()
     return forms->d_func()->timezoneStashKey;
 }
 
-Form *Forms::getForm(const QString &name, Cutelyst::Context *c)
+Form *Forms::getForm(const QString &name, Cutelyst::Context *c, Options options)
 {
+    Q_ASSERT_X(c, "Forms::getForm", "we nee a valid Cutelyst context");
+
     if (!forms) {
         qCCritical(C_FORMS) << "Forms plugin not registered";
         return nullptr;
@@ -177,10 +179,12 @@ Form *Forms::getForm(const QString &name, Cutelyst::Context *c)
     QQmlContext qmlContext(&forms->d_func()->engine);
     qmlContext.setContextObject(new FormsContextObject(
         fi.completeBaseName(), c)); // NOLINT(cppcoreguidelines-owning-memory)
-    auto it = c->stash().cbegin();
-    while (it != c->stash().cend()) {
-        qmlContext.setContextProperty(it.key(), it.value());
-        it++;
+    if (!options.testFlag(DoNotFillContext)) {
+        auto it = c->stash().cbegin();
+        while (it != c->stash().cend()) {
+            qmlContext.setContextProperty(it.key(), it.value());
+            it++;
+        }
     }
 
     QQmlComponent component(&forms->d_func()->engine, fi.filePath());

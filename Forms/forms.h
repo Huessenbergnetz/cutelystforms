@@ -43,6 +43,10 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Forms // clazy:exclude=ctor-missing-parent-ar
     Q_DECLARE_PRIVATE(Forms) // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)
     Q_DISABLE_COPY(Forms)
 public:
+    enum Option : int { NoOptions = 0x0, DoNotFillContext = 0x1 };
+    Q_DECLARE_FLAGS(Options, Option)
+    Q_FLAG(Options)
+
     /*!
      * \brief Constructs a new %Forms plugin object with the given \a parent.
      */
@@ -85,7 +89,7 @@ public:
 
     static QString timezoneStashKey();
 
-    static Form *getForm(const QString &name, Cutelyst::Context *c);
+    static Form *getForm(const QString &name, Cutelyst::Context *c, Options options = NoOptions);
 
     static QString templatesDirPath();
 
@@ -102,5 +106,7 @@ private:
 };
 
 } // namespace CutelystForms
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(CutelystForms::Forms::Options)
 
 #endif // C_FORMS_H
