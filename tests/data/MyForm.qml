@@ -26,6 +26,7 @@ Form {
             legend: "A greate legend"
 
             Select {
+                name: "select1"
                 htmlId: "selectField"
 
                 Option {
@@ -34,6 +35,7 @@ Form {
             }
 
             Select {
+                name: "select2"
                 optgroups: [
                     Optgroup {
                         label: "Group A"

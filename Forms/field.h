@@ -36,7 +36,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Field : public FormHtmlElement
     Q_PROPERTY(QVariant min READ min WRITE setMin)
     Q_PROPERTY(int minlength READ minlength WRITE setMinlength)
     Q_PROPERTY(bool multiple READ multiple WRITE setMultiple)
-    Q_PROPERTY(QString name READ name WRITE setName)
+    Q_PROPERTY(QString name READ name WRITE setName REQUIRED)
     Q_PROPERTY(QString placeholder READ placeholder WRITE setPlaceholder)
     Q_PROPERTY(QString pattern READ pattern WRITE setPattern)
     Q_PROPERTY(bool readonly READ readonly WRITE setReadonly)
