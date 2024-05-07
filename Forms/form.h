@@ -12,6 +12,8 @@
 #include "fieldset.h"
 #include "formhtmlelement.h"
 
+#include <Cutelyst/ParamsMultiMap>
+
 #include <QQmlListProperty>
 #include <QUrl>
 #include <QtQml/qqmlregistration.h>
@@ -97,7 +99,29 @@ public:
     Q_REQUIRED_RESULT bool novalidate() const noexcept;
     void setNovalidate(bool novalidate) noexcept;
 
+    /*!
+     * \brief Sets \a errors to each field in the form.
+     *
+     * The \a errors hash has to contain the errors for each field identified by the field name
+     * as the key.
+     * This can for example easily be used with Cutelyst::ValidatorResult::errors().
+     */
     void setErrors(const QHash<QString, QStringList> &errors);
+
+    /*!
+     * \brief Sets the value for each field from the \a valueMap.
+     *
+     * Can for example be used to fill the values from the input parameters. The key of the
+     * \a valueMap has to be the field name.
+     */
+    void setValues(const Cutelyst::ParamsMultiMap &valueMap);
+    /*!
+     * \brief Sets the value for each field from the \a valueMap.
+     *
+     * Can for example be used to fill the values from the Cutelyst::ValidatorResult::values().
+     * The key of the \a valueMap has to be the field name.
+     */
+    void setValues(const QVariantHash &valueMap);
 
     Q_REQUIRED_RESULT QString tagName() const noexcept override;
 

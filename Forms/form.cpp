@@ -216,6 +216,42 @@ void Form::setErrors(const QHash<QString, QStringList> &errors)
     }
 }
 
+void Form::setValues(const Cutelyst::ParamsMultiMap &valueMap)
+{
+    Q_D(Form);
+    const auto fieldsets = d->fieldsets.list();
+    for (auto vm = valueMap.cbegin(), end = valueMap.cend(); vm != end; vm++) {
+        const auto field = d->fields.itemByName(vm.key());
+        if (field) {
+            field->setValue(vm.value());
+        }
+        for (auto fs : fieldsets) {
+            const auto fsfield = fs->fieldByName(vm.key());
+            if (fsfield) {
+                fsfield->setValue(vm.value());
+            }
+        }
+    }
+}
+
+void Form::setValues(const QVariantHash &valueMap)
+{
+    Q_D(Form);
+    const auto fieldsets = d->fieldsets.list();
+    for (auto vm = valueMap.cbegin(), end = valueMap.cend(); vm != end; vm++) {
+        const auto field = d->fields.itemByName(vm.key());
+        if (field) {
+            field->setValue(vm.value());
+        }
+        for (auto fs : fieldsets) {
+            const auto fsfield = fs->fieldByName(vm.key());
+            if (fsfield) {
+                fsfield->setValue(vm.value());
+            }
+        }
+    }
+}
+
 CutelystForms::Form::Target Form::target() const noexcept
 {
     Q_D(const Form);
