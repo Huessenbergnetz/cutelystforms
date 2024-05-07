@@ -92,7 +92,7 @@ QStringList ButtonPrivate::attrList() const
     if (formtarget != Button::NoTarget) {
         lst.append(u"formtarget=\""_qs + formtargetString() + QLatin1Char('"'));
     }
-    if (name.isEmpty()) {
+    if (!name.isEmpty()) {
         lst.append(u"name=\""_qs + name + QLatin1Char('"'));
     }
     if (value.isValid()) {
