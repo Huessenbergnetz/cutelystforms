@@ -26,9 +26,9 @@ QStringList FormHtmlElementPrivate::attrList() const
     if (!accesskey.isEmpty()) {
         lst.append(u"accesskey=\""_qs + accesskey + QLatin1Char('"'));
     }
-    if (!form.isEmpty()) {
-        lst.append(u"form=\""_qs + form + QLatin1Char('"'));
-    }
+    // if (!form.isEmpty()) {
+    //     lst.append(u"form=\""_qs + form + QLatin1Char('"'));
+    // }
     if (hidden) {
         lst.append(u"hidden"_qs);
     }
@@ -64,30 +64,30 @@ QDateTime FormHtmlElementPrivate::convertedDateTime(const QDateTime &dt) const
     return dt;
 }
 
-// QString FormHtmlElementPrivate::getForm() const
-// {
-//     if (!form.isEmpty()) {
-//         return form;
-//     } else {
-//         Q_Q(const FormHtmlElement);
-//         if (q->parent()) {
-//             auto form = qobject_cast<Form*>(q->parent());
-//             if (form) {
-//                 return form->htmlId();
-//             } else {
-//                 auto fieldset = qobject_cast<Fieldset*>(q->parent());
-//                 if (fieldset) {
-//                     form = qobject_cast<Form*>(fieldset->parent());
-//                     if (form) {
-//                         return form->htmlId();
-//                     }
-//                 }
-//             }
-//         }
-//     }
+QString FormHtmlElementPrivate::getForm() const
+{
+    if (!form.isEmpty()) {
+        return form;
+    } else {
+        Q_Q(const FormHtmlElement);
+        if (q->parent()) {
+            auto form = qobject_cast<Form *>(q->parent());
+            if (form) {
+                return form->htmlId();
+            } else {
+                auto fieldset = qobject_cast<Fieldset *>(q->parent());
+                if (fieldset) {
+                    form = qobject_cast<Form *>(fieldset->parent());
+                    if (form) {
+                        return form->htmlId();
+                    }
+                }
+            }
+        }
+    }
 
-//     return {};
-// }
+    return {};
+}
 
 FormHtmlElement::FormHtmlElement(QObject *parent)
     : QObject(parent)
@@ -129,7 +129,8 @@ QString FormHtmlElement::attrs() const
 QString FormHtmlElement::form() const noexcept
 {
     Q_D(const FormHtmlElement);
-    return d->form;
+    // return d->form;
+    return d->getForm();
 }
 
 void FormHtmlElement::setForm(const QString &form) noexcept

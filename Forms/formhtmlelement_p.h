@@ -38,7 +38,7 @@ public:
 
     QDateTime convertedDateTime(const QDateTime &dt) const;
 
-    // QString getForm() const;
+    QString getForm() const;
 
     FormHtmlElement *q_ptr;
 

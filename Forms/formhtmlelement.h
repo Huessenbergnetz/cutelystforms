@@ -27,7 +27,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT FormHtmlElement : public QObject
     Q_OBJECT
     Q_PROPERTY(QString accesskey READ accesskey WRITE setAccesskey)
     Q_PROPERTY(QString attrs READ attrs)
-    Q_PROPERTY(QString form READ form)
+    Q_PROPERTY(QString form READ form WRITE setForm)
     Q_PROPERTY(bool hidden READ isHidden WRITE setHidden)
     Q_PROPERTY(QString htmlClass READ htmlClass WRITE setHtmlClass)
     Q_PROPERTY(QString htmlId READ htmlId WRITE setHtmlId)
