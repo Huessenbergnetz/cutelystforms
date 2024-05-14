@@ -124,6 +124,10 @@ void TestForms::getForm()
     auto csrf = qobject_cast<HiddenInput *>(fs1->field(0));
     QVERIFY(csrf);
     QVERIFY(!csrf->value().isNull());
+    QCOMPARE(csrf->form(), QStringLiteral("littleForm"));
+    auto btn = f->button(0);
+    QVERIFY(btn);
+    QCOMPARE(btn->form(), QStringLiteral("littleForm"));
 }
 
 QTEST_MAIN(TestForms)
