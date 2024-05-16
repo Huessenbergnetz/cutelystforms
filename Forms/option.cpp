@@ -46,6 +46,11 @@ Option::Option(const QString &text, const QString &value, bool selected, QObject
 {
 }
 
+Option::Option(const QString &textAndValue, bool selected, QObject *parent)
+    : SelectContent(*new OptionPrivate(textAndValue, textAndValue, selected, this), parent)
+{
+}
+
 Option::Option(OptionPrivate &dd, QObject *parent)
     : SelectContent(dd, parent)
 {

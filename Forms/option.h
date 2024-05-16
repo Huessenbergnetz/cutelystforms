@@ -30,6 +30,7 @@ public:
            const QString &value,
            bool selected   = false,
            QObject *parent = nullptr);
+    Option(const QString &textAndValue, bool selected = false, QObject *parent = nullptr);
     ~Option() override = default;
 
     Q_REQUIRED_RESULT bool isSelected() const noexcept;
