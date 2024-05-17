@@ -1,0 +1,10 @@
+{# SPDX-FileCopyrightText: (C) 2024 Matthias Fehring <https://www.huessenbergnetz.de> #}
+{# SPDX-License-Identifier: BSD-3-Clause #}
+
+<textarea class="form-control{% if field.errors %} is-invalid{%endif %}" {{ field.attrs|safe }}{% if field.description or field.errors %} aria-describedby="{% if field.description %}{{ field.htmlId }}Desc{% endif %}{% if field.errors %} {{ field.htmlId }}Feedback{% endif %}"{% endif %}{% if textareaCols %} cols="{{ textareaCols }}"{% endif %}>{{ field.value }}</textarea>
+{% if field.description %}
+<div id="{{ field.htmlId }}Desc" class="form-text">{{ field.description }}</div>
+{% endif %}
+{% if field.errors %}
+<div id="{{ field.htmlId }}Feeback" class="invalid-feedback">{{ field.errors|join:"<br>" }}</div>
+{% endif %}

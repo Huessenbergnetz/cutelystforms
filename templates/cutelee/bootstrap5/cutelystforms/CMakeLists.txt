@@ -8,6 +8,8 @@ set(cuteleebootstrap5_SRC
     inputwithlabel.html
     select.html
     selectwithlabel.html
+    textarea.html
+    textareawithlabel.html
 )
 
 add_custom_target(cuteleebootstrap5
