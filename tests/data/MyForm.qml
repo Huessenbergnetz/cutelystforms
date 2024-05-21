@@ -67,7 +67,7 @@ Form {
             legend: cTranslate("MyForm", "Another great legend")
 
             HiddenForm {
-                name: "csrfprotectiontoken"
+                name: cCsrfTokenFieldName()
                 value: cCsrfToken()
             }
         }

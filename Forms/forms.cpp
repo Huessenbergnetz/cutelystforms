@@ -89,6 +89,16 @@ QString FormsContextObject::cCsrfToken()
 #endif
 }
 
+QString FormsContextObject::cCsrfTokenFieldName() const
+{
+#ifdef PLUGIN_CSRFPROTECTION_ENABLED
+    return QString::fromLatin1(Cutelyst::CSRFProtection::formFieldName());
+#else
+    qCWarning(C_FORMS, "%s", "The CSRF protection plugin has not been built.");
+    return QString();
+#endif
+}
+
 QVariant FormsContextObject::cStashValue(const QString &key, const QVariant &defVal)
 {
     return m_c->stash(key, defVal);
