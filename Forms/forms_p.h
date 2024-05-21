@@ -39,7 +39,7 @@ public:
         cUriFor(const QString &path            = QString(),
                 const QStringList &args        = QStringList(),
                 const QVariantMap &queryValues = QVariantMap()) const;
-    Q_REQUIRED_RESULT Q_INVOKABLE QString cCsrfToken();
+    Q_REQUIRED_RESULT Q_INVOKABLE QString cCsrfToken() const;
     [[nodiscard]] Q_INVOKABLE QString cCsrfTokenFieldName() const;
     [[nodiscard]] Q_INVOKABLE QVariant cStashValue(const QString &key,
                                                    const QVariant &defVal = QVariant());

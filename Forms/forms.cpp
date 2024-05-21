@@ -79,13 +79,13 @@ QUrl FormsContextObject::cUriFor(const QString &path,
     }
 }
 
-QString FormsContextObject::cCsrfToken()
+QString FormsContextObject::cCsrfToken() const
 {
 #ifdef PLUGIN_CSRFPROTECTION_ENABLED
     return QString::fromLatin1(Cutelyst::CSRFProtection::getToken(m_c));
 #else
     qCWarning(C_FORMS, "%s", "The CSRF protection plugin has not been built.");
-    return QString();
+    return {};
 #endif
 }
 
@@ -95,7 +95,7 @@ QString FormsContextObject::cCsrfTokenFieldName() const
     return QString::fromLatin1(Cutelyst::CSRFProtection::formFieldName());
 #else
     qCWarning(C_FORMS, "%s", "The CSRF protection plugin has not been built.");
-    return QString();
+    return {};
 #endif
 }
 
