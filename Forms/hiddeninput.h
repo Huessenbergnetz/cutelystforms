@@ -23,9 +23,9 @@ public:
     explicit HiddenInput(QObject *parent = nullptr);
     ~HiddenInput() override = default;
 
-    Q_REQUIRED_RESULT Field::Type type() const noexcept override;
+    [[nodiscard]] Field::Type type() const noexcept override;
 
-    Q_REQUIRED_RESULT QString typeString() const noexcept override;
+    [[nodiscard]] QString typeString() const noexcept override;
 
 private:
     Q_DISABLE_COPY(HiddenInput)

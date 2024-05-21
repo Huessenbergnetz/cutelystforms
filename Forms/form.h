@@ -70,33 +70,33 @@ public:
     enum Target { Self = 0, Blank, Parent, Top };
     Q_ENUM(Target)
 
-    Q_REQUIRED_RESULT QStringList acceptCharset() const noexcept;
+    [[nodiscard]] QStringList acceptCharset() const noexcept;
     void setAcceptCharset(const QStringList &acceptCharset);
 
-    Q_REQUIRED_RESULT QUrl action() const noexcept;
+    [[nodiscard]] QUrl action() const noexcept;
     void setAction(const QUrl &action) noexcept;
 
-    Q_REQUIRED_RESULT bool autocomplete() const noexcept;
+    [[nodiscard]] bool autocomplete() const noexcept;
     void setAutocomplete(bool autocomplete) noexcept;
 
-    Q_REQUIRED_RESULT QString description() const noexcept;
+    [[nodiscard]] QString description() const noexcept;
     void setDescription(const QString &description) noexcept;
 
-    Q_REQUIRED_RESULT EncType enctype() const noexcept;
+    [[nodiscard]] EncType enctype() const noexcept;
     void setEnctype(EncType enctype) noexcept;
     [[nodiscard]] QString enctypeString() const noexcept;
 
-    Q_REQUIRED_RESULT QString label() const noexcept;
+    [[nodiscard]] QString label() const noexcept;
     void setLabel(const QString &label) noexcept;
 
-    Q_REQUIRED_RESULT Method method() const noexcept;
+    [[nodiscard]] Method method() const noexcept;
     void setMethod(Method method) noexcept;
     [[nodiscard]] QString methodString() const noexcept;
 
-    Q_REQUIRED_RESULT QString name() const noexcept;
+    [[nodiscard]] QString name() const noexcept;
     void setName(const QString &name) noexcept;
 
-    Q_REQUIRED_RESULT bool novalidate() const noexcept;
+    [[nodiscard]] bool novalidate() const noexcept;
     void setNovalidate(bool novalidate) noexcept;
 
     /*!
@@ -123,53 +123,53 @@ public:
      */
     void setValues(const QVariantHash &valueMap);
 
-    Q_REQUIRED_RESULT QString tagName() const noexcept override;
+    [[nodiscard]] QString tagName() const noexcept override;
 
-    Q_REQUIRED_RESULT Target target() const noexcept;
+    [[nodiscard]] Target target() const noexcept;
     void setTarget(Target target) noexcept;
     [[nodiscard]] QString targetString() const noexcept;
 
     QQmlListProperty<CutelystForms::Field> fields();
     void appendField(Field *field);
     void appendFields(const QList<Field *> &fields);
-    Q_REQUIRED_RESULT QList<Field *>::size_type fieldCount() const noexcept;
-    Q_REQUIRED_RESULT Field *field(QList<Field *>::size_type idx) const;
-    Q_REQUIRED_RESULT Field *fieldByName(const QString &name) const;
-    Q_REQUIRED_RESULT Field *fieldById(const QString &id) const;
+    [[nodiscard]] QList<Field *>::size_type fieldCount() const noexcept;
+    [[nodiscard]] Field *field(QList<Field *>::size_type idx) const;
+    [[nodiscard]] Field *fieldByName(const QString &name) const;
+    [[nodiscard]] Field *fieldById(const QString &id) const;
     void clearFields();
     void replaceField(QList<Field *>::size_type idx, Field *f);
     void removeLastField();
-    Q_REQUIRED_RESULT QList<Field *> fieldList() const noexcept;
-    Q_REQUIRED_RESULT QMap<QString, Field *> fieldNameMap() const noexcept;
-    Q_REQUIRED_RESULT QMap<QString, Field *> fieldIdMap() const noexcept;
+    [[nodiscard]] QList<Field *> fieldList() const noexcept;
+    [[nodiscard]] QMap<QString, Field *> fieldNameMap() const noexcept;
+    [[nodiscard]] QMap<QString, Field *> fieldIdMap() const noexcept;
 
     QQmlListProperty<CutelystForms::Fieldset> fieldsets();
     void appendFieldset(Fieldset *fieldset);
     void appendFieldsets(const QList<Fieldset *> &fieldsets);
-    Q_REQUIRED_RESULT QList<Fieldset *>::size_type fieldsetCount() const noexcept;
-    Q_REQUIRED_RESULT Fieldset *fieldset(QList<Fieldset *>::size_type idx) const;
-    Q_REQUIRED_RESULT Fieldset *fieldsetByName(const QString &name) const;
-    Q_REQUIRED_RESULT Fieldset *fieldsetById(const QString &id) const;
+    [[nodiscard]] QList<Fieldset *>::size_type fieldsetCount() const noexcept;
+    [[nodiscard]] Fieldset *fieldset(QList<Fieldset *>::size_type idx) const;
+    [[nodiscard]] Fieldset *fieldsetByName(const QString &name) const;
+    [[nodiscard]] Fieldset *fieldsetById(const QString &id) const;
     void clearFieldsets();
     void replaceFieldset(QList<Fieldset *>::size_type idx, Fieldset *f);
     void removeLastFieldset();
-    Q_REQUIRED_RESULT QList<Fieldset *> fieldsetList() const noexcept;
-    Q_REQUIRED_RESULT QMap<QString, Fieldset *> fieldsetNameMap() const noexcept;
-    Q_REQUIRED_RESULT QMap<QString, Fieldset *> fieldsetIdMap() const noexcept;
+    [[nodiscard]] QList<Fieldset *> fieldsetList() const noexcept;
+    [[nodiscard]] QMap<QString, Fieldset *> fieldsetNameMap() const noexcept;
+    [[nodiscard]] QMap<QString, Fieldset *> fieldsetIdMap() const noexcept;
 
     QQmlListProperty<CutelystForms::Button> buttons();
     void appendButton(Button *button);
     void appendButtons(const QList<Button *> &buttons);
-    Q_REQUIRED_RESULT QList<Button *>::size_type buttonCount() const noexcept;
-    Q_REQUIRED_RESULT Button *button(QList<Button *>::size_type idx) const;
-    Q_REQUIRED_RESULT Button *buttonByName(const QString &name) const;
-    Q_REQUIRED_RESULT Button *buttonById(const QString &id) const;
+    [[nodiscard]] QList<Button *>::size_type buttonCount() const noexcept;
+    [[nodiscard]] Button *button(QList<Button *>::size_type idx) const;
+    [[nodiscard]] Button *buttonByName(const QString &name) const;
+    [[nodiscard]] Button *buttonById(const QString &id) const;
     void clearButtons();
     void replaceButton(QList<Button *>::size_type idx, Button *b);
     void removeLastButton();
-    Q_REQUIRED_RESULT QList<Button *> buttonList() const noexcept;
-    Q_REQUIRED_RESULT QMap<QString, Button *> buttonNameMap() const noexcept;
-    Q_REQUIRED_RESULT QMap<QString, Button *> buttonIdMap() const noexcept;
+    [[nodiscard]] QList<Button *> buttonList() const noexcept;
+    [[nodiscard]] QMap<QString, Button *> buttonNameMap() const noexcept;
+    [[nodiscard]] QMap<QString, Button *> buttonIdMap() const noexcept;
 
 protected:
     Form(FormPrivate &dd, QObject *parent = nullptr);

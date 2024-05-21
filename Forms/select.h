@@ -23,7 +23,7 @@ public:
     explicit Select(QObject *parent = nullptr);
     ~Select() override = default;
 
-    Q_REQUIRED_RESULT QString tagName() const noexcept override;
+    [[nodiscard]] QString tagName() const noexcept override;
 
     [[nodiscard]] QString tmpl() const noexcept override;
 

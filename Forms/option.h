@@ -33,18 +33,18 @@ public:
     Option(const QString &textAndValue, bool selected = false, QObject *parent = nullptr);
     ~Option() override = default;
 
-    Q_REQUIRED_RESULT bool isSelected() const noexcept;
+    [[nodiscard]] bool isSelected() const noexcept;
     void setSelected(bool selected) noexcept;
 
-    Q_REQUIRED_RESULT QString text() const noexcept;
+    [[nodiscard]] QString text() const noexcept;
     void setText(const QString &text) noexcept;
 
-    Q_REQUIRED_RESULT QString value() const noexcept;
+    [[nodiscard]] QString value() const noexcept;
     void setValue(const QString &value) noexcept;
 
-    Q_REQUIRED_RESULT QString tagName() const noexcept override;
+    [[nodiscard]] QString tagName() const noexcept override;
 
-    Q_REQUIRED_RESULT QString name() const noexcept { return {}; }
+    [[nodiscard]] QString name() const noexcept { return {}; }
 
 protected:
     Option(OptionPrivate &dd, QObject *parent = nullptr);

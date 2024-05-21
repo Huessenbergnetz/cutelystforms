@@ -53,7 +53,7 @@ public:
     enum Target { NoTarget = 0, Self, Blank, Parent, Top };
     Q_ENUM(Target)
 
-    Q_REQUIRED_RESULT bool isDisabled() const noexcept;
+    [[nodiscard]] bool isDisabled() const noexcept;
     void setDisabled(bool disabled) noexcept;
 
     [[nodiscard]] QUrl formaction() const noexcept;
@@ -74,19 +74,19 @@ public:
     void setFormtarget(Target formtarget) noexcept;
     [[nodiscard]] QString formtargetString() const;
 
-    Q_REQUIRED_RESULT QString name() const noexcept;
+    [[nodiscard]] QString name() const noexcept;
     void setName(const QString &name) noexcept;
 
-    Q_REQUIRED_RESULT QString tagName() const noexcept override;
+    [[nodiscard]] QString tagName() const noexcept override;
 
-    Q_REQUIRED_RESULT QString text() const noexcept;
+    [[nodiscard]] QString text() const noexcept;
     void setText(const QString &text) noexcept;
 
-    Q_REQUIRED_RESULT Type type() const noexcept;
+    [[nodiscard]] Type type() const noexcept;
     void setType(Type type) noexcept;
     [[nodiscard]] QString typeString() const;
 
-    Q_REQUIRED_RESULT QVariant value() const noexcept;
+    [[nodiscard]] QVariant value() const noexcept;
     void setValue(const QVariant &value) noexcept;
 
 protected:

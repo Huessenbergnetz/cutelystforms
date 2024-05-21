@@ -39,7 +39,7 @@ public:
     explicit FormHtmlElement(QObject *parent = nullptr);
     ~FormHtmlElement() override;
 
-    Q_REQUIRED_RESULT QString accesskey() const noexcept;
+    [[nodiscard]] QString accesskey() const noexcept;
     void setAccesskey(const QString &accesskey) noexcept;
 
     [[nodiscard]] virtual QString attrs() const;
@@ -47,24 +47,24 @@ public:
     [[nodiscard]] QString form() const noexcept;
     void setForm(const QString &form) noexcept;
 
-    Q_REQUIRED_RESULT bool isHidden() const noexcept;
+    [[nodiscard]] bool isHidden() const noexcept;
     void setHidden(bool hidden) noexcept;
 
-    Q_REQUIRED_RESULT QString htmlClass() const noexcept;
+    [[nodiscard]] QString htmlClass() const noexcept;
     void setHtmlClass(const QString &htmlClass) noexcept;
 
-    Q_REQUIRED_RESULT QString htmlId() const noexcept;
+    [[nodiscard]] QString htmlId() const noexcept;
     void setHtmlId(const QString &htmlId) noexcept;
 
-    Q_REQUIRED_RESULT bool spellcheck() const noexcept;
+    [[nodiscard]] bool spellcheck() const noexcept;
     void setSpellcheck(bool spellcheck) noexcept;
 
-    Q_REQUIRED_RESULT int tabindex() const noexcept;
+    [[nodiscard]] int tabindex() const noexcept;
     void setTabindex(int tabindex) noexcept;
 
-    Q_REQUIRED_RESULT virtual QString tagName() const noexcept;
+    [[nodiscard]] virtual QString tagName() const noexcept;
 
-    Q_REQUIRED_RESULT QString title() const noexcept;
+    [[nodiscard]] QString title() const noexcept;
     void setTitle(const QString &title) noexcept;
 
     void setContext(Cutelyst::Context *c);

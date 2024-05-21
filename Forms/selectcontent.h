@@ -27,10 +27,10 @@ public:
     explicit SelectContent(QObject *parent = nullptr);
     ~SelectContent() override = default;
 
-    Q_REQUIRED_RESULT bool isDisabled() const noexcept;
+    [[nodiscard]] bool isDisabled() const noexcept;
     void setDisabled(bool disabled) noexcept;
 
-    Q_REQUIRED_RESULT QString label() const noexcept;
+    [[nodiscard]] QString label() const noexcept;
     void setLabel(const QString &label) noexcept;
 
 protected:

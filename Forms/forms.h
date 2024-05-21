@@ -66,7 +66,7 @@ public:
      * \brief Returns the current list of import paths used by the internal QQmlEngine.
      * \sa addImportPath(), QQmlEngine::importPathList()
      */
-    Q_REQUIRED_RESULT QStringList importPaths() const noexcept;
+    [[nodiscard]] QStringList importPaths() const noexcept;
 
     /*!
      * \brief Sets the list of include \a paths.
@@ -83,7 +83,7 @@ public:
      *
      * Use setIncludePahts() to set the list of paths.
      */
-    Q_REQUIRED_RESULT QStringList includePaths() const noexcept;
+    [[nodiscard]] QStringList includePaths() const noexcept;
 
     void setTimezoneStashKey(const QString &key);
 

@@ -37,36 +37,36 @@ public:
     explicit Fieldset(QObject *parent = nullptr);
     ~Fieldset() override = default;
 
-    Q_REQUIRED_RESULT bool isDisabled() const noexcept;
+    [[nodiscard]] bool isDisabled() const noexcept;
     void setDisabled(bool disabled) noexcept;
 
-    Q_REQUIRED_RESULT QString form() const noexcept;
+    [[nodiscard]] QString form() const noexcept;
     void setForm(const QString &form) noexcept;
 
-    Q_REQUIRED_RESULT QString name() const noexcept;
+    [[nodiscard]] QString name() const noexcept;
     void setName(const QString &name) noexcept;
 
-    Q_REQUIRED_RESULT QString description() const noexcept;
+    [[nodiscard]] QString description() const noexcept;
     void setDescription(const QString &description) noexcept;
 
-    Q_REQUIRED_RESULT QString legend() const noexcept;
+    [[nodiscard]] QString legend() const noexcept;
     void setLegend(const QString &legend) noexcept;
 
-    Q_REQUIRED_RESULT QString tagName() const noexcept override;
+    [[nodiscard]] QString tagName() const noexcept override;
 
     QQmlListProperty<CutelystForms::Field> fields();
     void appendField(Field *field);
     void appendFields(const QList<Field *> &fields);
-    Q_REQUIRED_RESULT QList<Field *>::size_type fieldCount() const noexcept;
-    Q_REQUIRED_RESULT Field *field(QList<Field *>::size_type idx) const;
-    Q_REQUIRED_RESULT Field *fieldByName(const QString &name) const;
-    Q_REQUIRED_RESULT Field *fieldById(const QString &id) const;
+    [[nodiscard]] QList<Field *>::size_type fieldCount() const noexcept;
+    [[nodiscard]] Field *field(QList<Field *>::size_type idx) const;
+    [[nodiscard]] Field *fieldByName(const QString &name) const;
+    [[nodiscard]] Field *fieldById(const QString &id) const;
     void clearFields();
     void replaceField(QList<Field *>::size_type idx, Field *f);
     void removeLastField();
-    Q_REQUIRED_RESULT QList<Field *> fieldList() const noexcept;
-    Q_REQUIRED_RESULT QMap<QString, Field *> fieldNameMap() const noexcept;
-    Q_REQUIRED_RESULT QMap<QString, Field *> fieldIdMap() const noexcept;
+    [[nodiscard]] QList<Field *> fieldList() const noexcept;
+    [[nodiscard]] QMap<QString, Field *> fieldNameMap() const noexcept;
+    [[nodiscard]] QMap<QString, Field *> fieldIdMap() const noexcept;
 
 protected:
     Fieldset(FieldsetPrivate &dd, QObject *parent = nullptr);

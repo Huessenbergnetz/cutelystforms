@@ -93,7 +93,7 @@ public:
     [[nodiscard]] bool checked() const noexcept;
     void setChecked(bool checked) noexcept;
 
-    Q_REQUIRED_RESULT QString description() const noexcept;
+    [[nodiscard]] QString description() const noexcept;
     void setDescription(const QString &description) noexcept;
 
     [[nodiscard]] QStringList errors() const noexcept;
@@ -103,7 +103,7 @@ public:
     [[nodiscard]] bool disabled() const noexcept;
     void setDisabled(bool disabled) noexcept;
 
-    Q_REQUIRED_RESULT QString label() const noexcept;
+    [[nodiscard]] QString label() const noexcept;
     void setLabel(const QString &label) noexcept;
 
     [[nodiscard]] QString list() const noexcept;
@@ -121,10 +121,10 @@ public:
     [[nodiscard]] int minlength() const noexcept;
     void setMinlength(int minlength) noexcept;
 
-    Q_REQUIRED_RESULT bool multiple() const noexcept;
+    [[nodiscard]] bool multiple() const noexcept;
     void setMultiple(bool multiple) noexcept;
 
-    Q_REQUIRED_RESULT QString name() const noexcept;
+    [[nodiscard]] QString name() const noexcept;
     void setName(const QString &name) noexcept;
 
     [[nodiscard]] QString placeholder() const noexcept;
@@ -144,9 +144,9 @@ public:
 
     [[nodiscard]] virtual QString tmpl() const noexcept;
 
-    Q_REQUIRED_RESULT virtual Field::Type type() const noexcept;
+    [[nodiscard]] virtual Field::Type type() const noexcept;
 
-    Q_REQUIRED_RESULT virtual QString typeString() const noexcept;
+    [[nodiscard]] virtual QString typeString() const noexcept;
 
     [[nodiscard]] QVariant value() const noexcept;
     void setValue(const QVariant &value) noexcept;
@@ -156,26 +156,26 @@ public:
     QQmlListProperty<CutelystForms::Option> options();
     void appendOption(Option *option);
     void appendOptions(const QList<Option *> &options);
-    Q_REQUIRED_RESULT QList<Option *>::size_type optionCount() const noexcept;
-    Q_REQUIRED_RESULT Option *option(QList<Option *>::size_type idx) const;
-    Q_REQUIRED_RESULT Option *optionById(const QString &id) const;
+    [[nodiscard]] QList<Option *>::size_type optionCount() const noexcept;
+    [[nodiscard]] Option *option(QList<Option *>::size_type idx) const;
+    [[nodiscard]] Option *optionById(const QString &id) const;
     void clearOptions();
     void replaceOption(QList<Option *>::size_type idx, Option *o);
     void removeLastOption();
-    Q_REQUIRED_RESULT QList<Option *> optionList() const noexcept;
-    Q_REQUIRED_RESULT QMap<QString, Option *> optionIdMap() const noexcept;
+    [[nodiscard]] QList<Option *> optionList() const noexcept;
+    [[nodiscard]] QMap<QString, Option *> optionIdMap() const noexcept;
 
     QQmlListProperty<CutelystForms::Optgroup> optgroups();
     void appendOptgroup(Optgroup *optgroup);
     void appendOptgroups(const QList<Optgroup *> &optgroups);
-    Q_REQUIRED_RESULT QList<Optgroup *>::size_type optgroupCount() const noexcept;
-    Q_REQUIRED_RESULT Optgroup *optgroup(QList<Optgroup *>::size_type idx) const;
-    Q_REQUIRED_RESULT Optgroup *optgroupById(const QString &id) const;
+    [[nodiscard]] QList<Optgroup *>::size_type optgroupCount() const noexcept;
+    [[nodiscard]] Optgroup *optgroup(QList<Optgroup *>::size_type idx) const;
+    [[nodiscard]] Optgroup *optgroupById(const QString &id) const;
     void clearOptgroups();
     void replaceOptgroup(QList<Optgroup *>::size_type idx, Optgroup *o);
     void removeLastOptgroup();
-    Q_REQUIRED_RESULT QList<Optgroup *> optgroupList() const noexcept;
-    Q_REQUIRED_RESULT QMap<QString, Optgroup *> optgroupIdMap() const noexcept;
+    [[nodiscard]] QList<Optgroup *> optgroupList() const noexcept;
+    [[nodiscard]] QMap<QString, Optgroup *> optgroupIdMap() const noexcept;
 
 protected:
     Field(FieldPrivate &dd, QObject *parent = nullptr);

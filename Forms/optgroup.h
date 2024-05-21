@@ -31,21 +31,21 @@ public:
     explicit Optgroup(QObject *parent = nullptr);
     ~Optgroup() override = default;
 
-    Q_REQUIRED_RESULT QString name() const noexcept { return {}; }
+    [[nodiscard]] QString name() const noexcept { return {}; }
 
-    Q_REQUIRED_RESULT QString tagName() const noexcept override;
+    [[nodiscard]] QString tagName() const noexcept override;
 
     QQmlListProperty<CutelystForms::Option> options();
     void appendOption(Option *option);
     void appendOptions(const QList<Option *> &options);
-    Q_REQUIRED_RESULT QList<Option *>::size_type optionCount() const noexcept;
-    Q_REQUIRED_RESULT Option *option(QList<Option *>::size_type idx) const;
-    Q_REQUIRED_RESULT Option *optionById(const QString &id) const;
+    [[nodiscard]] QList<Option *>::size_type optionCount() const noexcept;
+    [[nodiscard]] Option *option(QList<Option *>::size_type idx) const;
+    [[nodiscard]] Option *optionById(const QString &id) const;
     void clearOptions();
     void replaceOption(QList<Option *>::size_type idx, Option *o);
     void removeLastOption();
-    Q_REQUIRED_RESULT QList<Option *> optionList() const noexcept;
-    Q_REQUIRED_RESULT QMap<QString, Option *> optionIdMap() const noexcept;
+    [[nodiscard]] QList<Option *> optionList() const noexcept;
+    [[nodiscard]] QMap<QString, Option *> optionIdMap() const noexcept;
 
 protected:
     Optgroup(OptgroupPrivate &dd, QObject *parent = nullptr);
