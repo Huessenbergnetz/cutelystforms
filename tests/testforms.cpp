@@ -75,6 +75,7 @@ TestEngine *TestForms::getEngine()
 
 #ifdef PLUGIN_CSRFPROTECTION_ENABLED
     auto csrf = new Cutelyst::CSRFProtection(app);
+    csrf->setFormFieldName(QByteArrayLiteral("xsrfprotfield"));
 #endif
 
     if (!engine->init()) {
@@ -124,6 +125,7 @@ void TestForms::getForm()
     auto csrf = qobject_cast<HiddenInput *>(fs1->field(0));
     QVERIFY(csrf);
     QVERIFY(!csrf->value().isNull());
+    QCOMPARE(csrf->name(), QStringLiteral("xsrfprotfield"));
     QCOMPARE(csrf->form(), QStringLiteral("littleForm"));
     auto btn = f->button(0);
     QVERIFY(btn);
