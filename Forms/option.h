@@ -9,6 +9,7 @@
 #include "cutelyst_plugin_forms_export.h"
 #include "selectcontent.h"
 
+#include <QCollator>
 #include <QtQml/qqmlregistration.h>
 
 // clazy:excludeall=qproperty-without-notify
@@ -52,6 +53,25 @@ protected:
 private:
     Q_DISABLE_COPY(Option)
     Q_DECLARE_PRIVATE(Option) // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)
+};
+
+class CUTELYST_PLUGIN_FORMS_EXPORT OptionCollator : public QCollator
+{
+public:
+    explicit OptionCollator(const QLocale &locale)
+        : QCollator{locale}
+    {
+    }
+
+    bool operator()(const Option &left, const Option &right) const
+    {
+        return compare(left.text(), right.text());
+    }
+
+    bool operator()(const Option *left, const Option *right) const
+    {
+        return compare(left->text(), right->text());
+    }
 };
 
 } // namespace CutelystForms

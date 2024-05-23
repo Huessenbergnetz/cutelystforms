@@ -10,6 +10,7 @@
 #include "option.h"
 #include "selectcontent.h"
 
+#include <QCollator>
 #include <QQmlListProperty>
 #include <QtQml/qqmlregistration.h>
 
@@ -53,6 +54,25 @@ protected:
 private:
     Q_DISABLE_COPY(Optgroup)
     Q_DECLARE_PRIVATE(Optgroup) // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)
+};
+
+class CUTELYST_PLUGIN_FORMS_EXPORT OptgroupCollator : public QCollator
+{
+public:
+    explicit OptgroupCollator(const QLocale &locale)
+        : QCollator{locale}
+    {
+    }
+
+    bool operator()(const Optgroup &left, const Optgroup &right) const
+    {
+        return compare(left.name(), right.name());
+    }
+
+    bool operator()(const Optgroup *left, const Optgroup *right) const
+    {
+        return compare(left->name(), right->name());
+    }
 };
 
 } // namespace CutelystForms
