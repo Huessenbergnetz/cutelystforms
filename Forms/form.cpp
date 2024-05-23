@@ -221,6 +221,9 @@ void Form::setValues(const Cutelyst::ParamsMultiMap &valueMap)
     Q_D(Form);
     const auto fieldsets = d->fieldsets.list();
     for (auto vm = valueMap.cbegin(), end = valueMap.cend(); vm != end; vm++) {
+        if (vm.key().contains(QLatin1String("password"), Qt::CaseInsensitive)) {
+            continue;
+        }
         const auto field = d->fields.itemByName(vm.key());
         if (field) {
             field->setValue(vm.value());
@@ -239,6 +242,9 @@ void Form::setValues(const QVariantHash &valueMap)
     Q_D(Form);
     const auto fieldsets = d->fieldsets.list();
     for (auto vm = valueMap.cbegin(), end = valueMap.cend(); vm != end; vm++) {
+        if (vm.key().contains(QLatin1String("password"), Qt::CaseInsensitive)) {
+            continue;
+        }
         const auto field = d->fields.itemByName(vm.key());
         if (field) {
             field->setValue(vm.value());
