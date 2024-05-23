@@ -226,12 +226,20 @@ void Form::setValues(const Cutelyst::ParamsMultiMap &valueMap)
         }
         const auto field = d->fields.itemByName(vm.key());
         if (field) {
-            field->setValue(vm.value());
+            if (field->type() == Field::Radio) {
+                field->setChecked(field->value() == vm.value());
+            } else {
+                field->setValue(vm.value());
+            }
         }
         for (auto fs : fieldsets) {
             const auto fsfield = fs->fieldByName(vm.key());
             if (fsfield) {
-                fsfield->setValue(vm.value());
+                if (fsfield->type() == Field::Radio) {
+                    fsfield->setChecked(fsfield->value() == vm.value());
+                } else {
+                    fsfield->setValue(vm.value());
+                }
             }
         }
     }
@@ -247,12 +255,38 @@ void Form::setValues(const QVariantHash &valueMap)
         }
         const auto field = d->fields.itemByName(vm.key());
         if (field) {
-            field->setValue(vm.value());
+            if (field->type() == Field::Radio) {
+                field->setChecked(field->value() == vm.value());
+            } else {
+                field->setValue(vm.value());
+            }
         }
         for (auto fs : fieldsets) {
             const auto fsfield = fs->fieldByName(vm.key());
             if (fsfield) {
-                fsfield->setValue(vm.value());
+                if (fsfield->type() == Field::Radio) {
+                    fsfield->setChecked(fsfield->value() == vm.value());
+                } else {
+                    fsfield->setValue(vm.value());
+                }
+            }
+        }
+    }
+}
+
+void Form::setAsChecked(const QStringList &checked)
+{
+    Q_D(Form);
+    const auto fieldsets = d->fieldsets.list();
+    for (const QString &c : checked) {
+        const auto field = d->fields.itemByName(c);
+        if (field && field->type() == Field::Checkbox) {
+            field->setChecked(true);
+        }
+        for (auto fs : fieldsets) {
+            const auto fsfield = fs->fieldByName(c);
+            if (fsfield && fsfield->type() == Field::Checkbox) {
+                fsfield->setChecked(true);
             }
         }
     }

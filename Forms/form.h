@@ -123,6 +123,12 @@ public:
      */
     void setValues(const QVariantHash &valueMap);
 
+    void setAsChecked(const QStringList &checked);
+
+    inline void setAsChecked(const Cutelyst::ParamsMultiMap &valueMap);
+
+    inline void setAsChecked(const QVariantHash &valueMap);
+
     [[nodiscard]] QString tagName() const noexcept override;
 
     [[nodiscard]] Target target() const noexcept;
@@ -178,6 +184,16 @@ private:
     Q_DISABLE_COPY(Form)
     Q_DECLARE_PRIVATE(Form) // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)
 };
+
+inline void Form::setAsChecked(const Cutelyst::ParamsMultiMap &valueMap)
+{
+    setAsChecked(valueMap.keys());
+}
+
+inline void Form::setAsChecked(const QVariantHash &valueMap)
+{
+    setAsChecked(valueMap.keys());
+}
 
 } // namespace CutelystForms
 
