@@ -65,12 +65,12 @@ public:
 
     bool operator()(const Option &left, const Option &right) const
     {
-        return compare(left.text(), right.text());
+        return compare(left.text(), right.text()) < 0;
     }
 
     bool operator()(const Option *left, const Option *right) const
     {
-        return compare(left->text(), right->text());
+        return compare(left->text(), right->text()) < 0;
     }
 };
 

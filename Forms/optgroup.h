@@ -66,12 +66,12 @@ public:
 
     bool operator()(const Optgroup &left, const Optgroup &right) const
     {
-        return compare(left.name(), right.name());
+        return compare(left.name(), right.name()) < 0;
     }
 
     bool operator()(const Optgroup *left, const Optgroup *right) const
     {
-        return compare(left->name(), right->name());
+        return compare(left->name(), right->name()) < 0;
     }
 };
 
