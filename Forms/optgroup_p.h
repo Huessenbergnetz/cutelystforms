@@ -6,9 +6,9 @@
 #ifndef C_FORMS_OPTGROUP_P_H
 #define C_FORMS_OPTGROUP_P_H
 
+#include "namedlistproperty_p.h"
 #include "optgroup.h"
 #include "selectcontent_p.h"
-#include "namedlistproperty_p.h"
 
 namespace CutelystForms {
 
@@ -16,6 +16,7 @@ class OptgroupPrivate : public SelectContentPrivate
 {
 public:
     OptgroupPrivate(Optgroup *q);
+    OptgroupPrivate(const QString &_label, Optgroup *q);
     ~OptgroupPrivate() override = default;
 
     NamedListProperty<Option, Optgroup> options;
@@ -27,6 +28,6 @@ private:
     Q_DISABLE_COPY(OptgroupPrivate)
 };
 
-}
+} // namespace CutelystForms
 
 #endif // C_FORMS_OPTGROUP_P_H

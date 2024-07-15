@@ -15,6 +15,7 @@ class SelectContentPrivate : public FormHtmlElementPrivate
 {
 public:
     SelectContentPrivate(SelectContent *q);
+    SelectContentPrivate(const QString &_label, SelectContent *q);
     ~SelectContentPrivate() override = default;
 
     QStringList attrList() const override;

@@ -12,6 +12,12 @@ SelectContentPrivate::SelectContentPrivate(SelectContent *q)
 {
 }
 
+SelectContentPrivate::SelectContentPrivate(const QString &_label, SelectContent *q)
+    : FormHtmlElementPrivate(Tag::None, q)
+    , label{_label}
+{
+}
+
 QStringList SelectContentPrivate::attrList() const
 {
     QStringList lst = FormHtmlElementPrivate::attrList();

@@ -14,8 +14,20 @@ OptgroupPrivate::OptgroupPrivate(Optgroup *q)
     tag = Tag::Optgroup;
 }
 
+OptgroupPrivate::OptgroupPrivate(const QString &_label, Optgroup *q)
+    : SelectContentPrivate(_label, q)
+    , options(q)
+{
+    tag = Tag::Optgroup;
+}
+
 Optgroup::Optgroup(QObject *parent)
     : SelectContent(*new OptgroupPrivate(this), parent)
+{
+}
+
+Optgroup::Optgroup(const QString &label, QObject *parent)
+    : SelectContent(*new OptgroupPrivate(label, this), parent)
 {
 }
 

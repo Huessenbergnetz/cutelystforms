@@ -30,6 +30,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Optgroup : public SelectContent
     QML_ELEMENT
 public:
     explicit Optgroup(QObject *parent = nullptr);
+    Optgroup(const QString &label, QObject *parent = nullptr);
     ~Optgroup() override = default;
 
     [[nodiscard]] QString name() const noexcept { return {}; }
@@ -66,12 +67,12 @@ public:
 
     bool operator()(const Optgroup &left, const Optgroup &right) const
     {
-        return compare(left.name(), right.name()) < 0;
+        return compare(left.label(), right.label()) < 0;
     }
 
     bool operator()(const Optgroup *left, const Optgroup *right) const
     {
-        return compare(left->name(), right->name()) < 0;
+        return compare(left->label(), right->label()) < 0;
     }
 };
 
