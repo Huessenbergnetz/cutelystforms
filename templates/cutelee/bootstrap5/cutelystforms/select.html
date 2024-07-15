@@ -2,7 +2,7 @@
 {# SPDX-License-Identifier: BSD-3-Clause #}
 
 <select class="form-select{% if selectSize %} form-select-{{ selectSize }}{% endif %}{% if field.errors %} is-invalid{%endif %}" {{ field.attrs|safe }}{% if field.description or field.errors %} aria-describedby="{% if field.description %}{{ field.htmlId }}Desc{% endif %}{% if field.errors %} {{ field.htmlId }}Feedback{% endif %}"{% endif %}>
-    {% if field.optgroupList %}
+    {% if field.optgroupList.size %}
         {% for optgroup in field.optgroupList %}
         <optgroup {{ optgroup.attrs|safe }}>
             {% for option in optgroup.optionList %}
