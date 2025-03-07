@@ -30,7 +30,7 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Optgroup : public SelectContent
     QML_ELEMENT
 public:
     explicit Optgroup(QObject *parent = nullptr);
-    Optgroup(const QString &label, QObject *parent = nullptr);
+    explicit Optgroup(const QString &label, QObject *parent = nullptr);
     ~Optgroup() override = default;
 
     [[nodiscard]] QString name() const noexcept { return {}; }
@@ -50,7 +50,7 @@ public:
     [[nodiscard]] QMap<QString, Option *> optionIdMap() const noexcept;
 
 protected:
-    Optgroup(OptgroupPrivate &dd, QObject *parent = nullptr);
+    explicit Optgroup(OptgroupPrivate &dd, QObject *parent = nullptr);
 
 private:
     Q_DISABLE_COPY(Optgroup)

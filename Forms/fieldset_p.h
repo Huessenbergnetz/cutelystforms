@@ -15,10 +15,10 @@ namespace CutelystForms {
 class FieldsetPrivate : public FormHtmlElementPrivate
 {
 public:
-    FieldsetPrivate(Fieldset *q);
+    explicit FieldsetPrivate(Fieldset *q);
     ~FieldsetPrivate() override = default;
 
-    virtual QStringList attrList() const override;
+    [[nodiscard]] QStringList attrList() const override;
 
     NamedListProperty<Field, Fieldset> fields;
     QString form;

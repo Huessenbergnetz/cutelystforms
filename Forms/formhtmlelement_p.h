@@ -34,11 +34,11 @@ public:
     FormHtmlElementPrivate(Tag _tag, FormHtmlElement *q);
     virtual ~FormHtmlElementPrivate() = default;
 
-    virtual QStringList attrList() const;
+    [[nodiscard]] virtual QStringList attrList() const;
 
-    QDateTime convertedDateTime(const QDateTime &dt) const;
+    [[nodiscard]] QDateTime convertedDateTime(const QDateTime &dt) const;
 
-    QString getForm() const;
+    [[nodiscard]] QString getForm() const;
 
     FormHtmlElement *q_ptr;
 

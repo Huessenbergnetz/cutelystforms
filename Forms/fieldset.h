@@ -69,7 +69,7 @@ public:
     [[nodiscard]] QMap<QString, Field *> fieldIdMap() const noexcept;
 
 protected:
-    Fieldset(FieldsetPrivate &dd, QObject *parent = nullptr);
+    explicit Fieldset(FieldsetPrivate &dd, QObject *parent = nullptr);
 
 private:
     Q_DISABLE_COPY(Fieldset)

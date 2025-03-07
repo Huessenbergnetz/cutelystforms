@@ -14,10 +14,10 @@ namespace CutelystForms {
 class RangeInputPrivate : public FieldPrivate
 {
 public:
-    RangeInputPrivate(RangeInput *q);
+    explicit RangeInputPrivate(RangeInput *q);
     ~RangeInputPrivate() override = default;
 
-    QStringList attrList() const override;
+    [[nodiscard]] QStringList attrList() const override;
 
 private:
     Q_DECLARE_PUBLIC(RangeInput) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)

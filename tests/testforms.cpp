@@ -62,18 +62,23 @@ private:
 
 TestEngine *TestForms::getEngine()
 {
-    auto app    = new TestApplication(this);
+    // NOLINTNEXTLINE(cppcoreguidelines-owning-memory)
+    auto app = new TestApplication(this);
+    // NOLINTNEXTLINE(cppcoreguidelines-owning-memory)
     auto engine = new TestEngine(app, QVariantMap());
+    // NOLINTNEXTLINE(cppcoreguidelines-owning-memory)
     new TestFormsController(app);
 
     const QString l10nDir = QStringLiteral(TESTFORMS_L10N_DIR);
     app->loadTranslationsFromDir(QStringLiteral("formtests"), l10nDir);
 
+    // NOLINTNEXTLINE(cppcoreguidelines-owning-memory)
     auto forms = new Forms(app);
     forms->addImportPath(QStringLiteral(FORMS_IMPORT_DIR));
     forms->setIncludePaths({QStringLiteral(TESTFORMS_DIR)});
 
 #ifdef PLUGIN_CSRFPROTECTION_ENABLED
+    // NOLINTNEXTLINE(cppcoreguidelines-owning-memory)
     auto csrf = new Cutelyst::CSRFProtection(app);
     csrf->setFormFieldName(QByteArrayLiteral("xsrfprotfield"));
 #endif
@@ -99,6 +104,7 @@ void TestForms::cleanupTestCase()
 
 void TestForms::getForm()
 {
+    // NOLINTNEXTLINE(cppcoreguidelines-owning-memory)
     auto c = new Context(m_engine->app());
     c->setLocale(QLocale(QLocale::German));
     c->setStash(QStringLiteral("test"), QStringLiteral("hallo"));
@@ -113,7 +119,7 @@ void TestForms::getForm()
     QVERIFY(fs0);
     QCOMPARE(fs0->htmlId(), QStringLiteral("fieldset1"));
     QCOMPARE(fs0->htmlClass(), QStringLiteral("hallo"));
-    Select *selectField = qobject_cast<Select *>(fs0->field(0));
+    auto selectField = qobject_cast<Select *>(fs0->field(0));
     QVERIFY(selectField);
     auto option = selectField->option(0);
     QVERIFY(option);

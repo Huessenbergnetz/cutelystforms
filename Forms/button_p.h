@@ -14,14 +14,14 @@ namespace CutelystForms {
 class ButtonPrivate : public FormHtmlElementPrivate
 {
 public:
-    ButtonPrivate(Button *q);
+    explicit ButtonPrivate(Button *q);
     ~ButtonPrivate() override = default;
 
-    QString formenctypeString() const;
-    QString formmethodString() const;
-    QString formtargetString() const;
-    QString typeString() const;
-    virtual QStringList attrList() const override;
+    [[nodiscard]] QString formenctypeString() const;
+    [[nodiscard]] QString formmethodString() const;
+    [[nodiscard]] QString formtargetString() const;
+    [[nodiscard]] QString typeString() const;
+    [[nodiscard]] QStringList attrList() const override;
 
     QVariant value;
     QUrl formaction;
@@ -41,6 +41,6 @@ private:
     Q_DISABLE_COPY(ButtonPrivate)
 };
 
-}
+} // namespace CutelystForms
 
 #endif // C_BUTTON_P_H

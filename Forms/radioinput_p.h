@@ -14,10 +14,10 @@ namespace CutelystForms {
 class RadioInputPrivate : public FieldPrivate
 {
 public:
-    RadioInputPrivate(RadioInput *q);
+    explicit RadioInputPrivate(RadioInput *q);
     ~RadioInputPrivate() override = default;
 
-    QStringList attrList() const override;
+    [[nodiscard]] QStringList attrList() const override;
 
 private:
     Q_DECLARE_PUBLIC(RadioInput) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)

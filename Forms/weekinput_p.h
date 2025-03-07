@@ -14,14 +14,14 @@ namespace CutelystForms {
 class WeekInputPrivate : public FieldPrivate
 {
 public:
-    WeekInputPrivate(WeekInput *q);
+    explicit WeekInputPrivate(WeekInput *q);
     ~WeekInputPrivate() override = default;
 
-    QStringList attrList() const override;
-    QString getValueString() const override;
+    [[nodiscard]] QStringList attrList() const override;
+    [[nodiscard]] QString getValueString() const override;
 
 private:
-    QString getWeekString(const QVariant &v) const;
+    [[nodiscard]] QString getWeekString(const QVariant &v) const;
 
     Q_DECLARE_PUBLIC(WeekInput) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
     Q_DISABLE_COPY(WeekInputPrivate)

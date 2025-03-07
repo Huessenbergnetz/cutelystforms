@@ -6,15 +6,15 @@
 #ifndef C_FORMS_HIDDENINPUT_P_H
 #define C_FORMS_HIDDENINPUT_P_H
 
-#include "hiddeninput.h"
 #include "field_p.h"
+#include "hiddeninput.h"
 
 namespace CutelystForms {
 
 class HiddenInputPrivate : public FieldPrivate
 {
 public:
-    HiddenInputPrivate(HiddenInput *q);
+    explicit HiddenInputPrivate(HiddenInput *q);
     ~HiddenInputPrivate() override = default;
 
 private:
@@ -22,6 +22,6 @@ private:
     Q_DISABLE_COPY(HiddenInputPrivate)
 };
 
-}
+} // namespace CutelystForms
 
 #endif // C_FORMS_HIDDENINPUT_P_H

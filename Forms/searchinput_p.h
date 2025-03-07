@@ -14,10 +14,10 @@ namespace CutelystForms {
 class SearchInputPrivate : public FieldPrivate
 {
 public:
-    SearchInputPrivate(SearchInput *q);
+    explicit SearchInputPrivate(SearchInput *q);
     ~SearchInputPrivate() override = default;
 
-    QStringList attrList() const override;
+    [[nodiscard]] QStringList attrList() const override;
 
 private:
     Q_DECLARE_PUBLIC(SearchInput) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)

@@ -39,7 +39,7 @@ class QmlCutelystFormsPlugin : public QQmlExtensionPlugin
     Q_OBJECT
     Q_PLUGIN_METADATA(IID QQmlExtensionInterface_iid FILE "plugin.json")
 public:
-    QmlCutelystFormsPlugin(QObject *parent = nullptr)
+    explicit QmlCutelystFormsPlugin(QObject *parent = nullptr)
         : QQmlExtensionPlugin(parent)
     {
     }

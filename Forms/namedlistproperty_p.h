@@ -123,7 +123,7 @@ public:
 
     QMap<QString, T *> idMap() const noexcept { return m_idMap; }
 
-    bool isEmpty() const noexcept { return m_list.isEmpty(); }
+    [[nodiscard]] bool isEmpty() const noexcept { return m_list.isEmpty(); }
 
 private:
     P *m_parent{nullptr};

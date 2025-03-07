@@ -28,7 +28,7 @@ public:
     [[nodiscard]] QString tmpl() const noexcept override;
 
 protected:
-    Textarea(TextareaPrivate &dd, QObject *parent = nullptr);
+    explicit Textarea(TextareaPrivate &dd, QObject *parent = nullptr);
 
 private:
     Q_DISABLE_COPY(Textarea)

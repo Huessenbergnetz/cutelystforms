@@ -28,7 +28,7 @@ public:
     [[nodiscard]] QString tmpl() const noexcept override;
 
 protected:
-    Select(SelectPrivate &dd, QObject *parent = nullptr);
+    explicit Select(SelectPrivate &dd, QObject *parent = nullptr);
 
 private:
     Q_DISABLE_COPY(Select)

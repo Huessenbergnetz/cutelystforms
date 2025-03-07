@@ -178,7 +178,7 @@ public:
     [[nodiscard]] QMap<QString, Optgroup *> optgroupIdMap() const noexcept;
 
 protected:
-    Field(FieldPrivate &dd, QObject *parent = nullptr);
+    explicit Field(FieldPrivate &dd, QObject *parent = nullptr);
 
 private:
     Q_DISABLE_COPY(Field)

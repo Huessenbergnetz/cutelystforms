@@ -14,14 +14,14 @@ namespace CutelystForms {
 class DateInputPrivate : public FieldPrivate
 {
 public:
-    DateInputPrivate(DateInput *q);
+    explicit DateInputPrivate(DateInput *q);
     ~DateInputPrivate() override = default;
 
-    QStringList attrList() const override;
-    QString getValueString() const override;
+    [[nodiscard]] QStringList attrList() const override;
+    [[nodiscard]] QString getValueString() const override;
 
 private:
-    QString getDateString(const QVariant &v) const;
+    [[nodiscard]] QString getDateString(const QVariant &v) const;
 
     Q_DECLARE_PUBLIC(DateInput) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
     Q_DISABLE_COPY(DateInputPrivate)

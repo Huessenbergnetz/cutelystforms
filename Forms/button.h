@@ -90,7 +90,7 @@ public:
     void setValue(const QVariant &value) noexcept;
 
 protected:
-    Button(ButtonPrivate &dd, QObject *parent = nullptr);
+    explicit Button(ButtonPrivate &dd, QObject *parent = nullptr);
 
 private:
     Q_DISABLE_COPY(Button)

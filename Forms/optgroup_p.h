@@ -15,7 +15,7 @@ namespace CutelystForms {
 class OptgroupPrivate : public SelectContentPrivate
 {
 public:
-    OptgroupPrivate(Optgroup *q);
+    explicit OptgroupPrivate(Optgroup *q);
     OptgroupPrivate(const QString &_label, Optgroup *q);
     ~OptgroupPrivate() override = default;
 

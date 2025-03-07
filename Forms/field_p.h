@@ -18,8 +18,8 @@ public:
     FieldPrivate(Field::Type _type, Field *q);
     ~FieldPrivate() override = default;
 
-    virtual QStringList attrList() const override;
-    virtual QString getValueString() const;
+    [[nodiscard]] QStringList attrList() const override;
+    [[nodiscard]] virtual QString getValueString() const;
 
     NamedListProperty<Option, Field> options;
     NamedListProperty<Optgroup, Field> optgroups;

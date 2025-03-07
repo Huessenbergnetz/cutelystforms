@@ -14,14 +14,14 @@ namespace CutelystForms {
 class DateTimeLocalInputPrivate : public FieldPrivate
 {
 public:
-    DateTimeLocalInputPrivate(DateTimeLocalInput *q);
+    explicit DateTimeLocalInputPrivate(DateTimeLocalInput *q);
     ~DateTimeLocalInputPrivate() override = default;
 
-    QStringList attrList() const override;
-    QString getValueString() const override;
+    [[nodiscard]] QStringList attrList() const override;
+    [[nodiscard]] QString getValueString() const override;
 
 private:
-    QString getDateTimeString(const QVariant &v) const;
+    [[nodiscard]] QString getDateTimeString(const QVariant &v) const;
 
     Q_DECLARE_PUBLIC(DateTimeLocalInput) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
     Q_DISABLE_COPY(DateTimeLocalInputPrivate)

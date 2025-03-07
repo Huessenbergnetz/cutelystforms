@@ -14,10 +14,10 @@ namespace CutelystForms {
 class SelectPrivate : public FieldPrivate
 {
 public:
-    SelectPrivate(Select *q);
+    explicit SelectPrivate(Select *q);
     ~SelectPrivate() override = default;
 
-    QStringList attrList() const override;
+    [[nodiscard]] QStringList attrList() const override;
 
 private:
     Q_DECLARE_PUBLIC(Select) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)

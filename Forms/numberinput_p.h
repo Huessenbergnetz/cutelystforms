@@ -14,10 +14,10 @@ namespace CutelystForms {
 class NumberInputPrivate : public FieldPrivate
 {
 public:
-    NumberInputPrivate(NumberInput *q);
+    explicit NumberInputPrivate(NumberInput *q);
     ~NumberInputPrivate() override = default;
 
-    QStringList attrList() const override;
+    [[nodiscard]] QStringList attrList() const override;
 
 private:
     Q_DECLARE_PUBLIC(NumberInput) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)

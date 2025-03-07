@@ -14,11 +14,11 @@ namespace CutelystForms {
 class UrlInputPrivate : public FieldPrivate
 {
 public:
-    UrlInputPrivate(UrlInput *q);
+    explicit UrlInputPrivate(UrlInput *q);
     ~UrlInputPrivate() override = default;
 
-    QStringList attrList() const override;
-    QString getValueString() const override;
+    [[nodiscard]] QStringList attrList() const override;
+    [[nodiscard]] QString getValueString() const override;
 
 private:
     Q_DECLARE_PUBLIC(UrlInput) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)

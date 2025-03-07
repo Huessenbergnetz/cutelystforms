@@ -34,7 +34,7 @@ public:
     void setLabel(const QString &label) noexcept;
 
 protected:
-    SelectContent(SelectContentPrivate &dd, QObject *parent = nullptr);
+    explicit SelectContent(SelectContentPrivate &dd, QObject *parent = nullptr);
 
 private:
     Q_DISABLE_COPY(SelectContent)

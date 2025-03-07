@@ -32,7 +32,7 @@ protected Q_SLOTS:
 
 private:
     void saveCoverageData();
-    QString generateTestName() const;
+    [[nodiscard]] QString generateTestName() const;
 };
 
 class RootController : public Controller
@@ -40,7 +40,7 @@ class RootController : public Controller
     Q_OBJECT
     C_NAMESPACE("")
 public:
-    RootController(QObject *parent)
+    explicit RootController(QObject *parent)
         : Controller(parent)
     {
     }
@@ -77,7 +77,7 @@ class TestController : public Controller
     Q_OBJECT
     C_NAMESPACE("///test/controller")
 public:
-    TestController(QObject *parent)
+    explicit TestController(QObject *parent)
         : Controller(parent)
     {
     }
@@ -223,8 +223,7 @@ public:
     C_ATTR(uriForAction, :Global :AutoArgs)
     void uriForAction(Context *c, const QStringList &args)
     {
-        QStringList arguments = args;
-        auto query            = c->request()->queryParameters();
+        auto query = c->request()->queryParameters();
 
         QStringList captures = query.take(QStringLiteral("captures"))
                                    .split(QLatin1Char('/'),
@@ -234,7 +233,7 @@ public:
                                           QString::SkipEmptyParts);
 #endif
         QString action = query.take(QStringLiteral("action"));
-        QUrl uri       = c->uriForAction(action, captures, arguments, query);
+        QUrl uri       = c->uriForAction(action, captures, args, query);
         if (uri.isEmpty()) {
             c->response()->setBody(QByteArray("uriForAction not found"));
         } else {
@@ -247,12 +246,12 @@ class TestApplication : public Application
 {
     Q_OBJECT
 public:
-    TestApplication(QObject *parent = 0)
+    explicit TestApplication(QObject *parent = nullptr)
         : Application(parent)
     {
         defaultHeaders() = Headers();
     }
-    virtual bool init()
+    bool init() override
     {
         new TestController(this);
         new RootController(this);

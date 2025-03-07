@@ -14,10 +14,10 @@ namespace CutelystForms {
 class ColorInputPrivate : public FieldPrivate
 {
 public:
-    ColorInputPrivate(ColorInput *q);
+    explicit ColorInputPrivate(ColorInput *q);
     ~ColorInputPrivate() override = default;
 
-    QStringList attrList() const override;
+    [[nodiscard]] QStringList attrList() const override;
 
 private:
     Q_DECLARE_PUBLIC(ColorInput) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)

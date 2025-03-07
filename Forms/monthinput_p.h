@@ -14,14 +14,14 @@ namespace CutelystForms {
 class MonthInputPrivate : public FieldPrivate
 {
 public:
-    MonthInputPrivate(MonthInput *q);
+    explicit MonthInputPrivate(MonthInput *q);
     ~MonthInputPrivate() override = default;
 
-    QStringList attrList() const override;
-    QString getValueString() const override;
+    [[nodiscard]] QStringList attrList() const override;
+    [[nodiscard]] QString getValueString() const override;
 
 private:
-    QString getMonthString(const QVariant &v) const;
+    [[nodiscard]] QString getMonthString(const QVariant &v) const;
 
     Q_DECLARE_PUBLIC(MonthInput) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
     Q_DISABLE_COPY(MonthInputPrivate)

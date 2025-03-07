@@ -15,7 +15,7 @@ namespace CutelystForms {
 class FormPrivate : public FormHtmlElementPrivate
 {
 public:
-    FormPrivate(Form *q);
+    explicit FormPrivate(Form *q);
     ~FormPrivate() override = default;
 
     NamedListProperty<Field, Form> fields;
@@ -36,16 +36,16 @@ public:
     C_FORMS_QMLLIST_FUNCS(Fieldset, fieldset, Form)
     C_FORMS_QMLLIST_FUNCS(Button, button, Form)
 
-    virtual QStringList attrList() const override;
-    QString enctypeString() const;
-    QString methodString() const;
-    QString targetString() const;
+    [[nodiscard]] QStringList attrList() const override;
+    [[nodiscard]] QString enctypeString() const;
+    [[nodiscard]] QString methodString() const;
+    [[nodiscard]] QString targetString() const;
 
 private:
     Q_DECLARE_PUBLIC(Form) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)
     Q_DISABLE_COPY(FormPrivate)
 };
 
-}
+} // namespace CutelystForms
 
 #endif // C_FORM_P_H

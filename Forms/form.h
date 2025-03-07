@@ -178,7 +178,7 @@ public:
     [[nodiscard]] QMap<QString, Button *> buttonIdMap() const noexcept;
 
 protected:
-    Form(FormPrivate &dd, QObject *parent = nullptr);
+    explicit Form(FormPrivate &dd, QObject *parent = nullptr);
 
 private:
     Q_DISABLE_COPY(Form)

@@ -14,10 +14,10 @@ namespace CutelystForms {
 class PasswordInputPrivate : public FieldPrivate
 {
 public:
-    PasswordInputPrivate(PasswordInput *q);
+    explicit PasswordInputPrivate(PasswordInput *q);
     ~PasswordInputPrivate() override = default;
 
-    QStringList attrList() const override;
+    [[nodiscard]] QStringList attrList() const override;
 
 private:
     Q_DECLARE_PUBLIC(PasswordInput) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)

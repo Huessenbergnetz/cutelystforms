@@ -14,10 +14,10 @@ namespace CutelystForms {
 class EmailInputPrivate : public FieldPrivate
 {
 public:
-    EmailInputPrivate(EmailInput *q);
+    explicit EmailInputPrivate(EmailInput *q);
     ~EmailInputPrivate() override = default;
 
-    QStringList attrList() const override;
+    [[nodiscard]] QStringList attrList() const override;
 
 private:
     Q_DECLARE_PUBLIC(EmailInput) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)

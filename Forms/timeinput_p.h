@@ -14,14 +14,14 @@ namespace CutelystForms {
 class TimeInputPrivate : public FieldPrivate
 {
 public:
-    TimeInputPrivate(TimeInput *q);
+    explicit TimeInputPrivate(TimeInput *q);
     ~TimeInputPrivate() override = default;
 
-    QStringList attrList() const override;
-    QString getValueString() const override;
+    [[nodiscard]] QStringList attrList() const override;
+    [[nodiscard]] QString getValueString() const override;
 
 private:
-    QString getTimeString(const QVariant &v) const;
+    [[nodiscard]] QString getTimeString(const QVariant &v) const;
 
 private:
     Q_DECLARE_PUBLIC(TimeInput) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)

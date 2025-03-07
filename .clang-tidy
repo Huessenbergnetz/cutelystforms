@@ -3,15 +3,14 @@
 # SPDX-License-Identifier: CC0-1.0
 
 ---
-Checks:          '-*,clang-*,bugprone-*,-bugprone-suspicious-include,-bugprone-easily-swappable-parameters,modernize-*,-modernize-use-trailing-return-type,-modernize-pass-by-value,cppcoreguidelines-*'
+Checks:          '-*,clang-*,bugprone-*,-bugprone-suspicious-include,-bugprone-easily-swappable-parameters,modernize-*,-modernize-use-trailing-return-type,-modernize-pass-by-value,cppcoreguidelines-*,google-explicit-constructor,modernize-*,-modernize-use-trailing-return-type,performance-*,-performance-enum-size'
 WarningsAsErrors: ''
 HeaderFileExtensions:
   - ''
   - h
 ImplementationFileExtensions:
   - cpp
-HeaderFilterRegex: ''
-AnalyzeTemporaryDtors: false
+HeaderFilterRegex: '.*'
 FormatStyle:     none
 User:            'Matthias Fehring <mf@huessenbergnetz.de'
 CheckOptions:
@@ -192,4 +191,3 @@ CheckOptions:
   cppcoreguidelines-macro-usage.CheckCapsOnly: 'false'
 SystemHeaders:   false
 ...
-

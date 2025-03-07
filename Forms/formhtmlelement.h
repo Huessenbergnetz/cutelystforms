@@ -72,9 +72,9 @@ public:
 protected:
     const QScopedPointer<FormHtmlElementPrivate>
         d_ptr; // NOLINT(cppcoreguidelines-non-private-member-variables-in-classes)
-    FormHtmlElement(FormHtmlElementPrivate &dd, QObject *parent = nullptr);
+    explicit FormHtmlElement(FormHtmlElementPrivate &dd, QObject *parent = nullptr);
 
-    Cutelyst::Context *context() const noexcept;
+    [[nodiscard]] Cutelyst::Context *context() const noexcept;
 
 private:
     Q_DISABLE_COPY(FormHtmlElement)

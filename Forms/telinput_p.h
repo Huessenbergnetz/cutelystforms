@@ -14,10 +14,10 @@ namespace CutelystForms {
 class TelInputPrivate : public FieldPrivate
 {
 public:
-    TelInputPrivate(TelInput *q);
+    explicit TelInputPrivate(TelInput *q);
     ~TelInputPrivate() override = default;
 
-    QStringList attrList() const override;
+    [[nodiscard]] QStringList attrList() const override;
 
 private:
     Q_DECLARE_PUBLIC(TelInput) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)

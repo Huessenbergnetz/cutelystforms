@@ -27,8 +27,8 @@ Q_LOGGING_CATEGORY(C_FORMS, "cutelyst.plugin.forms", QtWarningMsg)
 
 using namespace CutelystForms;
 
-static thread_local Forms *forms =
-    nullptr; // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
+// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
+static thread_local Forms *forms = nullptr;
 
 FormsContextObject::FormsContextObject(const QString &form, Cutelyst::Context *c)
     : QObject(c)
@@ -110,6 +110,7 @@ Forms::Forms(Cutelyst::Application *parent)
 {
     Q_D(Forms);
     d->engine.setOutputWarningsToStandardError(false);
+    // NOLINTNEXTLINE(bugprone-unused-return-value)
     connect(&d->engine, &QQmlEngine::warnings, &d->engine, [](const QList<QQmlError> &warnings) {
         for (const QQmlError &warning : warnings) {
             qCWarning(C_FORMS) << warning.toString();
@@ -187,8 +188,8 @@ Form *Forms::getForm(const QString &name, Cutelyst::Context *c, Options options)
     }
 
     QQmlContext qmlContext(&forms->d_func()->engine);
-    qmlContext.setContextObject(new FormsContextObject(
-        fi.completeBaseName(), c)); // NOLINT(cppcoreguidelines-owning-memory)
+    // NOLINTNEXTLINE(cppcoreguidelines-owning-memory)
+    qmlContext.setContextObject(new FormsContextObject(fi.completeBaseName(), c));
     if (!options.testFlag(DoNotFillContext)) {
         auto it = c->stash().cbegin();
         while (it != c->stash().cend()) {
@@ -230,6 +231,7 @@ QString Forms::templateDirPath(QStringView templ)
 
 bool Forms::setup(Cutelyst::Application *app)
 {
+    // NOLINTNEXTLINE(bugprone-unused-return-value)
     connect(app, &Cutelyst::Application::postForked, this, [](Cutelyst::Application *app) {
         forms = app->plugin<Forms *>();
     });

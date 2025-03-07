@@ -14,10 +14,10 @@ namespace CutelystForms {
 class FileInputPrivate : public FieldPrivate
 {
 public:
-    FileInputPrivate(FileInput *q);
+    explicit FileInputPrivate(FileInput *q);
     ~FileInputPrivate() override = default;
 
-    QStringList attrList() const override;
+    [[nodiscard]] QStringList attrList() const override;
 
 private:
     Q_DECLARE_PUBLIC(FileInput) // NOLINT(cppcoreguidelines-pro-type-static-cast-downcast)

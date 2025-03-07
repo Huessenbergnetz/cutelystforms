@@ -14,11 +14,11 @@ namespace CutelystForms {
 class OptionPrivate : public SelectContentPrivate
 {
 public:
-    OptionPrivate(Option *q);
+    explicit OptionPrivate(Option *q);
     OptionPrivate(const QString &_text, const QString &_value, bool _selected, Option *q);
     ~OptionPrivate() override = default;
 
-    QStringList attrList() const override;
+    [[nodiscard]] QStringList attrList() const override;
 
     QString text;
     QString value;

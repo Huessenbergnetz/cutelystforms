@@ -31,7 +31,7 @@ public:
            const QString &value,
            bool selected   = false,
            QObject *parent = nullptr);
-    Option(const QString &textAndValue, bool selected = false, QObject *parent = nullptr);
+    explicit Option(const QString &textAndValue, bool selected = false, QObject *parent = nullptr);
     ~Option() override = default;
 
     [[nodiscard]] bool isSelected() const noexcept;
@@ -48,7 +48,7 @@ public:
     [[nodiscard]] QString name() const noexcept { return {}; }
 
 protected:
-    Option(OptionPrivate &dd, QObject *parent = nullptr);
+    explicit Option(OptionPrivate &dd, QObject *parent = nullptr);
 
 private:
     Q_DISABLE_COPY(Option)
