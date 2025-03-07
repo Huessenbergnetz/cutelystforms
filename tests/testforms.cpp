@@ -16,7 +16,7 @@
 #include <QObject>
 #include <QTest>
 #ifdef PLUGIN_CSRFPROTECTION_ENABLED
-#    include <Cutelyst/Plugins/CSRFProtection/csrfprotection.h>
+#    include <Cutelyst/Plugins/CSRFProtection>
 #endif
 #include <Forms/form.h>
 #include <Forms/forms.h>

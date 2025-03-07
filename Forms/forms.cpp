@@ -16,7 +16,7 @@
 #include <QStringList>
 
 #ifdef PLUGIN_CSRFPROTECTION_ENABLED
-#    include <Cutelyst/Plugins/CSRFProtection/CSRFProtection>
+#    include <Cutelyst/Plugins/CSRFProtection>
 #endif
 
 #if defined(QT_DEBUG)
