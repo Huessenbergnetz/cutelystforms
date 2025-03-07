@@ -6,6 +6,7 @@
 #include "selectcontent_p.h"
 
 using namespace CutelystForms;
+using namespace Qt::Literals::StringLiterals;
 
 SelectContentPrivate::SelectContentPrivate(SelectContent *q)
     : FormHtmlElementPrivate(Tag::None, q)
@@ -23,11 +24,11 @@ QStringList SelectContentPrivate::attrList() const
     QStringList lst = FormHtmlElementPrivate::attrList();
 
     if (disabled) {
-        lst.append(u"disabled"_qs);
+        lst.append(u"disabled"_s);
     }
 
     if (!label.isEmpty()) {
-        lst.append(u"label=\""_qs + label + QLatin1Char('"'));
+        lst.append(u"label=\""_s + label + '"'_L1);
     }
 
     return lst;

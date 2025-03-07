@@ -6,6 +6,7 @@
 #include "textinput_p.h"
 
 using namespace CutelystForms;
+using namespace Qt::Literals::StringLiterals;
 
 TextInputPrivate::TextInputPrivate(TextInput *q)
     : FieldPrivate(Field::Text, q)
@@ -17,27 +18,27 @@ QStringList TextInputPrivate::attrList() const
     QStringList lst = FieldPrivate::attrList();
 
     if (!list.isEmpty()) {
-        lst.append(u"list=\""_qs + list + QLatin1Char('"'));
+        lst.append(u"list=\""_s + list + '"'_L1);
     }
 
     if (maxlength > -1) {
-        lst.append(u"maxlength=\""_qs + QString::number(maxlength) + QLatin1Char('"'));
+        lst.append(u"maxlength=\""_s + QString::number(maxlength) + '"'_L1);
     }
 
     if (minlength > -1) {
-        lst.append(u"minlength=\""_qs + QString::number(minlength) + QLatin1Char('"'));
+        lst.append(u"minlength=\""_s + QString::number(minlength) + '"'_L1);
     }
 
     if (!pattern.isEmpty()) {
-        lst.append(u"pattern=\""_qs + pattern + QLatin1Char('"'));
+        lst.append(u"pattern=\""_s + pattern + '"'_L1);
     }
 
     if (!placeholder.isEmpty()) {
-        lst.append(u"placeholder=\""_qs + placeholder + QLatin1Char('"'));
+        lst.append(u"placeholder=\""_s + placeholder + '"'_L1);
     }
 
     if (readonly) {
-        lst.append(u"readonly"_qs);
+        lst.append(u"readonly"_s);
     }
 
     return lst;
@@ -55,7 +56,7 @@ CutelystForms::Field::Type TextInput::type() const noexcept
 
 QString TextInput::typeString() const noexcept
 {
-    return QStringLiteral("text");
+    return u"text"_s;
 }
 
 #include "moc_textinput.cpp"

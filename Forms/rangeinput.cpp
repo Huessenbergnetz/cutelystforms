@@ -6,6 +6,7 @@
 #include "rangeinput_p.h"
 
 using namespace CutelystForms;
+using namespace Qt::Literals::StringLiterals;
 
 RangeInputPrivate::RangeInputPrivate(RangeInput *q)
     : FieldPrivate(Field::Range, q)
@@ -17,19 +18,19 @@ QStringList RangeInputPrivate::attrList() const
     QStringList lst = FieldPrivate::attrList();
 
     if (!list.isEmpty()) {
-        lst.append(u"list=\""_qs + list + QLatin1Char('"'));
+        lst.append(u"list=\""_s + list + '"'_L1);
     }
 
     if (!max.isNull()) {
-        lst.append(u"max=\""_qs + max.toString() + QLatin1Char('"'));
+        lst.append(u"max=\""_s + max.toString() + '"'_L1);
     }
 
     if (!min.isNull()) {
-        lst.append(u"min=\""_qs + min.toString() + QLatin1Char('"'));
+        lst.append(u"min=\""_s + min.toString() + '"'_L1);
     }
 
     if (!step.isNull()) {
-        lst.append(u"step=\""_qs + step.toString() + QLatin1Char('"'));
+        lst.append(u"step=\""_s + step.toString() + '"'_L1);
     }
 
     return lst;
@@ -47,7 +48,7 @@ CutelystForms::Field::Type RangeInput::type() const noexcept
 
 QString RangeInput::typeString() const noexcept
 {
-    return QStringLiteral("range");
+    return u"range"_s;
 }
 
 #include "moc_rangeinput.cpp"

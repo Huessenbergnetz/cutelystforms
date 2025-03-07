@@ -6,6 +6,7 @@
 #include "weekinput_p.h"
 
 using namespace CutelystForms;
+using namespace Qt::Literals::StringLiterals;
 
 WeekInputPrivate::WeekInputPrivate(WeekInput *q)
     : FieldPrivate{Field::Week, q}
@@ -36,26 +37,26 @@ QStringList WeekInputPrivate::attrList() const
     QStringList lst = FieldPrivate::attrList();
 
     if (!list.isEmpty()) {
-        lst.append(u"list=\""_qs + list + QLatin1Char('"'));
+        lst.append(u"list=\""_s + list + '"'_L1);
     }
 
     if (!max.isNull()) {
-        lst.append(u"max=\""_qs + getWeekString(max) + QLatin1Char('"'));
+        lst.append(u"max=\""_s + getWeekString(max) + '"'_L1);
     }
 
     if (!min.isNull()) {
-        lst.append(u"min=\""_qs + getWeekString(min) + QLatin1Char('"'));
+        lst.append(u"min=\""_s + getWeekString(min) + '"'_L1);
     }
 
     if (!step.isNull()) {
         const auto stepInt = step.toInt();
         if (stepInt > 1) {
-            lst.append(u"step=\""_qs + QString::number(stepInt) + QLatin1Char('"'));
+            lst.append(u"step=\""_s + QString::number(stepInt) + '"'_L1);
         }
     }
 
     if (readonly) {
-        lst.append(u"readonly"_qs);
+        lst.append(u"readonly"_s);
     }
 
     return lst;
@@ -78,7 +79,7 @@ CutelystForms::Field::Type WeekInput::type() const noexcept
 
 QString WeekInput::typeString() const noexcept
 {
-    return QStringLiteral("week");
+    return u"week"_s;
 }
 
 #include "moc_weekinput.cpp"

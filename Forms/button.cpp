@@ -6,6 +6,7 @@
 #include "button_p.h"
 
 using namespace CutelystForms;
+using namespace Qt::Literals::StringLiterals;
 
 ButtonPrivate::ButtonPrivate(Button *q)
     : FormHtmlElementPrivate(Tag::Button, q)
@@ -16,11 +17,11 @@ QString ButtonPrivate::formenctypeString() const
 {
     switch (formenctype) {
     case Button::WwwFormUrlEncoded:
-        return u"application/x-www-form-urlencoded"_qs;
+        return u"application/x-www-form-urlencoded"_s;
     case Button::MultipartFormData:
-        return u"multipart/form-data"_qs;
+        return u"multipart/form-data"_s;
     case Button::TextPlain:
-        return u"text/plain"_qs;
+        return u"text/plain"_s;
     default:
         return {};
     }
@@ -30,9 +31,9 @@ QString ButtonPrivate::formmethodString() const
 {
     switch (formmethod) {
     case Button::Get:
-        return u"get"_qs;
+        return u"get"_s;
     case Button::Post:
-        return u"post"_qs;
+        return u"post"_s;
     default:
         return {};
     }
@@ -42,13 +43,13 @@ QString ButtonPrivate::formtargetString() const
 {
     switch (formtarget) {
     case Button::Self:
-        return u"_self"_qs;
+        return u"_self"_s;
     case Button::Blank:
-        return u"_blank"_qs;
+        return u"_blank"_s;
     case Button::Parent:
-        return u"_parent"_qs;
+        return u"_parent"_s;
     case Button::Top:
-        return u"_top"_qs;
+        return u"_top"_s;
     default:
         return {};
     }
@@ -58,11 +59,11 @@ QString ButtonPrivate::typeString() const
 {
     switch (type) {
     case Button::Submit:
-        return u"submit"_qs;
+        return u"submit"_s;
     case Button::Reset:
-        return u"reset"_qs;
+        return u"reset"_s;
     case Button::Btn:
-        return u"button"_qs;
+        return u"button"_s;
     }
 
     Q_UNREACHABLE();
@@ -74,29 +75,28 @@ QStringList ButtonPrivate::attrList() const
     QStringList lst = FormHtmlElementPrivate::attrList();
 
     if (disabled) {
-        lst.append(u"disabled"_qs);
+        lst.append(u"disabled"_s);
     }
     if (formaction.isValid()) {
-        lst.append(u"formaction=\""_qs + formaction.toString(QUrl::FullyEncoded) +
-                   QLatin1Char('"'));
+        lst.append(u"formaction=\""_s + formaction.toString(QUrl::FullyEncoded) + '"'_L1);
     }
     if (formenctype != Button::NoEncType) {
-        lst.append(u"formenctype=\""_qs + formenctypeString() + QLatin1Char('"'));
+        lst.append(u"formenctype=\""_s + formenctypeString() + '"'_L1);
     }
     if (formmethod != Button::NoMethod) {
-        lst.append(u"formmethod=\""_qs + formmethodString() + QLatin1Char('"'));
+        lst.append(u"formmethod=\""_s + formmethodString() + '"'_L1);
     }
     if (formnovalidate) {
-        lst.append(u"formnovalidate"_qs);
+        lst.append(u"formnovalidate"_s);
     }
     if (formtarget != Button::NoTarget) {
-        lst.append(u"formtarget=\""_qs + formtargetString() + QLatin1Char('"'));
+        lst.append(u"formtarget=\""_s + formtargetString() + '"'_L1);
     }
     if (!name.isEmpty()) {
-        lst.append(u"name=\""_qs + name + QLatin1Char('"'));
+        lst.append(u"name=\""_s + name + '"'_L1);
     }
     if (value.isValid()) {
-        lst.append(u"value=\""_qs + value.toString() + QLatin1Char('"'));
+        lst.append(u"value=\""_s + value.toString() + '"'_L1);
     }
 
     return lst;
@@ -234,7 +234,7 @@ QString Button::typeString() const
 
 QString Button::tagName() const noexcept
 {
-    return QStringLiteral("button");
+    return u"button"_s;
 }
 
 QString Button::text() const noexcept

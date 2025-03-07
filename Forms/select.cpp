@@ -6,6 +6,7 @@
 #include "select_p.h"
 
 using namespace CutelystForms;
+using namespace Qt::Literals::StringLiterals;
 
 SelectPrivate::SelectPrivate(Select *q)
     : FieldPrivate(Field::None, q)
@@ -18,7 +19,7 @@ QStringList SelectPrivate::attrList() const
     QStringList lst = FieldPrivate::attrList();
 
     if (multiple) {
-        lst.append(u"multiple"_qs);
+        lst.append(u"multiple"_s);
     }
 
     return lst;
@@ -36,12 +37,12 @@ Select::Select(SelectPrivate &dd, QObject *parent)
 
 QString Select::tagName() const noexcept
 {
-    return QStringLiteral("select");
+    return u"select"_s;
 }
 
 QString Select::tmpl() const noexcept
 {
-    return u"cutelystforms/select.html"_qs;
+    return u"cutelystforms/select.html"_s;
 }
 
 #include "moc_select.cpp"

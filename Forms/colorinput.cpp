@@ -6,6 +6,7 @@
 #include "colorinput_p.h"
 
 using namespace CutelystForms;
+using namespace Qt::Literals::StringLiterals;
 
 ColorInputPrivate::ColorInputPrivate(ColorInput *q)
     : FieldPrivate(Field::Color, q)
@@ -17,7 +18,7 @@ QStringList ColorInputPrivate::attrList() const
     QStringList lst = FieldPrivate::attrList();
 
     if (!list.isEmpty()) {
-        lst.append(u"list=\""_qs + list + QLatin1Char('"'));
+        lst.append(u"list=\""_s + list + '"'_L1);
     }
 
     return lst;
@@ -35,7 +36,7 @@ CutelystForms::Field::Type ColorInput::type() const noexcept
 
 QString ColorInput::typeString() const noexcept
 {
-    return QStringLiteral("color");
+    return u"color"_s;
 }
 
 #include "moc_colorinput.cpp"

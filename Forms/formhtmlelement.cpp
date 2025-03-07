@@ -9,6 +9,7 @@
 #include <QTimeZone>
 
 using namespace CutelystForms;
+using namespace Qt::Literals::StringLiterals;
 
 FormHtmlElementPrivate::FormHtmlElementPrivate(Tag _tag, FormHtmlElement *q)
     : q_ptr(q)
@@ -21,22 +22,22 @@ QStringList FormHtmlElementPrivate::attrList() const
     QStringList lst;
 
     if (!htmlId.isEmpty()) {
-        lst.append(u"id=\""_qs + htmlId + QLatin1Char('"'));
+        lst.append(u"id=\""_s + htmlId + '"'_L1);
     }
     if (!accesskey.isEmpty()) {
-        lst.append(u"accesskey=\""_qs + accesskey + QLatin1Char('"'));
+        lst.append(u"accesskey=\""_s + accesskey + '"'_L1);
     }
     // if (!form.isEmpty()) {
-    //     lst.append(u"form=\""_qs + form + QLatin1Char('"'));
+    //     lst.append(u"form=\""_s + form + '"'_L1);
     // }
     if (hidden) {
-        lst.append(u"hidden"_qs);
+        lst.append(u"hidden"_s);
     }
     if (spellcheck && (tag == Tag::Input || tag == Tag::Textarea)) {
-        lst.append(u"spellcheck=\"true\""_qs);
+        lst.append(u"spellcheck=\"true\""_s);
     }
     if (!title.isEmpty()) {
-        lst.append(u"title=\""_qs + title + QLatin1Char('"'));
+        lst.append(u"title=\""_s + title + '"'_L1);
     }
 
     return lst;

@@ -6,6 +6,7 @@
 #include "option_p.h"
 
 using namespace CutelystForms;
+using namespace Qt::Literals::StringLiterals;
 
 OptionPrivate::OptionPrivate(Option *q)
     : SelectContentPrivate(q)
@@ -26,11 +27,11 @@ QStringList OptionPrivate::attrList() const
     QStringList lst = SelectContentPrivate::attrList();
 
     if (!value.isNull()) {
-        lst.append(u"value=\""_qs + value + QLatin1Char('"'));
+        lst.append(u"value=\""_s + value + '"'_L1);
     }
 
     if (selected) {
-        lst.append(u"selected"_qs);
+        lst.append(u"selected"_s);
     }
 
     return lst;
@@ -94,7 +95,7 @@ void Option::setValue(const QString &value) noexcept
 
 QString Option::tagName() const noexcept
 {
-    return QStringLiteral("option");
+    return u"option"_s;
 }
 
 #include "moc_option.cpp"

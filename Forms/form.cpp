@@ -6,6 +6,7 @@
 #include "form_p.h"
 
 using namespace CutelystForms;
+using namespace Qt::Literals::StringLiterals;
 
 FormPrivate::FormPrivate(Form *q)
     : FormHtmlElementPrivate{Tag::Form, q}
@@ -20,27 +21,26 @@ QStringList FormPrivate::attrList() const
     QStringList lst = FormHtmlElementPrivate::attrList();
 
     if (!acceptCharset.empty()) {
-        lst.append(u"accept-charset=\""_qs + acceptCharset.join(QLatin1Char(',')) +
-                   QLatin1Char('"'));
+        lst.append(u"accept-charset=\""_s + acceptCharset.join(','_L1) + '"'_L1);
     }
     if (action.isValid()) {
-        lst.append(u"action=\""_qs + action.toString(QUrl::FullyEncoded) + QLatin1Char('"'));
+        lst.append(u"action=\""_s + action.toString(QUrl::FullyEncoded) + '"'_L1);
     }
-    lst.append(u"autocomplete=\""_qs + (autocomplete ? u"on"_qs : u"off"_qs) + QLatin1Char('"'));
+    lst.append(u"autocomplete=\""_s + (autocomplete ? u"on"_s : u"off"_s) + '"'_L1);
     if (enctype != Form::WwwFormUrlEncoded) {
-        lst.append(u"enctype=\""_qs + enctypeString() + QLatin1Char('"'));
+        lst.append(u"enctype=\""_s + enctypeString() + '"'_L1);
     }
     if (method != Form::Get) {
-        lst.append(u"method=\""_qs + methodString() + QLatin1Char('"'));
+        lst.append(u"method=\""_s + methodString() + '"'_L1);
     }
     if (!name.isEmpty()) {
-        lst.append(u"name=\""_qs + name + QLatin1Char('"'));
+        lst.append(u"name=\""_s + name + '"'_L1);
     }
     if (novalidate) {
-        lst.append(u"novalidate"_qs);
+        lst.append(u"novalidate"_s);
     }
     if (target != Form::Self) {
-        lst.append(u"target=\""_qs + targetString() + QLatin1Char('"'));
+        lst.append(u"target=\""_s + targetString() + '"'_L1);
     }
 
     return lst;
@@ -336,7 +336,7 @@ void Form::setDescription(const QString &description) noexcept
 
 QString Form::tagName() const noexcept
 {
-    return QStringLiteral("form");
+    return u"form"_s;
 }
 
 QQmlListProperty<CutelystForms::Field> Form::fields()

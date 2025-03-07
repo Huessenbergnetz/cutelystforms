@@ -6,6 +6,7 @@
 #include "fileinput_p.h"
 
 using namespace CutelystForms;
+using namespace Qt::Literals::StringLiterals;
 
 FileInputPrivate::FileInputPrivate(FileInput *q)
     : FieldPrivate(Field::File, q)
@@ -17,11 +18,11 @@ QStringList FileInputPrivate::attrList() const
     QStringList lst = FieldPrivate::attrList();
 
     if (!accept.isEmpty()) {
-        lst.append(u"accept=\""_qs + accept + QLatin1Char('"'));
+        lst.append(u"accept=\""_s + accept + '"'_L1);
     }
 
     if (multiple) {
-        lst.append(u"multiple"_qs);
+        lst.append(u"multiple"_s);
     }
 
     return lst;
@@ -39,7 +40,7 @@ CutelystForms::Field::Type FileInput::type() const noexcept
 
 QString FileInput::typeString() const noexcept
 {
-    return QStringLiteral("file");
+    return u"file"_s;
 }
 
 #include "moc_fileinput.cpp"

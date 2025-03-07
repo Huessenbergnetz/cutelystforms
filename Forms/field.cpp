@@ -10,6 +10,7 @@
 #include <QTime>
 
 using namespace CutelystForms;
+using namespace Qt::Literals::StringLiterals;
 
 FieldPrivate::FieldPrivate(Field::Type _type, Field *q)
     : FormHtmlElementPrivate(Tag::Input, q)
@@ -24,24 +25,24 @@ QStringList FieldPrivate::attrList() const
     QStringList lst = FormHtmlElementPrivate::attrList();
 
     if (!name.isNull()) {
-        lst.append(u"name=\""_qs + name + QLatin1Char('"'));
+        lst.append(u"name=\""_s + name + '"'_L1);
     }
 
     if (!value.isNull()) {
-        lst.append(u"value=\""_qs + getValueString() + QLatin1Char('"'));
+        lst.append(u"value=\""_s + getValueString() + '"'_L1);
     }
 
     if (!autocomplete.isEmpty() &&
         !(type == Field::Checkbox || type == Field::Radio || type == Field::File)) {
-        lst.append(u"autocomplete=\""_qs + autocomplete + QLatin1Char('"'));
+        lst.append(u"autocomplete=\""_s + autocomplete + '"'_L1);
     }
 
     if (disabled) {
-        lst.append(u"disabled"_qs);
+        lst.append(u"disabled"_s);
     }
 
     if (required && !(type == Field::Hidden || type == Field::Color || type == Field::Range)) {
-        lst.append(u"required"_qs);
+        lst.append(u"required"_s);
     }
 
     return lst;
@@ -298,7 +299,7 @@ void Field::setStep(const QVariant &step) noexcept
 
 QString Field::tmpl() const noexcept
 {
-    return u"cutelystforms/input.html"_qs;
+    return u"cutelystforms/input.html"_s;
 }
 
 CutelystForms::Field::Type Field::type() const noexcept
@@ -325,7 +326,7 @@ void Field::setValue(const QVariant &value) noexcept
 
 QString Field::tagName() const noexcept
 {
-    return u"input"_qs;
+    return u"input"_s;
 }
 
 QQmlListProperty<CutelystForms::Option> Field::options()

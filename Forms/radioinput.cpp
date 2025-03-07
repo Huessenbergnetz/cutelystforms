@@ -6,6 +6,7 @@
 #include "radioinput_p.h"
 
 using namespace CutelystForms;
+using namespace Qt::Literals::StringLiterals;
 
 RadioInputPrivate::RadioInputPrivate(RadioInput *q)
     : FieldPrivate(Field::Radio, q)
@@ -17,7 +18,7 @@ QStringList RadioInputPrivate::attrList() const
     QStringList lst = FieldPrivate::attrList();
 
     if (checked) {
-        lst.append(u"checked"_qs);
+        lst.append(u"checked"_s);
     }
 
     return lst;
@@ -35,7 +36,7 @@ CutelystForms::Field::Type RadioInput::type() const noexcept
 
 QString RadioInput::typeString() const noexcept
 {
-    return QStringLiteral("radio");
+    return u"radio"_s;
 }
 
 #include "moc_radioinput.cpp"

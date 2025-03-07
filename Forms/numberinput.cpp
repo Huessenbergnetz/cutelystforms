@@ -6,6 +6,7 @@
 #include "numberinput_p.h"
 
 using namespace CutelystForms;
+using namespace Qt::Literals::StringLiterals;
 
 NumberInputPrivate::NumberInputPrivate(NumberInput *q)
     : FieldPrivate(Field::Number, q)
@@ -17,27 +18,27 @@ QStringList NumberInputPrivate::attrList() const
     QStringList lst = FieldPrivate::attrList();
 
     if (!list.isEmpty()) {
-        lst.append(u"list=\""_qs + list + QLatin1Char('"'));
+        lst.append(u"list=\""_s + list + '"'_L1);
     }
 
     if (!max.isNull()) {
-        lst.append(u"max=\""_qs + max.toString() + QLatin1Char('"'));
+        lst.append(u"max=\""_s + max.toString() + '"'_L1);
     }
 
     if (!min.isNull()) {
-        lst.append(u"min=\""_qs + min.toString() + QLatin1Char('"'));
+        lst.append(u"min=\""_s + min.toString() + '"'_L1);
     }
 
     if (!step.isNull()) {
-        lst.append(u"step=\""_qs + step.toString() + QLatin1Char('"'));
+        lst.append(u"step=\""_s + step.toString() + '"'_L1);
     }
 
     if (!placeholder.isEmpty()) {
-        lst.append(u"placeholder=\""_qs + placeholder + QLatin1Char('"'));
+        lst.append(u"placeholder=\""_s + placeholder + '"'_L1);
     }
 
     if (readonly) {
-        lst.append(u"readonly"_qs);
+        lst.append(u"readonly"_s);
     }
 
     return lst;
@@ -55,7 +56,7 @@ CutelystForms::Field::Type NumberInput::type() const noexcept
 
 QString NumberInput::typeString() const noexcept
 {
-    return QStringLiteral("number");
+    return u"number"_s;
 }
 
 #include "moc_numberinput.cpp"

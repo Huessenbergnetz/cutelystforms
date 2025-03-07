@@ -6,6 +6,7 @@
 #include "datetimelocalinput_p.h"
 
 using namespace CutelystForms;
+using namespace Qt::Literals::StringLiterals;
 
 DateTimeLocalInputPrivate::DateTimeLocalInputPrivate(DateTimeLocalInput *q)
     : FieldPrivate{Field::DateTimeLocal, q}
@@ -26,26 +27,26 @@ QStringList DateTimeLocalInputPrivate::attrList() const
     QStringList lst = FieldPrivate::attrList();
 
     if (!list.isEmpty()) {
-        lst.append(u"list=\""_qs + list + QLatin1Char('"'));
+        lst.append(u"list=\""_s + list + '"'_L1);
     }
 
     if (!max.isNull()) {
-        lst.append(u"max=\""_qs + getDateTimeString(max) + QLatin1Char('"'));
+        lst.append(u"max=\""_s + getDateTimeString(max) + '"'_L1);
     }
 
     if (!min.isNull()) {
-        lst.append(u"min=\""_qs + getDateTimeString(min) + QLatin1Char('"'));
+        lst.append(u"min=\""_s + getDateTimeString(min) + '"'_L1);
     }
 
     if (!step.isNull()) {
         const auto stepInt = step.toInt();
         if (stepInt > 0) {
-            lst.append(u"step=\""_qs + QString::number(stepInt) + QLatin1Char('"'));
+            lst.append(u"step=\""_s + QString::number(stepInt) + '"'_L1);
         }
     }
 
     if (readonly) {
-        lst.append(u"readonly"_qs);
+        lst.append(u"readonly"_s);
     }
 
     return lst;
@@ -68,7 +69,7 @@ CutelystForms::Field::Type DateTimeLocalInput::type() const noexcept
 
 QString DateTimeLocalInput::typeString() const noexcept
 {
-    return QStringLiteral("datetime-local");
+    return u"datetime-local"_s;
 }
 
 #include "moc_datetimelocalinput.cpp"

@@ -6,6 +6,7 @@
 #include "checkboxinput_p.h"
 
 using namespace CutelystForms;
+using namespace Qt::Literals::StringLiterals;
 
 CheckboxInputPrivate::CheckboxInputPrivate(CheckboxInput *q)
     : FieldPrivate(Field::Checkbox, q)
@@ -17,7 +18,7 @@ QStringList CheckboxInputPrivate::attrList() const
     QStringList lst = FieldPrivate::attrList();
 
     if (checked) {
-        lst.append(u"checked"_qs);
+        lst.append(u"checked"_s);
     }
 
     return lst;
@@ -35,7 +36,7 @@ CutelystForms::Field::Type CheckboxInput::type() const noexcept
 
 QString CheckboxInput::typeString() const noexcept
 {
-    return QStringLiteral("checkbox");
+    return u"checkbox"_s;
 }
 
 #include "moc_checkboxinput.cpp"

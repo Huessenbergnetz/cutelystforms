@@ -6,6 +6,7 @@
 #include "fieldset_p.h"
 
 using namespace CutelystForms;
+using namespace Qt::Literals::StringLiterals;
 
 FieldsetPrivate::FieldsetPrivate(Fieldset *q)
     : FormHtmlElementPrivate(Tag::Fieldset, q)
@@ -18,13 +19,13 @@ QStringList FieldsetPrivate::attrList() const
     QStringList lst = FormHtmlElementPrivate::attrList();
 
     if (disabled) {
-        lst.append(u"disabled"_qs);
+        lst.append(u"disabled"_s);
     }
     if (!form.isEmpty()) {
-        lst.append(u"form=\""_qs + form + QLatin1Char('"'));
+        lst.append(u"form=\""_s + form + '"'_L1);
     }
     if (!name.isEmpty()) {
-        lst.append(u"name=\""_qs + name + QLatin1Char('"'));
+        lst.append(u"name=\""_s + name + '"'_L1);
     }
 
     return lst;
@@ -102,7 +103,7 @@ void Fieldset::setLegend(const QString &legend) noexcept
 
 QString Fieldset::tagName() const noexcept
 {
-    return QStringLiteral("fieldset");
+    return u"fieldset"_s;
 }
 
 QQmlListProperty<CutelystForms::Field> Fieldset::fields()
