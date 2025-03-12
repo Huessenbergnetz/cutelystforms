@@ -1,48 +1,28 @@
-# SPDX-FileCopyrightText: (C) 2023-2024 Matthias Fehring <https://www.huessenbergnetz.de>
+# SPDX-FileCopyrightText: (C) 2023-2025 Matthias Fehring <https://www.huessenbergnetz.de>
 # SPDX-License-Identifier: BSD-3-Clause
-
-find_program(QMAKE_CMD_PATH NAMES qmake-qt${QT_VERSION_MAJOR} qmake${QT_VERSION_MAJOR} qmake)
-set(QMAKE_CMD ${QMAKE_CMD_PATH})
 
 # get qmake location and query some Qt installation paths for later use
 get_property(QMAKE_EXE_PATH TARGET Qt${QT_VERSION_MAJOR}::qmake PROPERTY LOCATION)
-
-execute_process(COMMAND ${QMAKE_EXE_PATH} -query QT_INSTALL_BINS RESULT_VARIABLE QMAKE_RESULT OUTPUT_VARIABLE QT_INSTALL_BINS OUTPUT_STRIP_TRAILING_WHITESPACE)
-if (QMAKE_RESULT)
-    message(FATAL_ERROR "Failed to use qmake to query QT_INSTALL_BINS")
-endif (QMAKE_RESULT)
 
 execute_process(COMMAND ${QMAKE_EXE_PATH} -query QT_INSTALL_QML RESULT_VARIABLE QMAKE_RESULT OUTPUT_VARIABLE QT_INSTALL_QML OUTPUT_STRIP_TRAILING_WHITESPACE)
 if (QMAKE_RESULT)
     message(FATAL_ERROR "Failed to use qmake to query QT_INSTALL_QML")
 endif (QMAKE_RESULT)
 
-qt_add_library(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}FormsQml
-    qmlcutelystformsplugin.cpp
-)
-
-target_link_libraries(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}FormsQml
-    PRIVATE Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms
-)
-
-set(QMLPLUGIN_URI de.huessenbergnetz.cutelystforms)
+set(QMLPLUGIN_URI de.huessenbergnetz.cutelyst${CUTELYST_VERSION_MAJOR}forms)
 set(QMLPLUGIN_VERSION 1.0)
-
-target_compile_definitions(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}FormsQml
-    PRIVATE
-        FORMS_QML_PLUGIN_URI="${QMLPLUGIN_URI}"
-)
 
 string(REPLACE "." "/" QMLPLUGIN_INSTALL_URI ${QMLPLUGIN_URI})
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/qmldir.in ${CMAKE_CURRENT_BINARY_DIR}/qmldir @ONLY)
+set(QMLPLUGIN_OUTPUT_DIR ${CMAKE_BINARY_DIR}/Forms/imports/${QMLPLUGIN_INSTALL_URI})
 
-## Create command to generate plugin.qmltypes after build
-add_custom_command(
-    TARGET Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}FormsQml
-    POST_BUILD
-    COMMAND ${QT_INSTALL_BINS}/qmlplugindump -nonrelocatable ${QMLPLUGIN_URI} ${QMLPLUGIN_VERSION} ${CMAKE_BINARY_DIR}/Forms/imports > ${CMAKE_CURRENT_BINARY_DIR}/Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}FormsQml.qmltypes
-    COMMENT "Generating ${CMAKE_CURRENT_BINARY_DIR}/Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}FormsQml.qmltypes"
+qt_add_qml_module(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}Forms
+    URI ${QMLPLUGIN_URI}
+    VERSION ${QMLPLUGIN_VERSION}
+    CLASS_NAME QmlCutelystFormsPlugin
+    PLUGIN_TARGET Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}FormsQml
+    TYPEINFO Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}FormsQml.qmltypes
+    OUTPUT_DIRECTORY ${QMLPLUGIN_OUTPUT_DIR}
 )
 
 ### Install library
@@ -52,7 +32,7 @@ install(TARGETS Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}FormsQml
 
 ### Install additional files
 install(FILES
-    ${CMAKE_CURRENT_BINARY_DIR}/qmldir
-    ${CMAKE_CURRENT_BINARY_DIR}/Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}FormsQml.qmltypes
+    ${QMLPLUGIN_OUTPUT_DIR}/qmldir
+    ${QMLPLUGIN_OUTPUT_DIR}/Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR}FormsQml.qmltypes
     DESTINATION ${QT_INSTALL_QML}/${QMLPLUGIN_INSTALL_URI}
 )

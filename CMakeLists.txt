@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: (C) 2023-2024 Matthias Fehring <https://www.huessenbergnetz.de>
+# SPDX-FileCopyrightText: (C) 2023-2025 Matthias Fehring <https://www.huessenbergnetz.de>
 # SPDX-License-Identifier: BSD-3-Clause
 
 cmake_minimum_required(VERSION 3.16)
@@ -32,6 +32,7 @@ find_package(Qt${QT_VERSION_MAJOR} ${QT_MINIMUM_VERSION} COMPONENTS Core Qml Lin
 find_package(Cutelyst${CUTELYST_VERSION_MAJOR}Qt${QT_VERSION_MAJOR} 4.3.0 REQUIRED)
 
 if (Qt${QT_VERSION_MAJOR}_VERSION VERSION_GREATER_EQUAL "6.5.0")
+    qt_policy(SET QTP0001 NEW)
     if (QT_KNOWN_POLICY_QTP0003)
         qt_policy(SET QTP0003 NEW)
     endif (QT_KNOWN_POLICY_QTP0003)

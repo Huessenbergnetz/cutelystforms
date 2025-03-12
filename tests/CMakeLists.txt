@@ -1,7 +1,9 @@
-# SPDX-FileCopyrightText: (C) 2023-2024 Matthias Fehring <https://www.huessenbergnetz.de>
+# SPDX-FileCopyrightText: (C) 2023-2025 Matthias Fehring <https://www.huessenbergnetz.de>
 # SPDX-License-Identifier: BSD-3-Clause
 
 find_package(Qt${QT_VERSION_MAJOR} ${QT_MINIMUM_VERSION} COMPONENTS Test REQUIRED)
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/data/MyForm.qml.in ${CMAKE_CURRENT_BINARY_DIR}/data/MyForm.qml @ONLY)
 
 add_executable(testforms_exec testforms.cpp coverageobject.cpp coverageobject.h)
 add_test(NAME testforms COMMAND testforms_exec)
@@ -10,7 +12,7 @@ target_compile_definitions(testforms_exec
     PRIVATE
         FORMS_IMPORT_DIR="${CMAKE_BINARY_DIR}/Forms/imports"
         TESTFORMS_L10N_DIR="${CMAKE_CURRENT_BINARY_DIR}/data/l10n"
-        TESTFORMS_DIR="${CMAKE_SOURCE_DIR}/tests/data"
+        TESTFORMS_DIR="${CMAKE_CURRENT_BINARY_DIR}/data"
 )
 
 if (TARGET Cutelyst::CSRFProtection)
