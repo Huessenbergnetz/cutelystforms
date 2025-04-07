@@ -24,7 +24,8 @@ class FormsContextObject final : public QObject // clazy:exclude=ctor-missing-pa
 {
     Q_OBJECT
 public:
-    explicit FormsContextObject(const QString &form, Cutelyst::Context *c);
+    // explicit FormsContextObject(const QString &form, Cutelyst::Context *c);
+    explicit FormsContextObject(QStringView form, Cutelyst::Context *c);
     ~FormsContextObject() override = default;
 
     [[nodiscard]] Q_INVOKABLE QString cTr(const QString &sourceText,
@@ -44,7 +45,7 @@ public:
                                                    const QVariant &defVal = QVariant());
 
 private:
-    const QString m_form;
+    const QByteArray m_form;
     Cutelyst::Context *m_c;
 
     Q_DISABLE_COPY(FormsContextObject)

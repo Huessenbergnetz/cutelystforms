@@ -132,7 +132,7 @@ public:
 
     static QString timezoneStashKey();
 
-    static Form *getForm(const QString &name, Cutelyst::Context *c, Options options = NoOptions);
+    static Form *getForm(QStringView name, Cutelyst::Context *c, Options options = NoOptions);
 
     static AwaitedForm
         coGetForm(const QString &name, Cutelyst::Context *c, Options options = NoOptions);

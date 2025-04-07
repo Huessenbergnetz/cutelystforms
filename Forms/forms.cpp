@@ -30,9 +30,9 @@ using namespace CutelystForms;
 // NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 static thread_local Forms *forms = nullptr;
 
-FormsContextObject::FormsContextObject(const QString &form, Cutelyst::Context *c)
+FormsContextObject::FormsContextObject(QStringView form, Cutelyst::Context *c)
     : QObject(c)
-    , m_form(form)
+    , m_form(form.toUtf8())
     , m_c(c)
 {
 }
@@ -40,7 +40,7 @@ FormsContextObject::FormsContextObject(const QString &form, Cutelyst::Context *c
 QString
     FormsContextObject::cTr(const QString &sourceText, const QString &disambiguation, int n) const
 {
-    return m_c->translate(m_form.toUtf8().constData(),
+    return m_c->translate(m_form.constData(),
                           sourceText.toUtf8().constData(),
                           disambiguation.toUtf8().constData(),
                           n);
@@ -246,7 +246,7 @@ QString Forms::timezoneStashKey()
     return forms->d_func()->timezoneStashKey;
 }
 
-Form *Forms::getForm(const QString &name, Cutelyst::Context *c, Options options)
+Form *Forms::getForm(QStringView name, Cutelyst::Context *c, Options options)
 {
     Q_ASSERT_X(c, "Forms::getForm", "we nee a valid Cutelyst context");
 
