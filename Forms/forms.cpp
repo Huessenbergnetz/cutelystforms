@@ -1,5 +1,5 @@
 /*!
- * SPDX-FileCopyrightText: (C) 2023-2024 Matthias Fehring <https://www.huessenbergnetz.de>
+ * SPDX-FileCopyrightText: (C) 2023-2025 Matthias Fehring <https://www.huessenbergnetz.de>
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
@@ -118,6 +118,89 @@ Forms::Forms(Cutelyst::Application *parent)
     });
 }
 
+FormsLoader::FormsLoader(Forms *forms, QObject *parent)
+    : QObject{parent}
+    , m_forms{forms}
+{
+}
+
+void FormsLoader::loadForm(const QString &name, Cutelyst::Context *c, Forms::Options options)
+{
+#if (QT_VERSION < QT_VERSION_CHECK(6, 5, 0))
+    QMetaObject::invokeMethod(this,
+                              "load",
+                              Qt::DirectConnection,
+                              Q_ARG(QString, name),
+                              Q_ARG(Cutelyst::Context *, c),
+                              Q_ARG(CutelystForms::Forms::Options, options));
+#else
+    QMetaObject::invokeMethod(this, "load", Qt::DirectConnection, name, c, options);
+#endif
+}
+
+void FormsLoader::load(const QString &name,
+                       Cutelyst::Context *c,
+                       CutelystForms::Forms::Options options)
+{
+    Q_ASSERT_X(c, "FormsLoader:load", "we nee a valid Cutelyst context");
+
+    if (!m_forms) {
+        qCCritical(C_FORMS) << "Forms plugin not registered";
+        Q_EMIT loaded(nullptr);
+        return;
+    }
+
+    QFileInfo fi;
+    const QStringList includePaths = m_forms->includePaths();
+    for (const QString &path : includePaths) {
+        const QString fn = path + QLatin1Char('/') + name;
+        fi.setFile(fn);
+        if (fi.exists()) {
+            break;
+        }
+    }
+
+    if (!fi.exists()) {
+        qCWarning(C_FORMS) << "Can not find form" << name;
+        Q_EMIT loaded(nullptr);
+        return;
+    }
+
+    QQmlContext qmlContext(&m_forms->d_func()->engine);
+    // NOLINTNEXTLINE(cppcoreguidelines-owning-memory)
+    qmlContext.setContextObject(new FormsContextObject(fi.completeBaseName(), c));
+    if (!options.testFlag(Forms::DoNotFillContext)) {
+        auto it = c->stash().cbegin();
+        while (it != c->stash().cend()) {
+            qmlContext.setContextProperty(it.key(), it.value());
+            it++;
+        }
+    }
+
+    QQmlComponent component(&m_forms->d_func()->engine, fi.filePath());
+    auto formObject = component.create(&qmlContext);
+    if (!formObject) {
+        qCWarning(C_FORMS) << "Failed to load form" << name
+                           << "from QML file:" << component.errorString();
+        Q_EMIT loaded(nullptr);
+        return;
+    }
+    auto realFormObject = qobject_cast<Form *>(formObject);
+    if (!realFormObject) {
+        qCWarning(C_FORMS)
+            << "Failed to load form" << name
+            << "from QML file. Maybe the root item in the QML file is not of type Form.";
+        Q_EMIT loaded(nullptr);
+        return;
+    }
+    realFormObject->setObjectName(name);
+    realFormObject->setParent(c);
+    realFormObject->setContext(c);
+    qCDebug(C_FORMS).noquote() << "Successfully loaded QML form data from" << fi.filePath();
+    Q_EMIT loaded(realFormObject);
+    return;
+}
+
 Forms::~Forms()
 {
     delete d_ptr;
@@ -217,6 +300,22 @@ Form *Forms::getForm(const QString &name, Cutelyst::Context *c, Options options)
     realFormObject->setContext(c);
     qCDebug(C_FORMS).noquote() << "Successfully loaded QML form data from" << fi.filePath();
     return realFormObject;
+}
+
+AwaitedForm Forms::coGetForm(const QString &name, Cutelyst::Context *c, Options options)
+{
+    AwaitedForm coro{c};
+    auto cb = coro.callback;
+
+    // NOLINTNEXTLINE(cppcoreguidelines-owning-memory)
+    auto fl = new FormsLoader{forms, c};
+    // NOLINTNEXTLINE(bugprone-unused-return-value)
+    connect(fl, &FormsLoader::loaded, c, [cb, fl](Form *form) {
+        fl->deleteLater();
+        cb(form);
+    });
+    fl->loadForm(name, c, options);
+    return coro;
 }
 
 QString Forms::templatesDirPath()

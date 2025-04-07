@@ -1,5 +1,5 @@
 /*!
- * SPDX-FileCopyrightText: (C) 2023-2024 Matthias Fehring <https://www.huessenbergnetz.de>
+ * SPDX-FileCopyrightText: (C) 2023-2025 Matthias Fehring <https://www.huessenbergnetz.de>
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
@@ -48,6 +48,27 @@ private:
     Cutelyst::Context *m_c;
 
     Q_DISABLE_COPY(FormsContextObject)
+};
+
+class FormsLoader final : public QObject
+{
+    Q_OBJECT
+public:
+    explicit FormsLoader(Forms *forms, QObject *parent = nullptr);
+    ~FormsLoader() override = default;
+
+    void loadForm(const QString &name,
+                  Cutelyst::Context *c,
+                  Forms::Options options = Forms::NoOptions);
+
+private Q_SLOTS:
+    void load(const QString &name, Cutelyst::Context *c, CutelystForms::Forms::Options options);
+
+Q_SIGNALS:
+    void loaded(CutelystForms::Form *form);
+
+private:
+    Forms *m_forms;
 };
 
 } // namespace CutelystForms

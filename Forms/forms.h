@@ -1,5 +1,5 @@
 /*!
- * SPDX-FileCopyrightText: (C) 2023-2024 Matthias Fehring <https://www.huessenbergnetz.de>
+ * SPDX-FileCopyrightText: (C) 2023-2025 Matthias Fehring <https://www.huessenbergnetz.de>
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
@@ -9,13 +9,58 @@
 #include "cutelyst_plugin_forms_export.h"
 #include "form.h"
 
+#include <Cutelyst/context.h>
 #include <Cutelyst/plugin.h>
+#include <coroutine>
 
-namespace Cutelyst {
-class Context;
-}
+#include <QPointer>
 
 namespace CutelystForms {
+
+class AwaitedForm
+{
+public:
+    bool await_ready() const noexcept { return m_hasResult; }
+
+    bool await_suspend(std::coroutine_handle<> handle) noexcept
+    {
+        m_handle = handle;
+        if (m_receiver) {
+            m_destroyConn = QObject::connect(m_receiver, &QObject::destroyed, [handle, this] {
+                m_hasResult = true;
+                handle.resume();
+            });
+        }
+
+        return !await_ready();
+    }
+
+    Form *await_resume() { return m_form; }
+
+    explicit AwaitedForm(Cutelyst::Context *c)
+        : m_receiver{c}
+    {
+        callback = [this](Form *form) {
+            m_form      = form;
+            m_hasResult = true;
+
+            if (m_handle) {
+                m_handle.resume();
+            }
+        };
+    }
+
+protected:
+    friend class Forms;
+    std::function<void(Form *form)> callback;
+
+private:
+    QMetaObject::Connection m_destroyConn;
+    QPointer<Cutelyst::Context> m_receiver;
+    std::coroutine_handle<> m_handle;
+    Form *m_form{nullptr};
+    bool m_hasResult{false};
+};
 
 class FormsPrivate;
 
@@ -40,8 +85,6 @@ class CUTELYST_PLUGIN_FORMS_EXPORT Forms // clazy:exclude=ctor-missing-parent-ar
     : public Cutelyst::Plugin
 {
     Q_OBJECT
-    Q_DECLARE_PRIVATE(Forms) // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)
-    Q_DISABLE_COPY(Forms)
 public:
     enum Option : int { NoOptions = 0x0, DoNotFillContext = 0x1 };
     Q_DECLARE_FLAGS(Options, Option)
@@ -91,6 +134,9 @@ public:
 
     static Form *getForm(const QString &name, Cutelyst::Context *c, Options options = NoOptions);
 
+    static AwaitedForm
+        coGetForm(const QString &name, Cutelyst::Context *c, Options options = NoOptions);
+
     static QString templatesDirPath();
 
     static QString templateDirPath(QStringView templ);
@@ -102,7 +148,10 @@ protected:
     bool setup(Cutelyst::Application *app) override;
 
 private:
+    friend class FormsLoader;
     FormsPrivate *const d_ptr;
+    Q_DECLARE_PRIVATE(Forms) // NOLINT(cppcoreguidelines-pro-type-reinterpret-cast)
+    Q_DISABLE_COPY(Forms)
 };
 
 } // namespace CutelystForms
